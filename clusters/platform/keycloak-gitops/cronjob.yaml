@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keycloak-gitops-reconciler
+  namespace: keycloak
+data:
+  reconcile.sh: |
+    #!/bin/sh
+    set -eu
+    KC=/opt/keycloak/bin/kcadm.sh
+    SERVER=http://keycloak.keycloak.svc.cluster.local
+    "$KC" config credentials --server "$SERVER" --realm master --user admin --password "$KC_ADMIN_PASSWORD"
+    for realm in Platform Homelab; do
+      if ! "$KC" get "realms/$realm" >/dev/null 2>&1; then
+        "$KC" create realms -s "realm=$realm" -s enabled=true -s displayName="$realm"
+      fi
+      if ! "$KC" get roles/admin -r "$realm" >/dev/null 2>&1; then
+        "$KC" create roles -r "$realm" -s name=admin
+      fi
+      if ! "$KC" get identity-provider/instances/google -r "$realm" >/dev/null 2>&1; then
+        "$KC" create identity-provider/instances -r "$realm" -s alias=google -s displayName=Google -s providerId=google -s enabled=true -s trustEmail=true -s "config.clientId=$KC_GOOGLE_CLIENT_ID" -s "config.clientSecret=$KC_GOOGLE_CLIENT_SECRET" -s 'config.defaultScope=openid profile email' -s 'config.syncMode=IMPORT'
+      fi
+    done
+    if ! "$KC" get users -r Platform -q username=hmisraji07@gmail.com -q exact=true | grep -q 'hmisraji07@gmail.com'; then
+      "$KC" create users -r Platform -s username=hmisraji07@gmail.com -s email=hmisraji07@gmail.com -s enabled=true -s emailVerified=true
+    fi
+    "$KC" add-roles -r Platform --uusername hmisraji07@gmail.com --rolename admin
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: keycloak-gitops-reconciler
+  namespace: keycloak
+spec:
+  schedule: "*/5 * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: reconciler
+              image: quay.io/keycloak/keycloak:26.3.3
+              command: ["/bin/sh", "/config/reconcile.sh"]
+              env:
+                - name: KC_ADMIN_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: keycloak-admin
+                      key: password
+                - name: KC_GOOGLE_CLIENT_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: keycloak-google-oauth
+                      key: client_id
+                - name: KC_GOOGLE_CLIENT_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: keycloak-google-oauth
+                      key: client_secret
+              volumeMounts:
+                - name: config
+                  mountPath: /config
+                  readOnly: true
+          volumes:
+            - name: config
+              configMap:
+                name: keycloak-gitops-reconciler
+                defaultMode: 0755

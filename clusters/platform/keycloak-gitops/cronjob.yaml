@@ -21,9 +21,11 @@ data:
         "$KC" create identity-provider/instances -r "$realm" -s alias=google -s displayName=Google -s providerId=google -s enabled=true -s trustEmail=true -s "config.clientId=$KC_GOOGLE_CLIENT_ID" -s "config.clientSecret=$KC_GOOGLE_CLIENT_SECRET" -s 'config.defaultScope=openid profile email' -s 'config.syncMode=IMPORT'
       fi
     done
-    if ! "$KC" get users -r Platform -q username=hmisraji07@gmail.com -q exact=true | grep -q 'hmisraji07@gmail.com'; then
-      "$KC" create users -r Platform -s username=hmisraji07@gmail.com -s email=hmisraji07@gmail.com -s enabled=true -s emailVerified=true
-    fi
+    platform_users=$("$KC" get users -r Platform -q username=hmisraji07@gmail.com -q exact=true --fields username --format csv || true)
+    case "$platform_users" in
+      *hmisraji07@gmail.com*) ;;
+      *) "$KC" create users -r Platform -s username=hmisraji07@gmail.com -s email=hmisraji07@gmail.com -s enabled=true -s emailVerified=true ;;
+    esac
     "$KC" add-roles -r Platform --uusername hmisraji07@gmail.com --rolename admin
 ---
 apiVersion: batch/v1

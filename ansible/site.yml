@@ -1,0 +1,244 @@
+---
+- name: Configure libvirt prerequisites
+  ansible.builtin.import_playbook: infra.yml
+
+- name: Build the K3s compute node
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    libvirt_uri: "qemu:///system"
+    pool_name: "homelab-dir"
+    network_name: "mgmt"
+    compute_dir: "{{ playbook_dir }}/../terraform/layers/03-compute"
+    dns_dir: "{{ playbook_dir }}/../terraform/layers/02-dns"
+    apps_dir: "{{ playbook_dir }}/../terraform/layers/04-apps"
+    ssh_public_key_path: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519.pub"
+    kubeconfig_path: "{{ compute_dir }}/kubeconfig"
+    user_kubeconfig_dir: "{{ lookup('env', 'HOME') }}/.kube"
+    user_kubeconfig_path: "{{ user_kubeconfig_dir }}/config"
+    dns_host_lan_ip: "192.168.1.4"
+    dns_k8s_ingress_ip: "192.168.10.220"
+    dns_domain: "platform.home.arpa"
+    app_keycloak_hostname: "keycloak.platform.home.arpa"
+    app_openbao_hostname: "openbao.platform.home.arpa"
+    app_keycloak_postgresql_storage_size: "8Gi"
+  tasks:
+    - name: Initialize the compute layer
+      ansible.builtin.command:
+        argv:
+          - tofu
+          - init
+          - -reconfigure
+          - -input=false
+        chdir: "{{ compute_dir }}"
+
+    - name: Apply the compute layer
+      ansible.builtin.command:
+        argv:
+          - tofu
+          - apply
+          - -auto-approve
+          - -input=false
+          - "-var=libvirt_uri={{ libvirt_uri }}"
+          - "-var=pool_name={{ pool_name }}"
+          - "-var=network_name={{ network_name }}"
+          - "-var=ssh_public_key_path={{ ssh_public_key_path }}"
+        chdir: "{{ compute_dir }}"
+
+    - name: Inspect the K3s node autostart state
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - dominfo
+          - k3s-node
+      register: k3s_node_info
+      changed_when: false
+      failed_when: k3s_node_info.rc != 0
+
+    - name: Enable K3s node autostart for future host outages
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - autostart
+          - k3s-node
+      when: k3s_node_info.stdout is search('Autostart:\s+disable')
+      changed_when: true
+
+    - name: Inspect the K3s node domain state
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - domstate
+          - k3s-node
+      register: k3s_node_state
+      changed_when: false
+      failed_when: k3s_node_state.rc != 0
+
+    - name: Start the K3s node after a host outage
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - start
+          - k3s-node
+      when: k3s_node_state.stdout is search('shut off|shutoff')
+      changed_when: true
+
+    - name: Wait for the node to receive a DHCP lease
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - domifaddr
+          - k3s-node
+          - --source
+          - lease
+      register: node_lease
+      changed_when: false
+      until:
+        - node_lease.rc == 0
+        - (node_lease.stdout | regex_findall('([0-9]{1,3}(?:\\.[0-9]{1,3}){3})') | length) > 0
+      retries: 30
+      delay: 5
+
+    - name: Record the node address
+      ansible.builtin.set_fact:
+        node_ip: "{{ (node_lease.stdout | regex_findall('([0-9]{1,3}(?:\\.[0-9]{1,3}){3})') | first) }}"
+
+    - name: Wait for SSH to become available
+      ansible.builtin.wait_for:
+        host: "{{ node_ip }}"
+        port: 22
+        connect_timeout: 2
+        timeout: 5
+      register: ssh_ready
+      until: ssh_ready is succeeded
+      retries: 60
+      delay: 10
+
+    - name: Wait for K3s to write the kubeconfig
+      ansible.builtin.command:
+        argv:
+          - ssh
+          - -i
+          - "{{ ssh_public_key_path | regex_replace('\\.pub$', '') }}"
+          - -o
+          - StrictHostKeyChecking=no
+          - -o
+          - UserKnownHostsFile=/dev/null
+          - "ubuntu@{{ node_ip }}"
+          - test
+          - -s
+          - /home/ubuntu/kubeconfig
+      register: kubeconfig_ready
+      changed_when: false
+      until: kubeconfig_ready.rc == 0
+      retries: 60
+      delay: 10
+
+    - name: Fetch the K3s kubeconfig
+      ansible.builtin.command:
+        argv:
+          - ssh
+          - -i
+          - "{{ ssh_public_key_path | regex_replace('\\.pub$', '') }}"
+          - -o
+          - StrictHostKeyChecking=no
+          - -o
+          - UserKnownHostsFile=/dev/null
+          - "ubuntu@{{ node_ip }}"
+          - cat
+          - /home/ubuntu/kubeconfig
+      register: kubeconfig
+      changed_when: false
+      no_log: true
+
+    - name: Save the K3s kubeconfig
+      ansible.builtin.copy:
+        content: "{{ kubeconfig.stdout }}\n"
+        dest: "{{ kubeconfig_path }}"
+        mode: "0600"
+      no_log: true
+
+    - name: Ensure the invoking user's kubectl directory exists
+      become: false
+      ansible.builtin.file:
+        path: "{{ user_kubeconfig_dir }}"
+        state: directory
+        mode: "0700"
+
+    - name: Copy the K3s kubeconfig to the invoking user's kubectl path
+      become: false
+      ansible.builtin.copy:
+        content: "{{ kubeconfig.stdout }}\n"
+        dest: "{{ user_kubeconfig_path }}"
+        mode: "0600"
+      no_log: true
+
+    - name: Wait for the K3s API to report ready
+      ansible.builtin.command:
+        argv:
+          - kubectl
+          - --kubeconfig
+          - "{{ kubeconfig_path }}"
+          - --request-timeout=10s
+          - get
+          - --raw=/readyz
+      register: k3s_api_ready
+      changed_when: false
+      until:
+        - k3s_api_ready.rc == 0
+        - (k3s_api_ready.stdout | trim) == "ok"
+      retries: 60
+      delay: 10
+
+    - name: Initialize the DNS layer
+      ansible.builtin.command:
+        argv:
+          - tofu
+          - init
+          - -input=false
+        chdir: "{{ dns_dir }}"
+
+    - name: Reconcile AdGuard DNS
+      ansible.builtin.command:
+        argv:
+          - tofu
+          - apply
+          - -auto-approve
+          - -input=false
+          - "-var=host_lan_ip={{ dns_host_lan_ip }}"
+          - "-var=k8s_ingress_ip={{ dns_k8s_ingress_ip }}"
+          - "-var=dns_domain={{ dns_domain }}"
+        chdir: "{{ dns_dir }}"
+
+    - name: Initialize the applications layer
+      ansible.builtin.command:
+        argv:
+          - tofu
+          - init
+          - -input=false
+        chdir: "{{ apps_dir }}"
+
+    - name: Reconcile applications
+      ansible.builtin.command:
+        argv:
+          - tofu
+          - apply
+          - -auto-approve
+          - -input=false
+          - "-var=keycloak_hostname={{ app_keycloak_hostname }}"
+          - "-var=openbao_hostname={{ app_openbao_hostname }}"
+          - "-var=keycloak_postgresql_storage_size={{ app_keycloak_postgresql_storage_size }}"
+        chdir: "{{ apps_dir }}"
+
+

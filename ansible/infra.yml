@@ -1,0 +1,338 @@
+---
+- name: Configure Libvirt Infrastructure
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    libvirt_uri: "qemu:///system"
+    pool_name: "homelab-dir"
+    pool_path: "/var/tmp/homelab-libvirt"
+    network_name: "mgmt"
+    network_address: "192.168.10.1"
+    network_netmask: "255.255.255.0"
+    network_dhcp_start: "192.168.10.2"
+    network_dhcp_end: "192.168.10.254"
+    firewall_policy_name: "lan-k3s-ingress"
+    firewall_lan_cidr: "192.168.1.0/24"
+    firewall_k3s_ingress_ip: "192.168.10.220"
+    migrate_mgmt_network_to_routed: false
+  handlers:
+    - name: Reload firewalld
+      become: true
+      ansible.builtin.command:
+        argv:
+          - firewall-cmd
+          - --reload
+      changed_when: true
+  tasks:
+    - name: Ensure required host services are running
+      become: true
+      ansible.builtin.systemd_service:
+        name: "{{ item }}"
+        state: started
+      loop:
+        - firewalld.service
+        - docker.service
+        - virtqemud.service
+      loop_control:
+        label: "{{ item }}"
+
+    - name: Enable host services for automatic outage recovery
+      become: true
+      ansible.builtin.systemd_service:
+        name: "{{ item }}"
+        enabled: true
+      loop:
+        - firewalld.service
+        - docker.service
+        - virtqemud.socket
+      loop_control:
+        label: "{{ item }}"
+
+    - name: Ensure the LAN to K3s ingress policy is installed
+      become: true
+      ansible.builtin.copy:
+        dest: "/etc/firewalld/policies/{{ firewall_policy_name }}.xml"
+        owner: root
+        group: root
+        mode: "0644"
+        content: |
+          <?xml version="1.0" encoding="utf-8"?>
+          <policy target="REJECT" priority="-100">
+            <short>LAN to K3s ingress</short>
+            <description>
+              Allow only LAN HTTP(S) connections to the K3s ingress node.
+              Firewalld statefully permits the corresponding return traffic.
+            </description>
+            <ingress-zone name="FedoraWorkstation"/>
+            <egress-zone name="libvirt-routed"/>
+            <rule family="ipv4">
+              <source address="{{ firewall_lan_cidr }}"/>
+              <destination address="{{ firewall_k3s_ingress_ip }}"/>
+              <port port="80" protocol="tcp"/>
+              <accept/>
+            </rule>
+            <rule family="ipv4">
+              <source address="{{ firewall_lan_cidr }}"/>
+              <destination address="{{ firewall_k3s_ingress_ip }}"/>
+              <port port="443" protocol="tcp"/>
+              <accept/>
+            </rule>
+          </policy>
+      notify: Reload firewalld
+
+    - name: Create directory for the libvirt storage pool
+      ansible.builtin.file:
+        path: "{{ pool_path }}"
+        state: directory
+        mode: "0775"
+
+    - name: Ensure the libvirt storage pool exists
+      community.libvirt.virt_pool:
+        uri: "{{ libvirt_uri }}"
+        name: "{{ pool_name }}"
+        state: active
+        xml: |
+          <pool type='dir'>
+            <name>{{ pool_name }}</name>
+            <target>
+              <path>{{ pool_path }}</path>
+            </target>
+          </pool>
+ 
+    - name: Check libvirt storage pool autostart state
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - pool-info
+          - "{{ pool_name }}"
+      register: pool_info
+      changed_when: false
+
+    - name: Enable libvirt storage pool autostart
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - pool-autostart
+          - "{{ pool_name }}"
+      when: pool_info.stdout is search('Autostart:\s+no')
+      changed_when: true
+
+    - name: Inspect the management network definition
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - net-info
+          - "{{ network_name }}"
+      register: mgmt_network_info
+      changed_when: false
+      failed_when: mgmt_network_info.rc not in [0, 1]
+
+    - name: Inspect the management network XML
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - net-dumpxml
+          - "{{ network_name }}"
+          - --inactive
+      register: mgmt_network_xml
+      changed_when: false
+      when: mgmt_network_info.rc == 0
+      failed_when: mgmt_network_xml.rc != 0
+
+    - name: Stop the active NAT network for an opted-in migration
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - net-destroy
+          - "{{ network_name }}"
+      when:
+        - migrate_mgmt_network_to_routed | bool
+        - mgmt_network_info.rc == 0
+        - mgmt_network_info.stdout is search('Active:\s+yes')
+        - mgmt_network_xml.stdout is search("forward mode='nat'")
+      changed_when: true
+
+    - name: Remove the persistent NAT definition for an opted-in migration
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - net-undefine
+          - "{{ network_name }}"
+      when:
+        - migrate_mgmt_network_to_routed | bool
+        - mgmt_network_info.rc == 0
+        - mgmt_network_xml.stdout is search("forward mode='nat'")
+      changed_when: true
+
+    - name: Define the routed management network when absent
+      community.libvirt.virt_net:
+        uri: "{{ libvirt_uri }}"
+        name: "{{ network_name }}"
+        command: define
+        xml: |
+          <network>
+            <name>{{ network_name }}</name>
+            <forward mode='route'/>
+            <bridge stp='on' delay='0'/>
+            <domain name='mgmt.local'/>
+            <ip address='{{ network_address }}' netmask='{{ network_netmask }}'>
+              <dhcp>
+                <range start='{{ network_dhcp_start }}' end='{{ network_dhcp_end }}'/>
+              </dhcp>
+            </ip>
+          </network>
+      when:
+        - mgmt_network_info.rc == 1 or (
+            migrate_mgmt_network_to_routed | bool and
+            mgmt_network_xml.stdout is search("forward mode='nat'")
+          )
+
+    - name: Ensure the management network is active and autostarted
+      community.libvirt.virt_net:
+        uri: "{{ libvirt_uri }}"
+        name: "{{ network_name }}"
+        state: active
+        autostart: true
+
+    - name: Inspect the K3s node state after network migration
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - domstate
+          - k3s-node
+      register: k3s_node_state
+      changed_when: false
+      failed_when: k3s_node_state.rc not in [0, 1]
+
+    - name: Inspect the K3s node network interface
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - domiflist
+          - k3s-node
+      register: k3s_node_interfaces
+      changed_when: false
+      when:
+        - k3s_node_state.rc == 0
+        - k3s_node_state.stdout is search('running')
+      failed_when: k3s_node_interfaces.rc != 0
+
+    - name: Record the K3s management tap name
+      ansible.builtin.set_fact:
+        k3s_mgmt_tap: >-
+          {{
+            (
+              k3s_node_interfaces.stdout
+              | regex_findall('(?m)^\s*(vnet[0-9]+)\s+network\s+' ~ network_name ~ '\s')
+              | first
+              | default('')
+            )
+          }}
+      when:
+        - k3s_node_state.rc == 0
+        - k3s_node_state.stdout is search('running')
+        - k3s_node_interfaces.stdout is search('network\s+' ~ network_name)
+
+    - name: Inspect management bridge ports
+      ansible.builtin.command:
+        argv:
+          - bridge
+          - link
+          - show
+          - master
+          - virbr3
+      register: mgmt_bridge_ports
+      changed_when: false
+      when: k3s_mgmt_tap | default('') | length > 0
+      failed_when: mgmt_bridge_ports.rc != 0
+
+    - name: Stop the running K3s node when its management tap is detached
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - shutdown
+          - k3s-node
+      when:
+        - migrate_mgmt_network_to_routed | bool
+        - k3s_node_state.rc == 0
+        - k3s_node_state.stdout is search('running')
+        - k3s_mgmt_tap | default('') | length > 0
+        - k3s_mgmt_tap not in mgmt_bridge_ports.stdout
+      changed_when: true
+
+    - name: Wait for the K3s node to shut off
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - domstate
+          - k3s-node
+      register: k3s_node_stopped
+      changed_when: false
+      until: k3s_node_stopped.stdout is search('shut off|shutoff')
+      retries: 30
+      delay: 2
+      when:
+        - migrate_mgmt_network_to_routed | bool
+        - k3s_node_state.rc == 0
+        - k3s_node_state.stdout is search('running')
+        - k3s_mgmt_tap | default('') | length > 0
+        - k3s_mgmt_tap not in mgmt_bridge_ports.stdout
+
+    - name: Start the K3s node after recreating its management tap
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - start
+          - k3s-node
+      register: k3s_node_started
+      changed_when: true
+      when:
+        - migrate_mgmt_network_to_routed | bool
+        - k3s_node_state.rc == 0
+        - k3s_node_state.stdout is search('running')
+        - k3s_mgmt_tap | default('') | length > 0
+        - k3s_mgmt_tap not in mgmt_bridge_ports.stdout
+
+    - name: Wait for the K3s node to run after tap recreation
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - "{{ libvirt_uri }}"
+          - domstate
+          - k3s-node
+      register: k3s_node_running
+      changed_when: false
+      until: k3s_node_running.stdout is search('running')
+      retries: 30
+      delay: 2
+      when:
+        - migrate_mgmt_network_to_routed | bool
+        - k3s_node_state.rc == 0
+        - k3s_node_state.stdout is search('running')
+        - k3s_mgmt_tap | default('') | length > 0
+        - k3s_mgmt_tap not in mgmt_bridge_ports.stdout
+

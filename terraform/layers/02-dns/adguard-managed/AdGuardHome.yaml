@@ -1,0 +1,41 @@
+"auth_attempts": 5
+"block_auth_min": 15
+"dns":
+  "bind_hosts":
+  - "0.0.0.0"
+  "enable_dnssec": true
+  "fallback_dns": []
+  "port": 53
+  "upstream_dns": []
+"filtering":
+  "filtering_enabled": true
+  "rewrites":
+  - "answer": "192.168.1.4"
+    "domain": "adguard.platform.home.arpa"
+    "enabled": true
+  - "answer": "192.168.10.220"
+    "domain": "keycloak.platform.home.arpa"
+    "enabled": true
+  - "answer": "192.168.10.220"
+    "domain": "openbao.platform.home.arpa"
+    "enabled": true
+  - "answer": "192.168.10.220"
+    "domain": "traefik.platform.home.arpa"
+    "enabled": true
+  "rewrites_enabled": true
+"filters": []
+"http":
+  "address": "0.0.0.0:80"
+  "session_ttl": "720h"
+"language": ""
+"querylog":
+  "enabled": true
+"schema_version": 34
+"statistics":
+  "enabled": true
+"theme": "auto"
+"tls":
+  "enabled": false
+"user_rules": []
+"users": []
+"whitelist_filters": []

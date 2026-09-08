@@ -1,0 +1,31 @@
+#cloud-config
+users:
+  - name: ubuntu
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ${ssh_public_key}
+growpart:
+  mode: auto
+  devices:
+    - "/"
+resizefs: true
+
+write_files:
+  - path: /etc/systemd/resolved.conf.d/10-homelab-dns.conf
+    content: |
+      [Resolve]
+      DNS=1.1.1.1
+      FallbackDNS=8.8.8.8
+    permissions: "0644"
+
+runcmd:
+  - systemctl restart systemd-resolved
+  - curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --disable traefik --disable-network-policy" sh -s -
+  - |
+    node_ip="$(hostname -I | awk '{print $1}')"
+    mkdir -p /home/ubuntu/.kube
+    cp /etc/rancher/k3s/k3s.yaml /home/ubuntu/.kube/config
+    cp /etc/rancher/k3s/k3s.yaml /home/ubuntu/kubeconfig
+    sed -i "s/127.0.0.1/$${node_ip}/g" /home/ubuntu/.kube/config /home/ubuntu/kubeconfig
+    chown -R ubuntu:ubuntu /home/ubuntu/.kube /home/ubuntu/kubeconfig

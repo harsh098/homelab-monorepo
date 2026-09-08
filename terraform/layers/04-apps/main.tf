@@ -1,0 +1,1 @@
+# Application resources go here

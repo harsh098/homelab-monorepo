@@ -1,0 +1,69 @@
+# Terraform / OpenTofu local state and working directories
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfplan.json
+*.plan
+crash.log
+crash.*.log
+
+# Keep dependency lock files versioned
+!.terraform.lock.hcl
+
+# Variable, environment, and credential material
+*.tfvars
+*.tfvars.json
+*.auto.tfvars
+*.auto.tfvars.json
+.env
+.env.*
+*.env
+*.env.*
+credentials
+credentials.*
+**/credentials/
+*credentials*.json
+service-account*.json
+*-service-account*.json
+
+# Kubernetes configuration
+kubeconfig
+kubeconfig.*
+**/kubeconfig
+**/kubeconfig.*
+*.kubeconfig
+
+# Private keys and certificates
+*.key
+*.pem
+*.crt
+*.cer
+*.der
+*.p12
+*.pfx
+*.jks
+
+# Plans, logs, retries, and local diagnostics
+*.log
+*.retry
+*.retry.*
+*.out
+
+# Local generated XML and temporary artifacts
+*.generated.xml
+*-generated.xml
+*.local.xml
+*.tmp.xml
+*.temp.xml
+*.tmp
+*.temp
+.tmp/
+tmp/
+temp/
+.debug/
+debug/
+terraform/layers/02-dns/adguard-managed/conf/
+terraform/layers/02-dns/adguard-managed/work/
+terraform/layers/02-dns/adguard/conf/
+terraform/layers/02-dns/adguard/work/

@@ -1,0 +1,8 @@
+FROM quay.io/centos-bootc/centos-bootc:stream9
+
+# Install qemu-guest-agent and basic utilities
+RUN dnf -y install qemu-guest-agent vim curl wget htop && \
+    dnf clean all
+
+# Enable qemu-guest-agent so it starts automatically
+RUN systemctl enable qemu-guest-agent.service

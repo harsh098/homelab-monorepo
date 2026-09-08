@@ -40,5 +40,4 @@ resource "helm_release" "openbao" {
     value = var.openbao_hostname
   }
 
-  depends_on = [kubernetes_secret_v1.openbao_tls]
 }

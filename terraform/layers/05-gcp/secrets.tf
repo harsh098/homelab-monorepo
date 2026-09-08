@@ -23,3 +23,10 @@ resource "google_secret_manager_secret" "backup_credentials" {
     auto {}
   }
 }
+resource "google_secret_manager_secret" "keycloak_google_oauth" {
+  secret_id = "keycloak-google-oauth"
+
+  replication {
+    auto {}
+  }
+}

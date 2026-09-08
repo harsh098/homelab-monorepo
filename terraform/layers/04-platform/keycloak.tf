@@ -142,7 +142,7 @@ resource "helm_release" "keycloak" {
       hostname         = var.keycloak_hostname
       path             = "/"
       servicePort      = "http"
-      tls              = false
+      tls              = true
       selfSigned       = false
       extraTls = [
         {
@@ -192,6 +192,6 @@ resource "helm_release" "keycloak" {
   depends_on = [
     kubernetes_secret_v1.keycloak_admin,
     kubernetes_secret_v1.keycloak_postgresql,
-    kubernetes_secret_v1.keycloak_tls,
+    kubernetes_manifest.keycloak_certificate,
   ]
 }

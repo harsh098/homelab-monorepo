@@ -1,0 +1,25 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: platform-repository
+  namespace: flux-system
+spec:
+  interval: 1m
+  url: https://github.com/harsh098/homelab-monorepo.git
+  ref:
+    branch: main
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: platform
+  namespace: flux-system
+spec:
+  interval: 10m
+  prune: true
+  wait: true
+  path: ./clusters/platform
+  sourceRef:
+    kind: GitRepository
+    name: platform-repository
+  timeout: 5m

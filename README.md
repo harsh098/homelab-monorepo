@@ -58,9 +58,10 @@ individually from their directories:
   DNS names; use `.platform.home.arpa` instead.
 - **03-compute** contains the compute resources reconciled by the Ansible
   workflow above.
-- **04-apps** deploys Traefik, cert-manager, OpenBao, and Keycloak after
-  compute and K3s API readiness succeed. The recovery workflow reconciles this
-  layer automatically.
+- **04-platform** deploys Traefik, OpenBao, and Keycloak after compute and K3s
+  API readiness succeed. It is the platform cluster layer, not a generic
+  application deployment layer. The recovery workflow reconciles it
+  automatically.
   Traefik is the ingress controller and is exposed through the K3s
   `LoadBalancer` service at `192.168.10.220`. Keycloak is a production-ish
   deployment with generated Kubernetes secrets and persistent 8Gi PostgreSQL
@@ -203,10 +204,10 @@ ansible-playbook -i ansible/inventory.ini ansible/site.yml --ask-become-pass
 
 The workflow starts and enables the host services needed after an outage
 (`firewalld`, Docker, and the libvirt `virtqemud` socket), reconciles and
-autostarts the management network and compute domain, starts `k3s-node` if it
-is powered off, and waits for its DHCP lease, SSH, kubeconfig, and K3s
-`/readyz` response. It then reconciles `terraform/layers/02-dns` (AdGuard)
-and `terraform/layers/04-apps` (Traefik, OpenBao, and Keycloak) in that order.
+autostarts the management network and compute domain, starts `k3s-node` if its
+`/readyz` response is available. It then reconciles
+`terraform/layers/02-dns` (AdGuard) and
+`terraform/layers/04-platform` (Traefik, OpenBao, and Keycloak) in that order.
 OpenTofu is run locally by the Ansible localhost play; backend authentication
 must already be available in the environment. The fetched kubeconfig is saved
 to `terraform/layers/03-compute/kubeconfig` with mode `0600` and copied to the
@@ -242,7 +243,7 @@ definition. Without it, the workflow does not perform NAT-to-routed
 migration. A routed network provides no masquerading, so return routing
 through `192.168.1.4` remains required.
 
-The workflow does not apply the DNS or application layers until the K3s API
+The workflow does not apply the DNS or platform layers until the K3s API
 readiness check succeeds. To inspect the resulting state:
 
 ```bash
@@ -252,33 +253,13 @@ KUBECONFIG=terraform/layers/03-compute/kubeconfig kubectl get nodes,pods,svc -A
 ```
 
 Do not run a separate OpenTofu apply concurrently with the recovery workflow.
-### Private TLS
-
-The application layer uses the existing Terraform-managed private ECDSA root
-CA for `keycloak.platform.home.arpa` and `openbao.platform.home.arpa`. Preserve
-that CA identity: this migration must not generate or rotate a replacement CA.
-Both ingresses still terminate HTTPS through Traefik at `192.168.10.220` with
-the existing Terraform-issued leaf certificates. No ingress secret is cut over
-in this milestone, and OpenBao is not used as a PKI store.
-
-The first cert-manager milestone installs cert-manager with its CRDs, creates
-the `cert-manager` namespace, and copies the existing CA into the
-`homelab-private-ca` Kubernetes TLS Secret (`tls.crt` and `tls.key`). A
-cert-manager CA Issuer needs that Kubernetes Secret at runtime. Google Cloud
-Secret Manager is recovery storage only; it is not a runtime integration for
-this on-premises K3s cluster and does not replace the Kubernetes copy.
-
-The same application-layer state writes one initial, immutable JSON recovery
-bundle to the `homelab-private-ca` Google Secret Manager secret. The documented
-UTF-8 JSON fields are `schema_version`, `ca_certificate_pem`, and
-`ca_private_key_pem`. The bundle contains private material, so protect Terraform
-state, GCP access, and Secret Manager IAM. Do not print or expose the bundle.
-This version is intentionally one-time and lifecycle-protected; leaf renewal
-does not update it.
+The platform layer installs cert-manager, loads the retained
+`homelab-private-ca` Google Cloud Secret Manager bundle into the cluster, and
+uses it as the CA for Keycloak and OpenBao ingress certificates.
 
 ### Keycloak bootstrap credential recovery
 
-The application layer stores the existing Keycloak bootstrap admin credential
+The platform layer stores the existing Keycloak bootstrap admin credential
 as one initial, immutable JSON bundle in Google Cloud Secret Manager for
 recovery only. The bundle contains `schema_version`, `username`, and
 `password`; protect Terraform state, GCP access, and Secret Manager IAM. Never
@@ -296,79 +277,32 @@ client scoped to its target realm and application. Google IdP and Kubernetes
 OIDC are not configured here because the target realm, client IDs, and Google
 OAuth credentials are not provisioned.
 
-Apply and verify the foundation in this order:
+Apply and verify the platform layer:
 
 ```bash
-cd terraform/layers/04-apps
+cd terraform/layers/04-platform
 tofu init
 tofu plan -input=false
 tofu apply -auto-approve -input=false
 
-# Verify metadata and presence without printing secret data.
-kubectl -n cert-manager get secret homelab-private-ca
+# Verify cert-manager and issued application certificates.
 kubectl -n cert-manager get deployment cert-manager
-kubectl get crd issuers.cert-manager.io certificates.cert-manager.io
+kubectl get clusterissuer homelab-private-ca
+kubectl -n keycloak get certificate,secret keycloak.platform.home.arpa-tls
+kubectl -n openbao get certificate,secret openbao.platform.home.arpa-tls
+
+# Verify the retained recovery secret without printing secret data.
 gcloud secrets versions list homelab-private-ca --project="$GCP_PROJECT_ID"
 ```
 
-After those checks pass, a later change will add the cert-manager `Issuer` or
-`ClusterIssuer` and `Certificate` resources, then explicitly migrate ingress
-secrets. This staged foundation deliberately adds no issuer/certificate custom
-resources and leaves the existing Terraform leaf resources and ingress
-secrets unchanged.
-
-The existing leaf certificates are valid for 90 days and are renewed by the
-TLS provider when an application-layer plan/apply runs within the final 30
-days. Until the later cert-manager cutover, run the application layer at least
-monthly (or use a scheduler) and review the plan. The root CA is valid for 10
-years. The OpenBao TLS secret is created before its Helm release update; the
-existing `openbao` namespace must therefore already exist (as it does after the
-current OpenBao deployment). On a fresh cluster, create that namespace once
-with `kubectl create namespace openbao` before the first application-layer
-apply.
-
-Clients must trust the root CA before either hostname will validate. After
-applying the application layer, retrieve the public CA certificate (never a
-private key) with:
-
-```bash
-cd terraform/layers/04-apps
-tofu output -raw private_ca_certificate > homelab-private-ca.crt
-```
-
-Install `homelab-private-ca.crt` into the client's trusted root certificate
-store. For example:
-
-```bash
-# Debian/Ubuntu
-sudo cp homelab-private-ca.crt /usr/local/share/ca-certificates/homelab-private-ca.crt
-sudo update-ca-certificates
-
-# Fedora/RHEL
-sudo trust anchor homelab-private-ca.crt
-
-# macOS (current user/system keychain policy may require authorization)
-sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain homelab-private-ca.crt
-```
-
-On Windows, import it into **Trusted Root Certification Authorities** (for
-example, in PowerShell: `Import-Certificate -FilePath .\homelab-private-ca.crt
--CertStoreLocation Cert:\CurrentUser\Root`). Then browse to
-`https://keycloak.platform.home.arpa` or `https://openbao.platform.home.arpa`.
-For a temporary one-off check, pass `--cacert homelab-private-ca.crt` to
-`curl`; do not disable certificate verification. The DNS and routing caveats
-above still apply.
-
-The recovery workflow applies the application layer only after the K3s API
-readiness check. For a manual application-only reconciliation, after confirming
+The recovery workflow applies the platform layer only after the K3s API
+readiness check. For a manual platform-only reconciliation, after confirming
 the API is reachable through the fetched kubeconfig:
-
 ```bash
-cd terraform/layers/04-apps
+cd terraform/layers/04-platform
 tofu init
 tofu plan -input=false
 tofu apply -auto-approve -input=false
 ```
 
-Do not apply the application layer until the K3s API is reachable through
-`terraform/layers/03-compute/kubeconfig`.
+Do not apply the platform layer until the K3s API is reachable through

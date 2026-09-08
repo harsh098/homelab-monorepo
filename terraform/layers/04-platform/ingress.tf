@@ -30,7 +30,6 @@ resource "helm_release" "traefik" {
     value = "443"
   }
 }
-
 resource "helm_release" "cert_manager" {
   name             = "cert-manager"
   repository       = "https://charts.jetstack.io"
@@ -51,3 +50,4 @@ resource "helm_release" "cert_manager" {
     kubernetes_secret_v1.cert_manager_ca,
   ]
 }
+

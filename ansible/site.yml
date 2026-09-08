@@ -12,7 +12,7 @@
     network_name: "mgmt"
     compute_dir: "{{ playbook_dir }}/../terraform/layers/03-compute"
     dns_dir: "{{ playbook_dir }}/../terraform/layers/02-dns"
-    apps_dir: "{{ playbook_dir }}/../terraform/layers/04-apps"
+    platform_dir: "{{ playbook_dir }}/../terraform/layers/04-platform"
     ssh_public_key_path: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519.pub"
     kubeconfig_path: "{{ compute_dir }}/kubeconfig"
     user_kubeconfig_dir: "{{ lookup('env', 'HOME') }}/.kube"
@@ -22,7 +22,11 @@
     dns_domain: "platform.home.arpa"
     app_keycloak_hostname: "keycloak.platform.home.arpa"
     app_openbao_hostname: "openbao.platform.home.arpa"
-    app_keycloak_postgresql_storage_size: "8Gi"
+    app_keycloak_realm: "master"
+    app_keycloak_google_idp_alias: "google"
+    app_keycloak_oauth_secret_name: "keycloak-google-oauth"
+    app_keycloak_admin_secret_name: "keycloak-admin"
+    app_keycloak_api_url: "https://keycloak.platform.home.arpa"
   tasks:
     - name: Initialize the compute layer
       ansible.builtin.command:
@@ -221,15 +225,14 @@
           - "-var=dns_domain={{ dns_domain }}"
         chdir: "{{ dns_dir }}"
 
-    - name: Initialize the applications layer
+    - name: Initialize the platform layer
       ansible.builtin.command:
         argv:
           - tofu
           - init
           - -input=false
-        chdir: "{{ apps_dir }}"
 
-    - name: Reconcile applications
+    - name: Reconcile platform
       ansible.builtin.command:
         argv:
           - tofu
@@ -239,6 +242,81 @@
           - "-var=keycloak_hostname={{ app_keycloak_hostname }}"
           - "-var=openbao_hostname={{ app_openbao_hostname }}"
           - "-var=keycloak_postgresql_storage_size={{ app_keycloak_postgresql_storage_size }}"
-        chdir: "{{ apps_dir }}"
+        chdir: "{{ platform_dir }}"
 
 
+
+    - name: Read Keycloak bootstrap and Google OAuth secrets
+      ansible.builtin.command:
+        argv:
+          - kubectl
+          - -n
+          - keycloak
+          - get
+          - secret
+          - "{{ item.name }}"
+          - -o
+          - "jsonpath={.data.{{ item.key }}}"
+      environment:
+        KUBECONFIG: "{{ kubeconfig_path }}"
+      loop:
+        - name: "{{ app_keycloak_admin_secret_name }}"
+          key: password
+        - name: "{{ app_keycloak_oauth_secret_name }}"
+          key: client_id
+        - name: "{{ app_keycloak_oauth_secret_name }}"
+          key: client_secret
+      register: keycloak_secret_values
+      changed_when: false
+      no_log: true
+
+    - name: Authenticate to Keycloak Admin API
+      ansible.builtin.uri:
+        url: "{{ app_keycloak_api_url }}/realms/{{ app_keycloak_realm }}/protocol/openid-connect/token"
+        method: POST
+        validate_certs: false
+        body_format: form-urlencoded
+        body:
+          username: admin
+          password: "{{ keycloak_secret_values.results[0].stdout | b64decode }}"
+          grant_type: password
+          client_id: admin-cli
+        status_code: 200
+        return_content: true
+      register: keycloak_admin_token
+      no_log: true
+
+    - name: Check Google identity provider
+      ansible.builtin.uri:
+        url: "{{ app_keycloak_api_url }}/admin/realms/{{ app_keycloak_realm }}/identity-provider/instances/{{ app_keycloak_google_idp_alias }}"
+        method: GET
+        validate_certs: false
+        headers:
+          Authorization: "Bearer {{ keycloak_admin_token.json.access_token }}"
+        status_code: [200, 404]
+      register: keycloak_google_idp
+      no_log: true
+
+    - name: Configure Google identity provider when missing
+      ansible.builtin.uri:
+        url: "{{ app_keycloak_api_url }}/admin/realms/{{ app_keycloak_realm }}/identity-provider/instances"
+        method: POST
+        validate_certs: false
+        headers:
+          Authorization: "Bearer {{ keycloak_admin_token.json.access_token }}"
+          Content-Type: application/json
+        body_format: json
+        body:
+          alias: "{{ app_keycloak_google_idp_alias }}"
+          displayName: Google
+          providerId: google
+          enabled: true
+          trustEmail: true
+          config:
+            clientId: "{{ keycloak_secret_values.results[1].stdout | b64decode }}"
+            clientSecret: "{{ keycloak_secret_values.results[2].stdout | b64decode }}"
+            defaultScope: "openid profile email"
+            syncMode: IMPORT
+        status_code: 201
+      when: keycloak_google_idp.status == 404
+      no_log: true

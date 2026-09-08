@@ -4,29 +4,101 @@ metadata:
   name: keycloak-gitops-reconciler
   namespace: keycloak
 data:
-  reconcile.sh: |
-    #!/bin/sh
-    set -eu
-    KC=/opt/keycloak/bin/kcadm.sh
-    SERVER=http://keycloak.keycloak.svc.cluster.local
-    "$KC" config credentials --server "$SERVER" --realm master --user admin --password "$KC_ADMIN_PASSWORD"
-    for realm in Platform Homelab; do
-      if ! "$KC" get "realms/$realm" >/dev/null 2>&1; then
-        "$KC" create realms -s "realm=$realm" -s enabled=true -s displayName="$realm"
-      fi
-      if ! "$KC" get roles/admin -r "$realm" >/dev/null 2>&1; then
-        "$KC" create roles -r "$realm" -s name=admin
-      fi
-      if ! "$KC" get identity-provider/instances/google -r "$realm" >/dev/null 2>&1; then
-        "$KC" create identity-provider/instances -r "$realm" -s alias=google -s displayName=Google -s providerId=google -s enabled=true -s trustEmail=true -s "config.clientId=$KC_GOOGLE_CLIENT_ID" -s "config.clientSecret=$KC_GOOGLE_CLIENT_SECRET" -s 'config.defaultScope=openid profile email' -s 'config.syncMode=IMPORT'
-      fi
-    done
-    platform_users=$("$KC" get users -r Platform -q username=hmisraji07@gmail.com -q exact=true --fields username --format csv || true)
-    case "$platform_users" in
-      *hmisraji07@gmail.com*) ;;
-      *) "$KC" create users -r Platform -s username=hmisraji07@gmail.com -s email=hmisraji07@gmail.com -s enabled=true -s emailVerified=true ;;
-    esac
-    "$KC" add-roles -r Platform --uusername hmisraji07@gmail.com --rolename admin
+  reconcile.py: |
+    import json
+    import os
+    import urllib.error
+    import urllib.parse
+    import urllib.request
+
+    base = "http://keycloak.keycloak.svc.cluster.local"
+    token_request = urllib.parse.urlencode({
+        "username": "admin",
+        "password": os.environ["KC_ADMIN_PASSWORD"],
+        "grant_type": "password",
+        "client_id": "admin-cli",
+    }).encode()
+    token = json.loads(urllib.request.urlopen(urllib.request.Request(
+        base + "/realms/master/protocol/openid-connect/token",
+        data=token_request,
+        headers={"Content-Type": "application/x-www-form-urlencoded"},
+    )).read())["access_token"]
+    headers = {"Authorization": "Bearer " + token, "Content-Type": "application/json"}
+
+    def call(method, path, body=None):
+        request = urllib.request.Request(
+            base + path,
+            data=None if body is None else json.dumps(body).encode(),
+            headers=headers,
+            method=method,
+        )
+        try:
+            response = urllib.request.urlopen(request)
+            content = response.read()
+            return response.status, None if not content else json.loads(content)
+        except urllib.error.HTTPError as error:
+            if error.code == 404:
+                return 404, None
+            raise
+
+    def ensure_realm(realm):
+        status, _ = call("GET", "/admin/realms/" + realm)
+        if status == 404:
+            call("POST", "/admin/realms", {"realm": realm, "enabled": True, "displayName": realm})
+        status, _ = call("GET", "/admin/realms/" + realm + "/roles/admin")
+        if status == 404:
+            call("POST", "/admin/realms/" + realm + "/roles", {"name": "admin"})
+        status, _ = call("GET", "/admin/realms/" + realm + "/identity-provider/instances/google")
+        if status == 404:
+            call("POST", "/admin/realms/" + realm + "/identity-provider/instances", {
+                "alias": "google",
+                "displayName": "Google",
+                "providerId": "google",
+                "enabled": True,
+                "trustEmail": True,
+                "config": {
+                    "clientId": os.environ["KC_GOOGLE_CLIENT_ID"],
+                    "clientSecret": os.environ["KC_GOOGLE_CLIENT_SECRET"],
+                    "defaultScope": "openid profile email",
+                    "syncMode": "IMPORT",
+                },
+            })
+
+    for realm in ("Platform", "Homelab"):
+        ensure_realm(realm)
+
+    status, users = call("GET", "/admin/realms/Platform/users?" + urllib.parse.urlencode({
+        "username": "hmisraji07@gmail.com", "exact": "true",
+    }))
+    if not users:
+        call("POST", "/admin/realms/Platform/users", {
+            "username": "hmisraji07@gmail.com",
+            "email": "hmisraji07@gmail.com",
+            "enabled": True,
+            "emailVerified": True,
+        })
+        _, users = call("GET", "/admin/realms/Platform/users?" + urllib.parse.urlencode({
+            "username": "hmisraji07@gmail.com", "exact": "true",
+        }))
+    user_id = users[0]["id"]
+    _, role = call("GET", "/admin/realms/Platform/roles/admin")
+    call("POST", "/admin/realms/Platform/users/" + user_id + "/role-mappings/realm", [role])
+
+    status, clients = call("GET", "/admin/realms/Platform/clients?" + urllib.parse.urlencode({
+        "clientId": "kubernetes",
+    }))
+    if not clients:
+        call("POST", "/admin/realms/Platform/clients", {
+            "clientId": "kubernetes",
+            "name": "Kubernetes CLI",
+            "enabled": True,
+            "publicClient": True,
+            "protocol": "openid-connect",
+            "standardFlowEnabled": True,
+            "directAccessGrantsEnabled": False,
+            "redirectUris": ["http://localhost:8000/*", "http://localhost:18000/*"],
+            "webOrigins": ["http://localhost:8000", "http://localhost:18000"],
+        })
 ---
 apiVersion: batch/v1
 kind: CronJob
@@ -46,8 +118,8 @@ spec:
           restartPolicy: OnFailure
           containers:
             - name: reconciler
-              image: quay.io/keycloak/keycloak:26.3.3
-              command: ["/bin/sh", "/config/reconcile.sh"]
+              image: python:3.12-alpine
+              command: ["python", "/config/reconcile.py"]
               env:
                 - name: KC_ADMIN_PASSWORD
                   valueFrom:

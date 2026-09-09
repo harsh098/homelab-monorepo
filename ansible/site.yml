@@ -27,6 +27,7 @@
     app_keycloak_oauth_secret_name: "keycloak-google-oauth"
     app_keycloak_admin_secret_name: "keycloak-admin"
     app_keycloak_api_url: "https://keycloak.platform.home.arpa"
+    app_keycloak_postgresql_storage_size: "8Gi"
   tasks:
     - name: Initialize the compute layer
       ansible.builtin.command:

@@ -21,7 +21,7 @@ write_files:
 
 runcmd:
   - systemctl restart systemd-resolved
-  - curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --disable traefik --disable-network-policy" sh -s -
+  - curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --disable traefik --disable-network-policy --tls-san ${k8s_api_hostname}" sh -s -
   - |
     node_ip="$(hostname -I | awk '{print $1}')"
     mkdir -p /home/ubuntu/.kube

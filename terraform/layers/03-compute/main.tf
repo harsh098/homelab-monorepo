@@ -18,7 +18,8 @@ resource "libvirt_cloudinit_disk" "k8s_cloudinit" {
   pool = var.pool_name
 
   user_data = templatefile("${path.module}/cloud-init.yml.tftpl", {
-    ssh_public_key = trimspace(file(pathexpand(var.ssh_public_key_path)))
+    ssh_public_key   = trimspace(file(pathexpand(var.ssh_public_key_path)))
+    k8s_api_hostname = var.k8s_api_hostname
   })
 
   network_config = templatefile("${path.module}/network-config.yml.tftpl", {})

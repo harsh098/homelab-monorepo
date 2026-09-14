@@ -1,0 +1,1 @@
+{"nodes": [{"id": "$graphify-root$_terraform_layers_01_infra_providers_tf", "label": "providers.tf", "file_type": "code", "source_file": "terraform/layers/01-infra/providers.tf", "source_location": null}], "edges": []}

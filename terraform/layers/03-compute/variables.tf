@@ -39,6 +39,16 @@ variable "node_mac" {
   type        = string
   default     = "52:54:00:11:22:33"
 }
+variable "k8s_api_hostname" {
+  description = "Stable DNS name included in the K3s API server certificate."
+  type        = string
+  default     = "kube-api.platform.home.arpa"
+
+  validation {
+    condition     = can(regex("^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$", var.k8s_api_hostname))
+    error_message = "k8s_api_hostname must be a valid lowercase DNS hostname."
+  }
+}
 
 variable "disk_size" {
   description = "Size of the node root volume in bytes"

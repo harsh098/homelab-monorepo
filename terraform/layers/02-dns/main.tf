@@ -4,10 +4,11 @@ locals {
   config_dir       = "${local.managed_data_dir}/conf"
   work_dir         = "${local.managed_data_dir}/work"
   default_dns_records = {
-    "adguard.${var.dns_domain}"  = var.host_lan_ip
+    "adguard.${var.dns_domain}"  = "127.0.0.1"
     "openbao.${var.dns_domain}"  = var.k8s_ingress_ip
     "keycloak.${var.dns_domain}" = var.k8s_ingress_ip
     "traefik.${var.dns_domain}"  = var.k8s_ingress_ip
+    "kube-api.${var.dns_domain}" = var.k8s_ingress_ip
   }
   dns_records = merge(local.default_dns_records, var.dns_records)
 }
@@ -89,14 +90,7 @@ resource "docker_container" "adguardhome" {
   ports {
     internal = 80
     external = 80
-    ip       = var.host_lan_ip
-    protocol = "tcp"
-  }
-
-  ports {
-    internal = 3000
-    external = 3000
-    ip       = var.host_lan_ip
+    ip       = "127.0.0.1"
     protocol = "tcp"
   }
 

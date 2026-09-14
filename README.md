@@ -16,15 +16,22 @@ Ansible creates or reconciles the `homelab-dir` libvirt storage pool at
 `/var/tmp/homelab-libvirt` and the desired routed management network
 `192.168.10.0/24`. An existing live NAT `mgmt` network remains in place unless
 the explicit routed-network migration is enabled. It creates or reconciles the
-single Ubuntu K3s node and fetches its kubeconfig to
+single Ubuntu K3s node and retains a private bootstrap kubeconfig at
 `terraform/layers/03-compute/kubeconfig`.
 
 ```bash
 ansible-playbook -i ansible/inventory.ini ansible/site.yml
 ```
 
-The compute layer must complete successfully before applying the application
-layer. The fetched kubeconfig is required by the Kubernetes and Helm providers.
+The compute layer must complete successfully before applying the platform
+layer. The bootstrap kubeconfig is used only by Ansible and the Kubernetes and
+`~/.kube/config`, preserving other clusters, users, contexts, and the current
+context. The `homelab-oidc` context contains only the API server CA metadata and
+an exec-plugin reference; it contains no bootstrap client certificate or key.
+The generated `client.authentication.k8s.io/v1` exec stanza sets
+`interactiveMode: Never` because the helper opens a browser and uses a loopback
+callback without reading stdin. kubectl obtains a short-lived Keycloak token
+through the browser helper.
 
 ## Terraform layers
 
@@ -37,12 +44,10 @@ individually from their directories:
   `adguard/adguardhome:v0.107.79@sha256:aba9e3bf0613be3ba3755e1fc311b126e2c24bec25e18b6483894a88283074f0`.
   Terraform manages the persistent paths under
   `terraform/layers/02-dns/adguard-managed/`: the generated source
-  `AdGuardHome.yaml`, the writable AdGuard `conf/` directory, and the writable
-  `work/` directory. AdGuard publishes TCP and UDP port 53 and HTTP ports 80
-  and 3000 on `192.168.1.4`. Its default rewrites are:
   `adguard.platform.home.arpa` -> `192.168.1.4`, and
-  `openbao.platform.home.arpa`, `keycloak.platform.home.arpa`, and
-  `traefik.platform.home.arpa` -> `192.168.10.220`.
+  `openbao.platform.home.arpa`, `keycloak.platform.home.arpa`,
+  `traefik.platform.home.arpa`, and `kube-api.platform.home.arpa` ->
+  `192.168.10.220`.
   The `dns_records` variable is a `map(string)` of hostname-to-IP entries
   merged over these defaults, so caller-supplied entries override them.
   For example, add Grafana with:
@@ -119,11 +124,10 @@ policy, but it is not active until the privileged playbook run completes:
 ```bash
 ansible-playbook -i ansible/inventory.ini ansible/infra.yml --ask-become-pass
 ```
-
-After activation, the policy permits only TCP `80` and `443` from
-`192.168.1.0/24` on the LAN to `192.168.10.220` on the libvirt network. Both
-the router route and this host policy are required; the policy does not enable
-masquerading.
+After activation, the policy permits LAN TCP `80`, `443`, and `6443` from
+`192.168.1.0/24` to `192.168.10.220` on the libvirt network. TCP 6443 is the
+Kubernetes API and is not proxied through Traefik. Both the router route and
+this host policy are required; the policy does not enable masquerading.
  
 ### Routed libvirt management network
 
@@ -209,17 +213,33 @@ autostarts the management network and compute domain, starts `k3s-node` if its
 `terraform/layers/02-dns` (AdGuard) and
 `terraform/layers/04-platform` (Traefik, OpenBao, and Keycloak) in that order.
 OpenTofu is run locally by the Ansible localhost play; backend authentication
-must already be available in the environment. The fetched kubeconfig is saved
-to `terraform/layers/03-compute/kubeconfig` with mode `0600` and copied to the
-invoking user's `~/.kube/config` (creating `~/.kube` with mode `0700`). Its
-contents are not printed by Ansible.
+must already be available in the environment. The bootstrap kubeconfig remains
+at `terraform/layers/03-compute/kubeconfig` with mode `0600` for automation
+only; Ansible does not copy that cluster-admin credential to `~/.kube/config`.
+It merges the `homelab-oidc` cluster, user, and context into
+`~/.kube/config` and installs the helper and public Keycloak CA under
+`~/.local/bin/` and `~/.config/homelab/`. The generated OIDC user entry
+contains no bootstrap client certificate or private key; its v1 exec plugin is
+declared non-interactive because authentication happens through the browser
+callback. Entries carrying the merge utility's management marker are replaced
+on each run. If an unmanaged entry already uses `homelab-oidc`, the generated
+entries use the next available deterministic suffix (`homelab-oidc-2`, then
+`-3`, and so on), leaving the collision untouched. The merge is written
+atomically with mode `0600` and does not create a backup, avoiding extra copies
+of credentials.
 
-For an immediate one-shell fallback, from the repository root:
+Use browser-authenticated kubectl access (the merge preserves your existing
+current context, so select this context explicitly):
 
 ```bash
-export KUBECONFIG="$PWD/terraform/layers/03-compute/kubeconfig"
+kubectl config use-context homelab-oidc
 kubectl get nodes
 ```
+
+The first kubectl call opens Keycloak in a browser, listens only on
+`127.0.0.1:18000`, and caches only short-lived OIDC credentials with mode
+`0600`. The old bootstrap config can be used by a break-glass operator with
+`KUBECONFIG=terraform/layers/03-compute/kubeconfig`, but must not be shared.
 
 The node address is discovered from its libvirt DHCP lease for SSH, while the
 DNS and ingress configuration intentionally retain `192.168.10.220`. The
@@ -265,17 +285,80 @@ recovery only. The bundle contains `schema_version`, `username`, and
 `password`; protect Terraform state, GCP access, and Secret Manager IAM. Never
 store user passwords in this recovery secret.
 
-The Kubernetes `keycloak-admin` Secret is only bootstrap input. Changing that
-Secret does not rotate an admin password in an already initialized Keycloak
-realm. Use a break-glass session to rotate the credential through the Keycloak
-Admin Console or API, then deliberately create a new Secret Manager version
-through the documented recovery procedure. Do not make a password rotation
-call from Terraform.
+The `Platform` realm now contains dedicated `kubectl-readonly` and
+`kubectl-admin` roles and groups. The `kubernetes` client uses browser
+authorization-code flow with PKCE, an exact loopback callback, and a
+multivalued `groups` claim assembled from both group membership and direct
+Platform realm-role assignments. Assigning either Platform realm role directly
+therefore grants the corresponding Kubernetes access; groups remain useful for
+bulk assignment. The K3s API maps `oidc:kubectl-readonly` to the built-in
+`view` role and `oidc:kubectl-admin` to the repository's least-privilege
+`platform-operator` role. The helper never uses the password grant.
 
-Future OIDC client secrets must be stored one per application, with each
-client scoped to its target realm and application. Google IdP and Kubernetes
-OIDC are not configured here because the target realm, client IDs, and Google
-OAuth credentials are not provisioned.
+The Kubernetes `keycloak-admin` Secret is bootstrap input only. Changing that
+Secret does not rotate an initialized realm; use a break-glass Keycloak Admin
+Console/API session for rotation and protect Terraform state, GCP access, and
+Secret Manager IAM.
+
+Google IdP credentials remain in the per-application
+`keycloak-google-oauth` Secret and are not embedded in the kubectl helper.
+
+#### First Google login and an existing account
+
+The GitOps reconciler does not pre-create the configured Google administrator.
+It waits for an authenticated Google broker login to provision the Keycloak
+user, then assigns that existing user to the `kubectl-admin` group. If the user
+does not exist yet, reconciliation intentionally does nothing; the next
+five-minute run grants access after Google creates the account. This is not
+automatic account linking: matching an email address is never used to merge a
+Google identity with a local account.
+
+If an older reconciliation already created `hmisraji07@gmail.com` and Google
+login reports `Account already exists`, first apply this updated reconciler. If
+the old CronJob is still active and can run before the update, suspend it before
+deleting the user:
+
+```bash
+kubectl -n keycloak patch cronjob keycloak-gitops-reconciler \
+  --type merge -p '{"spec":{"suspend":true}}'
+```
+
+Use the Keycloak Admin Console's **Platform → Users** page to remove that
+unused pre-created local user, resume the updated CronJob if it was suspended,
+wait for (or manually trigger) the reconciler, and retry Google login. Google
+will then create the user and the following reconciliation will assign the
+`kubectl-admin` group and its `kubectl-admin` realm role. Delete the old user
+only after confirming it has no credentials or application data that must be
+retained.
+
+If the existing account must be retained, authenticate that local account and
+manually link the verified Google identity through Keycloak's account/identity
+provider linking flow (an administrator may first set a temporary local
+password and require it to be changed). Verify the Google account and provider
+subject, not merely the email text, before linking. Do not enable or implement
+an automatic first-login flow that links accounts based only on email. After a
+successful manual link, the reconciler will find the existing user and assign
+the admin group on its next run.
+
+Before the first browser login, install the retained public CA certificate
+`~/.config/homelab/keycloak-ca.crt` in the workstation/browser trust store.
+The helper trusts this file directly, but browsers do not automatically trust
+private CAs. Additional users can be assigned either Platform realm role
+directly or placed in the corresponding `kubectl-readonly` or `kubectl-admin`
+group.
+
+The host-side bootstrap-to-OIDC transition is performed by `ansible/site.yml`;
+it installs the Keycloak CA for K3s discovery and the browser helper/kubeconfig,
+then configures and restarts K3s. Keycloak realms, the Platform/Homelab Google
+identity providers, the Kubernetes client/mappers, and the Kubernetes RBAC
+manifests are reconciled by the Flux Kustomization rooted at
+`clusters/platform` once Flux has been bootstrapped. A platform-only OpenTofu
+apply still does not restart K3s or install the browser-authenticated kubeconfig.
+
+This repository declares the Flux source and Kustomization but does not
+install the Flux controllers. The initial bootstrap must install those
+controllers and apply `clusters/platform/flux-source.yaml`; subsequent
+changes are reconciled from the repository by Flux.
 
 Apply and verify the platform layer:
 

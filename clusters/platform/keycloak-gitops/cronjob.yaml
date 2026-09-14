@@ -45,50 +45,51 @@ data:
         status, _ = call("GET", "/admin/realms/" + realm)
         if status == 404:
             call("POST", "/admin/realms", {"realm": realm, "enabled": True, "displayName": realm})
-        status, _ = call("GET", "/admin/realms/" + realm + "/roles/admin")
-        if status == 404:
-            call("POST", "/admin/realms/" + realm + "/roles", {"name": "admin"})
-        status, _ = call("GET", "/admin/realms/" + realm + "/identity-provider/instances/google")
-        if status == 404:
-            call("POST", "/admin/realms/" + realm + "/identity-provider/instances", {
-                "alias": "google",
-                "displayName": "Google",
-                "providerId": "google",
-                "enabled": True,
-                "trustEmail": True,
-                "config": {
-                    "clientId": os.environ["KC_GOOGLE_CLIENT_ID"],
-                    "clientSecret": os.environ["KC_GOOGLE_CLIENT_SECRET"],
-                    "defaultScope": "openid profile email",
-                    "syncMode": "IMPORT",
-                },
-            })
-
-    for realm in ("Platform", "Homelab"):
-        ensure_realm(realm)
-
-    status, users = call("GET", "/admin/realms/Platform/users?" + urllib.parse.urlencode({
-        "username": "hmisraji07@gmail.com", "exact": "true",
-    }))
-    if not users:
-        call("POST", "/admin/realms/Platform/users", {
-            "username": "hmisraji07@gmail.com",
-            "email": "hmisraji07@gmail.com",
+    def ensure_google_idp(realm):
+        path = "/admin/realms/" + realm + "/identity-provider/instances/google"
+        desired = {
+            "alias": "google",
+            "displayName": "Google",
+            "providerId": "google",
             "enabled": True,
-            "emailVerified": True,
-        })
-        _, users = call("GET", "/admin/realms/Platform/users?" + urllib.parse.urlencode({
-            "username": "hmisraji07@gmail.com", "exact": "true",
-        }))
-    user_id = users[0]["id"]
-    _, role = call("GET", "/admin/realms/Platform/roles/admin")
-    call("POST", "/admin/realms/Platform/users/" + user_id + "/role-mappings/realm", [role])
+            "trustEmail": True,
+            "config": {
+                "clientId": os.environ["KC_GOOGLE_CLIENT_ID"],
+                "clientSecret": os.environ["KC_GOOGLE_CLIENT_SECRET"],
+                "defaultScope": "openid profile email",
+                "syncMode": "IMPORT",
+            },
+        }
+        status, _ = call("GET", path)
+        if status == 404:
+            call("POST", "/admin/realms/" + realm + "/identity-provider/instances", desired)
+        else:
+            call("PUT", path, desired)
 
-    status, clients = call("GET", "/admin/realms/Platform/clients?" + urllib.parse.urlencode({
-        "clientId": "kubernetes",
-    }))
-    if not clients:
-        call("POST", "/admin/realms/Platform/clients", {
+
+    def ensure_role(realm, name):
+        status, role = call("GET", "/admin/realms/" + realm + "/roles/" + name)
+        if status == 404:
+            call("POST", "/admin/realms/" + realm + "/roles", {"name": name})
+            _, role = call("GET", "/admin/realms/" + realm + "/roles/" + name)
+        return role
+
+    def ensure_group(realm, name, role):
+        status, groups = call("GET", "/admin/realms/" + realm + "/groups?search=" + urllib.parse.quote(name))
+        group = next((item for item in (groups or []) if item.get("name") == name), None)
+        if group is None:
+            call("POST", "/admin/realms/" + realm + "/groups", {"name": name})
+            _, groups = call("GET", "/admin/realms/" + realm + "/groups?search=" + urllib.parse.quote(name))
+            group = next(item for item in (groups or []) if item.get("name") == name)
+        _, mappings = call("GET", "/admin/realms/" + realm + "/groups/" + group["id"] + "/role-mappings/realm")
+        if not any(item.get("id") == role.get("id") for item in (mappings or [])):
+            call("POST", "/admin/realms/" + realm + "/groups/" + group["id"] + "/role-mappings/realm", [role])
+        return group
+
+    def ensure_client(realm):
+        query = urllib.parse.urlencode({"clientId": "kubernetes"})
+        _, clients = call("GET", "/admin/realms/" + realm + "/clients?" + query)
+        desired = {
             "clientId": "kubernetes",
             "name": "Kubernetes CLI",
             "enabled": True,
@@ -96,9 +97,92 @@ data:
             "protocol": "openid-connect",
             "standardFlowEnabled": True,
             "directAccessGrantsEnabled": False,
-            "redirectUris": ["http://localhost:8000/*", "http://localhost:18000/*"],
-            "webOrigins": ["http://localhost:8000", "http://localhost:18000"],
-        })
+            "serviceAccountsEnabled": False,
+            "redirectUris": ["http://127.0.0.1:18000/callback"],
+            "webOrigins": [],
+            "attributes": {"pkce.code.challenge.method": "S256"},
+        }
+        if not clients:
+            call("POST", "/admin/realms/" + realm + "/clients", desired)
+            _, clients = call("GET", "/admin/realms/" + realm + "/clients?" + query)
+        client = clients[0]
+        call("PUT", "/admin/realms/" + realm + "/clients/" + client["id"], desired)
+        _, mappers = call("GET", "/admin/realms/" + realm + "/clients/" + client["id"] + "/protocol-mappers/models")
+        mapper_specs = [
+            {
+                "name": "kubernetes-groups",
+                "protocol": "openid-connect",
+                "protocolMapper": "oidc-group-membership-mapper",
+                "config": {
+                    "access.token.claim": "true",
+                    "claim.name": "groups",
+                    "full.path": "false",
+                    "id.token.claim": "false",
+                    "userinfo.token.claim": "true",
+                },
+            },
+            {
+                "name": "kubernetes-realm-roles",
+                "protocol": "openid-connect",
+                "protocolMapper": "oidc-usermodel-realm-role-mapper",
+                "config": {
+                    "access.token.claim": "true",
+                    "claim.name": "groups",
+                    "id.token.claim": "false",
+                    "multivalued": "true",
+                    "userinfo.token.claim": "true",
+                },
+            },
+            {
+                "name": "kubernetes-audience",
+                "protocol": "openid-connect",
+                "protocolMapper": "oidc-audience-mapper",
+                "config": {
+                    "access.token.claim": "true",
+                    "included.client.audience": "kubernetes",
+                    "id.token.claim": "false",
+                },
+            },
+        ]
+        for desired_mapper in mapper_specs:
+            existing = next((item for item in (mappers or []) if item.get("name") == desired_mapper["name"]), None)
+            mapper_path = "/admin/realms/" + realm + "/clients/" + client["id"] + "/protocol-mappers/models"
+            if existing:
+                call("PUT", mapper_path + "/" + existing["id"], desired_mapper)
+            else:
+                call("POST", mapper_path, desired_mapper)
+
+    # The Google broker must create the account after an authenticated login.
+    # This lookup only grants access to an account that already exists; it
+    # deliberately never links identities based on a matching email address.
+    def find_user(realm, email):
+        query = urllib.parse.urlencode({"email": email, "exact": "true"})
+        _, users = call("GET", "/admin/realms/" + realm + "/users?" + query)
+        return users[0] if users else None
+
+
+    def ensure_admin_access(realm, user, admin_group):
+        _, memberships = call("GET", "/admin/realms/" + realm + "/users/" + user["id"] + "/groups")
+        if not any(item.get("id") == admin_group.get("id") for item in (memberships or [])):
+            call("PUT", "/admin/realms/" + realm + "/users/" + user["id"] + "/groups/" + admin_group["id"])
+
+    for realm in ("Platform", "Homelab"):
+        ensure_realm(realm)
+        ensure_google_idp(realm)
+        ensure_role(realm, "kubectl-readonly")
+        ensure_role(realm, "kubectl-admin")
+
+    ensure_client("Platform")
+    admin_role = ensure_role("Platform", "kubectl-admin")
+    admin_group = ensure_group("Platform", "kubectl-admin", admin_role)
+    readonly_role = ensure_role("Platform", "kubectl-readonly")
+    ensure_group("Platform", "kubectl-readonly", readonly_role)
+
+    user = find_user("Platform", os.environ["KC_PLATFORM_ADMIN_EMAIL"])
+    if user:
+        ensure_admin_access("Platform", user, admin_group)
+    if not admin_role or not readonly_role:
+        raise RuntimeError("required Kubernetes realm roles were not created")
 ---
 apiVersion: batch/v1
 kind: CronJob
@@ -126,6 +210,8 @@ spec:
                     secretKeyRef:
                       name: keycloak-admin
                       key: password
+                - name: KC_PLATFORM_ADMIN_EMAIL
+                  value: "hmisraji07@gmail.com"
                 - name: KC_GOOGLE_CLIENT_ID
                   valueFrom:
                     secretKeyRef:

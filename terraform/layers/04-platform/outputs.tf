@@ -9,3 +9,9 @@ output "keycloak_admin_recovery_secret_version" {
   value       = google_secret_manager_secret_version.keycloak_admin_recovery_initial.version
 }
 
+output "keycloak_ca_certificate_pem" {
+  description = "Public Keycloak TLS CA certificate for OIDC clients and the K3s API server."
+  value       = local.private_ca_certificate_pem
+  sensitive   = true
+}
+

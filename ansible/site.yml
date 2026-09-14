@@ -13,19 +13,22 @@
     compute_dir: "{{ playbook_dir }}/../terraform/layers/03-compute"
     dns_dir: "{{ playbook_dir }}/../terraform/layers/02-dns"
     platform_dir: "{{ playbook_dir }}/../terraform/layers/04-platform"
+    repo_dir: "{{ playbook_dir }}/.."
     ssh_public_key_path: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519.pub"
     kubeconfig_path: "{{ compute_dir }}/kubeconfig"
     user_kubeconfig_dir: "{{ lookup('env', 'HOME') }}/.kube"
     user_kubeconfig_path: "{{ user_kubeconfig_dir }}/config"
+    user_config_dir: "{{ lookup('env', 'HOME') }}/.config/homelab"
+    user_helper_path: "{{ lookup('env', 'HOME') }}/.local/bin/kubectl-keycloak-login.py"
+    keycloak_ca_path: "{{ user_config_dir }}/keycloak-ca.crt"
+    kubeconfig_merge_tool_path: "{{ repo_dir }}/tools/merge-kubeconfig.py"
     dns_host_lan_ip: "192.168.1.4"
     dns_k8s_ingress_ip: "192.168.10.220"
     dns_domain: "platform.home.arpa"
+    app_k8s_api_hostname: "kube-api.platform.home.arpa"
     app_keycloak_hostname: "keycloak.platform.home.arpa"
     app_openbao_hostname: "openbao.platform.home.arpa"
-    app_keycloak_realm: "master"
-    app_keycloak_google_idp_alias: "google"
-    app_keycloak_oauth_secret_name: "keycloak-google-oauth"
-    app_keycloak_admin_secret_name: "keycloak-admin"
+    app_keycloak_platform_realm: "Platform"
     app_keycloak_api_url: "https://keycloak.platform.home.arpa"
     app_keycloak_postgresql_storage_size: "8Gi"
   tasks:
@@ -49,6 +52,7 @@
           - "-var=pool_name={{ pool_name }}"
           - "-var=network_name={{ network_name }}"
           - "-var=ssh_public_key_path={{ ssh_public_key_path }}"
+          - "-var=k8s_api_hostname={{ app_k8s_api_hostname }}"
         chdir: "{{ compute_dir }}"
 
     - name: Inspect the K3s node autostart state
@@ -174,6 +178,62 @@
         mode: "0600"
       no_log: true
 
+    - name: Repair persisted malformed K3s OIDC prefix values
+      ansible.builtin.command:
+        argv:
+          - ssh
+          - -i
+          - "{{ ssh_public_key_path | regex_replace('\\.pub$', '') }}"
+          - -o
+          - StrictHostKeyChecking=no
+          - -o
+          - UserKnownHostsFile=/dev/null
+          - "ubuntu@{{ node_ip }}"
+          - sudo
+          - sh
+          - -s
+        stdin: |
+          set -eu
+          config=/etc/rancher/k3s/config.yaml
+          if [ ! -f "$config" ]; then
+            exit 0
+          fi
+          malformed_lines="$(
+            sed -n \
+              -e '/^[[:space:]]*-[[:space:]]*oidc-username-prefix=oidc:[[:space:]]*$/p' \
+              -e '/^[[:space:]]*-[[:space:]]*oidc-groups-prefix=oidc:[[:space:]]*$/p' \
+              "$config"
+          )"
+          if [ -z "$malformed_lines" ]; then
+            exit 0
+          fi
+          sed -i \
+            -e 's/^\([[:space:]]*-[[:space:]]*\)oidc-username-prefix=oidc:[[:space:]]*$/\1"oidc-username-prefix=oidc:"/' \
+            -e 's/^\([[:space:]]*-[[:space:]]*\)oidc-groups-prefix=oidc:[[:space:]]*$/\1"oidc-groups-prefix=oidc:"/' \
+            "$config"
+          printf '%s\n' changed
+      register: k3s_config_repair
+      changed_when: k3s_config_repair.stdout | trim == 'changed'
+      no_log: true
+
+    - name: Restart K3s after repairing persisted OIDC configuration
+      ansible.builtin.command:
+        argv:
+          - ssh
+          - -i
+          - "{{ ssh_public_key_path | regex_replace('\\.pub$', '') }}"
+          - -o
+          - StrictHostKeyChecking=no
+          - -o
+          - UserKnownHostsFile=/dev/null
+          - "ubuntu@{{ node_ip }}"
+          - sudo
+          - systemctl
+          - restart
+          - k3s
+      when: k3s_config_repair.stdout | trim == 'changed'
+      changed_when: true
+
     - name: Ensure the invoking user's kubectl directory exists
       become: false
       ansible.builtin.file:
@@ -181,20 +241,26 @@
         state: directory
         mode: "0700"
 
-    - name: Copy the K3s kubeconfig to the invoking user's kubectl path
-      become: false
-      ansible.builtin.copy:
-        content: "{{ kubeconfig.stdout }}\n"
-        dest: "{{ user_kubeconfig_path }}"
-        mode: "0600"
-      no_log: true
+    - name: Parse the public Kubernetes CA from the bootstrap kubeconfig
+      ansible.builtin.set_fact:
+        kube_cluster_ca_data: "{{ (kubeconfig.stdout | from_yaml).clusters[0].cluster['certificate-authority-data'] }}"
 
-    - name: Wait for the K3s API to report ready
+    - name: Wait for the K3s API to report ready on the node
       ansible.builtin.command:
         argv:
+          - ssh
+          - -i
+          - "{{ ssh_public_key_path | regex_replace('\\.pub$', '') }}"
+          - -o
+          - StrictHostKeyChecking=no
+          - -o
+          - UserKnownHostsFile=/dev/null
+          - "ubuntu@{{ node_ip }}"
+          - sudo
+          - k3s
           - kubectl
           - --kubeconfig
-          - "{{ kubeconfig_path }}"
+          - /etc/rancher/k3s/k3s.yaml
           - --request-timeout=10s
           - get
           - --raw=/readyz
@@ -245,79 +311,208 @@
           - "-var=keycloak_postgresql_storage_size={{ app_keycloak_postgresql_storage_size }}"
         chdir: "{{ platform_dir }}"
 
-
-
-    - name: Read Keycloak bootstrap and Google OAuth secrets
+    - name: Read the public Keycloak CA certificate from platform state
       ansible.builtin.command:
         argv:
-          - kubectl
-          - -n
-          - keycloak
-          - get
-          - secret
-          - "{{ item.name }}"
-          - -o
-          - "jsonpath={.data.{{ item.key }}}"
-      environment:
-        KUBECONFIG: "{{ kubeconfig_path }}"
-      loop:
-        - name: "{{ app_keycloak_admin_secret_name }}"
-          key: password
-        - name: "{{ app_keycloak_oauth_secret_name }}"
-          key: client_id
-        - name: "{{ app_keycloak_oauth_secret_name }}"
-          key: client_secret
-      register: keycloak_secret_values
+          - tofu
+          - output
+          - -raw
+          - keycloak_ca_certificate_pem
+        chdir: "{{ platform_dir }}"
+      register: keycloak_ca_certificate
       changed_when: false
       no_log: true
 
-    - name: Authenticate to Keycloak Admin API
-      ansible.builtin.uri:
-        url: "{{ app_keycloak_api_url }}/realms/{{ app_keycloak_realm }}/protocol/openid-connect/token"
-        method: POST
-        validate_certs: false
-        body_format: form-urlencoded
-        body:
-          username: admin
-          password: "{{ keycloak_secret_values.results[0].stdout | b64decode }}"
-          grant_type: password
-          client_id: admin-cli
-        status_code: 200
-        return_content: true
-      register: keycloak_admin_token
+    - name: Ensure local OIDC helper directories exist
+      become: false
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: directory
+        mode: "{{ item.mode }}"
+      loop:
+        - path: "{{ user_config_dir }}"
+          mode: "0700"
+        - path: "{{ user_helper_path | dirname }}"
+          mode: "0755"
+
+    - name: Install the public Keycloak CA for the OIDC helper
+      become: false
+      ansible.builtin.copy:
+        content: "{{ keycloak_ca_certificate.stdout }}\n"
+        dest: "{{ keycloak_ca_path }}"
+        mode: "0644"
       no_log: true
 
-    - name: Check Google identity provider
-      ansible.builtin.uri:
-        url: "{{ app_keycloak_api_url }}/admin/realms/{{ app_keycloak_realm }}/identity-provider/instances/{{ app_keycloak_google_idp_alias }}"
-        method: GET
-        validate_certs: false
-        headers:
-          Authorization: "Bearer {{ keycloak_admin_token.json.access_token }}"
-        status_code: [200, 404]
-      register: keycloak_google_idp
+    - name: Install the browser kubectl helper
+      become: false
+      ansible.builtin.copy:
+        src: "{{ repo_dir }}/tools/kubectl-keycloak-login.py"
+        dest: "{{ user_helper_path }}"
+        mode: "0755"
+
+    - name: Require the fixed API address before enabling browser kubectl access
+      ansible.builtin.assert:
+        that:
+          - node_ip == dns_k8s_ingress_ip
+        fail_msg: >-
+          The K3s DHCP address {{ node_ip }} does not match the configured
+          API/ingress address {{ dns_k8s_ingress_ip }}. Reserve the node lease
+          or change the DNS/firewall variables before enabling OIDC access.
+
+    - name: Make the Keycloak issuer resolvable from the K3s node
+      ansible.builtin.command:
+        argv:
+          - ssh
+          - -i
+          - "{{ ssh_public_key_path | regex_replace('\\.pub$', '') }}"
+          - -o
+          - StrictHostKeyChecking=no
+          - -o
+          - UserKnownHostsFile=/dev/null
+          - "ubuntu@{{ node_ip }}"
+          - sudo
+          - sh
+          - -s
+        stdin: |
+          set -eu
+          hosts_entry={{ (dns_k8s_ingress_ip ~ ' ' ~ app_keycloak_hostname ~ ' ' ~ app_k8s_api_hostname) | quote }}
+          if ! grep -qF -- "$hosts_entry" /etc/hosts; then
+            printf '%s\n' "$hosts_entry" >> /etc/hosts
+            printf '%s\n' changed
+          fi
+      register: hosts_entry_update
+      changed_when: hosts_entry_update.stdout == 'changed'
+
+    - name: Install the Keycloak CA for K3s OIDC discovery
+      ansible.builtin.command:
+        argv:
+          - ssh
+          - -i
+          - "{{ ssh_public_key_path | regex_replace('\\.pub$', '') }}"
+          - -o
+          - StrictHostKeyChecking=no
+          - -o
+          - UserKnownHostsFile=/dev/null
+          - "ubuntu@{{ node_ip }}"
+          - sudo
+          - tee
+          - /etc/rancher/k3s/keycloak-ca.crt
+        stdin: "{{ keycloak_ca_certificate.stdout }}"
+        stdin_add_newline: true
+      changed_when: true
       no_log: true
 
-    - name: Configure Google identity provider when missing
-      ansible.builtin.uri:
-        url: "{{ app_keycloak_api_url }}/admin/realms/{{ app_keycloak_realm }}/identity-provider/instances"
-        method: POST
-        validate_certs: false
-        headers:
-          Authorization: "Bearer {{ keycloak_admin_token.json.access_token }}"
-          Content-Type: application/json
-        body_format: json
-        body:
-          alias: "{{ app_keycloak_google_idp_alias }}"
-          displayName: Google
-          providerId: google
-          enabled: true
-          trustEmail: true
-          config:
-            clientId: "{{ keycloak_secret_values.results[1].stdout | b64decode }}"
-            clientSecret: "{{ keycloak_secret_values.results[2].stdout | b64decode }}"
-            defaultScope: "openid profile email"
-            syncMode: IMPORT
-        status_code: 201
-      when: keycloak_google_idp.status == 404
+    - name: Configure K3s OIDC authentication
+      ansible.builtin.command:
+        argv:
+          - ssh
+          - -i
+          - "{{ ssh_public_key_path | regex_replace('\\.pub$', '') }}"
+          - -o
+          - StrictHostKeyChecking=no
+          - -o
+          - UserKnownHostsFile=/dev/null
+          - "ubuntu@{{ node_ip }}"
+          - sudo
+          - tee
+          - /etc/rancher/k3s/config.yaml
+        stdin: |
+          tls-san:
+            - "{{ app_k8s_api_hostname }}"
+          kube-apiserver-arg:
+            - "oidc-issuer-url={{ app_keycloak_api_url }}/realms/{{ app_keycloak_platform_realm }}"
+            - "oidc-client-id=kubernetes"
+            - "oidc-username-claim=email"
+            - "oidc-username-prefix=oidc:"
+            - "oidc-groups-claim=groups"
+            - "oidc-groups-prefix=oidc:"
+            - "oidc-ca-file=/etc/rancher/k3s/keycloak-ca.crt"
+      changed_when: true
+      no_log: true
+
+    - name: Restart K3s with OIDC authentication enabled
+      ansible.builtin.command:
+        argv:
+          - ssh
+          - -i
+          - "{{ ssh_public_key_path | regex_replace('\\.pub$', '') }}"
+          - -o
+          - StrictHostKeyChecking=no
+          - -o
+          - UserKnownHostsFile=/dev/null
+          - "ubuntu@{{ node_ip }}"
+          - sudo
+          - systemctl
+          - restart
+          - k3s
+      changed_when: true
+
+    - name: Wait for the K3s service after OIDC configuration
+      ansible.builtin.command:
+        argv:
+          - ssh
+          - -i
+          - "{{ ssh_public_key_path | regex_replace('\\.pub$', '') }}"
+          - -o
+          - StrictHostKeyChecking=no
+          - -o
+          - UserKnownHostsFile=/dev/null
+          - "ubuntu@{{ node_ip }}"
+          - sudo
+          - systemctl
+          - is-active
+          - k3s
+      register: k3s_oidc_service
+      changed_when: false
+      until: k3s_oidc_service.rc == 0
+      retries: 60
+      delay: 5
+
+    - name: Wait for the K3s API after OIDC configuration
+      ansible.builtin.command:
+        argv:
+          - ssh
+          - -i
+          - "{{ ssh_public_key_path | regex_replace('\\.pub$', '') }}"
+          - -o
+          - StrictHostKeyChecking=no
+          - -o
+          - UserKnownHostsFile=/dev/null
+          - "ubuntu@{{ node_ip }}"
+          - sudo
+          - k3s
+          - kubectl
+          - --kubeconfig
+          - /etc/rancher/k3s/k3s.yaml
+          - --request-timeout=10s
+          - get
+          - --raw=/readyz
+      register: k3s_oidc_api_ready
+      changed_when: false
+      until:
+        - k3s_oidc_api_ready.rc == 0
+        - (k3s_oidc_api_ready.stdout | trim) == "ok"
+      retries: 60
+      delay: 10
+
+    - name: Merge the OIDC kubeconfig entry into the invoking user's config
+      become: false
+      ansible.builtin.command:
+        argv:
+          - python3
+          - "{{ kubeconfig_merge_tool_path }}"
+          - --kubeconfig
+          - "{{ user_kubeconfig_path }}"
+          - --server
+          - "https://{{ dns_k8s_ingress_ip }}:6443"
+          - --cluster-ca-data
+          - "{{ kube_cluster_ca_data }}"
+          - --helper-path
+          - "{{ user_helper_path }}"
+          - --issuer
+          - "{{ app_keycloak_api_url }}/realms/{{ app_keycloak_platform_realm }}"
+          - --ca-file
+          - "{{ keycloak_ca_path }}"
+      register: kubeconfig_merge
+      changed_when: kubeconfig_merge.stdout | trim == 'changed'
       no_log: true

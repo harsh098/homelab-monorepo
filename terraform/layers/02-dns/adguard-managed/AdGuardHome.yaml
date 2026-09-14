@@ -10,11 +10,14 @@
 "filtering":
   "filtering_enabled": true
   "rewrites":
-  - "answer": "192.168.1.4"
+  - "answer": "127.0.0.1"
     "domain": "adguard.platform.home.arpa"
     "enabled": true
   - "answer": "192.168.10.220"
     "domain": "keycloak.platform.home.arpa"
+    "enabled": true
+  - "answer": "192.168.10.220"
+    "domain": "kube-api.platform.home.arpa"
     "enabled": true
   - "answer": "192.168.10.220"
     "domain": "openbao.platform.home.arpa"

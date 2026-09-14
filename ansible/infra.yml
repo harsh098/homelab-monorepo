@@ -61,8 +61,9 @@
           <policy target="REJECT" priority="-100">
             <short>LAN to K3s ingress</short>
             <description>
-              Allow only LAN HTTP(S) connections to the K3s ingress node.
-              Firewalld statefully permits the corresponding return traffic.
+              Allow only LAN HTTP(S) and restricted Kubernetes API connections
+              to the K3s ingress/node address. Firewalld statefully permits the
+              corresponding return traffic.
             </description>
             <ingress-zone name="FedoraWorkstation"/>
             <egress-zone name="libvirt-routed"/>
@@ -76,6 +77,12 @@
               <source address="{{ firewall_lan_cidr }}"/>
               <destination address="{{ firewall_k3s_ingress_ip }}"/>
               <port port="443" protocol="tcp"/>
+              <accept/>
+            </rule>
+            <rule family="ipv4">
+              <source address="{{ firewall_lan_cidr }}"/>
+              <destination address="{{ firewall_k3s_ingress_ip }}"/>
+              <port port="6443" protocol="tcp"/>
               <accept/>
             </rule>
           </policy>

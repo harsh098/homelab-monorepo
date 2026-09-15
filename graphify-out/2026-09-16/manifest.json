@@ -288,9 +288,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1789498495.607371,
-    "seen": 1789498501.3749099,
-    "ast_hash": "054dac946029491093261600aa140ef2",
+    "mtime": 1789498407.2708955,
+    "seen": 1789498456.9234045,
+    "ast_hash": "2952cdde6f1f8fa1fbce8436f952306e",
     "semantic_hash": ""
   },
   "ansible/infra.yml": {
@@ -336,9 +336,9 @@
     "semantic_hash": ""
   },
   "terraform/layers/02-dns/adguard-managed/AdGuardHome.yaml": {
-    "mtime": 1789498589.343937,
-    "seen": 1789498595.6930828,
-    "ast_hash": "e88497383fe2c3bbec65d4a36078ab12",
+    "mtime": 1789372064.6584759,
+    "seen": 1789374536.900065,
+    "ast_hash": "e158bb85871fadc5386b7cae12b7e790",
     "semantic_hash": ""
   },
   "tools/kubectl-keycloak-login.py": {

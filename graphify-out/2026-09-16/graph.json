@@ -1772,7 +1772,7 @@
       "node_kind": "heading",
       "norm_label": "verify cert-manager and issued application certificates.",
       "source_file": "README.md",
-      "source_location": "L391"
+      "source_location": "L389"
     },
     {
       "id": "readme_verify_the_retained_recovery_secret_without_printing_secret_data",
@@ -1784,7 +1784,7 @@
       "node_kind": "heading",
       "norm_label": "verify the retained recovery secret without printing secret data.",
       "source_file": "README.md",
-      "source_location": "L397"
+      "source_location": "L395"
     },
     {
       "id": "02_dns_docker_container_adguardhome",
@@ -4257,7 +4257,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L391",
+      "source_location": "L389",
       "weight": 1.0
     },
     {
@@ -4268,7 +4268,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L397",
+      "source_location": "L395",
       "weight": 1.0
     },
     {

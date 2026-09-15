@@ -1,7 +1,7 @@
 # Graph Report - llm-studio  (2026-09-16)
 
 ## Corpus Check
-- 52 files · ~148,180 words
+- 52 files · ~148,174 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: (none) 3, .tftpl 2, .cfg 1)
 

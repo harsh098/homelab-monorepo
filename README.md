@@ -63,15 +63,39 @@ individually from their directories:
   DNS names; use `.platform.home.arpa` instead.
 - **03-compute** contains the compute resources reconciled by the Ansible
   workflow above.
-- **04-platform** deploys Traefik, OpenBao, and the official Keycloak Operator
-  after compute and K3s API readiness succeed. It is the platform cluster layer,
-  not a generic application deployment layer. The recovery workflow reconciles it
-  automatically.
+- **04-platform** bootstraps the platform prerequisites after compute and K3s
+  API readiness succeed. Terraform owns the `keycloak` and operator
+  prerequisite namespaces, cert-manager/CA material, ingress certificates,
+  External Secrets installation, and the OpenBao `ClusterSecretStore`
+  authentication bootstrap. Flux owns the CNPG operator, CNPG `Cluster`,
+  OpenBao-backed `ExternalSecret`, Keycloak Operator, Keycloak CR, and
+  create-only `KeycloakRealmImport`. The database password is generated into
+  OpenBao and never generated or persisted as Terraform/Kubernetes database
+  credentials.
+- The platform cluster layer is not a generic application deployment layer;
+  user/client provisioning remains external to this repository. The recovery
+  workflow reconciles the Terraform prerequisites automatically, while Flux
+  reconciles the manifests under `clusters/platform/`.
   Traefik is the ingress controller and is exposed through the K3s
-  `LoadBalancer` service at `192.168.10.220`. Keycloak 26.3.3 is operator-owned,
-  uses a fresh standalone PostgreSQL release, and receives its TLS certificate
-  from the retained private CA. OpenBao remains in development mode and is not
-  suitable for production use.
+  `LoadBalancer` service at `192.168.10.220`. Keycloak 26.7.3 is
+  operator-owned, uses a CloudNativePG-managed PostgreSQL cluster, and
+  receives its TLS certificate from the retained private CA. OpenBao remains
+  in development mode and is not suitable for production use.
+
+Before the first platform reconciliation, create the one-time OpenBao
+development bootstrap token outside Terraform state:
+
+```bash
+KUBECONFIG=terraform/layers/03-compute/kubeconfig \
+  kubectl -n external-secrets create secret generic openbao-bootstrap-token \
+  --from-literal=token=root
+```
+
+The Flux bootstrap Job uses that token only to enable OpenBao Kubernetes auth,
+create the read-only `external-secrets` role, and seed the database credential.
+The `ClusterSecretStore` then authenticates with the
+`openbao-external-secrets` ServiceAccount; it never uses the bootstrap/root
+token. Delete `openbao-bootstrap-token` after the Job reports `Complete`.
 
 ### Deploy AdGuard DNS
 
@@ -288,36 +312,39 @@ reconciliation. Rotating it does not rotate an initialized Keycloak instance;
 use a break-glass Admin Console/API session for rotation.
 
 Keycloak is now a fresh deployment managed by the official Keycloak Operator
-26.3.3. The repository intentionally does not create realms, clients, identity
-providers, groups, roles, or users. Provision those objects separately through
-the Admin Console or a controlled external workflow after the operator reports
-the instance ready. In particular, create the `Platform` realm and its
-`kubernetes` public client with authorization-code PKCE and the exact
-`http://127.0.0.1:18000/callback` redirect URI before using browser-based
-kubectl authentication. Do not store user passwords in this repository or in
-the recovery secret.
+26.7.3. Flux applies the official create-only `KeycloakRealmImport` for the
+`Platform` realm, including the `kubernetes` public client, loopback
+authorization-code + PKCE redirect URI, realm roles, groups, and protocol
+mappers for K3s group claims. Realm imports do not update or delete an existing
+realm; once the import reports `Done`, the CR may be deleted to clean up its
+import Job. The repository does not create identity providers or users.
+Provision users and any external identity-provider credentials separately.
+Do not store user passwords in this repository or in the recovery secret.
+The operator does not define an export CR; exports remain an explicit
+Keycloak CLI/API operation and must not be treated as declarative user data.
+
+To make an operational realm backup, use the supported Keycloak export command
+outside Flux (preferably during a maintenance window):
+
+```bash
+KUBECONFIG=terraform/layers/03-compute/kubeconfig \
+  kubectl -n keycloak exec keycloak-0 -- \
+  /opt/keycloak/bin/kc.sh export --realm Platform \
+  --file=/tmp/platform-realm-export.json
+KUBECONFIG=terraform/layers/03-compute/kubeconfig \
+  kubectl -n keycloak cp keycloak-0:/tmp/platform-realm-export.json \
+  ./platform-realm-export.json
+```
+
+Treat that file as an operational backup, not a Flux-managed input; it may
+contain user and client credentials.
 
 The K3s API and browser helper retain the existing OIDC contract:
 `https://keycloak.platform.home.arpa/realms/Platform` is the issuer and
-`kubernetes` is the client ID. Until those objects are provisioned manually,
-OIDC authentication is expected to fail; use the bootstrap kubeconfig for
-break-glass administration. Assign users the required `kubectl-readonly` or
-`kubectl-admin` realm/group claims as part of that separate provisioning
+`kubernetes` is the client ID. Assign users the required `kubectl-readonly` or
+`kubectl-admin` realm/group claims as part of the separate provisioning
 workflow. The repository's OIDC RBAC bindings continue to map those groups to
 cluster access.
-
-Before the first browser login, install the retained public CA certificate
-`~/.config/homelab/keycloak-ca.crt` in the workstation/browser trust store. The
-helper trusts this file directly, but browsers do not automatically trust
-private CAs. The host-side bootstrap-to-OIDC transition is performed by
-`ansible/site.yml`; it installs the CA, helper, and kubeconfig, then configures
-and restarts K3s.
-
-This repository declares the Flux source and Kustomization but does not install
-Flux controllers. The initial bootstrap must install those controllers and
-apply `clusters/platform/flux-source.yaml`; subsequent changes, including the
-vendored official Keycloak Operator and its custom resource, are reconciled by
-Flux.
 
 Apply and verify the platform layer:
 

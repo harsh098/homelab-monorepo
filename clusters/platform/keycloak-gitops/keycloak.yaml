@@ -1,17 +1,17 @@
-apiVersion: k8s.keycloak.org/v2alpha1
+apiVersion: k8s.keycloak.org/v2beta1
 kind: Keycloak
 metadata:
   name: keycloak
   namespace: keycloak
 spec:
   instances: 1
-  image: quay.io/keycloak/keycloak:26.3.3
+  image: quay.io/keycloak/keycloak:26.7.3
   bootstrapAdmin:
     user:
       secret: keycloak-operator-bootstrap
   db:
     vendor: postgres
-    host: keycloak-db
+    host: keycloak-db-rw
     port: 5432
     database: keycloak
     usernameSecret:
@@ -20,14 +20,17 @@ spec:
     passwordSecret:
       name: keycloak-db-credentials
       key: password
+  features:
+    enabled:
+      - client-admin-api:v2
   http:
     httpEnabled: true
+    tlsSecret: keycloak.platform.home.arpa-tls
   hostname:
     hostname: keycloak.platform.home.arpa
   ingress:
     enabled: true
     className: traefik
-  tlsSecret: keycloak.platform.home.arpa-tls
   resources:
     requests:
       cpu: 250m

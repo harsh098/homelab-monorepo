@@ -3,7 +3,7 @@
   "1": "03-compute/variables.tf",
   "2": "keycloak.tf",
   "3": "02-dns/main.tf",
-  "4": "kubernetes_manifest.gcp_secret_store",
+  "4": "helm_release.external_secrets",
   "5": "05-gcp/secrets.tf",
   "6": "04-platform/.terraform.lock.hcl",
   "7": "02-dns/.terraform.lock.hcl",

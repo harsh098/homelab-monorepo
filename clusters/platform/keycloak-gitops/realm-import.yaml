@@ -1,0 +1,64 @@
+apiVersion: k8s.keycloak.org/v2beta1
+kind: KeycloakRealmImport
+metadata:
+  name: platform
+  namespace: keycloak
+  annotations:
+    # RealmImport is create-only. Keep the CR for the declarative bootstrap;
+    # deleting it after status.conditions[type=Done]=True is safe and removes
+    # only the operator Job/Pod, never the imported realm.
+    kustomize.toolkit.fluxcd.io/prune: disabled
+spec:
+  keycloakCRName: keycloak
+  realm:
+    realm: Platform
+    displayName: Platform
+    enabled: true
+    registrationAllowed: false
+    loginWithEmailAllowed: true
+    duplicateEmailsAllowed: false
+    roles:
+      realm:
+        - name: kubectl-admin
+          description: Full Kubernetes administrator access
+        - name: kubectl-readonly
+          description: Read-only Kubernetes access
+    groups:
+      - name: kubectl-admin
+      - name: kubectl-readonly
+    clients:
+      - clientId: kubernetes
+        name: kubernetes
+        enabled: true
+        protocol: openid-connect
+        publicClient: true
+        standardFlowEnabled: true
+        directAccessGrantsEnabled: false
+        implicitFlowEnabled: false
+        serviceAccountsEnabled: false
+        redirectUris:
+          - http://127.0.0.1:18000/callback
+        webOrigins:
+          - http://127.0.0.1:18000
+        attributes:
+          pkce.code.challenge.method: S256
+        protocolMappers:
+          - name: groups
+            protocol: openid-connect
+            protocolMapper: oidc-group-membership-mapper
+            config:
+              full.path: "false"
+              claim.name: groups
+              id.token.claim: "true"
+              access.token.claim: "true"
+              userinfo.token.claim: "true"
+          - name: realm roles
+            protocol: openid-connect
+            protocolMapper: oidc-usermodel-realm-role-mapper
+            config:
+              claim.name: realm_access
+              jsonType.label: JSON
+              multivalued: "true"
+              id.token.claim: "true"
+              access.token.claim: "true"
+              userinfo.token.claim: "true"

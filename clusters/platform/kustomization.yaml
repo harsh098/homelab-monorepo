@@ -3,4 +3,6 @@ kind: Kustomization
 resources:
   - flux-managed.yaml
   - flux-source.yaml
+  - controller
   - keycloak-gitops
+  - apps

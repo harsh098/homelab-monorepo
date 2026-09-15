@@ -35,16 +35,6 @@ variable "keycloak_hostname" {
   }
 }
 
-variable "keycloak_postgresql_storage_size" {
-  description = "Persistent volume size for the single-node Keycloak PostgreSQL database."
-  type        = string
-  default     = "8Gi"
-
-  validation {
-    condition     = can(regex("^[1-9][0-9]*(Mi|Gi|Ti)$", var.keycloak_postgresql_storage_size))
-    error_message = "keycloak_postgresql_storage_size must be a Kubernetes quantity in Mi, Gi, or Ti."
-  }
-}
 
 variable "openbao_hostname" {
   description = "Hostname used by the OpenBao ingress."

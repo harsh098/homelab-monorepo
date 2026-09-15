@@ -1,3 +1,9 @@
+resource "kubernetes_namespace_v1" "external_secrets" {
+  metadata {
+    name = "external-secrets"
+  }
+}
+
 resource "helm_release" "external_secrets" {
   name             = "external-secrets"
   repository       = "https://charts.external-secrets.io"
@@ -11,7 +17,9 @@ resource "helm_release" "external_secrets" {
     name  = "installCRDs"
     value = "false"
   }
+  depends_on = [kubernetes_namespace_v1.external_secrets]
 }
+
 
 resource "kubernetes_manifest" "gcp_secret_store" {
   manifest = {

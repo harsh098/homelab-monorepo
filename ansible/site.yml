@@ -30,7 +30,6 @@
     app_openbao_hostname: "openbao.platform.home.arpa"
     app_keycloak_platform_realm: "Platform"
     app_keycloak_api_url: "https://keycloak.platform.home.arpa"
-    app_keycloak_postgresql_storage_size: "8Gi"
   tasks:
     - name: Initialize the compute layer
       ansible.builtin.command:
@@ -308,7 +307,6 @@
           - -input=false
           - "-var=keycloak_hostname={{ app_keycloak_hostname }}"
           - "-var=openbao_hostname={{ app_openbao_hostname }}"
-          - "-var=keycloak_postgresql_storage_size={{ app_keycloak_postgresql_storage_size }}"
         chdir: "{{ platform_dir }}"
 
     - name: Read the public Keycloak CA certificate from platform state

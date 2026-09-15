@@ -5673,7 +5673,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L141",
+      "source_location": "L142",
       "weight": 1.0
     },
     {
@@ -6212,7 +6212,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L124",
+      "source_location": "L125",
       "weight": 1.0
     },
     {

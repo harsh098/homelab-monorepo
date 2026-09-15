@@ -1,5 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - cronjob.yaml
+  # Vendored from the official Keycloak 26.3.3 distribution.
+  - operator.yaml
+  - keycloaks.k8s.keycloak.org-v1.yml
+  - keycloak.yaml
   - rbac.yaml

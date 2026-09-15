@@ -63,15 +63,15 @@ individually from their directories:
   DNS names; use `.platform.home.arpa` instead.
 - **03-compute** contains the compute resources reconciled by the Ansible
   workflow above.
-- **04-platform** deploys Traefik, OpenBao, and Keycloak after compute and K3s
-  API readiness succeed. It is the platform cluster layer, not a generic
-  application deployment layer. The recovery workflow reconciles it
+- **04-platform** deploys Traefik, OpenBao, and the official Keycloak Operator
+  after compute and K3s API readiness succeed. It is the platform cluster layer,
+  not a generic application deployment layer. The recovery workflow reconciles it
   automatically.
   Traefik is the ingress controller and is exposed through the K3s
-  `LoadBalancer` service at `192.168.10.220`. Keycloak is a production-ish
-  deployment with generated Kubernetes secrets and persistent 8Gi PostgreSQL
-  storage. OpenBao remains in development mode and is not suitable for
-  production use.
+  `LoadBalancer` service at `192.168.10.220`. Keycloak 26.3.3 is operator-owned,
+  uses a fresh standalone PostgreSQL release, and receives its TLS certificate
+  from the retained private CA. OpenBao remains in development mode and is not
+  suitable for production use.
 
 ### Deploy AdGuard DNS
 
@@ -277,88 +277,47 @@ The platform layer installs cert-manager, loads the retained
 `homelab-private-ca` Google Cloud Secret Manager bundle into the cluster, and
 uses it as the CA for Keycloak and OpenBao ingress certificates.
 
-### Keycloak bootstrap credential recovery
+### Keycloak bootstrap and OIDC provisioning
 
-The platform layer stores the existing Keycloak bootstrap admin credential
-as one initial, immutable JSON bundle in Google Cloud Secret Manager for
-recovery only. The bundle contains `schema_version`, `username`, and
-`password`; protect Terraform state, GCP access, and Secret Manager IAM. Never
-store user passwords in this recovery secret.
+The platform layer stores the fresh operator bootstrap admin credential as one
+initial, immutable JSON bundle in Google Cloud Secret Manager for recovery only.
+The bundle contains `schema_version`, `username`, and `password`; protect
+Terraform state, GCP access, and Secret Manager IAM. The Kubernetes Secret
+`keycloak-operator-bootstrap` is consumed only during initial operator
+reconciliation. Rotating it does not rotate an initialized Keycloak instance;
+use a break-glass Admin Console/API session for rotation.
 
-The `Platform` realm now contains dedicated `kubectl-readonly` and
-`kubectl-admin` roles and groups. The `kubernetes` client uses browser
-authorization-code flow with PKCE, an exact loopback callback, and a
-multivalued `groups` claim assembled from both group membership and direct
-Platform realm-role assignments. Assigning either Platform realm role directly
-therefore grants the corresponding Kubernetes access; groups remain useful for
-bulk assignment. The K3s API maps `oidc:kubectl-readonly` to the built-in
-`view` role and `oidc:kubectl-admin` to the repository's least-privilege
-`platform-operator` role. The helper never uses the password grant.
+Keycloak is now a fresh deployment managed by the official Keycloak Operator
+26.3.3. The repository intentionally does not create realms, clients, identity
+providers, groups, roles, or users. Provision those objects separately through
+the Admin Console or a controlled external workflow after the operator reports
+the instance ready. In particular, create the `Platform` realm and its
+`kubernetes` public client with authorization-code PKCE and the exact
+`http://127.0.0.1:18000/callback` redirect URI before using browser-based
+kubectl authentication. Do not store user passwords in this repository or in
+the recovery secret.
 
-The Kubernetes `keycloak-admin` Secret is bootstrap input only. Changing that
-Secret does not rotate an initialized realm; use a break-glass Keycloak Admin
-Console/API session for rotation and protect Terraform state, GCP access, and
-Secret Manager IAM.
-
-Google IdP credentials remain in the per-application
-`keycloak-google-oauth` Secret and are not embedded in the kubectl helper.
-
-#### First Google login and an existing account
-
-The GitOps reconciler does not pre-create the configured Google administrator.
-It waits for an authenticated Google broker login to provision the Keycloak
-user, then assigns that existing user to the `kubectl-admin` group. If the user
-does not exist yet, reconciliation intentionally does nothing; the next
-five-minute run grants access after Google creates the account. This is not
-automatic account linking: matching an email address is never used to merge a
-Google identity with a local account.
-
-If an older reconciliation already created `hmisraji07@gmail.com` and Google
-login reports `Account already exists`, first apply this updated reconciler. If
-the old CronJob is still active and can run before the update, suspend it before
-deleting the user:
-
-```bash
-kubectl -n keycloak patch cronjob keycloak-gitops-reconciler \
-  --type merge -p '{"spec":{"suspend":true}}'
-```
-
-Use the Keycloak Admin Console's **Platform → Users** page to remove that
-unused pre-created local user, resume the updated CronJob if it was suspended,
-wait for (or manually trigger) the reconciler, and retry Google login. Google
-will then create the user and the following reconciliation will assign the
-`kubectl-admin` group and its `kubectl-admin` realm role. Delete the old user
-only after confirming it has no credentials or application data that must be
-retained.
-
-If the existing account must be retained, authenticate that local account and
-manually link the verified Google identity through Keycloak's account/identity
-provider linking flow (an administrator may first set a temporary local
-password and require it to be changed). Verify the Google account and provider
-subject, not merely the email text, before linking. Do not enable or implement
-an automatic first-login flow that links accounts based only on email. After a
-successful manual link, the reconciler will find the existing user and assign
-the admin group on its next run.
+The K3s API and browser helper retain the existing OIDC contract:
+`https://keycloak.platform.home.arpa/realms/Platform` is the issuer and
+`kubernetes` is the client ID. Until those objects are provisioned manually,
+OIDC authentication is expected to fail; use the bootstrap kubeconfig for
+break-glass administration. Assign users the required `kubectl-readonly` or
+`kubectl-admin` realm/group claims as part of that separate provisioning
+workflow. The repository's OIDC RBAC bindings continue to map those groups to
+cluster access.
 
 Before the first browser login, install the retained public CA certificate
-`~/.config/homelab/keycloak-ca.crt` in the workstation/browser trust store.
-The helper trusts this file directly, but browsers do not automatically trust
-private CAs. Additional users can be assigned either Platform realm role
-directly or placed in the corresponding `kubectl-readonly` or `kubectl-admin`
-group.
+`~/.config/homelab/keycloak-ca.crt` in the workstation/browser trust store. The
+helper trusts this file directly, but browsers do not automatically trust
+private CAs. The host-side bootstrap-to-OIDC transition is performed by
+`ansible/site.yml`; it installs the CA, helper, and kubeconfig, then configures
+and restarts K3s.
 
-The host-side bootstrap-to-OIDC transition is performed by `ansible/site.yml`;
-it installs the Keycloak CA for K3s discovery and the browser helper/kubeconfig,
-then configures and restarts K3s. Keycloak realms, the Platform/Homelab Google
-identity providers, the Kubernetes client/mappers, and the Kubernetes RBAC
-manifests are reconciled by the Flux Kustomization rooted at
-`clusters/platform` once Flux has been bootstrapped. A platform-only OpenTofu
-apply still does not restart K3s or install the browser-authenticated kubeconfig.
-
-This repository declares the Flux source and Kustomization but does not
-install the Flux controllers. The initial bootstrap must install those
-controllers and apply `clusters/platform/flux-source.yaml`; subsequent
-changes are reconciled from the repository by Flux.
+This repository declares the Flux source and Kustomization but does not install
+Flux controllers. The initial bootstrap must install those controllers and
+apply `clusters/platform/flux-source.yaml`; subsequent changes, including the
+vendored official Keycloak Operator and its custom resource, are reconciled by
+Flux.
 
 Apply and verify the platform layer:
 

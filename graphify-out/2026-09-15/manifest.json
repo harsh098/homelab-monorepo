@@ -150,9 +150,9 @@
     "semantic_hash": "ba0fbb23dda82d31624e9ac67eca00ab"
   },
   "terraform/layers/04-platform/keycloak.tf": {
-    "mtime": 1789494943.1371284,
-    "seen": 1789494956.8515208,
-    "ast_hash": "7cec4e2afc8d3054d121a7a2bcfff306",
+    "mtime": 1789494614.983636,
+    "seen": 1789494760.6821444,
+    "ast_hash": "c396cc46e34aed8c5eebe133372cdad1",
     "semantic_hash": ""
   },
   "terraform/layers/04-platform/main.tf": {

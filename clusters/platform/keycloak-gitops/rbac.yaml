@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: platform-operator
+  name: platform-oidc-admin
 rules:
   - apiGroups: [""]
     resources:
@@ -35,26 +35,15 @@ rules:
     resources:
       - poddisruptionbudgets
     verbs: [get, list, watch, create, update, patch, delete]
-  - apiGroups: ["cert-manager.io"]
-    resources:
-      - certificates
-      - certificaterequests
-      - clusterissuers
-      - issuers
-    verbs: [get, list, watch, create, update, patch, delete]
-  - apiGroups: ["external-secrets.io"]
-    resources:
-      - externalsecrets
-    verbs: [get, list, watch, create, update, patch, delete]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: platform-operator-oidc
+  name: platform-oidc-admin
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: platform-operator
+  name: platform-oidc-admin
 subjects:
   - apiGroup: rbac.authorization.k8s.io
     kind: Group

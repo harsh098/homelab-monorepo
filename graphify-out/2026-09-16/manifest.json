@@ -138,21 +138,21 @@
     "semantic_hash": "594fd0083af0f3e33b0a9bb68962375a"
   },
   "terraform/layers/04-platform/external-secrets.tf": {
-    "mtime": 1789496228.5364912,
-    "seen": 1789496358.972446,
-    "ast_hash": "0f41fd9b261f7c62f44b8ac412ee1324",
+    "mtime": 1789500081.3899064,
+    "seen": 1789500162.2008672,
+    "ast_hash": "f136ddd605a4cdbe7b453636e6d9810b",
     "semantic_hash": ""
   },
   "terraform/layers/04-platform/ingress.tf": {
-    "mtime": 1788891303.170121,
-    "seen": 1789367263.9253335,
-    "ast_hash": "ba0fbb23dda82d31624e9ac67eca00ab",
-    "semantic_hash": "ba0fbb23dda82d31624e9ac67eca00ab"
+    "mtime": 1789499867.3683038,
+    "seen": 1789500162.2008681,
+    "ast_hash": "4a0b2a28501c20d610b91c65ce311ff1",
+    "semantic_hash": ""
   },
   "terraform/layers/04-platform/keycloak.tf": {
-    "mtime": 1789496385.586104,
-    "seen": 1789496463.60804,
-    "ast_hash": "fb76e3911870fa17dd049763759fc11a",
+    "mtime": 1789500081.3909066,
+    "seen": 1789500162.2008688,
+    "ast_hash": "04ffa1326a38843f7a5dd05f83520697",
     "semantic_hash": ""
   },
   "terraform/layers/04-platform/main.tf": {
@@ -174,14 +174,14 @@
     "semantic_hash": ""
   },
   "terraform/layers/04-platform/pki.tf": {
-    "mtime": 1788891404.745702,
-    "seen": 1789367263.9253378,
-    "ast_hash": "6ba79275e0f9edc4a528091aab8ff402",
-    "semantic_hash": "6ba79275e0f9edc4a528091aab8ff402"
+    "mtime": 1789500081.3909066,
+    "seen": 1789500162.2008717,
+    "ast_hash": "0f0a56e20f6a97b72c539021194f156b",
+    "semantic_hash": ""
   },
   "terraform/layers/04-platform/providers.tf": {
-    "mtime": 1788890630.4852774,
-    "seen": 1789367263.925339,
+    "mtime": 1789499731.8700335,
+    "seen": 1789500162.2008724,
     "ast_hash": "c1d0ee3e464e593bd6619c25e054cc7a",
     "semantic_hash": "c1d0ee3e464e593bd6619c25e054cc7a"
   },
@@ -288,9 +288,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1789498407.2708955,
-    "seen": 1789498456.9234045,
-    "ast_hash": "2952cdde6f1f8fa1fbce8436f952306e",
+    "mtime": 1789498495.607371,
+    "seen": 1789498501.3749099,
+    "ast_hash": "054dac946029491093261600aa140ef2",
     "semantic_hash": ""
   },
   "ansible/infra.yml": {
@@ -336,9 +336,9 @@
     "semantic_hash": ""
   },
   "terraform/layers/02-dns/adguard-managed/AdGuardHome.yaml": {
-    "mtime": 1789372064.6584759,
-    "seen": 1789374536.900065,
-    "ast_hash": "e158bb85871fadc5386b7cae12b7e790",
+    "mtime": 1789499731.8700335,
+    "seen": 1789500162.2009056,
+    "ast_hash": "e88497383fe2c3bbec65d4a36078ab12",
     "semantic_hash": ""
   },
   "tools/kubectl-keycloak-login.py": {
@@ -372,9 +372,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/openbao-database-bootstrap.yaml": {
-    "mtime": 1789497784.596494,
-    "seen": 1789498055.5973854,
-    "ast_hash": "bb1032368e6399cd39c2b44ccf81fd62",
+    "mtime": 1789501794.3878434,
+    "seen": 1789501827.70431,
+    "ast_hash": "8be8bab4b99f2fbc617ce59e6ede884b",
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/realm-import.yaml": {

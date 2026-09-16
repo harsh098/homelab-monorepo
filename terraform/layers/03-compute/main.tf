@@ -29,6 +29,12 @@ resource "libvirt_domain" "k8s_node" {
   name   = var.node_name
   memory = 4096
   vcpu   = 2
+  # Expose the libvirt host CPU features required by current Keycloak images.
+  # The default QEMU CPU only advertises SSE2 on this VM, which is below
+  # Keycloak's x86-64-v2 baseline.
+  cpu {
+    mode = "host-passthrough"
+  }
 
   cloudinit = libvirt_cloudinit_disk.k8s_cloudinit.id
 

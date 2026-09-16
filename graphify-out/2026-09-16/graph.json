@@ -409,6 +409,17 @@
       "source_location": "L1"
     },
     {
+      "id": "04_platform_kubernetes_manifest_cert_manager",
+      "label": "kubernetes_manifest.cert_manager",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "pki.tf",
+      "file_type": "code",
+      "norm_label": "kubernetes_manifest.cert_manager",
+      "source_file": "terraform/layers/04-platform/pki.tf",
+      "source_location": "L14"
+    },
+    {
       "id": "04_platform_kubernetes_manifest_keycloak_certificate",
       "label": "kubernetes_manifest.keycloak_certificate",
       "_origin": "ast",
@@ -417,7 +428,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_manifest.keycloak_certificate",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L57"
+      "source_location": "L61"
     },
     {
       "id": "04_platform_kubernetes_manifest_openbao_certificate",
@@ -428,7 +439,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_manifest.openbao_certificate",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L88"
+      "source_location": "L92"
     },
     {
       "id": "04_platform_kubernetes_manifest_private_ca_cluster_issuer",
@@ -439,18 +450,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_manifest.private_ca_cluster_issuer",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L38"
-    },
-    {
-      "id": "04_platform_kubernetes_namespace_v1_cert_manager",
-      "label": "kubernetes_namespace_v1.cert_manager",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "pki.tf",
-      "file_type": "code",
-      "norm_label": "kubernetes_namespace_v1.cert_manager",
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L14"
+      "source_location": "L42"
     },
     {
       "id": "04_platform_kubernetes_secret_v1_cert_manager_ca",
@@ -461,7 +461,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_secret_v1.cert_manager_ca",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L20"
+      "source_location": "L24"
     },
     {
       "id": "04_platform_local_keycloak_tls_secret_name",
@@ -1030,7 +1030,7 @@
       "file_type": "code",
       "norm_label": "google_secret_manager_secret.keycloak_admin_recovery",
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L45"
+      "source_location": "L49"
     },
     {
       "id": "04_platform_google_secret_manager_secret_version_keycloak_admin_recovery_initial",
@@ -1041,16 +1041,16 @@
       "file_type": "code",
       "norm_label": "google_secret_manager_secret_version.keycloak_admin_recovery_initial",
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L53"
+      "source_location": "L57"
     },
     {
-      "id": "04_platform_kubernetes_namespace_v1_keycloak",
-      "label": "kubernetes_namespace_v1.keycloak",
+      "id": "04_platform_kubernetes_manifest_keycloak",
+      "label": "kubernetes_manifest.keycloak",
       "_origin": "ast",
       "community": 2,
       "community_name": "keycloak.tf",
       "file_type": "code",
-      "norm_label": "kubernetes_namespace_v1.keycloak",
+      "norm_label": "kubernetes_manifest.keycloak",
       "source_file": "terraform/layers/04-platform/keycloak.tf",
       "source_location": "L20"
     },
@@ -1063,7 +1063,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_secret_v1.keycloak_admin",
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L28"
+      "source_location": "L32"
     },
     {
       "id": "04_platform_local_keycloak_admin_recovery_bundle",
@@ -1772,7 +1772,7 @@
       "node_kind": "heading",
       "norm_label": "verify cert-manager and issued application certificates.",
       "source_file": "README.md",
-      "source_location": "L389"
+      "source_location": "L391"
     },
     {
       "id": "readme_verify_the_retained_recovery_secret_without_printing_secret_data",
@@ -1784,7 +1784,7 @@
       "node_kind": "heading",
       "norm_label": "verify the retained recovery secret without printing secret data.",
       "source_file": "README.md",
-      "source_location": "L395"
+      "source_location": "L397"
     },
     {
       "id": "02_dns_docker_container_adguardhome",
@@ -2474,40 +2474,40 @@
       "label": "helm_release.external_secrets",
       "_origin": "ast",
       "community": 4,
-      "community_name": "helm_release.external_secrets",
+      "community_name": "kubernetes_manifest.gcp_secret_store",
       "file_type": "code",
       "norm_label": "helm_release.external_secrets",
       "source_file": "terraform/layers/04-platform/external-secrets.tf",
-      "source_location": "L7"
+      "source_location": "L11"
+    },
+    {
+      "id": "04_platform_kubernetes_manifest_external_secrets",
+      "label": "kubernetes_manifest.external_secrets",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "kubernetes_manifest.gcp_secret_store",
+      "file_type": "code",
+      "norm_label": "kubernetes_manifest.external_secrets",
+      "source_file": "terraform/layers/04-platform/external-secrets.tf",
+      "source_location": "L1"
     },
     {
       "id": "04_platform_kubernetes_manifest_gcp_secret_store",
       "label": "kubernetes_manifest.gcp_secret_store",
       "_origin": "ast",
       "community": 4,
-      "community_name": "helm_release.external_secrets",
+      "community_name": "kubernetes_manifest.gcp_secret_store",
       "file_type": "code",
       "norm_label": "kubernetes_manifest.gcp_secret_store",
       "source_file": "terraform/layers/04-platform/external-secrets.tf",
-      "source_location": "L24"
-    },
-    {
-      "id": "04_platform_kubernetes_namespace_v1_external_secrets",
-      "label": "kubernetes_namespace_v1.external_secrets",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "helm_release.external_secrets",
-      "file_type": "code",
-      "norm_label": "kubernetes_namespace_v1.external_secrets",
-      "source_file": "terraform/layers/04-platform/external-secrets.tf",
-      "source_location": "L1"
+      "source_location": "L28"
     },
     {
       "id": "04_platform_provider_google",
       "label": "provider.google",
       "_origin": "ast",
       "community": 4,
-      "community_name": "helm_release.external_secrets",
+      "community_name": "kubernetes_manifest.gcp_secret_store",
       "file_type": "code",
       "norm_label": "provider.google",
       "source_file": "terraform/layers/04-platform/providers.tf",
@@ -2518,7 +2518,7 @@
       "label": "provider.helm",
       "_origin": "ast",
       "community": 4,
-      "community_name": "helm_release.external_secrets",
+      "community_name": "kubernetes_manifest.gcp_secret_store",
       "file_type": "code",
       "norm_label": "provider.helm",
       "source_file": "terraform/layers/04-platform/providers.tf",
@@ -2529,7 +2529,7 @@
       "label": "provider.kubernetes",
       "_origin": "ast",
       "community": 4,
-      "community_name": "helm_release.external_secrets",
+      "community_name": "kubernetes_manifest.gcp_secret_store",
       "file_type": "code",
       "norm_label": "provider.kubernetes",
       "source_file": "terraform/layers/04-platform/providers.tf",
@@ -2540,7 +2540,7 @@
       "label": "var.gcp_project_id",
       "_origin": "ast",
       "community": 4,
-      "community_name": "helm_release.external_secrets",
+      "community_name": "kubernetes_manifest.gcp_secret_store",
       "file_type": "code",
       "norm_label": "var.gcp_project_id",
       "source_file": "terraform/layers/04-platform/variables.tf",
@@ -2551,7 +2551,7 @@
       "label": "external-secrets.tf",
       "_origin": "ast",
       "community": 4,
-      "community_name": "helm_release.external_secrets",
+      "community_name": "kubernetes_manifest.gcp_secret_store",
       "file_type": "code",
       "norm_label": "external-secrets.tf",
       "source_file": "terraform/layers/04-platform/external-secrets.tf",
@@ -2562,7 +2562,7 @@
       "label": "04-platform/providers.tf",
       "_origin": "ast",
       "community": 4,
-      "community_name": "helm_release.external_secrets",
+      "community_name": "kubernetes_manifest.gcp_secret_store",
       "file_type": "code",
       "norm_label": "04-platform/providers.tf",
       "source_file": "terraform/layers/04-platform/providers.tf",
@@ -4257,7 +4257,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L389",
+      "source_location": "L391",
       "weight": 1.0
     },
     {
@@ -4268,7 +4268,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L395",
+      "source_location": "L397",
       "weight": 1.0
     },
     {
@@ -4768,7 +4768,7 @@
     },
     {
       "source": "terraform_layers_04_platform_external_secrets",
-      "target": "04_platform_kubernetes_namespace_v1_external_secrets",
+      "target": "04_platform_kubernetes_manifest_external_secrets",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -4779,24 +4779,24 @@
     },
     {
       "source": "terraform_layers_04_platform_external_secrets",
-      "target": "04_platform_kubernetes_manifest_gcp_secret_store",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/external-secrets.tf",
-      "source_location": "L24",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_external_secrets",
       "target": "04_platform_helm_release_external_secrets",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/external-secrets.tf",
-      "source_location": "L7",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_04_platform_external_secrets",
+      "target": "04_platform_kubernetes_manifest_gcp_secret_store",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/external-secrets.tf",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -4845,7 +4845,7 @@
     },
     {
       "source": "terraform_layers_04_platform_keycloak",
-      "target": "04_platform_kubernetes_namespace_v1_keycloak",
+      "target": "04_platform_kubernetes_manifest_keycloak",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -4862,7 +4862,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L28",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -4873,7 +4873,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L45",
+      "source_location": "L49",
       "weight": 1.0
     },
     {
@@ -4884,7 +4884,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L53",
+      "source_location": "L57",
       "weight": 1.0
     },
     {
@@ -4977,7 +4977,7 @@
     },
     {
       "source": "terraform_layers_04_platform_pki",
-      "target": "04_platform_kubernetes_namespace_v1_cert_manager",
+      "target": "04_platform_kubernetes_manifest_cert_manager",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -4994,7 +4994,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L20",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -5005,7 +5005,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L38",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -5016,7 +5016,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L57",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -5043,17 +5043,6 @@
     },
     {
       "source": "terraform_layers_04_platform_pki",
-      "target": "04_platform_kubernetes_manifest_openbao_certificate",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L88",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_pki",
       "target": "04_platform_local_private_ca_private_key_pem",
       "relation": "contains",
       "_origin": "ast",
@@ -5061,6 +5050,17 @@
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
       "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_04_platform_pki",
+      "target": "04_platform_kubernetes_manifest_openbao_certificate",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/pki.tf",
+      "source_location": "L92",
       "weight": 1.0
     },
     {
@@ -5626,7 +5626,7 @@
     },
     {
       "source": "04_platform_helm_release_cert_manager",
-      "target": "04_platform_kubernetes_namespace_v1_cert_manager",
+      "target": "04_platform_kubernetes_manifest_cert_manager",
       "relation": "depends_on",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5648,13 +5648,13 @@
     },
     {
       "source": "04_platform_helm_release_external_secrets",
-      "target": "04_platform_kubernetes_namespace_v1_external_secrets",
+      "target": "04_platform_kubernetes_manifest_external_secrets",
       "relation": "depends_on",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/external-secrets.tf",
-      "source_location": "L20",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -5665,7 +5665,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/external-secrets.tf",
-      "source_location": "L49",
+      "source_location": "L53",
       "weight": 1.0
     },
     {
@@ -5676,7 +5676,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L85",
+      "source_location": "L89",
       "weight": 1.0
     },
     {
@@ -5687,7 +5687,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L116",
+      "source_location": "L120",
       "weight": 1.0
     },
     {
@@ -5698,18 +5698,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L54",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
       "source": "04_platform_kubernetes_secret_v1_cert_manager_ca",
-      "target": "04_platform_kubernetes_namespace_v1_cert_manager",
+      "target": "04_platform_kubernetes_manifest_cert_manager",
       "relation": "depends_on",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L35",
+      "source_location": "L39",
       "weight": 1.0
     },
     {
@@ -6171,7 +6171,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L54",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
@@ -6182,7 +6182,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L55",
+      "source_location": "L59",
       "weight": 1.0
     },
     {
@@ -6215,7 +6215,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/external-secrets.tf",
-      "source_location": "L34",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "04_platform_kubernetes_manifest_gcp_secret_store",
+      "target": "04_platform_kubernetes_manifest_external_secrets",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/external-secrets.tf",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -6226,18 +6237,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L58",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
       "source": "04_platform_kubernetes_manifest_keycloak_certificate",
-      "target": "04_platform_kubernetes_namespace_v1_keycloak",
+      "target": "04_platform_kubernetes_manifest_keycloak",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L65",
+      "source_location": "L69",
       "weight": 1.0
     },
     {
@@ -6248,7 +6259,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L68",
+      "source_location": "L72",
       "weight": 1.0
     },
     {
@@ -6259,29 +6270,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L74",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_kubernetes_manifest_openbao_certificate",
-      "target": "04_platform_var_openbao_hostname",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L105",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_kubernetes_manifest_openbao_certificate",
-      "target": "04_platform_var_enable_cert_manager_issuance",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L89",
+      "source_location": "L78",
       "weight": 1.0
     },
     {
@@ -6292,7 +6281,29 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L99",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "04_platform_kubernetes_manifest_openbao_certificate",
+      "target": "04_platform_var_openbao_hostname",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/pki.tf",
+      "source_location": "L109",
+      "weight": 1.0
+    },
+    {
+      "source": "04_platform_kubernetes_manifest_openbao_certificate",
+      "target": "04_platform_var_enable_cert_manager_issuance",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/pki.tf",
+      "source_location": "L93",
       "weight": 1.0
     },
     {
@@ -6303,7 +6314,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L39",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -6314,7 +6325,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L49",
+      "source_location": "L53",
       "weight": 1.0
     },
     {
@@ -6325,7 +6336,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L29",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -6336,18 +6347,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L30",
+      "source_location": "L34",
       "weight": 1.0
     },
     {
       "source": "04_platform_kubernetes_secret_v1_keycloak_admin",
-      "target": "04_platform_kubernetes_namespace_v1_keycloak",
+      "target": "04_platform_kubernetes_manifest_keycloak",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L31",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -6358,7 +6369,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L37",
+      "source_location": "L41",
       "weight": 1.0
     },
     {
@@ -6369,7 +6380,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L38",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -6517,5 +6528,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "32ca1536992dc21d165fd507ee975b9d048eb1a1"
+  "built_at_commit": "ae95e905fd095c065ea74a4916748263087f971f"
 }

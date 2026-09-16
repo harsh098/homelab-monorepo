@@ -17,9 +17,13 @@ resource "random_password" "keycloak_admin" {
 }
 
 
-resource "kubernetes_namespace_v1" "keycloak" {
-  metadata {
-    name = "keycloak"
+resource "kubernetes_manifest" "keycloak" {
+  manifest = {
+    apiVersion = "v1"
+    kind       = "Namespace"
+    metadata = {
+      name = "keycloak"
+    }
   }
 }
 # Terraform owns only the namespace and bootstrap/recovery prerequisites. Flux
@@ -28,7 +32,7 @@ resource "kubernetes_namespace_v1" "keycloak" {
 resource "kubernetes_secret_v1" "keycloak_admin" {
   metadata {
     name      = "keycloak-operator-bootstrap"
-    namespace = kubernetes_namespace_v1.keycloak.metadata[0].name
+    namespace = kubernetes_manifest.keycloak.manifest.metadata.name
   }
 
   type = "Opaque"
@@ -59,3 +63,4 @@ resource "google_secret_manager_secret_version" "keycloak_admin_recovery_initial
     prevent_destroy = true
   }
 }
+

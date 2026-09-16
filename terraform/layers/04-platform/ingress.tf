@@ -35,7 +35,7 @@ resource "helm_release" "cert_manager" {
   repository       = "https://charts.jetstack.io"
   chart            = "cert-manager"
   version          = "v1.17.2"
-  namespace        = kubernetes_namespace_v1.cert_manager.metadata[0].name
+  namespace        = kubernetes_manifest.cert_manager.manifest.metadata.name
   create_namespace = false
   wait             = true
   timeout          = 600
@@ -46,7 +46,7 @@ resource "helm_release" "cert_manager" {
   }
 
   depends_on = [
-    kubernetes_namespace_v1.cert_manager,
+    kubernetes_manifest.cert_manager,
     kubernetes_secret_v1.cert_manager_ca,
   ]
 }

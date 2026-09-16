@@ -11,16 +11,20 @@ locals {
   openbao_tls_secret_name    = "${var.openbao_hostname}-tls"
 }
 
-resource "kubernetes_namespace_v1" "cert_manager" {
-  metadata {
-    name = "cert-manager"
+resource "kubernetes_manifest" "cert_manager" {
+  manifest = {
+    apiVersion = "v1"
+    kind       = "Namespace"
+    metadata = {
+      name = "cert-manager"
+    }
   }
 }
 
 resource "kubernetes_secret_v1" "cert_manager_ca" {
   metadata {
     name      = "homelab-private-ca"
-    namespace = kubernetes_namespace_v1.cert_manager.metadata[0].name
+    namespace = kubernetes_manifest.cert_manager.manifest.metadata.name
   }
 
   type = "kubernetes.io/tls"
@@ -32,7 +36,7 @@ resource "kubernetes_secret_v1" "cert_manager_ca" {
 
   data_wo_revision = 1
 
-  depends_on = [kubernetes_namespace_v1.cert_manager]
+  depends_on = [kubernetes_manifest.cert_manager]
 }
 
 resource "kubernetes_manifest" "private_ca_cluster_issuer" {
@@ -62,7 +66,7 @@ resource "kubernetes_manifest" "keycloak_certificate" {
     kind       = "Certificate"
     metadata = {
       name      = "keycloak-platform-home-arpa"
-      namespace = kubernetes_namespace_v1.keycloak.metadata[0].name
+      namespace = kubernetes_manifest.keycloak.manifest.metadata.name
     }
     spec = {
       secretName = local.keycloak_tls_secret_name
@@ -115,3 +119,4 @@ resource "kubernetes_manifest" "openbao_certificate" {
 
   depends_on = [kubernetes_manifest.private_ca_cluster_issuer]
 }
+

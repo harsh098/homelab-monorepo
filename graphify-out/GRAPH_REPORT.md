@@ -1,17 +1,17 @@
 # Graph Report - llm-studio  (2026-09-16)
 
 ## Corpus Check
-- 52 files · ~148,180 words
+- 52 files · ~148,281 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: (none) 3, .tftpl 2, .cfg 1)
 
 ## Summary
-- 248 nodes · 327 edges · 41 communities (17 shown, 12 thin omitted)
+- 248 nodes · 328 edges · 41 communities (17 shown, 12 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `32ca1536`
+- Built from commit: `ae95e905`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -20,7 +20,7 @@
 - 03-compute/variables.tf
 - keycloak.tf
 - 02-dns/main.tf
-- helm_release.external_secrets
+- kubernetes_manifest.gcp_secret_store
 - 05-gcp/secrets.tf
 - 04-platform/.terraform.lock.hcl
 - 02-dns/.terraform.lock.hcl
@@ -77,7 +77,7 @@
 
 ### Community 0 - "pki.tf"
 Cohesion: 0.16
-Nodes (19): data.google_secret_manager_secret.private_ca, data.google_secret_manager_secret_version.private_ca, helm_release.cert_manager, helm_release.openbao, helm_release.traefik, kubernetes_manifest.keycloak_certificate, kubernetes_manifest.openbao_certificate, kubernetes_manifest.private_ca_cluster_issuer (+11 more)
+Nodes (19): data.google_secret_manager_secret.private_ca, data.google_secret_manager_secret_version.private_ca, helm_release.cert_manager, helm_release.openbao, helm_release.traefik, kubernetes_manifest.cert_manager, kubernetes_manifest.keycloak_certificate, kubernetes_manifest.openbao_certificate (+11 more)
 
 ### Community 1 - "03-compute/variables.tf"
 Cohesion: 0.16
@@ -85,15 +85,15 @@ Nodes (17): libvirt_cloudinit_disk.k8s_cloudinit, libvirt_domain.k8s_node, libvi
 
 ### Community 2 - "keycloak.tf"
 Cohesion: 0.29
-Nodes (10): google_secret_manager_secret.keycloak_admin_recovery, google_secret_manager_secret_version.keycloak_admin_recovery_initial, kubernetes_namespace_v1.keycloak, kubernetes_secret_v1.keycloak_admin, local.keycloak_admin_recovery_bundle, local.keycloak_admin_username, output.keycloak_admin_recovery_secret_name, output.keycloak_admin_recovery_secret_version (+2 more)
+Nodes (10): google_secret_manager_secret.keycloak_admin_recovery, google_secret_manager_secret_version.keycloak_admin_recovery_initial, kubernetes_manifest.keycloak, kubernetes_secret_v1.keycloak_admin, local.keycloak_admin_recovery_bundle, local.keycloak_admin_username, output.keycloak_admin_recovery_secret_name, output.keycloak_admin_recovery_secret_version (+2 more)
 
 ### Community 3 - "02-dns/main.tf"
 Cohesion: 0.24
 Nodes (15): docker_container.adguardhome, docker_image.adguard, local.config_dir, local.config_file, local.default_dns_records, local.dns_records, local_file.adguard_config, local.managed_data_dir (+7 more)
 
-### Community 4 - "helm_release.external_secrets"
-Cohesion: 0.28
-Nodes (7): helm_release.external_secrets, kubernetes_manifest.gcp_secret_store, kubernetes_namespace_v1.external_secrets, provider.google, provider.helm, provider.kubernetes, var.gcp_project_id
+### Community 4 - "kubernetes_manifest.gcp_secret_store"
+Cohesion: 0.31
+Nodes (7): helm_release.external_secrets, kubernetes_manifest.external_secrets, kubernetes_manifest.gcp_secret_store, provider.google, provider.helm, provider.kubernetes, var.gcp_project_id
 
 ### Community 5 - "05-gcp/secrets.tf"
 Cohesion: 0.47
@@ -153,9 +153,9 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `kubernetes_manifest.keycloak_certificate` connect `pki.tf` to `keycloak.tf`?**
   _High betweenness centrality (0.010) - this node is a cross-community bridge._
-- **Why does `var.gcp_project_id` connect `helm_release.external_secrets` to `pki.tf`?**
+- **Why does `var.gcp_project_id` connect `kubernetes_manifest.gcp_secret_store` to `pki.tf`?**
   _High betweenness centrality (0.010) - this node is a cross-community bridge._
-- **Why does `kubernetes_namespace_v1.keycloak` connect `keycloak.tf` to `pki.tf`?**
+- **Why does `kubernetes_manifest.keycloak` connect `keycloak.tf` to `pki.tf`?**
   _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **What connects `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local` to the rest of the system?**
   _75 weakly-connected nodes found - possible documentation gaps or missing edges._

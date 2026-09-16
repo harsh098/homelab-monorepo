@@ -3,6 +3,10 @@ kind: Job
 metadata:
   name: keycloak-db-credentials-bootstrap
   namespace: external-secrets
+  annotations:
+    # The pod template is immutable on Jobs. Allow Flux to replace this fixed
+    # bootstrap job when its declarative script changes.
+    kustomize.toolkit.fluxcd.io/force: enabled
   labels:
     app.kubernetes.io/name: keycloak-db-credentials-bootstrap
     app.kubernetes.io/part-of: keycloak

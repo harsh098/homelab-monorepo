@@ -1,6 +1,10 @@
-resource "kubernetes_namespace_v1" "external_secrets" {
-  metadata {
-    name = "external-secrets"
+resource "kubernetes_manifest" "external_secrets" {
+  manifest = {
+    apiVersion = "v1"
+    kind       = "Namespace"
+    metadata = {
+      name = "external-secrets"
+    }
   }
 }
 
@@ -8,7 +12,7 @@ resource "helm_release" "external_secrets" {
   name             = "external-secrets"
   repository       = "https://charts.external-secrets.io"
   chart            = "external-secrets"
-  namespace        = "external-secrets"
+  namespace        = kubernetes_manifest.external_secrets.manifest.metadata.name
   create_namespace = false
   wait             = true
   timeout          = 600
@@ -17,7 +21,7 @@ resource "helm_release" "external_secrets" {
     name  = "installCRDs"
     value = "false"
   }
-  depends_on = [kubernetes_namespace_v1.external_secrets]
+  depends_on = [kubernetes_manifest.external_secrets]
 }
 
 
@@ -36,7 +40,7 @@ resource "kubernetes_manifest" "gcp_secret_store" {
             secretRef = {
               secretAccessKeySecretRef = {
                 name      = "gcp-secret-manager-reader"
-                namespace = "external-secrets"
+                namespace = kubernetes_manifest.external_secrets.manifest.metadata.name
                 key       = "credentials.json"
               }
             }

@@ -6,6 +6,7 @@ metadata:
 spec:
   instances: 1
   image: quay.io/keycloak/keycloak:26.7.3
+  startOptimized: false
   bootstrapAdmin:
     user:
       secret: keycloak-operator-bootstrap
@@ -25,12 +26,14 @@ spec:
       - client-admin-api:v2
   http:
     httpEnabled: true
-    tlsSecret: keycloak.platform.home.arpa-tls
   hostname:
     hostname: keycloak.platform.home.arpa
+  proxy:
+    headers: xforwarded
   ingress:
     enabled: true
     className: traefik
+    tlsSecret: keycloak.platform.home.arpa-tls
   resources:
     requests:
       cpu: 250m

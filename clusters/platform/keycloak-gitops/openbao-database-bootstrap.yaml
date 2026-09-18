@@ -50,6 +50,9 @@ spec:
               path "openbao/data/platform/capacitor/oidc-client" {
                 capabilities = ["read"]
               }
+              path "openbao/data/platform/keycloak/crossplane" {
+                capabilities = ["read"]
+              }
               EOF
               bao write auth/kubernetes/role/external-secrets \
                 bound_service_account_names=openbao-external-secrets \
@@ -73,4 +76,11 @@ spec:
                 cookie_secret="$(head -c 96 /dev/urandom | base64 | tr -dc 'A-Za-z0-9+/=' | cut -c1-32)"
                 bao kv put -mount=openbao platform/capacitor/oidc-client \
                   client-secret="$client_secret" cookie-secret="$cookie_secret"
+              fi
+              if ! bao kv get -mount=openbao platform/keycloak/crossplane >/dev/null 2>&1; then
+                client_secret="$(head -c 96 /dev/urandom | base64 | tr -dc 'A-Za-z0-9_@%-' | cut -c1-64)"
+                while [ "${#client_secret}" -lt 32 ]; do
+                  client_secret="$(head -c 96 /dev/urandom | base64 | tr -dc 'A-Za-z0-9_@%-' | cut -c1-64)"
+                done
+                bao kv put -mount=openbao platform/keycloak/crossplane client-secret="$client_secret"
               fi

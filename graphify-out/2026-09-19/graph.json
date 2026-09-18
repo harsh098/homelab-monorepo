@@ -1748,19 +1748,7 @@
       "node_kind": "heading",
       "norm_label": "deploy capacitor flux dashboard",
       "source_file": "README.md",
-      "source_location": "L436"
-    },
-    {
-      "id": "readme_gitops_role_and_user_workflow",
-      "label": "GitOps role and user workflow",
-      "_origin": "ast",
-      "community": 29,
-      "community_name": "Terraform layers",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "gitops role and user workflow",
-      "source_file": "README.md",
-      "source_location": "L383"
+      "source_location": "L392"
     },
     {
       "id": "readme_homelab",
@@ -1796,7 +1784,7 @@
       "node_kind": "heading",
       "norm_label": "manual google sign-in runbook",
       "source_file": "README.md",
-      "source_location": "L341"
+      "source_location": "L327"
     },
     {
       "id": "readme_power_outage_recovery",
@@ -1868,7 +1856,7 @@
       "node_kind": "heading",
       "norm_label": "verify cert-manager and issued application certificates.",
       "source_file": "README.md",
-      "source_location": "L477"
+      "source_location": "L433"
     },
     {
       "id": "readme_verify_the_retained_recovery_secret_without_printing_secret_data",
@@ -1880,7 +1868,7 @@
       "node_kind": "heading",
       "norm_label": "verify the retained recovery secret without printing secret data.",
       "source_file": "README.md",
-      "source_location": "L483"
+      "source_location": "L439"
     },
     {
       "id": "02_dns_docker_container_adguardhome",
@@ -4540,7 +4528,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L477",
+      "source_location": "L433",
       "weight": 1.0
     },
     {
@@ -4551,7 +4539,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L483",
+      "source_location": "L439",
       "weight": 1.0
     },
     {
@@ -4595,18 +4583,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L341",
-      "weight": 1.0
-    },
-    {
-      "source": "readme_keycloak_bootstrap_and_oidc_provisioning",
-      "target": "readme_gitops_role_and_user_workflow",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L383",
+      "source_location": "L327",
       "weight": 1.0
     },
     {
@@ -4661,7 +4638,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L436",
+      "source_location": "L392",
       "weight": 1.0
     },
     {
@@ -6970,5 +6947,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "39d9b75c8fb16c3278eeac6dffe0f5dff4450ec0"
+  "built_at_commit": "65c15dd849d8eeeeeeabacd048005d0d05f8a91f"
 }

@@ -312,17 +312,31 @@ Terraform state, GCP access, and Secret Manager IAM. The Kubernetes Secret
 reconciliation. Rotating it does not rotate an initialized Keycloak instance;
 use a break-glass Admin Console/API session for rotation.
 
-Keycloak is now a fresh deployment managed by the official Keycloak Operator
+Keycloak is a fresh deployment managed by the official Keycloak Operator
 26.7.3. Flux applies the official create-only `KeycloakRealmImport` for the
 `Platform` realm, including the `kubernetes` public client, loopback
-authorization-code + PKCE redirect URI, realm roles, groups, and protocol
-mappers for K3s group claims. Realm imports do not update or delete an existing
-realm; once the import reports `Done`, the CR may be deleted to clean up its
-import Job. The repository does not create identity providers or users.
-Provision users and any external identity-provider credentials separately.
+authorization-code + PKCE redirect URI, protocol mappers, and the initial
+access-role names. Realm imports do not update or delete an existing realm.
+
+Crossplane 2.4.1 and `provider-keycloak` 3.0.1 own ongoing `Platform` identity
+state in `clusters/platform/keycloak-gitops/identities.yaml`: realm roles,
+groups, group-role mappings, users, and group memberships. The provider
+authenticates with the confidential `crossplane` service-account client in the
+`openbao` KV mount path `platform/keycloak/crossplane`; no password or client
+secret is stored in Git.
+The `ProviderConfig` names only `Platform`. Crossplane neither authenticates to
+nor manages resources in `master`.
+
+The `crossplane` client needs the `realm-management/realm-admin` service-account
+role inside `Platform`. Creating that client is a one-time break-glass
+bootstrap after OpenBao has seeded its secret. Ongoing reconciliation then uses
+only client credentials issued by `Platform`; the master recovery credential
+is not mounted into Crossplane or External Secrets.
+
 Do not store user passwords in this repository or in the recovery secret.
-The operator does not define an export CR; exports remain an explicit
-Keycloak CLI/API operation and must not be treated as declarative user data.
+Google remains the interactive authentication source. The operator does not
+define an export CR; exports remain an explicit Keycloak CLI/API operation and
+must not be treated as declarative user data.
 
 #### Manual Google sign-in runbook
 
@@ -365,6 +379,36 @@ creates or updates the `google` identity provider idempotently. It never
 prints or writes those credentials. Use `--dry-run` to authenticate and
 report whether the provider would be created or updated without modifying
 Keycloak.
+
+#### GitOps role and user workflow
+
+Edit `clusters/platform/keycloak-gitops/identities.yaml` and push to `main`.
+Each person has one `user.keycloak.crossplane.io/User`; access is the
+authoritative `members` list on a
+`group.keycloak.crossplane.io/Memberships` resource. The admin membership is
+`platform-kubectl-admin-members`. Add a corresponding
+`platform-kubectl-readonly-members` resource when the first read-only user is
+granted access; the provider requires at least one member and an absent
+membership resource represents the currently empty group.
+
+Create users without an `initialPassword`; Google establishes the federated
+identity at first sign-in. For offboarding, first remove the username from all
+membership lists and set `enabled: false`. Keep disabled imported users in Git
+for auditability: imported users use `deletionPolicy: Orphan`, so deleting only
+the Kubernetes resource does not delete the Keycloak account. Role and group
+resources use `deletionPolicy: Delete`; removing one is therefore an explicit,
+destructive access-model change.
+
+Verify reconciliation without reading credentials:
+
+```bash
+KUBECONFIG=terraform/layers/03-compute/kubeconfig \
+  kubectl get providers.pkg.crossplane.io provider-keycloak
+KUBECONFIG=terraform/layers/03-compute/kubeconfig \
+  kubectl get roles.role.keycloak.crossplane.io,groups.group.keycloak.crossplane.io
+KUBECONFIG=terraform/layers/03-compute/kubeconfig \
+  kubectl get users.user.keycloak.crossplane.io,memberships.group.keycloak.crossplane.io
+```
 
 To make an operational realm backup, use the supported Keycloak export command
 outside Flux (preferably during a maintenance window):

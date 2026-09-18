@@ -5,6 +5,8 @@ resources:
   - database.yaml
   - openbao-auth.yaml
   - openbao-database-bootstrap.yaml
+  - crossplane-provider.yaml
   - realm-import.yaml
   - capacitor-oidc-client.yaml
+  - identities.yaml
   - rbac.yaml

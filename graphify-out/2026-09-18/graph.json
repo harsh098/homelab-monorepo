@@ -354,78 +354,6 @@
       "source_location": "L78"
     },
     {
-      "id": "tools_configure_keycloak_google_idp_json_object",
-      "label": "_json_object()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "configure-keycloak-google-idp.py",
-      "file_type": "code",
-      "norm_label": "_json_object()",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L111"
-    },
-    {
-      "id": "tools_configure_keycloak_google_idp_main",
-      "label": "main()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "configure-keycloak-google-idp.py",
-      "file_type": "code",
-      "norm_label": "main()",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L121"
-    },
-    {
-      "id": "tools_configure_keycloak_google_idp_parser",
-      "label": "_parser()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "configure-keycloak-google-idp.py",
-      "file_type": "code",
-      "norm_label": "_parser()",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L26"
-    },
-    {
-      "id": "tools_configure_keycloak_google_idp_request",
-      "label": "_request()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "configure-keycloak-google-idp.py",
-      "file_type": "code",
-      "norm_label": "_request()",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L67"
-    },
-    {
-      "id": "tools_configure_keycloak_google_idp_required_string",
-      "label": "_required_string()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "configure-keycloak-google-idp.py",
-      "file_type": "code",
-      "norm_label": "_required_string()",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L60"
-    },
-    {
-      "id": "tools_configure_keycloak_google_idp_secret",
-      "label": "_secret()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "configure-keycloak-google-idp.py",
-      "file_type": "code",
-      "norm_label": "_secret()",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L40"
-    },
-    {
       "id": "04_platform_data_google_secret_manager_secret_private_ca",
       "label": "data.google_secret_manager_secret.private_ca",
       "_origin": "ast",
@@ -1748,19 +1676,7 @@
       "node_kind": "heading",
       "norm_label": "deploy capacitor flux dashboard",
       "source_file": "README.md",
-      "source_location": "L436"
-    },
-    {
-      "id": "readme_gitops_role_and_user_workflow",
-      "label": "GitOps role and user workflow",
-      "_origin": "ast",
-      "community": 29,
-      "community_name": "Terraform layers",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "gitops role and user workflow",
-      "source_file": "README.md",
-      "source_location": "L383"
+      "source_location": "L350"
     },
     {
       "id": "readme_homelab",
@@ -1785,18 +1701,6 @@
       "norm_label": "keycloak bootstrap and oidc provisioning",
       "source_file": "README.md",
       "source_location": "L305"
-    },
-    {
-      "id": "readme_manual_google_sign_in_runbook",
-      "label": "Manual Google sign-in runbook",
-      "_origin": "ast",
-      "community": 29,
-      "community_name": "Terraform layers",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "manual google sign-in runbook",
-      "source_file": "README.md",
-      "source_location": "L341"
     },
     {
       "id": "readme_power_outage_recovery",
@@ -1868,7 +1772,7 @@
       "node_kind": "heading",
       "norm_label": "verify cert-manager and issued application certificates.",
       "source_file": "README.md",
-      "source_location": "L477"
+      "source_location": "L391"
     },
     {
       "id": "readme_verify_the_retained_recovery_secret_without_printing_secret_data",
@@ -1880,7 +1784,7 @@
       "node_kind": "heading",
       "norm_label": "verify the retained recovery secret without printing secret data.",
       "source_file": "README.md",
-      "source_location": "L483"
+      "source_location": "L397"
     },
     {
       "id": "02_dns_docker_container_adguardhome",
@@ -2489,6 +2393,28 @@
       "source_location": ""
     },
     {
+      "id": "runtimeerror",
+      "label": "RuntimeError",
+      "_origin": "ast",
+      "community": 39,
+      "community_name": "kubectl-keycloak-login.py",
+      "file_type": "code",
+      "norm_label": "runtimeerror",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "sslcontext",
+      "label": "SSLContext",
+      "_origin": "ast",
+      "community": 39,
+      "community_name": "kubectl-keycloak-login.py",
+      "file_type": "code",
+      "norm_label": "sslcontext",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
       "id": "tools_kubectl_keycloak_login",
       "label": "kubectl-keycloak-login.py",
       "_origin": "ast",
@@ -2518,17 +2444,6 @@
       "community_name": "kubectl-keycloak-login.py",
       "file_type": "code",
       "norm_label": "path",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "tools_kubectl_keycloak_login_py_sslcontext",
-      "label": "SSLContext",
-      "_origin": "ast",
-      "community": 39,
-      "community_name": "kubectl-keycloak-login.py",
-      "file_type": "code",
-      "norm_label": "sslcontext",
       "source_file": "",
       "source_location": ""
     },
@@ -2654,6 +2569,17 @@
       "source_location": null
     },
     {
+      "id": "argumentparser",
+      "label": "ArgumentParser",
+      "_origin": "ast",
+      "community": 40,
+      "community_name": "merge-kubeconfig.py",
+      "file_type": "code",
+      "norm_label": "argumentparser",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
       "id": "tools_merge_kubeconfig",
       "label": "merge-kubeconfig.py",
       "_origin": "ast",
@@ -2672,17 +2598,6 @@
       "community_name": "merge-kubeconfig.py",
       "file_type": "code",
       "norm_label": "any",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "tools_merge_kubeconfig_py_argumentparser",
-      "label": "ArgumentParser",
-      "_origin": "ast",
-      "community": 40,
-      "community_name": "merge-kubeconfig.py",
-      "file_type": "code",
-      "norm_label": "argumentparser",
       "source_file": "",
       "source_location": ""
     },
@@ -2717,72 +2632,6 @@
       "file_type": "rationale",
       "norm_label": "merge the homelab browser-authenticated kubernetes entry into kubeconfig. the...",
       "source_file": "tools/merge-kubeconfig.py",
-      "source_location": "L2"
-    },
-    {
-      "id": "runtimeerror",
-      "label": "RuntimeError",
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "configure-keycloak-google-idp.py",
-      "file_type": "code",
-      "norm_label": "runtimeerror",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "tools_configure_keycloak_google_idp",
-      "label": "configure-keycloak-google-idp.py",
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "configure-keycloak-google-idp.py",
-      "file_type": "code",
-      "norm_label": "configure-keycloak-google-idp.py",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "tools_configure_keycloak_google_idp_py_any",
-      "label": "Any",
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "configure-keycloak-google-idp.py",
-      "file_type": "code",
-      "norm_label": "any",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "tools_configure_keycloak_google_idp_py_argumentparser",
-      "label": "ArgumentParser",
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "configure-keycloak-google-idp.py",
-      "file_type": "code",
-      "norm_label": "argumentparser",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "tools_configure_keycloak_google_idp_py_sslcontext",
-      "label": "SSLContext",
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "configure-keycloak-google-idp.py",
-      "file_type": "code",
-      "norm_label": "sslcontext",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "tools_configure_keycloak_google_idp_rationale_2",
-      "label": "Create or update the Platform realm Google identity provider. Credentials are\u2026",
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "configure-keycloak-google-idp.py",
-      "file_type": "rationale",
-      "norm_label": "create or update the platform realm google identity provider. credentials are...",
-      "source_file": "tools/configure-keycloak-google-idp.py",
       "source_location": "L2"
     },
     {
@@ -3007,66 +2856,6 @@
     }
   ],
   "links": [
-    {
-      "source": "tools_configure_keycloak_google_idp_main",
-      "target": "tools_configure_keycloak_google_idp_parser",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L122",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp_main",
-      "target": "tools_configure_keycloak_google_idp_secret",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L127",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp_main",
-      "target": "tools_configure_keycloak_google_idp_required_string",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L129",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp_main",
-      "target": "tools_configure_keycloak_google_idp_request",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L137",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp_main",
-      "target": "tools_configure_keycloak_google_idp_json_object",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L148",
-      "weight": 1.0
-    },
     {
       "source": "tools_kubectl_keycloak_login_browser_login",
       "target": "tools_kubectl_keycloak_login_oidcerror",
@@ -3512,54 +3301,6 @@
       "weight": 1.0
     },
     {
-      "source": "tools_configure_keycloak_google_idp_json_object",
-      "target": "tools_configure_keycloak_google_idp_py_any",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "generic_arg",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L111",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp_request",
-      "target": "tools_configure_keycloak_google_idp_py_any",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "generic_arg",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L67",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp_required_string",
-      "target": "tools_configure_keycloak_google_idp_py_any",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "generic_arg",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L60",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp_secret",
-      "target": "tools_configure_keycloak_google_idp_py_any",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "generic_arg",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L40",
-      "weight": 1.0
-    },
-    {
       "source": "tools_kubectl_keycloak_login_browser_login",
       "target": "tools_kubectl_keycloak_login_py_any",
       "relation": "references",
@@ -3728,20 +3469,8 @@
       "weight": 1.0
     },
     {
-      "source": "tools_configure_keycloak_google_idp_request",
-      "target": "tools_configure_keycloak_google_idp_py_sslcontext",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "parameter_type",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L67",
-      "weight": 1.0
-    },
-    {
       "source": "tools_kubectl_keycloak_login_browser_login",
-      "target": "tools_kubectl_keycloak_login_py_sslcontext",
+      "target": "sslcontext",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -3753,7 +3482,7 @@
     },
     {
       "source": "tools_kubectl_keycloak_login_json_request",
-      "target": "tools_kubectl_keycloak_login_py_sslcontext",
+      "target": "sslcontext",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -3777,7 +3506,7 @@
     },
     {
       "source": "tools_kubectl_keycloak_login_metadata",
-      "target": "tools_kubectl_keycloak_login_py_sslcontext",
+      "target": "sslcontext",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -3789,7 +3518,7 @@
     },
     {
       "source": "tools_kubectl_keycloak_login_refresh",
-      "target": "tools_kubectl_keycloak_login_py_sslcontext",
+      "target": "sslcontext",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -3836,18 +3565,6 @@
       "weight": 1.0
     },
     {
-      "source": "tools_configure_keycloak_google_idp_parser",
-      "target": "tools_configure_keycloak_google_idp_py_argumentparser",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "return_type",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L26",
-      "weight": 1.0
-    },
-    {
       "source": "tools_kubectl_keycloak_login_arguments",
       "target": "namespace",
       "relation": "references",
@@ -3861,7 +3578,7 @@
     },
     {
       "source": "tools_kubectl_keycloak_login_ssl_context",
-      "target": "tools_kubectl_keycloak_login_py_sslcontext",
+      "target": "sslcontext",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -3873,7 +3590,7 @@
     },
     {
       "source": "tools_merge_kubeconfig_parser",
-      "target": "tools_merge_kubeconfig_py_argumentparser",
+      "target": "argumentparser",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -4540,7 +4257,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L477",
+      "source_location": "L391",
       "weight": 1.0
     },
     {
@@ -4551,7 +4268,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L483",
+      "source_location": "L397",
       "weight": 1.0
     },
     {
@@ -4585,28 +4302,6 @@
       "confidence_score": 1.0,
       "source_file": "README.md",
       "source_location": "L5",
-      "weight": 1.0
-    },
-    {
-      "source": "readme_keycloak_bootstrap_and_oidc_provisioning",
-      "target": "readme_manual_google_sign_in_runbook",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L341",
-      "weight": 1.0
-    },
-    {
-      "source": "readme_keycloak_bootstrap_and_oidc_provisioning",
-      "target": "readme_gitops_role_and_user_workflow",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L383",
       "weight": 1.0
     },
     {
@@ -4661,7 +4356,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L436",
+      "source_location": "L350",
       "weight": 1.0
     },
     {
@@ -5622,72 +5317,6 @@
       "weight": 1.0
     },
     {
-      "source": "tools_configure_keycloak_google_idp",
-      "target": "tools_configure_keycloak_google_idp_json_object",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L111",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp",
-      "target": "tools_configure_keycloak_google_idp_main",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L121",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp",
-      "target": "tools_configure_keycloak_google_idp_parser",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L26",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp",
-      "target": "tools_configure_keycloak_google_idp_secret",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L40",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp",
-      "target": "tools_configure_keycloak_google_idp_required_string",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L60",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp",
-      "target": "tools_configure_keycloak_google_idp_request",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L67",
-      "weight": 1.0
-    },
-    {
       "source": "tools_kubectl_keycloak_login",
       "target": "tools_kubectl_keycloak_login_save_cache",
       "relation": "contains",
@@ -6114,17 +5743,6 @@
       "confidence_score": 1.0,
       "source_file": "tools/kubectl-keycloak-login.py",
       "source_location": "L199",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp_rationale_2",
-      "target": "tools_configure_keycloak_google_idp",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L2",
       "weight": 1.0
     },
     {
@@ -6907,68 +6525,8 @@
       "source_file": "terraform/layers/05-gcp/secrets.tf",
       "source_location": "L16",
       "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp_json_object",
-      "target": "runtimeerror",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "call",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L115",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp_main",
-      "target": "runtimeerror",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "call",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L125",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp_request",
-      "target": "runtimeerror",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "call",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L96",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp_required_string",
-      "target": "runtimeerror",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "call",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L63",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_configure_keycloak_google_idp_secret",
-      "target": "runtimeerror",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "call",
-      "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L47",
-      "weight": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "39d9b75c8fb16c3278eeac6dffe0f5dff4450ec0"
+  "built_at_commit": "ae95e905fd095c065ea74a4916748263087f971f"
 }

@@ -67,36 +67,38 @@ individually from their directories:
 - **04-platform** bootstraps the platform prerequisites after compute and K3s
   API readiness succeed. Terraform owns the `keycloak` and operator
   prerequisite namespaces, cert-manager/CA material, ingress certificates,
-  External Secrets installation, and the OpenBao `ClusterSecretStore`
-  authentication bootstrap. Flux owns the CNPG operator, CNPG `Cluster`,
-  OpenBao-backed `ExternalSecret`, Keycloak Operator, Keycloak CR, and
-  create-only `KeycloakRealmImport`. The database password is generated into
-  OpenBao and never generated or persisted as Terraform/Kubernetes database
-  credentials.
-- The platform cluster layer is not a generic application deployment layer;
-  user/client provisioning remains external to this repository. The recovery
-  workflow reconciles the Terraform prerequisites automatically, while Flux
-  reconciles the manifests under `clusters/platform/`.
-  Traefik is the ingress controller and is exposed through the K3s
-  `LoadBalancer` service at `192.168.10.220`. Keycloak 26.7.3 is
-  operator-owned, uses a CloudNativePG-managed PostgreSQL cluster, and
-  receives its TLS certificate from the retained private CA. OpenBao remains
-  in development mode and is not suitable for production use.
+  External Secrets installation, and the persistent single-node OpenBao
+  StatefulSet and PVC. Flux owns the CNPG operator, CNPG `Cluster`,
+  OpenBao-backed `ExternalSecret`, automatic OpenBao unsealer, Keycloak
+  Operator, Keycloak CR, and create-only `KeycloakRealmImport`. Database and
+  application credentials remain in OpenBao and are never stored in Git or
+  Terraform state.
+- The platform cluster layer is not a generic application deployment layer.
+  Flux reconciles the manifests under `clusters/platform/`. Traefik is the
+  ingress controller and is exposed through the K3s `LoadBalancer` service at
+  `192.168.10.220`. Keycloak 26.7.3 is operator-owned, uses a
+  CloudNativePG-managed PostgreSQL cluster, and receives its TLS certificate
+  from the retained private CA.
 
-Before the first platform reconciliation, create the one-time OpenBao
-development bootstrap token outside Terraform state:
+OpenBao uses the chart's standalone file-storage backend on the retained
+`data-openbao-0` PVC. Its Shamir unseal key and root recovery token live in
+separate GCP Secret Manager secrets. The in-cluster unsealer may read only
+`openbao-unseal-key`; the root token is never synchronized into the cluster
+except transiently during an explicit bootstrap.
+
+After the first persistent OpenBao deployment, or after deliberately replacing
+its storage, initialize and bootstrap it:
 
 ```bash
-KUBECONFIG=terraform/layers/03-compute/kubeconfig \
-  kubectl -n external-secrets create secret generic openbao-bootstrap-token \
-  --from-literal=token=root
+tools/initialize-openbao.py --project "$GCP_PROJECT_ID"
 ```
 
-The Flux bootstrap Job uses that token only to enable OpenBao Kubernetes auth,
-create the read-only `external-secrets` role, and seed the database credential.
-The `ClusterSecretStore` then authenticates with the
-`openbao-external-secrets` ServiceAccount; it never uses the bootstrap/root
-token. Delete `openbao-bootstrap-token` after the Job reports `Complete`.
+The utility initializes with one recovery share, writes the unseal key and
+root token directly to `openbao-unseal-key` and `openbao-root-token`, unseals
+OpenBao, runs the Kubernetes-auth and secret-seeding Job, then deletes the
+temporary Kubernetes root-token Secret. It never prints recovery material.
+Subsequent pod restarts are unsealed automatically from the restricted GCP
+secret, and the retained PVC preserves all KV data.
 
 ### Deploy AdGuard DNS
 
@@ -444,13 +446,12 @@ certificate. The dashboard is available at
 `https://capacitor.platform.home.arpa`.
 
 The gate uses the confidential `capacitor` client in the `Platform` realm.
-KeycloakOIDCClient reads its client secret from an OpenBao-backed
-ExternalSecret, and OAuth2 Proxy reads the same OpenBao path for its client and
-cookie secrets. No client or cookie secret is stored in Git. Before the first
-platform reconciliation, create the one-time OpenBao bootstrap token described
-above; the Flux bootstrap Job seeds both the Keycloak database credential and
-the Capacitor OIDC/cookie secret path. Delete the bootstrap token after the Job
-reports `Complete`.
+Crossplane adopts and reconciles that client, including its secret from the
+OpenBao-backed `capacitor-oidc-client` Secret. OAuth2 Proxy reads the same
+OpenBao path for its client and cookie secrets. No client or cookie secret is
+stored in Git. This single secret source prevents the callback-time
+`unauthorized_client` failures caused by the former, nonfunctional
+`KeycloakOIDCClient` controller path.
 
 ```bash
 KUBECONFIG=terraform/layers/03-compute/kubeconfig \
@@ -462,7 +463,7 @@ KUBECONFIG=terraform/layers/03-compute/kubeconfig \
 KUBECONFIG=terraform/layers/03-compute/kubeconfig \
   kubectl -n keycloak get keycloakrealmimport platform
 KUBECONFIG=terraform/layers/03-compute/kubeconfig \
-  kubectl -n keycloak get keycloakoidcclient capacitor
+  kubectl get clients.openidclient.keycloak.crossplane.io platform-capacitor
 KUBECONFIG=terraform/layers/03-compute/kubeconfig \
   kubectl -n keycloak get externalsecret capacitor-oidc-client
 

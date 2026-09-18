@@ -30,3 +30,26 @@ resource "google_secret_manager_secret" "keycloak_google_oauth" {
     auto {}
   }
 }
+
+resource "google_secret_manager_secret" "openbao_unseal_key" {
+  secret_id = "openbao-unseal-key"
+
+  replication {
+    auto {}
+  }
+}
+
+resource "google_secret_manager_secret_iam_member" "openbao_unseal_key_reader" {
+  project   = google_secret_manager_secret.openbao_unseal_key.project
+  secret_id = google_secret_manager_secret.openbao_unseal_key.secret_id
+  role      = "roles/secretmanager.secretAccessor"
+  member    = "serviceAccount:${var.secret_reader_service_account_email}"
+}
+
+resource "google_secret_manager_secret" "openbao_root_token" {
+  secret_id = "openbao-root-token"
+
+  replication {
+    auto {}
+  }
+}

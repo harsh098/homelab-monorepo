@@ -4,6 +4,7 @@ resources:
   - keycloak.yaml
   - database.yaml
   - openbao-auth.yaml
+  - openbao-unseal.yaml
   - openbao-database-bootstrap.yaml
   - crossplane-provider.yaml
   - realm-import.yaml

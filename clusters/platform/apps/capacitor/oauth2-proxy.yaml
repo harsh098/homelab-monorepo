@@ -13,6 +13,8 @@ spec:
       app.kubernetes.io/name: oauth2-proxy
   template:
     metadata:
+      annotations:
+        platform.home.arpa/credential-generation: "2"
       labels:
         app.kubernetes.io/name: oauth2-proxy
         app.kubernetes.io/part-of: capacitor

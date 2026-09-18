@@ -1,27 +1,35 @@
-apiVersion: k8s.keycloak.org/v2alpha1
-kind: KeycloakOIDCClient
+apiVersion: openidclient.keycloak.crossplane.io/v1alpha2
+kind: Client
 metadata:
-  name: capacitor
-  namespace: keycloak
+  name: platform-capacitor
   labels:
     app.kubernetes.io/name: capacitor
     app.kubernetes.io/part-of: platform
 spec:
-  keycloakCRName: keycloak
-  realm: Platform
-  client:
-    displayName: Capacitor
+  deletionPolicy: Orphan
+  forProvider:
+    realmId: Platform
+    clientId: capacitor
+    name: Capacitor
     description: OIDC client for the Capacitor Flux dashboard
+    accessType: CONFIDENTIAL
+    clientAuthenticatorType: client-secret
+    clientSecretSecretRef:
+      name: capacitor-oidc-client
+      namespace: keycloak
+      key: client-secret
     enabled: true
-    appUrl: https://capacitor.platform.home.arpa
-    loginFlows:
-      - STANDARD
-    redirectUris:
+    import: true
+    standardFlowEnabled: true
+    implicitFlowEnabled: false
+    directAccessGrantsEnabled: false
+    serviceAccountsEnabled: false
+    baseUrl: https://capacitor.platform.home.arpa
+    validRedirectUris:
       - https://capacitor.platform.home.arpa/oauth2/callback
+    validPostLogoutRedirectUris:
+      - https://capacitor.platform.home.arpa/
     webOrigins:
       - https://capacitor.platform.home.arpa
-    auth:
-      method: client-secret
-      secretRef:
-        name: capacitor-oidc-client
-        key: client-secret
+  providerConfigRef:
+    name: platform-keycloak

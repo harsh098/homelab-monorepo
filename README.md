@@ -324,6 +324,48 @@ Do not store user passwords in this repository or in the recovery secret.
 The operator does not define an export CR; exports remain an explicit
 Keycloak CLI/API operation and must not be treated as declarative user data.
 
+#### Manual Google sign-in runbook
+
+Google sign-in is an explicit day-two operation because
+`KeycloakRealmImport` creates realms but does not update an existing realm.
+This runbook uses the Keycloak Admin REST API directly and does not require a
+Kubernetes kubeconfig.
+
+1. In Google Cloud, create a **Web application** OAuth client and configure
+   this exact authorized redirect URI:
+
+   ```text
+   https://keycloak.platform.home.arpa/realms/Platform/broker/google/endpoint
+   ```
+
+2. Store the OAuth credential as the latest
+   `keycloak-google-oauth` Google Secret Manager version:
+
+   ```json
+   {
+     "client_id": "<google-oauth-client-id>",
+     "client_secret": "<google-oauth-client-secret>"
+   }
+   ```
+
+3. Authenticate `gcloud`, install the homelab CA at
+   `~/.config/homelab/keycloak-ca.crt`, and run:
+
+   ```bash
+   tools/configure-keycloak-google-idp.py
+   ```
+
+   Pass `--project <gcp-project-id>` when the required project is not the
+   active `gcloud` project. To restrict sign-in to one Google Workspace
+   organization, also pass `--hosted-domain example.com`.
+
+The utility reads `keycloak-admin-recovery` and `keycloak-google-oauth`
+directly from Secret Manager, keeps credentials in process memory, and
+creates or updates the `google` identity provider idempotently. It never
+prints or writes those credentials. Use `--dry-run` to authenticate and
+report whether the provider would be created or updated without modifying
+Keycloak.
+
 To make an operational realm backup, use the supported Keycloak export command
 outside Flux (preferably during a maintenance window):
 

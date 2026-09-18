@@ -426,6 +426,90 @@
       "source_location": "L40"
     },
     {
+      "id": "tools_initialize_openbao_add_gcp_version",
+      "label": "add_gcp_version()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "initialize-openbao.py",
+      "file_type": "code",
+      "norm_label": "add_gcp_version()",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L61"
+    },
+    {
+      "id": "tools_initialize_openbao_apply_bootstrap_secret",
+      "label": "apply_bootstrap_secret()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "initialize-openbao.py",
+      "file_type": "code",
+      "norm_label": "apply_bootstrap_secret()",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L68"
+    },
+    {
+      "id": "tools_initialize_openbao_bao",
+      "label": "bao()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "initialize-openbao.py",
+      "file_type": "code",
+      "norm_label": "bao()",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L36"
+    },
+    {
+      "id": "tools_initialize_openbao_gcp_secret",
+      "label": "gcp_secret()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "initialize-openbao.py",
+      "file_type": "code",
+      "norm_label": "gcp_secret()",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L56"
+    },
+    {
+      "id": "tools_initialize_openbao_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "initialize-openbao.py",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L82"
+    },
+    {
+      "id": "tools_initialize_openbao_parser",
+      "label": "parser()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "initialize-openbao.py",
+      "file_type": "code",
+      "norm_label": "parser()",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L24"
+    },
+    {
+      "id": "tools_initialize_openbao_run",
+      "label": "run()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "initialize-openbao.py",
+      "file_type": "code",
+      "norm_label": "run()",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L14"
+    },
+    {
       "id": "04_platform_data_google_secret_manager_secret_private_ca",
       "label": "data.google_secret_manager_secret.private_ca",
       "_origin": "ast",
@@ -1736,7 +1820,7 @@
       "node_kind": "heading",
       "norm_label": "deploy adguard dns",
       "source_file": "README.md",
-      "source_location": "L101"
+      "source_location": "L103"
     },
     {
       "id": "readme_deploy_capacitor_flux_dashboard",
@@ -1748,7 +1832,7 @@
       "node_kind": "heading",
       "norm_label": "deploy capacitor flux dashboard",
       "source_file": "README.md",
-      "source_location": "L436"
+      "source_location": "L438"
     },
     {
       "id": "readme_gitops_role_and_user_workflow",
@@ -1760,7 +1844,7 @@
       "node_kind": "heading",
       "norm_label": "gitops role and user workflow",
       "source_file": "README.md",
-      "source_location": "L383"
+      "source_location": "L385"
     },
     {
       "id": "readme_homelab",
@@ -1784,7 +1868,7 @@
       "node_kind": "heading",
       "norm_label": "keycloak bootstrap and oidc provisioning",
       "source_file": "README.md",
-      "source_location": "L305"
+      "source_location": "L307"
     },
     {
       "id": "readme_manual_google_sign_in_runbook",
@@ -1796,7 +1880,7 @@
       "node_kind": "heading",
       "norm_label": "manual google sign-in runbook",
       "source_file": "README.md",
-      "source_location": "L341"
+      "source_location": "L343"
     },
     {
       "id": "readme_power_outage_recovery",
@@ -1808,7 +1892,7 @@
       "node_kind": "heading",
       "norm_label": "power outage recovery",
       "source_file": "README.md",
-      "source_location": "L216"
+      "source_location": "L218"
     },
     {
       "id": "readme_prerequisites",
@@ -1844,7 +1928,7 @@
       "node_kind": "heading",
       "norm_label": "routed libvirt management network",
       "source_file": "README.md",
-      "source_location": "L157"
+      "source_location": "L159"
     },
     {
       "id": "readme_terraform_layers",
@@ -1868,7 +1952,7 @@
       "node_kind": "heading",
       "norm_label": "verify cert-manager and issued application certificates.",
       "source_file": "README.md",
-      "source_location": "L477"
+      "source_location": "L478"
     },
     {
       "id": "readme_verify_the_retained_recovery_secret_without_printing_secret_data",
@@ -1880,7 +1964,7 @@
       "node_kind": "heading",
       "norm_label": "verify the retained recovery secret without printing secret data.",
       "source_file": "README.md",
-      "source_location": "L483"
+      "source_location": "L484"
     },
     {
       "id": "02_dns_docker_container_adguardhome",
@@ -2808,6 +2892,17 @@
       "source_location": "L6"
     },
     {
+      "id": "05_gcp_google_secret_manager_secret_iam_member_openbao_unseal_key_reader",
+      "label": "google_secret_manager_secret_iam_member.openbao_unseal_key_reader",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "05-gcp/secrets.tf",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret_iam_member.openbao_unseal_key_reader",
+      "source_file": "terraform/layers/05-gcp/secrets.tf",
+      "source_location": "L42"
+    },
+    {
       "id": "05_gcp_google_secret_manager_secret_keycloak_google_oauth",
       "label": "google_secret_manager_secret.keycloak_google_oauth",
       "_origin": "ast",
@@ -2817,6 +2912,28 @@
       "norm_label": "google_secret_manager_secret.keycloak_google_oauth",
       "source_file": "terraform/layers/05-gcp/secrets.tf",
       "source_location": "L26"
+    },
+    {
+      "id": "05_gcp_google_secret_manager_secret_openbao_root_token",
+      "label": "google_secret_manager_secret.openbao_root_token",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "05-gcp/secrets.tf",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret.openbao_root_token",
+      "source_file": "terraform/layers/05-gcp/secrets.tf",
+      "source_location": "L49"
+    },
+    {
+      "id": "05_gcp_google_secret_manager_secret_openbao_unseal_key",
+      "label": "google_secret_manager_secret.openbao_unseal_key",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "05-gcp/secrets.tf",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret.openbao_unseal_key",
+      "source_file": "terraform/layers/05-gcp/secrets.tf",
+      "source_location": "L34"
     },
     {
       "id": "05_gcp_google_secret_manager_secret_version_backup_encryption_key_version",
@@ -2841,6 +2958,39 @@
       "source_location": "L1"
     },
     {
+      "id": "05_gcp_var_project_id",
+      "label": "var.project_id",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "05-gcp/secrets.tf",
+      "file_type": "code",
+      "norm_label": "var.project_id",
+      "source_file": "terraform/layers/05-gcp/variables.tf",
+      "source_location": "L1"
+    },
+    {
+      "id": "05_gcp_var_region",
+      "label": "var.region",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "05-gcp/secrets.tf",
+      "file_type": "code",
+      "norm_label": "var.region",
+      "source_file": "terraform/layers/05-gcp/variables.tf",
+      "source_location": "L12"
+    },
+    {
+      "id": "05_gcp_var_secret_reader_service_account_email",
+      "label": "var.secret_reader_service_account_email",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "05-gcp/secrets.tf",
+      "file_type": "code",
+      "norm_label": "var.secret_reader_service_account_email",
+      "source_file": "terraform/layers/05-gcp/variables.tf",
+      "source_location": "L6"
+    },
+    {
       "id": "terraform_layers_05_gcp_secrets",
       "label": "05-gcp/secrets.tf",
       "_origin": "ast",
@@ -2849,6 +2999,17 @@
       "file_type": "code",
       "norm_label": "05-gcp/secrets.tf",
       "source_file": "terraform/layers/05-gcp/secrets.tf",
+      "source_location": null
+    },
+    {
+      "id": "terraform_layers_05_gcp_variables",
+      "label": "05-gcp/variables.tf",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "05-gcp/secrets.tf",
+      "file_type": "code",
+      "norm_label": "05-gcp/variables.tf",
+      "source_file": "terraform/layers/05-gcp/variables.tf",
       "source_location": null
     },
     {
@@ -2973,37 +3134,59 @@
       "source_location": null
     },
     {
-      "id": "05_gcp_var_project_id",
-      "label": "var.project_id",
+      "id": "completedprocess",
+      "label": "CompletedProcess",
       "_origin": "ast",
       "community": 9,
-      "community_name": "05-gcp/variables.tf",
+      "community_name": "initialize-openbao.py",
       "file_type": "code",
-      "norm_label": "var.project_id",
-      "source_file": "terraform/layers/05-gcp/variables.tf",
+      "norm_label": "completedprocess",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "tools_initialize_openbao",
+      "label": "initialize-openbao.py",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "initialize-openbao.py",
+      "file_type": "code",
+      "norm_label": "initialize-openbao.py",
+      "source_file": "tools/initialize-openbao.py",
       "source_location": "L1"
     },
     {
-      "id": "05_gcp_var_region",
-      "label": "var.region",
+      "id": "tools_initialize_openbao_py_argumentparser",
+      "label": "ArgumentParser",
       "_origin": "ast",
       "community": 9,
-      "community_name": "05-gcp/variables.tf",
+      "community_name": "initialize-openbao.py",
       "file_type": "code",
-      "norm_label": "var.region",
-      "source_file": "terraform/layers/05-gcp/variables.tf",
-      "source_location": "L6"
+      "norm_label": "argumentparser",
+      "source_file": "",
+      "source_location": ""
     },
     {
-      "id": "terraform_layers_05_gcp_variables",
-      "label": "05-gcp/variables.tf",
+      "id": "tools_initialize_openbao_py_path",
+      "label": "Path",
       "_origin": "ast",
       "community": 9,
-      "community_name": "05-gcp/variables.tf",
+      "community_name": "initialize-openbao.py",
       "file_type": "code",
-      "norm_label": "05-gcp/variables.tf",
-      "source_file": "terraform/layers/05-gcp/variables.tf",
-      "source_location": null
+      "norm_label": "path",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "tools_initialize_openbao_rationale_2",
+      "label": "Initialize, unseal, and bootstrap the persistent single-node OpenBao.",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "initialize-openbao.py",
+      "file_type": "rationale",
+      "norm_label": "initialize, unseal, and bootstrap the persistent single-node openbao.",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L2"
     }
   ],
   "links": [
@@ -3065,6 +3248,138 @@
       "context": "call",
       "source_file": "tools/configure-keycloak-google-idp.py",
       "source_location": "L148",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_add_gcp_version",
+      "target": "tools_initialize_openbao_run",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_apply_bootstrap_secret",
+      "target": "tools_initialize_openbao_run",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_bao",
+      "target": "tools_initialize_openbao_run",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_gcp_secret",
+      "target": "tools_initialize_openbao_run",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_main",
+      "target": "tools_initialize_openbao_add_gcp_version",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L101",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_main",
+      "target": "tools_initialize_openbao_gcp_secret",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L104",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_main",
+      "target": "tools_initialize_openbao_apply_bootstrap_secret",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L112",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_main",
+      "target": "tools_initialize_openbao_run",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_main",
+      "target": "tools_initialize_openbao_parser",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L83",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_main",
+      "target": "tools_initialize_openbao_bao",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_parser",
+      "target": "tools_initialize_openbao_py_path",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -3560,6 +3875,30 @@
       "weight": 1.0
     },
     {
+      "source": "tools_initialize_openbao_bao",
+      "target": "completedprocess",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_run",
+      "target": "completedprocess",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
       "source": "tools_kubectl_keycloak_login_browser_login",
       "target": "tools_kubectl_keycloak_login_py_any",
       "relation": "references",
@@ -3740,6 +4079,30 @@
       "weight": 1.0
     },
     {
+      "source": "tools_initialize_openbao_apply_bootstrap_secret",
+      "target": "tools_initialize_openbao_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_bao",
+      "target": "tools_initialize_openbao_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
       "source": "tools_kubectl_keycloak_login_browser_login",
       "target": "tools_kubectl_keycloak_login_py_sslcontext",
       "relation": "references",
@@ -3845,6 +4208,18 @@
       "context": "return_type",
       "source_file": "tools/configure-keycloak-google-idp.py",
       "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_parser",
+      "target": "tools_initialize_openbao_py_argumentparser",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "return_type",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -4540,7 +4915,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L477",
+      "source_location": "L478",
       "weight": 1.0
     },
     {
@@ -4551,7 +4926,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L483",
+      "source_location": "L484",
       "weight": 1.0
     },
     {
@@ -4595,7 +4970,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L341",
+      "source_location": "L343",
       "weight": 1.0
     },
     {
@@ -4606,7 +4981,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L383",
+      "source_location": "L385",
       "weight": 1.0
     },
     {
@@ -4617,7 +4992,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L101",
+      "source_location": "L103",
       "weight": 1.0
     },
     {
@@ -4628,7 +5003,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L157",
+      "source_location": "L159",
       "weight": 1.0
     },
     {
@@ -4639,7 +5014,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L216",
+      "source_location": "L218",
       "weight": 1.0
     },
     {
@@ -4650,7 +5025,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L305",
+      "source_location": "L307",
       "weight": 1.0
     },
     {
@@ -4661,7 +5036,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L436",
+      "source_location": "L438",
       "weight": 1.0
     },
     {
@@ -5568,6 +5943,39 @@
     },
     {
       "source": "terraform_layers_05_gcp_secrets",
+      "target": "05_gcp_google_secret_manager_secret_openbao_unseal_key",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/secrets.tf",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_secrets",
+      "target": "05_gcp_google_secret_manager_secret_iam_member_openbao_unseal_key_reader",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/secrets.tf",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_secrets",
+      "target": "05_gcp_google_secret_manager_secret_openbao_root_token",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/secrets.tf",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_secrets",
       "target": "05_gcp_google_secret_manager_secret_backup_encryption_key",
       "relation": "contains",
       "_origin": "ast",
@@ -5613,6 +6021,17 @@
     {
       "source": "terraform_layers_05_gcp_variables",
       "target": "05_gcp_var_region",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/variables.tf",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_variables",
+      "target": "05_gcp_var_secret_reader_service_account_email",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5685,6 +6104,83 @@
       "confidence_score": 1.0,
       "source_file": "tools/configure-keycloak-google-idp.py",
       "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao",
+      "target": "tools_initialize_openbao_run",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao",
+      "target": "tools_initialize_openbao_parser",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao",
+      "target": "tools_initialize_openbao_bao",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao",
+      "target": "tools_initialize_openbao_gcp_secret",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L56",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao",
+      "target": "tools_initialize_openbao_add_gcp_version",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao",
+      "target": "tools_initialize_openbao_apply_bootstrap_secret",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao",
+      "target": "tools_initialize_openbao_main",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L82",
       "weight": 1.0
     },
     {
@@ -6124,6 +6620,17 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/configure-keycloak-google-idp.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_rationale_2",
+      "target": "tools_initialize_openbao",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/initialize-openbao.py",
       "source_location": "L2",
       "weight": 1.0
     },
@@ -6575,7 +7082,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L30",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -6586,7 +7093,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L35",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
@@ -6887,6 +7394,28 @@
       "weight": 1.0
     },
     {
+      "source": "05_gcp_google_secret_manager_secret_iam_member_openbao_unseal_key_reader",
+      "target": "05_gcp_google_secret_manager_secret_openbao_unseal_key",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/secrets.tf",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_secret_manager_secret_iam_member_openbao_unseal_key_reader",
+      "target": "05_gcp_var_secret_reader_service_account_email",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/secrets.tf",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
       "source": "05_gcp_google_secret_manager_secret_version_backup_encryption_key_version",
       "target": "05_gcp_google_secret_manager_secret_backup_encryption_key",
       "relation": "references",
@@ -6967,8 +7496,32 @@
       "source_file": "tools/configure-keycloak-google-idp.py",
       "source_location": "L47",
       "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_main",
+      "target": "runtimeerror",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "call",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L86",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_initialize_openbao_run",
+      "target": "runtimeerror",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "call",
+      "source_file": "tools/initialize-openbao.py",
+      "source_location": "L18",
+      "weight": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "39d9b75c8fb16c3278eeac6dffe0f5dff4450ec0"
+  "built_at_commit": "e8938640038bb45a44690d98095b843a3d011b5a"
 }

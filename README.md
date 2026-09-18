@@ -387,8 +387,9 @@ Keycloak.
 Edit `clusters/platform/keycloak-gitops/identities.yaml` and push to `main`.
 Each person has one `user.keycloak.crossplane.io/User`; access is the
 authoritative `members` list on a
-`group.keycloak.crossplane.io/Memberships` resource. The admin membership is
-`platform-kubectl-admin-members`. Add a corresponding
+`group.keycloak.crossplane.io/Memberships` resource. Capacitor access is the
+`platform-capacitor-members` list; Kubernetes administrator access is the
+`platform-kubectl-admin-members` list. Add a corresponding
 `platform-kubectl-readonly-members` resource when the first read-only user is
 granted access; the provider requires at least one member and an absent
 membership resource represents the currently empty group.
@@ -452,6 +453,10 @@ OpenBao path for its client and cookie secrets. No client or cookie secret is
 stored in Git. This single secret source prevents the callback-time
 `unauthorized_client` failures caused by the former, nonfunctional
 `KeycloakOIDCClient` controller path.
+OAuth2 Proxy requires the `capacitor` realm role, so a valid Google login
+without membership in the `capacitor` group receives HTTP 403. Membership in
+that group supplies the role. Kubernetes access remains independent through
+the `kubectl-admin` or `kubectl-readonly` groups.
 
 ```bash
 KUBECONFIG=terraform/layers/03-compute/kubeconfig \

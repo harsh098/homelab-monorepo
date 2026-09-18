@@ -1832,7 +1832,7 @@
       "node_kind": "heading",
       "norm_label": "deploy capacitor flux dashboard",
       "source_file": "README.md",
-      "source_location": "L438"
+      "source_location": "L439"
     },
     {
       "id": "readme_gitops_role_and_user_workflow",
@@ -1952,7 +1952,7 @@
       "node_kind": "heading",
       "norm_label": "verify cert-manager and issued application certificates.",
       "source_file": "README.md",
-      "source_location": "L478"
+      "source_location": "L483"
     },
     {
       "id": "readme_verify_the_retained_recovery_secret_without_printing_secret_data",
@@ -1964,7 +1964,7 @@
       "node_kind": "heading",
       "norm_label": "verify the retained recovery secret without printing secret data.",
       "source_file": "README.md",
-      "source_location": "L484"
+      "source_location": "L489"
     },
     {
       "id": "02_dns_docker_container_adguardhome",
@@ -4915,7 +4915,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L478",
+      "source_location": "L483",
       "weight": 1.0
     },
     {
@@ -4926,7 +4926,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L484",
+      "source_location": "L489",
       "weight": 1.0
     },
     {
@@ -5036,7 +5036,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L438",
+      "source_location": "L439",
       "weight": 1.0
     },
     {
@@ -7523,5 +7523,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "e8938640038bb45a44690d98095b843a3d011b5a"
+  "built_at_commit": "012df753a13b2ac339e75f948a1c2043df501ab4"
 }

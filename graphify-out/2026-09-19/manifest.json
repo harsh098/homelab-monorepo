@@ -162,10 +162,10 @@
     "semantic_hash": "42187135e61ffef2f497f194a7e1c2ea"
   },
   "terraform/layers/04-platform/openbao.tf": {
-    "mtime": 1788891359.7260013,
-    "seen": 1789367263.9253361,
-    "ast_hash": "309389a6cada097708f2898c3ab03a23",
-    "semantic_hash": "309389a6cada097708f2898c3ab03a23"
+    "mtime": 1789759964.0588813,
+    "seen": 1789760051.7744358,
+    "ast_hash": "cc446ab3b05be37371da4b5d03dffb12",
+    "semantic_hash": ""
   },
   "terraform/layers/04-platform/outputs.tf": {
     "mtime": 1789369820.348439,
@@ -216,16 +216,16 @@
     "semantic_hash": "66db6046852c46f84e2ddade25d0c14c"
   },
   "terraform/layers/05-gcp/secrets.tf": {
-    "mtime": 1788892202.4041455,
-    "seen": 1789367263.9253445,
-    "ast_hash": "fc511a4a8da402e494e3efa74662b186",
-    "semantic_hash": "fc511a4a8da402e494e3efa74662b186"
+    "mtime": 1789759185.0680184,
+    "seen": 1789760051.7744462,
+    "ast_hash": "9b0716f400d11421ef733905e419dec7",
+    "semantic_hash": ""
   },
   "terraform/layers/05-gcp/variables.tf": {
-    "mtime": 1788072944.14806,
-    "seen": 1789367263.9253454,
-    "ast_hash": "c6b1abf05558c8b40fcfd08dd8c62829",
-    "semantic_hash": "c6b1abf05558c8b40fcfd08dd8c62829"
+    "mtime": 1789759185.0680184,
+    "seen": 1789760051.774448,
+    "ast_hash": "b2c03fabb1124473ca5a402c9f9bbb09",
+    "semantic_hash": ""
   },
   ".codex/skills/graphify/SKILL.md": {
     "mtime": 1789367202.4862132,
@@ -288,9 +288,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1789757340.463631,
-    "seen": 1789757422.6810193,
-    "ast_hash": "cf8dc098aec08251cb513e4e84f1975d",
+    "mtime": 1789759818.8624835,
+    "seen": 1789760051.7744653,
+    "ast_hash": "73a7306d08bb96ddd69203cc1ac918db",
     "semantic_hash": ""
   },
   "ansible/infra.yml": {
@@ -318,9 +318,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/kustomization.yaml": {
-    "mtime": 1789756689.0829225,
-    "seen": 1789757422.6810498,
-    "ast_hash": "0497c0642e52c9f0369435135ccfcb6a",
+    "mtime": 1789758750.6448498,
+    "seen": 1789760051.7744927,
+    "ast_hash": "300391c5d3d0201ca89b6b3ad497b92a",
     "semantic_hash": ""
   },
   "clusters/platform/kustomization.yaml": {
@@ -444,9 +444,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/apps/capacitor/oauth2-proxy.yaml": {
-    "mtime": 1789497938.932072,
-    "seen": 1789498055.5973735,
-    "ast_hash": "e0948a7ee3df67ac5fa624cedce43d98",
+    "mtime": 1789759868.8013082,
+    "seen": 1789760051.7744713,
+    "ast_hash": "643d55f1079adce8016abd5dd8da65c8",
     "semantic_hash": ""
   },
   "clusters/platform/apps/capacitor/oci-source.yaml": {
@@ -456,9 +456,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/capacitor-oidc-client.yaml": {
-    "mtime": 1789497815.0116699,
-    "seen": 1789498055.5973816,
-    "ast_hash": "2a24ae65cc8aa83e69eaee8e17006799",
+    "mtime": 1789759304.6019912,
+    "seen": 1789760051.7744873,
+    "ast_hash": "5aeb89b387f4218ddc626afb05d82e9c",
     "semantic_hash": ""
   },
   "clusters/platform/controller/keycloaksamlclients.k8s.keycloak.org-v1.yml": {
@@ -495,6 +495,18 @@
     "mtime": 1789757329.7454545,
     "seen": 1789757422.6810472,
     "ast_hash": "054009d4ceccf0829fbb30428938c094",
+    "semantic_hash": ""
+  },
+  "tools/initialize-openbao.py": {
+    "mtime": 1789759774.4807506,
+    "seen": 1789760051.7744508,
+    "ast_hash": "1db8d7fb0fba64e7868511a3bbddfd73",
+    "semantic_hash": ""
+  },
+  "clusters/platform/keycloak-gitops/openbao-unseal.yaml": {
+    "mtime": 1789758743.1707265,
+    "seen": 1789760051.7744968,
+    "ast_hash": "a1a6cfa9897fe1d9d3a6f381e55af0e2",
     "semantic_hash": ""
   }
 }

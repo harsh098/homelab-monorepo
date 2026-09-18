@@ -1,17 +1,17 @@
 # Graph Report - llm-studio  (2026-09-19)
 
 ## Corpus Check
-- 53 files · ~150,239 words
+- 54 files · ~150,967 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: (none) 3, .tftpl 2, .cfg 1)
 
 ## Summary
-- 261 nodes · 353 edges · 42 communities (18 shown, 12 thin omitted)
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.85)
+- 277 nodes · 385 edges · 42 communities (19 shown, 11 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `39d9b75c`
+- Built from commit: `e8938640`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -25,7 +25,7 @@
 - 04-platform/.terraform.lock.hcl
 - 02-dns/.terraform.lock.hcl
 - 05-gcp/.terraform.lock.hcl
-- 05-gcp/variables.tf
+- initialize-openbao.py
 - provider.registry.opentofu.org/dmacvicar/libvirt
 - provider.docker
 - provider.registry.opentofu.org/dmacvicar/libvirt
@@ -54,10 +54,10 @@
 4. `/graphify` - 10 edges
 5. `_browser_login()` - 9 edges
 6. `merge_kubeconfig()` - 9 edges
-7. `graphify reference: extra exports and benchmark` - 8 edges
-8. `docker_container.adguardhome` - 7 edges
-9. `libvirt_domain.k8s_node` - 7 edges
-10. `main()` - 7 edges
+7. `run()` - 8 edges
+8. `main()` - 8 edges
+9. `graphify reference: extra exports and benchmark` - 8 edges
+10. `docker_container.adguardhome` - 7 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `docker_container.adguardhome` --references--> `var.host_lan_ip`  [EXTRACTED]
@@ -74,7 +74,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (42 total, 12 thin omitted)
+## Communities (42 total, 11 thin omitted)
 
 ### Community 0 - "pki.tf"
 Cohesion: 0.16
@@ -97,12 +97,16 @@ Cohesion: 0.31
 Nodes (7): helm_release.external_secrets, kubernetes_manifest.external_secrets, kubernetes_manifest.gcp_secret_store, provider.google, provider.helm, provider.kubernetes, var.gcp_project_id
 
 ### Community 5 - "05-gcp/secrets.tf"
-Cohesion: 0.47
-Nodes (5): google_secret_manager_secret.backup_credentials, google_secret_manager_secret.backup_encryption_key, google_secret_manager_secret.keycloak_google_oauth, google_secret_manager_secret_version.backup_encryption_key_version, random_password.backup_key
+Cohesion: 0.19
+Nodes (11): google_secret_manager_secret.backup_credentials, google_secret_manager_secret.backup_encryption_key, google_secret_manager_secret_iam_member.openbao_unseal_key_reader, google_secret_manager_secret.keycloak_google_oauth, google_secret_manager_secret.openbao_root_token, google_secret_manager_secret.openbao_unseal_key, google_secret_manager_secret_version.backup_encryption_key_version, random_password.backup_key (+3 more)
 
 ### Community 6 - "04-platform/.terraform.lock.hcl"
 Cohesion: 0.40
 Nodes (4): provider.registry.opentofu.org/hashicorp/google, provider.registry.opentofu.org/hashicorp/helm, provider.registry.opentofu.org/hashicorp/kubernetes, provider.registry.opentofu.org/hashicorp/random
+
+### Community 9 - "initialize-openbao.py"
+Cohesion: 0.36
+Nodes (11): CompletedProcess, add_gcp_version(), apply_bootstrap_secret(), bao(), gcp_secret(), main(), parser(), ArgumentParser (+3 more)
 
 ### Community 27 - "What You Must Do When Invoked"
 Cohesion: 0.08
@@ -149,21 +153,21 @@ Cohesion: 0.35
 Nodes (11): RuntimeError, _json_object(), main(), _parser(), Any, ArgumentParser, SSLContext, Create or update the Platform realm Google identity provider. Credentials are… (+3 more)
 
 ## Knowledge Gaps
-- **76 isolated node(s):** `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local`, `provider.registry.opentofu.org/kreuzwerker/docker`, `provider.docker` (+71 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 117 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **77 isolated node(s):** `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local`, `provider.registry.opentofu.org/kreuzwerker/docker`, `provider.docker` (+72 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 120 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `OIDCError` connect `kubectl-keycloak-login.py` to `configure-keycloak-google-idp.py`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+  _High betweenness centrality (0.017) - this node is a cross-community bridge._
 - **Why does `kubernetes_manifest.keycloak_certificate` connect `pki.tf` to `keycloak.tf`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **Why does `var.gcp_project_id` connect `kubernetes_manifest.gcp_secret_store` to `pki.tf`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **What connects `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local` to the rest of the system?**
-  _76 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _77 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `What You Must Do When Invoked` be split into smaller, more focused modules?**
   _Cohesion score 0.08 - nodes in this community are weakly interconnected._
 - **Should `Terraform layers` be split into smaller, more focused modules?**

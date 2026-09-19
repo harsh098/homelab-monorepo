@@ -93,6 +93,11 @@ spec:
                 oidc_client_id=headlamp \
                 oidc_client_secret="$headlamp_client_secret" \
                 oidc_discovery_ca_pem="$(cat /etc/openbao-ca/ca.crt)"
+              bao write auth/oidc/role/homelab \
+                user_claim=sub \
+                groups_claim=groups \
+                allowed_redirect_uris=https://openbao.platform.home.arpa/ui/vault/auth/oidc/oidc/callback \
+                oidc_scopes="openid,profile,email"
               if ! bao kv get -mount=openbao platform/keycloak/crossplane >/dev/null 2>&1; then
                 client_secret="$(head -c 96 /dev/urandom | base64 | tr -dc 'A-Za-z0-9_@%-' | cut -c1-64)"
                 while [ "${#client_secret}" -lt 32 ]; do

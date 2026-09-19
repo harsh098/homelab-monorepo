@@ -36,6 +36,27 @@ spec:
   providerConfigRef:
     name: platform-keycloak
 ---
+apiVersion: openidgroup.keycloak.crossplane.io/v1alpha1
+kind: GroupMembershipProtocolMapper
+metadata:
+  name: platform-headlamp-groups
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    realmId: Platform
+    clientIdRef:
+      name: platform-headlamp
+      policy:
+        resolve: Always
+    name: groups
+    claimName: groups
+    fullPath: false
+    addToIdToken: true
+    addToAccessToken: true
+    addToUserinfo: true
+  providerConfigRef:
+    name: platform-keycloak
+---
 apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:

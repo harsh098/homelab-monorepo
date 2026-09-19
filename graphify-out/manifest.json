@@ -288,9 +288,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1789832347.508366,
-    "seen": 1789832354.692788,
-    "ast_hash": "ef44fdc97a7296bc4fc7dd2c93015c2c",
+    "mtime": 1789835474.7244015,
+    "seen": 1789835487.6000867,
+    "ast_hash": "9e29c53d43ebabb099516c819f664350",
     "semantic_hash": ""
   },
   "ansible/infra.yml": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/identities.yaml": {
-    "mtime": 1789832244.9137144,
-    "seen": 1789832354.6928132,
-    "ast_hash": "054009d4ceccf0829fbb30428938c094",
+    "mtime": 1789834856.7076283,
+    "seen": 1789835487.6000981,
+    "ast_hash": "4d3af281058823384cd215f20a845ede",
     "semantic_hash": ""
   },
   "tools/initialize-openbao.py": {
@@ -477,6 +477,12 @@
     "mtime": 1789758743.1707265,
     "seen": 1789760051.7744968,
     "ast_hash": "a1a6cfa9897fe1d9d3a6f381e55af0e2",
+    "semantic_hash": ""
+  },
+  "terraform/layers/04-platform/headlamp.tf": {
+    "mtime": 1789835465.332229,
+    "seen": 1789835487.6000667,
+    "ast_hash": "1817c854c0c96063f19b4476a2a0758d",
     "semantic_hash": ""
   }
 }

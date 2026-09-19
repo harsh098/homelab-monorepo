@@ -436,6 +436,21 @@ The K3s API and browser helper retain the existing OIDC contract:
 workflow. The repository's OIDC RBAC bindings continue to map those groups to
 cluster access.
 
+### Deploy Headlamp
+
+The platform layer installs Headlamp from the official Helm repository as a
+ClusterIP-only service. It is intentionally not exposed through an ingress yet;
+use a local port-forward:
+
+```bash
+KUBECONFIG=terraform/layers/03-compute/kubeconfig \
+  kubectl -n kube-system port-forward service/headlamp 8080:80
+```
+
+Open `http://127.0.0.1:8080`. The Helm chart's in-cluster service account is
+cluster-admin, so keep this access local until an OIDC-backed Headlamp client
+and least-privilege RBAC policy are configured.
+
 Apply and verify the platform layer:
 
 ```bash

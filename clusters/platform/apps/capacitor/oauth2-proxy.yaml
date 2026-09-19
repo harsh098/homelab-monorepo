@@ -38,6 +38,7 @@ spec:
             - --set-authorization-header=true
             - --pass-authorization-header=true
             - --email-domain=*
+            - --code-challenge-method=S256
             - --allowed-role=capacitor
             - --scope=openid profile email
             - --cookie-secure=true

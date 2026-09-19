@@ -88,15 +88,12 @@ spec:
                 -policy=platform-secrets -orphan -renewable=false >/dev/null 2>&1 || true
               bao write auth/oidc/role/admin \
                 user_claim=sub groups_claim=groups \
-                bound_claims='{"groups":["kubectl-admin"]}' \
                 token_policies=openbao-admin
               bao write auth/oidc/role/editor \
                 user_claim=sub groups_claim=groups \
-                bound_claims='{"groups":["kubectl-readonly"]}' \
                 token_policies=openbao-editor
               bao write auth/oidc/role/viewer \
                 user_claim=sub groups_claim=groups \
-                bound_claims='{"groups":["kubectl-readonly"]}' \
                 token_policies=openbao-viewer
               bao write auth/kubernetes/role/external-secrets \
                 bound_service_account_names=openbao-external-secrets \

@@ -438,7 +438,7 @@ cluster access.
 
 ### Deploy Headlamp
 
-The platform layer installs Headlamp from the official Helm repository and
+The platform Flux layer installs Headlamp from the official Helm repository and
 publishes it at `https://headlamp.platform.home.arpa` behind the Traefik
 ingress. Headlamp uses the Keycloak `Platform` realm with the `headlamp`
 confidential client and passes each user's OIDC token to Kubernetes; the

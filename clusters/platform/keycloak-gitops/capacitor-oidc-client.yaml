@@ -33,3 +33,22 @@ spec:
       - https://capacitor.platform.home.arpa
   providerConfigRef:
     name: platform-keycloak
+---
+apiVersion: openidgroup.keycloak.crossplane.io/v1alpha1
+kind: AudienceProtocolMapper
+metadata:
+  name: platform-capacitor-audience
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    realmId: Platform
+    clientIdRef:
+      name: platform-capacitor
+      policy:
+        resolve: Always
+    name: capacitor-audience
+    includedClientAudience: capacitor
+    addToIdToken: true
+    addToAccessToken: true
+  providerConfigRef:
+    name: platform-keycloak

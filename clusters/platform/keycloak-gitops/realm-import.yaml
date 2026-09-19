@@ -38,8 +38,11 @@ spec:
         serviceAccountsEnabled: false
         redirectUris:
           - http://127.0.0.1:18000/callback
+          - https://openbao.platform.home.arpa/ui/vault/auth/oidc/oidc/callback
+          - https://openbao.platform.home.arpa/oidc/callback
         webOrigins:
           - http://127.0.0.1:18000
+          - https://openbao.platform.home.arpa
         attributes:
           pkce.code.challenge.method: S256
         protocolMappers:

@@ -39,6 +39,15 @@ spec:
               until bao status >/dev/null 2>&1; do sleep 5; done
               token_reviewer_jwt="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)"
               bao auth enable kubernetes >/dev/null 2>&1 || true
+              bao auth enable oidc >/dev/null 2>&1 || true
+              bao write auth/oidc/config \
+                oidc_discovery_url=https://keycloak.platform.home.arpa/realms/Platform \
+                oidc_client_id=kubernetes
+              bao write auth/oidc/role/homelab \
+                user_claim=sub \
+                groups_claim=groups \
+                allowed_redirect_uris=https://openbao.platform.home.arpa/ui/vault/auth/oidc/oidc/callback \
+                oidc_scopes="openid,profile,email"
               bao write auth/kubernetes/config \
                 token_reviewer_jwt="$token_reviewer_jwt" \
                 kubernetes_host="https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT_HTTPS}" \

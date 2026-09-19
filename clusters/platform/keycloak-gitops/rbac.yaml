@@ -53,19 +53,6 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: platform-hmisraji07-admin
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: platform-oidc-admin
-subjects:
-  - apiGroup: rbac.authorization.k8s.io
-    kind: User
-    name: oidc:hmisraji07@gmail.com
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
   name: platform-view-oidc
 roleRef:
   apiGroup: rbac.authorization.k8s.io

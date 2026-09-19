@@ -72,6 +72,15 @@ spec:
               path "openbao/*" {
                 capabilities = ["create", "read", "update", "delete", "list", "sudo"]
               }
+              path "sys/mounts" {
+                capabilities = ["read"]
+              }
+              path "sys/internal/ui/mounts" {
+                capabilities = ["read"]
+              }
+              path "auth/token/lookup-self" {
+                capabilities = ["read"]
+              }
               EOF
               bao policy write openbao-editor - <<'EOF'
               path "openbao/data/platform/*" {

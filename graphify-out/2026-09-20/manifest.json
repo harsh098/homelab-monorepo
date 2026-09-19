@@ -162,9 +162,9 @@
     "semantic_hash": "42187135e61ffef2f497f194a7e1c2ea"
   },
   "terraform/layers/04-platform/openbao.tf": {
-    "mtime": 1789845775.1056228,
-    "seen": 1789847362.2160478,
-    "ast_hash": "0fe9a1e97364ee23e6d21850bb3c29e9",
+    "mtime": 1789841562.3817892,
+    "seen": 1789841773.8770654,
+    "ast_hash": "476608d121b00f9726ae3aa774324fd3",
     "semantic_hash": ""
   },
   "terraform/layers/04-platform/outputs.tf": {
@@ -318,9 +318,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/kustomization.yaml": {
-    "mtime": 1789845823.8715343,
-    "seen": 1789847362.216082,
-    "ast_hash": "26904421505b5c82c47213293aaa751d",
+    "mtime": 1789839094.0952842,
+    "seen": 1789839175.6129842,
+    "ast_hash": "c1377e50b2125a43c6c464fc6abb2a83",
     "semantic_hash": ""
   },
   "clusters/platform/kustomization.yaml": {
@@ -372,9 +372,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/openbao-database-bootstrap.yaml": {
-    "mtime": 1789847197.7578542,
-    "seen": 1789847362.2160838,
-    "ast_hash": "4ef9f9b0e612410869753ff0c12d98fb",
+    "mtime": 1789842483.1669858,
+    "seen": 1789842507.404947,
+    "ast_hash": "168e7b331489c81ebdf9f01f64559ba6",
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/realm-import.yaml": {
@@ -426,9 +426,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/openbao-auth.yaml": {
-    "mtime": 1789845808.0312383,
-    "seen": 1789847362.216083,
-    "ast_hash": "07a8c9e601644865a55c64b66c70c563",
+    "mtime": 1789496288.1604831,
+    "seen": 1789496358.9724748,
+    "ast_hash": "a5fb250090dd4a973d1e9cf34b34dd20",
     "semantic_hash": ""
   },
   "clusters/platform/controller/keycloaksamlclients.k8s.keycloak.org-v1.yml": {
@@ -492,21 +492,15 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/headlamp-oidc.yaml": {
-    "mtime": 1789845961.6421096,
-    "seen": 1789847362.2160785,
-    "ast_hash": "b0630a777965d77744cfcde6b2775be9",
+    "mtime": 1789842499.356257,
+    "seen": 1789842507.4049423,
+    "ast_hash": "eea3d84ff2bff16b96f30db51d9b23e6",
     "semantic_hash": ""
   },
   "clusters/platform/apps/headlamp/helmrelease.yaml": {
     "mtime": 1789840876.859558,
     "seen": 1789840909.8765266,
     "ast_hash": "90a4544334a26bd4dd4c67701c9e6d20",
-    "semantic_hash": ""
-  },
-  "clusters/platform/keycloak-gitops/headlamp-pushsecret.yaml": {
-    "mtime": 1789847059.1145446,
-    "seen": 1789847362.2160797,
-    "ast_hash": "0231d3f131f9805444a0f30562be2bf1",
     "semantic_hash": ""
   }
 }

@@ -318,9 +318,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/kustomization.yaml": {
-    "mtime": 1789758750.6448498,
-    "seen": 1789760051.7744927,
-    "ast_hash": "300391c5d3d0201ca89b6b3ad497b92a",
+    "mtime": 1789833044.6276155,
+    "seen": 1789833386.5748432,
+    "ast_hash": "5e31c19fbb18b7006217d8e261e2b274",
     "semantic_hash": ""
   },
   "clusters/platform/kustomization.yaml": {
@@ -384,9 +384,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/apps/kustomization.yaml": {
-    "mtime": 1789497992.69897,
-    "seen": 1789498055.597375,
-    "ast_hash": "fb4c94f08d8dfbc1a891e0018cb9f719",
+    "mtime": 1789832386.449993,
+    "seen": 1789833386.5748317,
+    "ast_hash": "bd73223c7c52cdc5840c20cd4f5ea2d6",
     "semantic_hash": ""
   },
   "clusters/platform/controller/cnpg-operator.yaml": {
@@ -429,12 +429,6 @@
     "mtime": 1789496288.1604831,
     "seen": 1789496358.9724748,
     "ast_hash": "a5fb250090dd4a973d1e9cf34b34dd20",
-    "semantic_hash": ""
-  },
-  "clusters/platform/keycloak-gitops/capacitor-oidc-client.yaml": {
-    "mtime": 1789805007.6521952,
-    "seen": 1789818626.7902205,
-    "ast_hash": "96ecf7b5b3e172fe87f12aacbf70b870",
     "semantic_hash": ""
   },
   "clusters/platform/controller/keycloaksamlclients.k8s.keycloak.org-v1.yml": {

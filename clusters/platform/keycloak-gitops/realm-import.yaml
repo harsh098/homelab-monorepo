@@ -23,12 +23,9 @@ spec:
           description: Full Kubernetes administrator access
         - name: kubectl-readonly
           description: Read-only Kubernetes access
-        - name: capacitor
-          description: Access to the Capacitor Flux dashboard
     groups:
       - name: kubectl-admin
       - name: kubectl-readonly
-      - name: capacitor
     clients:
       - clientId: kubernetes
         name: kubernetes
@@ -65,20 +62,3 @@ spec:
               id.token.claim: "true"
               access.token.claim: "true"
               userinfo.token.claim: "true"
-      - clientId: capacitor
-        name: Capacitor
-        enabled: true
-        protocol: openid-connect
-        clientAuthenticatorType: client-secret
-        publicClient: false
-        standardFlowEnabled: true
-        directAccessGrantsEnabled: false
-        implicitFlowEnabled: false
-        serviceAccountsEnabled: false
-        redirectUris:
-          - https://capacitor.platform.home.arpa/oauth2/callback
-        webOrigins:
-          - https://capacitor.platform.home.arpa
-        # Crossplane adopts this bootstrap client and replaces this placeholder
-        # with the OpenBao-backed secret after the create-only import.
-        secret: managed-by-keycloak-oidc-client

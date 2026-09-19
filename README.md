@@ -436,42 +436,6 @@ The K3s API and browser helper retain the existing OIDC contract:
 workflow. The repository's OIDC RBAC bindings continue to map those groups to
 cluster access.
 
-### Deploy Capacitor Flux dashboard
-
-Flux deploys the Capacitor dashboard from the official OCI artifact
-`oci://ghcr.io/gimlet-io/capacitor-manifests`. The OCIRepository and child Flux
-Kustomization are declared under `clusters/platform/apps/capacitor/`; the
-artifact owns the Capacitor workload in `flux-system`, while this repository
-owns its OAuth2 Proxy gate, Traefik ForwardAuth middleware, and TLS
-certificate. The dashboard is available at
-`https://capacitor.platform.home.arpa`.
-
-The gate uses the confidential `capacitor` client in the `Platform` realm.
-Crossplane adopts and reconciles that client, including its secret from the
-OpenBao-backed `capacitor-oidc-client` Secret. OAuth2 Proxy reads the same
-OpenBao path for its client and cookie secrets. No client or cookie secret is
-stored in Git. This single secret source prevents the callback-time
-`unauthorized_client` failures caused by the former, nonfunctional
-`KeycloakOIDCClient` controller path.
-OAuth2 Proxy requires the `capacitor` realm role, so a valid Google login
-without membership in the `capacitor` group receives HTTP 403. Membership in
-that group supplies the role. Kubernetes access remains independent through
-the `kubectl-admin` or `kubectl-readonly` groups.
-
-```bash
-KUBECONFIG=terraform/layers/03-compute/kubeconfig \
-  kubectl -n flux-system get ocirepository,kustomization capacitor
-KUBECONFIG=terraform/layers/03-compute/kubeconfig \
-  kubectl -n flux-system get ingress capacitor
-KUBECONFIG=terraform/layers/03-compute/kubeconfig \
-  kubectl -n flux-system get deployment oauth2-proxy
-KUBECONFIG=terraform/layers/03-compute/kubeconfig \
-  kubectl -n keycloak get keycloakrealmimport platform
-KUBECONFIG=terraform/layers/03-compute/kubeconfig \
-  kubectl get clients.openidclient.keycloak.crossplane.io platform-capacitor
-KUBECONFIG=terraform/layers/03-compute/kubeconfig \
-  kubectl -n keycloak get externalsecret capacitor-oidc-client
-
 Apply and verify the platform layer:
 
 ```bash

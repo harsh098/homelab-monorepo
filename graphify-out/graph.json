@@ -1823,18 +1823,6 @@
       "source_location": "L103"
     },
     {
-      "id": "readme_deploy_capacitor_flux_dashboard",
-      "label": "Deploy Capacitor Flux dashboard",
-      "_origin": "ast",
-      "community": 29,
-      "community_name": "Terraform layers",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "deploy capacitor flux dashboard",
-      "source_file": "README.md",
-      "source_location": "L439"
-    },
-    {
       "id": "readme_gitops_role_and_user_workflow",
       "label": "GitOps role and user workflow",
       "_origin": "ast",
@@ -1941,30 +1929,6 @@
       "norm_label": "terraform layers",
       "source_file": "README.md",
       "source_location": "L36"
-    },
-    {
-      "id": "readme_verify_cert_manager_and_issued_application_certificates",
-      "label": "Verify cert-manager and issued application certificates.",
-      "_origin": "ast",
-      "community": 29,
-      "community_name": "Terraform layers",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "verify cert-manager and issued application certificates.",
-      "source_file": "README.md",
-      "source_location": "L483"
-    },
-    {
-      "id": "readme_verify_the_retained_recovery_secret_without_printing_secret_data",
-      "label": "Verify the retained recovery secret without printing secret data.",
-      "_origin": "ast",
-      "community": 29,
-      "community_name": "Terraform layers",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "verify the retained recovery secret without printing secret data.",
-      "source_file": "README.md",
-      "source_location": "L489"
     },
     {
       "id": "02_dns_docker_container_adguardhome",
@@ -4908,28 +4872,6 @@
       "weight": 1.0
     },
     {
-      "source": "readme",
-      "target": "readme_verify_cert_manager_and_issued_application_certificates",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L483",
-      "weight": 1.0
-    },
-    {
-      "source": "readme",
-      "target": "readme_verify_the_retained_recovery_secret_without_printing_secret_data",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L489",
-      "weight": 1.0
-    },
-    {
       "source": "readme_homelab",
       "target": "readme_provision_the_compute_node",
       "relation": "contains",
@@ -5026,17 +4968,6 @@
       "confidence_score": 1.0,
       "source_file": "README.md",
       "source_location": "L307",
-      "weight": 1.0
-    },
-    {
-      "source": "readme_terraform_layers",
-      "target": "readme_deploy_capacitor_flux_dashboard",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L439",
       "weight": 1.0
     },
     {
@@ -7523,5 +7454,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "012df753a13b2ac339e75f948a1c2043df501ab4"
+  "built_at_commit": "9566da08d496329ccedbe6bde205c1058c5fe012"
 }

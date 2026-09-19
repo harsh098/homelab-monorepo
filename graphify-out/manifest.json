@@ -288,9 +288,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1789760697.7111359,
-    "seen": 1789760720.34651,
-    "ast_hash": "3604b0573751ed2862b0101184a44d92",
+    "mtime": 1789832347.508366,
+    "seen": 1789832354.692788,
+    "ast_hash": "ef44fdc97a7296bc4fc7dd2c93015c2c",
     "semantic_hash": ""
   },
   "ansible/infra.yml": {
@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/realm-import.yaml": {
-    "mtime": 1789760575.379073,
-    "seen": 1789760720.3465447,
-    "ast_hash": "b0ebf78bf34788841ea849e1cca9569d",
+    "mtime": 1789832262.6509998,
+    "seen": 1789832354.6928222,
+    "ast_hash": "2d28cfa42f0283575d212f5c6040bf06",
     "semantic_hash": ""
   },
   "clusters/platform/apps/kustomization.yaml": {
@@ -431,30 +431,6 @@
     "ast_hash": "a5fb250090dd4a973d1e9cf34b34dd20",
     "semantic_hash": ""
   },
-  "clusters/platform/apps/capacitor/ingress.yaml": {
-    "mtime": 1789498276.4857106,
-    "seen": 1789498298.7545207,
-    "ast_hash": "00e6bcaf73a2ca0d74252ba016f3f7ab",
-    "semantic_hash": ""
-  },
-  "clusters/platform/apps/capacitor/kustomization.yaml": {
-    "mtime": 1789818615.4554646,
-    "seen": 1789818626.7902074,
-    "ast_hash": "66d0313da43a4f5a6c67c6c157fcba88",
-    "semantic_hash": ""
-  },
-  "clusters/platform/apps/capacitor/oauth2-proxy.yaml": {
-    "mtime": 1789802695.048521,
-    "seen": 1789818626.7902086,
-    "ast_hash": "ae6ce77fc9be85ae2b84cef91704b5f7",
-    "semantic_hash": ""
-  },
-  "clusters/platform/apps/capacitor/oci-source.yaml": {
-    "mtime": 1789497857.223707,
-    "seen": 1789498055.597374,
-    "ast_hash": "8ebc5c57f768ed236f0984685996ce7e",
-    "semantic_hash": ""
-  },
   "clusters/platform/keycloak-gitops/capacitor-oidc-client.yaml": {
     "mtime": 1789805007.6521952,
     "seen": 1789818626.7902205,
@@ -492,9 +468,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/identities.yaml": {
-    "mtime": 1789760575.378073,
-    "seen": 1789760720.3465362,
-    "ast_hash": "4fb7fe7e27da3de9da8762e58588542b",
+    "mtime": 1789832244.9137144,
+    "seen": 1789832354.6928132,
+    "ast_hash": "054009d4ceccf0829fbb30428938c094",
     "semantic_hash": ""
   },
   "tools/initialize-openbao.py": {
@@ -507,12 +483,6 @@
     "mtime": 1789758743.1707265,
     "seen": 1789760051.7744968,
     "ast_hash": "a1a6cfa9897fe1d9d3a6f381e55af0e2",
-    "semantic_hash": ""
-  },
-  "clusters/platform/apps/capacitor/rbac.yaml": {
-    "mtime": 1789818612.4424138,
-    "seen": 1789818626.7902102,
-    "ast_hash": "27871e59b7c8aadf73d2d3597174c6f9",
     "semantic_hash": ""
   }
 }

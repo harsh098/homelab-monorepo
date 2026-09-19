@@ -24,13 +24,15 @@ spec:
     implicitFlowEnabled: false
     directAccessGrantsEnabled: false
     serviceAccountsEnabled: false
-    baseUrl: https://headlamp.platform.home.arpa
     validRedirectUris:
       - https://headlamp.platform.home.arpa/oidc-callback
+      - https://openbao.platform.home.arpa/ui/vault/auth/oidc/oidc/callback
     validPostLogoutRedirectUris:
       - https://headlamp.platform.home.arpa/
+      - https://openbao.platform.home.arpa/
     webOrigins:
       - https://headlamp.platform.home.arpa
+      - https://openbao.platform.home.arpa
   providerConfigRef:
     name: platform-keycloak
 ---

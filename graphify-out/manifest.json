@@ -372,9 +372,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/openbao-database-bootstrap.yaml": {
-    "mtime": 1789842234.5268202,
-    "seen": 1789842244.080722,
-    "ast_hash": "9180057cd06d88738079423393a12386",
+    "mtime": 1789842483.1669858,
+    "seen": 1789842507.404947,
+    "ast_hash": "168e7b331489c81ebdf9f01f64559ba6",
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/realm-import.yaml": {
@@ -492,9 +492,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/headlamp-oidc.yaml": {
-    "mtime": 1789839065.101809,
-    "seen": 1789839175.612982,
-    "ast_hash": "6bb7d4bc485423cb39c7877520a4d6a4",
+    "mtime": 1789842499.356257,
+    "seen": 1789842507.4049423,
+    "ast_hash": "eea3d84ff2bff16b96f30db51d9b23e6",
     "semantic_hash": ""
   },
   "clusters/platform/apps/headlamp/helmrelease.yaml": {

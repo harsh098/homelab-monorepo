@@ -36,6 +36,11 @@ spec:
                 secretKeyRef:
                   name: openbao-external-secrets-token
                   key: token
+            - name: BAO_PUSHSECRET_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: openbao-pushsecret-token
+                  key: token
           volumeMounts:
             - name: homelab-ca
               mountPath: /etc/openbao-ca
@@ -84,6 +89,16 @@ spec:
                 capabilities = ["read", "list"]
               }
               EOF
+              bao policy write openbao-pushsecret - <<'EOF'
+              path "openbao/data/platform/headlamp/oidc-client" {
+                capabilities = ["create", "read", "update"]
+              }
+              path "openbao/metadata/platform/headlamp/oidc-client" {
+                capabilities = ["read", "list"]
+              }
+              EOF
+              bao token create -id="$BAO_PUSHSECRET_TOKEN" \
+                -policy=openbao-pushsecret -orphan -renewable=false >/dev/null 2>&1 || true
               bao token create -id="$BAO_EXTERNAL_SECRETS_TOKEN" \
                 -policy=platform-secrets -orphan -renewable=false >/dev/null 2>&1 || true
               bao write auth/oidc/role/admin \

@@ -7,6 +7,9 @@ metadata:
     app.kubernetes.io/part-of: platform
 spec:
   deletionPolicy: Orphan
+  writeConnectionSecretToRef:
+    name: headlamp-oidc-client
+    namespace: keycloak
   forProvider:
     realmId: Platform
     clientId: headlamp
@@ -14,10 +17,6 @@ spec:
     description: OIDC client for the Headlamp Kubernetes dashboard
     accessType: CONFIDENTIAL
     clientAuthenticatorType: client-secret
-    clientSecretSecretRef:
-      name: headlamp-oidc-client
-      namespace: keycloak
-      key: client-secret
     enabled: true
     import: true
     standardFlowEnabled: true

@@ -19,6 +19,22 @@ spec:
           key: token
           namespace: external-secrets
 ---
+apiVersion: external-secrets.io/v1
+kind: ClusterSecretStore
+metadata:
+  name: openbao-push
+spec:
+  provider:
+    vault:
+      server: http://openbao.openbao.svc:8200
+      path: openbao
+      version: v2
+      auth:
+        tokenSecretRef:
+          name: openbao-pushsecret-token
+          key: token
+          namespace: external-secrets
+---
 apiVersion: v1
 kind: ServiceAccount
 metadata:

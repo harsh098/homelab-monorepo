@@ -9,5 +9,6 @@ resources:
   - crossplane-provider.yaml
   - realm-import.yaml
   - headlamp-oidc.yaml
+  - headlamp-pushsecret.yaml
   - identities.yaml
   - rbac.yaml

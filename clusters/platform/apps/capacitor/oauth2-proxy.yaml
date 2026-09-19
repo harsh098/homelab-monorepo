@@ -42,6 +42,7 @@ spec:
             - --allowed-role=capacitor
             - --scope=openid profile email
             - --cookie-secure=true
+            - --cookie-csrf-per-request=true
             - --cookie-samesite=lax
             - --cookie-refresh=1h
             - --cookie-expire=8h

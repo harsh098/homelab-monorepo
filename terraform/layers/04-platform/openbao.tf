@@ -31,6 +31,36 @@ resource "kubernetes_secret_v1" "openbao_bootstrap_ca" {
     "ca.crt" = local.private_ca_certificate_pem
   }
 }
+resource "random_password" "openbao_external_secrets_token" {
+  length  = 64
+  special = false
+}
+
+resource "google_secret_manager_secret" "openbao_external_secrets_token" {
+  secret_id = "openbao-external-secrets-token"
+
+  replication {
+    auto {}
+  }
+}
+
+resource "google_secret_manager_secret_version" "openbao_external_secrets_token" {
+  secret      = google_secret_manager_secret.openbao_external_secrets_token.id
+  secret_data = random_password.openbao_external_secrets_token.result
+}
+
+resource "kubernetes_secret_v1" "openbao_external_secrets_token" {
+  metadata {
+    name      = "openbao-external-secrets-token"
+    namespace = "external-secrets"
+  }
+
+  type = "Opaque"
+
+  data = {
+    token = random_password.openbao_external_secrets_token.result
+  }
+}
 resource "helm_release" "openbao" {
   name             = "openbao"
   repository       = "https://openbao.github.io/openbao-helm"

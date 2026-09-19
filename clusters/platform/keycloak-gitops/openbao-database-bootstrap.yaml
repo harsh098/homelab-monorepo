@@ -92,7 +92,8 @@ spec:
                 oidc_discovery_url=https://keycloak.platform.home.arpa/realms/Platform \
                 oidc_client_id=headlamp \
                 oidc_client_secret="$headlamp_client_secret" \
-                oidc_discovery_ca_pem="$(cat /etc/openbao-ca/ca.crt)"
+                oidc_discovery_ca_pem="$(cat /etc/openbao-ca/ca.crt)" \
+                default_role=homelab
               bao write auth/oidc/role/homelab \
                 user_claim=sub \
                 groups_claim=groups \

@@ -438,18 +438,27 @@ cluster access.
 
 ### Deploy Headlamp
 
-The platform layer installs Headlamp from the official Helm repository as a
-ClusterIP-only service. It is intentionally not exposed through an ingress yet;
-use a local port-forward:
+The platform layer installs Headlamp from the official Helm repository and
+publishes it at `https://headlamp.platform.home.arpa` behind the Traefik
+ingress. Headlamp uses the Keycloak `Platform` realm with the `headlamp`
+confidential client and passes each user's OIDC token to Kubernetes; the
+service account has no cluster RBAC binding.
+
+Users must be members of the `kubectl-admin` or `kubectl-readonly` Keycloak
+group. The Kubernetes API applies the corresponding OIDC RBAC policy.
+
+The OIDC callback is:
+
+```text
+https://headlamp.platform.home.arpa/oidc-callback
+```
+
+The dashboard is also available locally when needed:
 
 ```bash
 KUBECONFIG=terraform/layers/03-compute/kubeconfig \
   kubectl -n kube-system port-forward service/headlamp 8080:80
 ```
-
-Open `http://127.0.0.1:8080`. The Helm chart's in-cluster service account is
-cluster-admin, so keep this access local until an OIDC-backed Headlamp client
-and least-privilege RBAC policy are configured.
 
 Apply and verify the platform layer:
 

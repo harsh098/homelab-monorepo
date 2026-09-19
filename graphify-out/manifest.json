@@ -372,9 +372,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/openbao-database-bootstrap.yaml": {
-    "mtime": 1789847197.7578542,
-    "seen": 1789847362.2160838,
-    "ast_hash": "4ef9f9b0e612410869753ff0c12d98fb",
+    "mtime": 1789848284.9480953,
+    "seen": 1789848301.3720853,
+    "ast_hash": "992c23f11b4e76b15b6562c90cabb7a9",
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/realm-import.yaml": {

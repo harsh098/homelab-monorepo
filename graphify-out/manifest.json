@@ -348,9 +348,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/rbac.yaml": {
-    "mtime": 1789494872.7779598,
-    "seen": 1789494918.4766712,
-    "ast_hash": "2ff9c45e3797d9e543d28f1d02907b77",
+    "mtime": 1789806390.577101,
+    "seen": 1789818626.7902262,
+    "ast_hash": "b9061b36778918705b30b846c73097c9",
     "semantic_hash": ""
   },
   "tools/merge-kubeconfig.py": {
@@ -438,15 +438,15 @@
     "semantic_hash": ""
   },
   "clusters/platform/apps/capacitor/kustomization.yaml": {
-    "mtime": 1789497987.786555,
-    "seen": 1789498055.5973728,
-    "ast_hash": "d4aa4eb4b7b55670beecfeed10acd3be",
+    "mtime": 1789818615.4554646,
+    "seen": 1789818626.7902074,
+    "ast_hash": "66d0313da43a4f5a6c67c6c157fcba88",
     "semantic_hash": ""
   },
   "clusters/platform/apps/capacitor/oauth2-proxy.yaml": {
-    "mtime": 1789760575.380073,
-    "seen": 1789760720.3465164,
-    "ast_hash": "0a19fadbb3d97627a94f845ef1de0f8d",
+    "mtime": 1789802695.048521,
+    "seen": 1789818626.7902086,
+    "ast_hash": "ae6ce77fc9be85ae2b84cef91704b5f7",
     "semantic_hash": ""
   },
   "clusters/platform/apps/capacitor/oci-source.yaml": {
@@ -456,9 +456,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/capacitor-oidc-client.yaml": {
-    "mtime": 1789759304.6019912,
-    "seen": 1789760051.7744873,
-    "ast_hash": "5aeb89b387f4218ddc626afb05d82e9c",
+    "mtime": 1789805007.6521952,
+    "seen": 1789818626.7902205,
+    "ast_hash": "96ecf7b5b3e172fe87f12aacbf70b870",
     "semantic_hash": ""
   },
   "clusters/platform/controller/keycloaksamlclients.k8s.keycloak.org-v1.yml": {
@@ -507,6 +507,12 @@
     "mtime": 1789758743.1707265,
     "seen": 1789760051.7744968,
     "ast_hash": "a1a6cfa9897fe1d9d3a6f381e55af0e2",
+    "semantic_hash": ""
+  },
+  "clusters/platform/apps/capacitor/rbac.yaml": {
+    "mtime": 1789818612.4424138,
+    "seen": 1789818626.7902102,
+    "ast_hash": "27871e59b7c8aadf73d2d3597174c6f9",
     "semantic_hash": ""
   }
 }

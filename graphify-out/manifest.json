@@ -414,9 +414,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/controller/kustomization.yaml": {
-    "mtime": 1789756689.0829225,
-    "seen": 1789757422.6810384,
-    "ast_hash": "f76b4fff8ccd0eba8376d89ff1f62cab",
+    "mtime": 1789840188.3732285,
+    "seen": 1789840196.5189192,
+    "ast_hash": "2de146eb06195ad9a20c7de6326e73f0",
     "semantic_hash": ""
   },
   "clusters/platform/controller/operator.yaml": {

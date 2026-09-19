@@ -9,3 +9,4 @@ resources:
   - keycloakrealmimports.k8s.keycloak.org-v1.yml
   - keycloakoidcclients.k8s.keycloak.org-v1.yml
   - keycloaksamlclients.k8s.keycloak.org-v1.yml
+  - https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml

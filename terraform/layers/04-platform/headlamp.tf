@@ -16,11 +16,21 @@ resource "helm_release" "headlamp" {
 
   set {
     name  = "clusterRoleBinding.create"
+    value = "false"
+  }
+
+  set {
+    name  = "config.oidc.externalSecret.enabled"
     value = "true"
   }
 
   set {
-    name  = "clusterRoleBinding.clusterRoleName"
-    value = "cluster-admin"
+    name  = "config.oidc.externalSecret.name"
+    value = "headlamp-oidc"
+  }
+
+  set {
+    name  = "config.oidc.externalSecret.hasScopes"
+    value = "true"
   }
 }

@@ -47,7 +47,7 @@ spec:
               path "openbao/data/platform/keycloak/database" {
                 capabilities = ["read"]
               }
-              path "openbao/data/platform/capacitor/oidc-client" {
+              path "openbao/data/platform/headlamp/oidc-client" {
                 capabilities = ["read"]
               }
               path "openbao/data/platform/keycloak/crossplane" {
@@ -68,14 +68,19 @@ spec:
                 done
                 bao kv put -mount=openbao platform/keycloak/database username="$username" password="$password"
               fi
-              if ! bao kv get -mount=openbao platform/capacitor/oidc-client >/dev/null 2>&1; then
+              if ! bao kv get -mount=openbao platform/headlamp/oidc-client >/dev/null 2>&1; then
                 client_secret="$(head -c 96 /dev/urandom | base64 | tr -dc 'A-Za-z0-9_@%-' | cut -c1-64)"
                 while [ "${#client_secret}" -lt 32 ]; do
                   client_secret="$(head -c 96 /dev/urandom | base64 | tr -dc 'A-Za-z0-9_@%-' | cut -c1-64)"
                 done
-                cookie_secret="$(head -c 96 /dev/urandom | base64 | tr -dc 'A-Za-z0-9+/=' | cut -c1-32)"
-                bao kv put -mount=openbao platform/capacitor/oidc-client \
-                  client-secret="$client_secret" cookie-secret="$cookie_secret"
+                bao kv put -mount=openbao platform/headlamp/oidc-client \
+                  client-id=headlamp client-secret="$client_secret" \
+                  issuer-url=https://keycloak.platform.home.arpa/realms/Platform \
+                  scopes="openid,profile,email" \
+                  callback-url=https://headlamp.platform.home.arpa/oidc-callback \
+                  validator-client-id=headlamp \
+                  validator-issuer-url=https://keycloak.platform.home.arpa/realms/Platform \
+                  use-access-token=true use-pkce=true
               fi
               if ! bao kv get -mount=openbao platform/keycloak/crossplane >/dev/null 2>&1; then
                 client_secret="$(head -c 96 /dev/urandom | base64 | tr -dc 'A-Za-z0-9_@%-' | cut -c1-64)"

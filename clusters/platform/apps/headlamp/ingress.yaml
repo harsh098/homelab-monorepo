@@ -1,0 +1,53 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: headlamp-platform-home-arpa
+  namespace: kube-system
+  labels:
+    app.kubernetes.io/name: headlamp
+    app.kubernetes.io/part-of: platform
+spec:
+  secretName: headlamp.platform.home.arpa-tls
+  issuerRef:
+    name: homelab-private-ca
+    kind: ClusterIssuer
+    group: cert-manager.io
+  dnsNames:
+    - headlamp.platform.home.arpa
+  privateKey:
+    algorithm: ECDSA
+    rotationPolicy: Always
+  duration: 2160h
+  renewBefore: 720h
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: headlamp
+  namespace: kube-system
+  labels:
+    app.kubernetes.io/name: headlamp
+    app.kubernetes.io/part-of: platform
+  annotations:
+    cert-manager.io/cluster-issuer: homelab-private-ca
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - headlamp.platform.home.arpa
+      secretName: headlamp.platform.home.arpa-tls
+  rules:
+    - host: headlamp.platform.home.arpa
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: headlamp
+                port:
+                  number: 80

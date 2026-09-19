@@ -8,5 +8,6 @@ resources:
   - openbao-database-bootstrap.yaml
   - crossplane-provider.yaml
   - realm-import.yaml
+  - headlamp-oidc.yaml
   - identities.yaml
   - rbac.yaml

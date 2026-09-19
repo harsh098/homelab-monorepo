@@ -31,6 +31,10 @@ spec:
                 secretKeyRef:
                   name: openbao-bootstrap-token
                   key: token
+          volumeMounts:
+            - name: homelab-ca
+              mountPath: /etc/openbao-ca
+              readOnly: true
           command:
             - /bin/sh
             - -ec
@@ -87,12 +91,8 @@ spec:
               bao write auth/oidc/config \
                 oidc_discovery_url=https://keycloak.platform.home.arpa/realms/Platform \
                 oidc_client_id=headlamp \
-                oidc_client_secret="$headlamp_client_secret"
-              bao write auth/oidc/role/homelab \
-                user_claim=sub \
-                groups_claim=groups \
-                allowed_redirect_uris=https://openbao.platform.home.arpa/ui/vault/auth/oidc/oidc/callback \
-                oidc_scopes="openid,profile,email"
+                oidc_client_secret="$headlamp_client_secret" \
+                oidc_discovery_ca_pem="$(cat /etc/openbao-ca/ca.crt)"
               if ! bao kv get -mount=openbao platform/keycloak/crossplane >/dev/null 2>&1; then
                 client_secret="$(head -c 96 /dev/urandom | base64 | tr -dc 'A-Za-z0-9_@%-' | cut -c1-64)"
                 while [ "${#client_secret}" -lt 32 ]; do
@@ -100,3 +100,7 @@ spec:
                 done
                 bao kv put -mount=openbao platform/keycloak/crossplane client-secret="$client_secret"
               fi
+      volumes:
+        - name: homelab-ca
+          secret:
+            secretName: openbao-bootstrap-ca

@@ -5,4 +5,3 @@ resources:
   - oauth2-proxy.yaml
   - ingress.yaml
   - secret.yaml
-  - rbac.yaml

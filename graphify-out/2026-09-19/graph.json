@@ -2846,28 +2846,6 @@
       "source_location": "L2"
     },
     {
-      "id": "04_platform_helm_release_headlamp",
-      "label": "helm_release.headlamp",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "helm_release.headlamp",
-      "file_type": "code",
-      "norm_label": "helm_release.headlamp",
-      "source_file": "terraform/layers/04-platform/headlamp.tf",
-      "source_location": "L1"
-    },
-    {
-      "id": "terraform_layers_04_platform_headlamp",
-      "label": "headlamp.tf",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "helm_release.headlamp",
-      "file_type": "code",
-      "norm_label": "headlamp.tf",
-      "source_file": "terraform/layers/04-platform/headlamp.tf",
-      "source_location": null
-    },
-    {
       "id": "05_gcp_google_secret_manager_secret_backup_credentials",
       "label": "google_secret_manager_secret.backup_credentials",
       "_origin": "ast",
@@ -5456,17 +5434,6 @@
       "weight": 1.0
     },
     {
-      "source": "terraform_layers_04_platform_headlamp",
-      "target": "04_platform_helm_release_headlamp",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/headlamp.tf",
-      "source_location": "L1",
-      "weight": 1.0
-    },
-    {
       "source": "terraform_layers_04_platform_ingress",
       "target": "04_platform_helm_release_traefik",
       "relation": "contains",
@@ -7510,5 +7477,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "c5a5a7f4597e34478de2a344cdb687453889e20f"
+  "built_at_commit": "9a4a83b87d01af5a31365445eae981d46abd85cc"
 }

@@ -521,6 +521,17 @@
       "source_location": "L1"
     },
     {
+      "id": "04_platform_data_google_secret_manager_secret_version_openbao_root_token",
+      "label": "data.google_secret_manager_secret_version.openbao_root_token",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "pki.tf",
+      "file_type": "code",
+      "norm_label": "data.google_secret_manager_secret_version.openbao_root_token",
+      "source_file": "terraform/layers/04-platform/openbao.tf",
+      "source_location": "L1"
+    },
+    {
       "id": "04_platform_data_google_secret_manager_secret_version_private_ca",
       "label": "data.google_secret_manager_secret_version.private_ca",
       "_origin": "ast",
@@ -551,7 +562,7 @@
       "file_type": "code",
       "norm_label": "helm_release.openbao",
       "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L1"
+      "source_location": "L22"
     },
     {
       "id": "04_platform_helm_release_traefik",
@@ -618,6 +629,17 @@
       "norm_label": "kubernetes_secret_v1.cert_manager_ca",
       "source_file": "terraform/layers/04-platform/pki.tf",
       "source_location": "L24"
+    },
+    {
+      "id": "04_platform_kubernetes_secret_v1_openbao_bootstrap_token",
+      "label": "kubernetes_secret_v1.openbao_bootstrap_token",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "pki.tf",
+      "file_type": "code",
+      "norm_label": "kubernetes_secret_v1.openbao_bootstrap_token",
+      "source_file": "terraform/layers/04-platform/openbao.tf",
+      "source_location": "L6"
     },
     {
       "id": "04_platform_local_keycloak_tls_secret_name",
@@ -5534,13 +5556,35 @@
     },
     {
       "source": "terraform_layers_04_platform_openbao",
-      "target": "04_platform_helm_release_openbao",
+      "target": "04_platform_data_google_secret_manager_secret_version_openbao_root_token",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/openbao.tf",
       "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_04_platform_openbao",
+      "target": "04_platform_helm_release_openbao",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/openbao.tf",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_04_platform_openbao",
+      "target": "04_platform_kubernetes_secret_v1_openbao_bootstrap_token",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/openbao.tf",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -7036,7 +7080,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L61",
+      "source_location": "L82",
       "weight": 1.0
     },
     {
@@ -7047,7 +7091,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L66",
+      "source_location": "L87",
       "weight": 1.0
     },
     {
@@ -7224,6 +7268,17 @@
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
       "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "04_platform_kubernetes_secret_v1_openbao_bootstrap_token",
+      "target": "04_platform_data_google_secret_manager_secret_version_openbao_root_token",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/openbao.tf",
+      "source_location": "L15",
       "weight": 1.0
     },
     {
@@ -7477,5 +7532,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "9a4a83b87d01af5a31365445eae981d46abd85cc"
+  "built_at_commit": "0f14075a161c2a61930edee3cee18a3360a7252c"
 }

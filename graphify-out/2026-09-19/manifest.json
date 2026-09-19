@@ -288,9 +288,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1789839480.170612,
-    "seen": 1789839487.941342,
-    "ast_hash": "8c4a461a6b06aee7462c42546c706c3b",
+    "mtime": 1789840899.7689352,
+    "seen": 1789840909.8765237,
+    "ast_hash": "9b4f4a9eb04800563133c3d2921ac27d",
     "semantic_hash": ""
   },
   "ansible/infra.yml": {
@@ -479,12 +479,6 @@
     "ast_hash": "a1a6cfa9897fe1d9d3a6f381e55af0e2",
     "semantic_hash": ""
   },
-  "terraform/layers/04-platform/headlamp.tf": {
-    "mtime": 1789839120.260713,
-    "seen": 1789839175.612947,
-    "ast_hash": "5107973470e9a5a40742ed4f10ea0510",
-    "semantic_hash": ""
-  },
   "clusters/platform/apps/headlamp/ingress.yaml": {
     "mtime": 1789839086.6201618,
     "seen": 1789839175.6129696,
@@ -492,15 +486,21 @@
     "semantic_hash": ""
   },
   "clusters/platform/apps/headlamp/kustomization.yaml": {
-    "mtime": 1789839075.4809792,
-    "seen": 1789839175.6129708,
-    "ast_hash": "6a9bb3450f74a58efc1b6607ad5257ac",
+    "mtime": 1789840882.7726555,
+    "seen": 1789840909.8765287,
+    "ast_hash": "10332abac066319ac1a4da96cb9ad310",
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/headlamp-oidc.yaml": {
     "mtime": 1789839065.101809,
     "seen": 1789839175.612982,
     "ast_hash": "6bb7d4bc485423cb39c7877520a4d6a4",
+    "semantic_hash": ""
+  },
+  "clusters/platform/apps/headlamp/helmrelease.yaml": {
+    "mtime": 1789840876.859558,
+    "seen": 1789840909.8765266,
+    "ast_hash": "90a4544334a26bd4dd4c67701c9e6d20",
     "semantic_hash": ""
   }
 }

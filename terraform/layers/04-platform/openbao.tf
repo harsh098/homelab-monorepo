@@ -1,3 +1,24 @@
+data "google_secret_manager_secret_version" "openbao_root_token" {
+  secret  = "openbao-root-token"
+  version = "latest"
+}
+
+resource "kubernetes_secret_v1" "openbao_bootstrap_token" {
+  metadata {
+    name      = "openbao-bootstrap-token"
+    namespace = "external-secrets"
+  }
+
+  type = "Opaque"
+
+  data = {
+    token = data.google_secret_manager_secret_version.openbao_root_token.secret_data
+  }
+}
+
+// OpenBao runs in standalone persistent-storage mode; dev mode is explicitly
+// disabled. Terraform injects the recovery/bootstrap token from GCP so Flux's
+// declarative bootstrap Job can configure Kubernetes auth after redeployments.
 resource "helm_release" "openbao" {
   name             = "openbao"
   repository       = "https://openbao.github.io/openbao-helm"

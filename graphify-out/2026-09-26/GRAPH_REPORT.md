@@ -1,17 +1,17 @@
-# Graph Report - llm-studio  (2026-09-26)
+# Graph Report - llm-studio  (2026-09-20)
 
 ## Corpus Check
-- 55 files · ~151,707 words
+- 54 files · ~151,391 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: (none) 3, .tftpl 2, .cfg 1)
 
 ## Summary
-- 293 nodes · 417 edges · 43 communities (20 shown, 11 thin omitted)
+- 286 nodes · 402 edges · 43 communities (20 shown, 11 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b9a2b330`
+- Built from commit: `adaf742d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -78,8 +78,8 @@
 ## Communities (43 total, 11 thin omitted)
 
 ### Community 0 - "pki.tf"
-Cohesion: 0.13
-Nodes (25): data.google_secret_manager_secret.private_ca, data.google_secret_manager_secret_version.private_ca, helm_release.cert_manager, helm_release.infisical, helm_release.openbao, helm_release.traefik, kubernetes_manifest.cert_manager, kubernetes_manifest.infisical_certificate (+17 more)
+Cohesion: 0.17
+Nodes (19): data.google_secret_manager_secret.private_ca, data.google_secret_manager_secret_version.private_ca, helm_release.cert_manager, helm_release.openbao, helm_release.traefik, kubernetes_manifest.cert_manager, kubernetes_manifest.keycloak_certificate, kubernetes_manifest.openbao_certificate (+11 more)
 
 ### Community 1 - "03-compute/variables.tf"
 Cohesion: 0.16
@@ -166,14 +166,12 @@ Nodes (11): data.google_secret_manager_secret_version.openbao_root_token, google
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `OIDCError` connect `kubectl-keycloak-login.py` to `configure-keycloak-google-idp.py`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+  _High betweenness centrality (0.016) - this node is a cross-community bridge._
 - **Why does `var.gcp_project_id` connect `kubernetes_manifest.gcp_secret_store` to `pki.tf`?**
-  _High betweenness centrality (0.011) - this node is a cross-community bridge._
-- **Why does `kubernetes_manifest.keycloak_certificate` connect `pki.tf` to `keycloak.tf`?**
   _High betweenness centrality (0.010) - this node is a cross-community bridge._
+- **Why does `kubernetes_manifest.keycloak_certificate` connect `pki.tf` to `keycloak.tf`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
 - **What connects `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local` to the rest of the system?**
   _75 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `pki.tf` be split into smaller, more focused modules?**
-  _Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected._
 - **Should `What You Must Do When Invoked` be split into smaller, more focused modules?**
   _Cohesion score 0.08 - nodes in this community are weakly interconnected._

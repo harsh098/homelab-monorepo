@@ -543,17 +543,6 @@
       "source_location": "L33"
     },
     {
-      "id": "04_platform_helm_release_infisical",
-      "label": "helm_release.infisical",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "pki.tf",
-      "file_type": "code",
-      "norm_label": "helm_release.infisical",
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L11"
-    },
-    {
       "id": "04_platform_helm_release_openbao",
       "label": "helm_release.openbao",
       "_origin": "ast",
@@ -584,18 +573,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_manifest.cert_manager",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L15"
-    },
-    {
-      "id": "04_platform_kubernetes_manifest_infisical_certificate",
-      "label": "kubernetes_manifest.infisical_certificate",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "pki.tf",
-      "file_type": "code",
-      "norm_label": "kubernetes_manifest.infisical_certificate",
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L124"
+      "source_location": "L14"
     },
     {
       "id": "04_platform_kubernetes_manifest_keycloak_certificate",
@@ -606,7 +584,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_manifest.keycloak_certificate",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L62"
+      "source_location": "L61"
     },
     {
       "id": "04_platform_kubernetes_manifest_openbao_certificate",
@@ -617,7 +595,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_manifest.openbao_certificate",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L93"
+      "source_location": "L92"
     },
     {
       "id": "04_platform_kubernetes_manifest_private_ca_cluster_issuer",
@@ -628,7 +606,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_manifest.private_ca_cluster_issuer",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L43"
+      "source_location": "L42"
     },
     {
       "id": "04_platform_kubernetes_secret_v1_cert_manager_ca",
@@ -639,18 +617,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_secret_v1.cert_manager_ca",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L25"
-    },
-    {
-      "id": "04_platform_local_infisical_tls_secret_name",
-      "label": "local.infisical_tls_secret_name",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "pki.tf",
-      "file_type": "code",
-      "norm_label": "local.infisical_tls_secret_name",
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L12"
+      "source_location": "L24"
     },
     {
       "id": "04_platform_local_keycloak_tls_secret_name",
@@ -708,28 +675,6 @@
       "source_location": "L9"
     },
     {
-      "id": "04_platform_random_password_infisical_postgresql",
-      "label": "random_password.infisical_postgresql",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "pki.tf",
-      "file_type": "code",
-      "norm_label": "random_password.infisical_postgresql",
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L1"
-    },
-    {
-      "id": "04_platform_random_password_infisical_redis",
-      "label": "random_password.infisical_redis",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "pki.tf",
-      "file_type": "code",
-      "norm_label": "random_password.infisical_redis",
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L6"
-    },
-    {
       "id": "04_platform_var_enable_cert_manager_issuance",
       "label": "var.enable_cert_manager_issuance",
       "_origin": "ast",
@@ -739,17 +684,6 @@
       "norm_label": "var.enable_cert_manager_issuance",
       "source_file": "terraform/layers/04-platform/variables.tf",
       "source_location": "L18"
-    },
-    {
-      "id": "04_platform_var_infisical_hostname",
-      "label": "var.infisical_hostname",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "pki.tf",
-      "file_type": "code",
-      "norm_label": "var.infisical_hostname",
-      "source_file": "terraform/layers/04-platform/variables.tf",
-      "source_location": "L50"
     },
     {
       "id": "04_platform_var_keycloak_hostname",
@@ -783,17 +717,6 @@
       "norm_label": "var.private_ca_secret_id",
       "source_file": "terraform/layers/04-platform/variables.tf",
       "source_location": "L13"
-    },
-    {
-      "id": "terraform_layers_04_platform_infisical",
-      "label": "infisical.tf",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "pki.tf",
-      "file_type": "code",
-      "norm_label": "infisical.tf",
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": null
     },
     {
       "id": "terraform_layers_04_platform_ingress",
@@ -2017,7 +1940,7 @@
       "file_type": "code",
       "norm_label": "docker_container.adguardhome",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L69"
+      "source_location": "L68"
     },
     {
       "id": "02_dns_docker_image_adguard",
@@ -2028,7 +1951,7 @@
       "file_type": "code",
       "norm_label": "docker_image.adguard",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L64"
+      "source_location": "L63"
     },
     {
       "id": "02_dns_local_config_dir",
@@ -2072,7 +1995,7 @@
       "file_type": "code",
       "norm_label": "local.dns_records",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L15"
+      "source_location": "L14"
     },
     {
       "id": "02_dns_local_file_adguard_config",
@@ -2083,7 +2006,7 @@
       "file_type": "code",
       "norm_label": "local_file.adguard_config",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L18"
+      "source_location": "L17"
     },
     {
       "id": "02_dns_local_managed_data_dir",
@@ -5210,7 +5133,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L15",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -5221,7 +5144,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L18",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -5287,7 +5210,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L64",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -5298,7 +5221,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L69",
+      "source_location": "L68",
       "weight": 1.0
     },
     {
@@ -5632,39 +5555,6 @@
       "weight": 1.0
     },
     {
-      "source": "terraform_layers_04_platform_infisical",
-      "target": "04_platform_random_password_infisical_postgresql",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L1",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_infisical",
-      "target": "04_platform_helm_release_infisical",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L11",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_infisical",
-      "target": "04_platform_random_password_infisical_redis",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
       "source": "terraform_layers_04_platform_ingress",
       "target": "04_platform_helm_release_traefik",
       "relation": "contains",
@@ -5963,35 +5853,13 @@
     },
     {
       "source": "terraform_layers_04_platform_pki",
-      "target": "04_platform_local_infisical_tls_secret_name",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L12",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_pki",
-      "target": "04_platform_kubernetes_manifest_infisical_certificate",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L124",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_pki",
       "target": "04_platform_kubernetes_manifest_cert_manager",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L15",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -6002,7 +5870,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L25",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -6013,7 +5881,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L43",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -6024,7 +5892,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L62",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -6068,7 +5936,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L93",
+      "source_location": "L92",
       "weight": 1.0
     },
     {
@@ -6212,17 +6080,6 @@
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/variables.tf",
       "source_location": "L39",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_variables",
-      "target": "04_platform_var_infisical_hostname",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/variables.tf",
-      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -6827,7 +6684,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L127",
+      "source_location": "L126",
       "weight": 1.0
     },
     {
@@ -6875,17 +6732,6 @@
       "weight": 1.0
     },
     {
-      "source": "04_platform_kubernetes_manifest_infisical_certificate",
-      "target": "04_platform_kubernetes_manifest_private_ca_cluster_issuer",
-      "relation": "depends_on",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L152",
-      "weight": 1.0
-    },
-    {
       "source": "04_platform_kubernetes_manifest_keycloak_certificate",
       "target": "04_platform_kubernetes_manifest_private_ca_cluster_issuer",
       "relation": "depends_on",
@@ -6893,7 +6739,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L90",
+      "source_location": "L89",
       "weight": 1.0
     },
     {
@@ -6904,7 +6750,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L121",
+      "source_location": "L120",
       "weight": 1.0
     },
     {
@@ -6915,7 +6761,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L59",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
@@ -6926,7 +6772,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L40",
+      "source_location": "L39",
       "weight": 1.0
     },
     {
@@ -7036,7 +6882,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L105",
+      "source_location": "L104",
       "weight": 1.0
     },
     {
@@ -7047,7 +6893,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L111",
+      "source_location": "L110",
       "weight": 1.0
     },
     {
@@ -7058,7 +6904,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L117",
+      "source_location": "L116",
       "weight": 1.0
     },
     {
@@ -7069,7 +6915,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L71",
+      "source_location": "L70",
       "weight": 1.0
     },
     {
@@ -7080,7 +6926,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L81",
+      "source_location": "L80",
       "weight": 1.0
     },
     {
@@ -7091,7 +6937,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L65",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
@@ -7102,7 +6948,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L65",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
@@ -7157,7 +7003,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L15",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -7168,7 +7014,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L15",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -7179,7 +7025,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L42",
+      "source_location": "L41",
       "weight": 1.0
     },
     {
@@ -7190,7 +7036,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L61",
+      "source_location": "L60",
       "weight": 1.0
     },
     {
@@ -7469,50 +7315,6 @@
       "weight": 1.0
     },
     {
-      "source": "04_platform_helm_release_infisical",
-      "target": "04_platform_random_password_infisical_postgresql",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L31",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_helm_release_infisical",
-      "target": "04_platform_random_password_infisical_redis",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L45",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_helm_release_infisical",
-      "target": "04_platform_var_infisical_hostname",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L58",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_helm_release_infisical",
-      "target": "04_platform_local_infisical_tls_secret_name",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L61",
-      "weight": 1.0
-    },
-    {
       "source": "04_platform_helm_release_openbao",
       "target": "04_platform_var_openbao_hostname",
       "relation": "references",
@@ -7557,39 +7359,6 @@
       "weight": 1.0
     },
     {
-      "source": "04_platform_kubernetes_manifest_infisical_certificate",
-      "target": "04_platform_var_enable_cert_manager_issuance",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L125",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_kubernetes_manifest_infisical_certificate",
-      "target": "04_platform_local_infisical_tls_secret_name",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L135",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_kubernetes_manifest_infisical_certificate",
-      "target": "04_platform_var_infisical_hostname",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L141",
-      "weight": 1.0
-    },
-    {
       "source": "04_platform_kubernetes_manifest_keycloak_certificate",
       "target": "04_platform_var_enable_cert_manager_issuance",
       "relation": "references",
@@ -7597,7 +7366,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L63",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -7608,7 +7377,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L70",
+      "source_location": "L69",
       "weight": 1.0
     },
     {
@@ -7619,7 +7388,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L73",
+      "source_location": "L72",
       "weight": 1.0
     },
     {
@@ -7630,7 +7399,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L79",
+      "source_location": "L78",
       "weight": 1.0
     },
     {
@@ -7641,7 +7410,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L104",
+      "source_location": "L103",
       "weight": 1.0
     },
     {
@@ -7652,7 +7421,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L110",
+      "source_location": "L109",
       "weight": 1.0
     },
     {
@@ -7663,7 +7432,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L94",
+      "source_location": "L93",
       "weight": 1.0
     },
     {
@@ -7674,7 +7443,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L44",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -7685,7 +7454,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L54",
+      "source_location": "L53",
       "weight": 1.0
     },
     {
@@ -7696,7 +7465,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L34",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -7707,7 +7476,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L35",
+      "source_location": "L34",
       "weight": 1.0
     },
     {
@@ -7785,17 +7554,6 @@
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/openbao.tf",
       "source_location": "L91",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_local_infisical_tls_secret_name",
-      "target": "04_platform_var_infisical_hostname",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -8049,5 +7807,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "b9a2b33040a4afd12ca5a5ea382af4ac6dffac1d"
+  "built_at_commit": "adaf742df59d0cfbac5a92258c8684634177bd0c"
 }

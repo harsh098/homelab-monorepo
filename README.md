@@ -459,4 +459,54 @@ tofu plan -input=false
 tofu apply -auto-approve -input=false
 ```
 
-Do not apply the platform layer until the K3s API is reachable through
+
+### Infisical recovery and bootstrap
+
+The self-hosted Infisical deployment is split across Terraform and Flux:
+
+- Terraform creates the private `hmx-infisical-backups` GCS bucket, enforces
+  uniform bucket-level access and public-access prevention, and deletes objects
+  older than 48 hours.
+- Terraform creates the `infisical-bootstrap` GCP Secret Manager secret. It
+  contains the Infisical encryption/auth values, CNPG database credentials,
+  GCS backup credentials, and the backup service-account JSON.
+- Flux creates the `infisical` namespace, the CNPG PostgreSQL cluster, and
+  ExternalSecrets that read the bootstrap secret.
+- The Infisical Helm release uses the CNPG connection string and a persistent
+  Redis instance.
+
+Recover or rebuild in this order:
+
+```bash
+cd terraform/layers/05-gcp
+tofu init
+tofu apply -auto-approve -input=false \
+  -var=project_id=learninggcp-470023
+
+cd ../04-platform
+tofu init
+tofu apply -auto-approve -input=false
+
+KUBECONFIG=terraform/layers/03-compute/kubeconfig \
+  kubectl apply -k ../../clusters/platform
+```
+
+Verify the bootstrap material and database:
+
+```bash
+KUBECONFIG=terraform/layers/03-compute/kubeconfig \
+  kubectl -n infisical get externalsecret,secret,cluster,pods
+
+curl -k --resolve infisical.platform.home.arpa:443:192.168.10.220 \
+  https://infisical.platform.home.arpa/api/status
+```
+
+The expected Infisical URL is:
+
+```text
+https://infisical.platform.home.arpa
+```
+
+The initial Infisical organization, project, administrator, and machine
+identity are intentionally a one-time bootstrap operation. Do not commit
+client credentials or decoded bootstrap-secret values to Git.

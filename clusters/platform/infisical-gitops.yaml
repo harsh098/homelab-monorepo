@@ -43,6 +43,50 @@ spec:
         key: infisical-bootstrap
         property: service_account_json
 ---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: infisical-db-credentials
+  namespace: infisical
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: gcp-secret-manager
+    kind: ClusterSecretStore
+  target:
+    name: infisical-db-credentials
+    creationPolicy: Owner
+    deletionPolicy: Retain
+  data:
+    - secretKey: username
+      remoteRef:
+        key: infisical-bootstrap
+        property: db_username
+    - secretKey: password
+      remoteRef:
+        key: infisical-bootstrap
+        property: db_password
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: infisical-db-connection
+  namespace: infisical
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: gcp-secret-manager
+    kind: ClusterSecretStore
+  target:
+    name: infisical-db-connection
+    creationPolicy: Owner
+    deletionPolicy: Retain
+  data:
+    - secretKey: connection-string
+      remoteRef:
+        key: infisical-bootstrap
+        property: db_connection_uri
+---
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -55,6 +99,8 @@ spec:
     initdb:
       database: infisical
       owner: infisical
+      secret:
+        name: infisical-db-credentials
   storage:
     size: 20Gi
     storageClass: local-path

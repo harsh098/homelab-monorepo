@@ -36,3 +36,8 @@ variable "keycloak_hostname" {
 }
 
 
+variable "infisical_hostname" {
+  description = "Hostname used by the Infisical ingress."
+  type        = string
+  default     = "infisical.platform.home.arpa"
+}

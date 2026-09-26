@@ -41,5 +41,6 @@
   "39": "kubectl-keycloak-login.py",
   "40": "merge-kubeconfig.py",
   "41": "configure-keycloak-google-idp.py",
-  "42": "openbao.tf"
+  "42": "openbao.tf",
+  "43": "helm_release.infisical"
 }

@@ -426,90 +426,6 @@
       "source_location": "L40"
     },
     {
-      "id": "tools_initialize_openbao_add_gcp_version",
-      "label": "add_gcp_version()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "initialize-openbao.py",
-      "file_type": "code",
-      "norm_label": "add_gcp_version()",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L61"
-    },
-    {
-      "id": "tools_initialize_openbao_apply_bootstrap_secret",
-      "label": "apply_bootstrap_secret()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "initialize-openbao.py",
-      "file_type": "code",
-      "norm_label": "apply_bootstrap_secret()",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L68"
-    },
-    {
-      "id": "tools_initialize_openbao_bao",
-      "label": "bao()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "initialize-openbao.py",
-      "file_type": "code",
-      "norm_label": "bao()",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L36"
-    },
-    {
-      "id": "tools_initialize_openbao_gcp_secret",
-      "label": "gcp_secret()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "initialize-openbao.py",
-      "file_type": "code",
-      "norm_label": "gcp_secret()",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L56"
-    },
-    {
-      "id": "tools_initialize_openbao_main",
-      "label": "main()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "initialize-openbao.py",
-      "file_type": "code",
-      "norm_label": "main()",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L82"
-    },
-    {
-      "id": "tools_initialize_openbao_parser",
-      "label": "parser()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "initialize-openbao.py",
-      "file_type": "code",
-      "norm_label": "parser()",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L24"
-    },
-    {
-      "id": "tools_initialize_openbao_run",
-      "label": "run()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "initialize-openbao.py",
-      "file_type": "code",
-      "norm_label": "run()",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L14"
-    },
-    {
       "id": "04_platform_data_google_secret_manager_secret_private_ca",
       "label": "data.google_secret_manager_secret.private_ca",
       "_origin": "ast",
@@ -543,17 +459,6 @@
       "source_location": "L33"
     },
     {
-      "id": "04_platform_helm_release_openbao",
-      "label": "helm_release.openbao",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "pki.tf",
-      "file_type": "code",
-      "norm_label": "helm_release.openbao",
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L94"
-    },
-    {
       "id": "04_platform_helm_release_traefik",
       "label": "helm_release.traefik",
       "_origin": "ast",
@@ -573,18 +478,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_manifest.cert_manager",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L15"
-    },
-    {
-      "id": "04_platform_kubernetes_manifest_infisical_certificate",
-      "label": "kubernetes_manifest.infisical_certificate",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "pki.tf",
-      "file_type": "code",
-      "norm_label": "kubernetes_manifest.infisical_certificate",
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L124"
+      "source_location": "L13"
     },
     {
       "id": "04_platform_kubernetes_manifest_keycloak_certificate",
@@ -595,18 +489,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_manifest.keycloak_certificate",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L62"
-    },
-    {
-      "id": "04_platform_kubernetes_manifest_openbao_certificate",
-      "label": "kubernetes_manifest.openbao_certificate",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "pki.tf",
-      "file_type": "code",
-      "norm_label": "kubernetes_manifest.openbao_certificate",
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L93"
+      "source_location": "L60"
     },
     {
       "id": "04_platform_kubernetes_manifest_private_ca_cluster_issuer",
@@ -617,7 +500,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_manifest.private_ca_cluster_issuer",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L43"
+      "source_location": "L41"
     },
     {
       "id": "04_platform_kubernetes_secret_v1_cert_manager_ca",
@@ -628,18 +511,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_secret_v1.cert_manager_ca",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L25"
-    },
-    {
-      "id": "04_platform_local_infisical_tls_secret_name",
-      "label": "local.infisical_tls_secret_name",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "pki.tf",
-      "file_type": "code",
-      "norm_label": "local.infisical_tls_secret_name",
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L12"
+      "source_location": "L23"
     },
     {
       "id": "04_platform_local_keycloak_tls_secret_name",
@@ -651,17 +523,6 @@
       "norm_label": "local.keycloak_tls_secret_name",
       "source_file": "terraform/layers/04-platform/pki.tf",
       "source_location": "L10"
-    },
-    {
-      "id": "04_platform_local_openbao_tls_secret_name",
-      "label": "local.openbao_tls_secret_name",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "pki.tf",
-      "file_type": "code",
-      "norm_label": "local.openbao_tls_secret_name",
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L11"
     },
     {
       "id": "04_platform_local_private_ca_bundle",
@@ -708,17 +569,6 @@
       "source_location": "L18"
     },
     {
-      "id": "04_platform_var_infisical_hostname",
-      "label": "var.infisical_hostname",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "pki.tf",
-      "file_type": "code",
-      "norm_label": "var.infisical_hostname",
-      "source_file": "terraform/layers/04-platform/variables.tf",
-      "source_location": "L50"
-    },
-    {
       "id": "04_platform_var_keycloak_hostname",
       "label": "var.keycloak_hostname",
       "_origin": "ast",
@@ -728,17 +578,6 @@
       "norm_label": "var.keycloak_hostname",
       "source_file": "terraform/layers/04-platform/variables.tf",
       "source_location": "L27"
-    },
-    {
-      "id": "04_platform_var_openbao_hostname",
-      "label": "var.openbao_hostname",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "pki.tf",
-      "file_type": "code",
-      "norm_label": "var.openbao_hostname",
-      "source_file": "terraform/layers/04-platform/variables.tf",
-      "source_location": "L39"
     },
     {
       "id": "04_platform_var_private_ca_secret_id",
@@ -1842,7 +1681,7 @@
       "node_kind": "heading",
       "norm_label": "deploy adguard dns",
       "source_file": "README.md",
-      "source_location": "L103"
+      "source_location": "L83"
     },
     {
       "id": "readme_deploy_headlamp",
@@ -1854,7 +1693,7 @@
       "node_kind": "heading",
       "norm_label": "deploy headlamp",
       "source_file": "README.md",
-      "source_location": "L439"
+      "source_location": "L411"
     },
     {
       "id": "readme_gitops_role_and_user_workflow",
@@ -1866,7 +1705,7 @@
       "node_kind": "heading",
       "norm_label": "gitops role and user workflow",
       "source_file": "README.md",
-      "source_location": "L385"
+      "source_location": "L357"
     },
     {
       "id": "readme_homelab",
@@ -1890,7 +1729,7 @@
       "node_kind": "heading",
       "norm_label": "keycloak bootstrap and oidc provisioning",
       "source_file": "README.md",
-      "source_location": "L307"
+      "source_location": "L288"
     },
     {
       "id": "readme_manual_google_sign_in_runbook",
@@ -1902,7 +1741,7 @@
       "node_kind": "heading",
       "norm_label": "manual google sign-in runbook",
       "source_file": "README.md",
-      "source_location": "L343"
+      "source_location": "L315"
     },
     {
       "id": "readme_power_outage_recovery",
@@ -1914,7 +1753,7 @@
       "node_kind": "heading",
       "norm_label": "power outage recovery",
       "source_file": "README.md",
-      "source_location": "L218"
+      "source_location": "L199"
     },
     {
       "id": "readme_prerequisites",
@@ -1950,7 +1789,7 @@
       "node_kind": "heading",
       "norm_label": "routed libvirt management network",
       "source_file": "README.md",
-      "source_location": "L159"
+      "source_location": "L140"
     },
     {
       "id": "readme_terraform_layers",
@@ -1973,7 +1812,7 @@
       "file_type": "code",
       "norm_label": "docker_container.adguardhome",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L69"
+      "source_location": "L67"
     },
     {
       "id": "02_dns_docker_image_adguard",
@@ -1984,7 +1823,7 @@
       "file_type": "code",
       "norm_label": "docker_image.adguard",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L64"
+      "source_location": "L62"
     },
     {
       "id": "02_dns_local_config_dir",
@@ -2028,7 +1867,7 @@
       "file_type": "code",
       "norm_label": "local.dns_records",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L15"
+      "source_location": "L13"
     },
     {
       "id": "02_dns_local_file_adguard_config",
@@ -2039,7 +1878,7 @@
       "file_type": "code",
       "norm_label": "local_file.adguard_config",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L18"
+      "source_location": "L16"
     },
     {
       "id": "02_dns_local_managed_data_dir",
@@ -2868,215 +2707,6 @@
       "source_location": "L2"
     },
     {
-      "id": "04_platform_data_google_secret_manager_secret_version_openbao_root_token",
-      "label": "data.google_secret_manager_secret_version.openbao_root_token",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "openbao.tf",
-      "file_type": "code",
-      "norm_label": "data.google_secret_manager_secret_version.openbao_root_token",
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L1"
-    },
-    {
-      "id": "04_platform_google_secret_manager_secret_openbao_external_secrets_token",
-      "label": "google_secret_manager_secret.openbao_external_secrets_token",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "openbao.tf",
-      "file_type": "code",
-      "norm_label": "google_secret_manager_secret.openbao_external_secrets_token",
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L39"
-    },
-    {
-      "id": "04_platform_google_secret_manager_secret_openbao_pushsecret_token",
-      "label": "google_secret_manager_secret.openbao_pushsecret_token",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "openbao.tf",
-      "file_type": "code",
-      "norm_label": "google_secret_manager_secret.openbao_pushsecret_token",
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L69"
-    },
-    {
-      "id": "04_platform_google_secret_manager_secret_version_openbao_external_secrets_token",
-      "label": "google_secret_manager_secret_version.openbao_external_secrets_token",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "openbao.tf",
-      "file_type": "code",
-      "norm_label": "google_secret_manager_secret_version.openbao_external_secrets_token",
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L47"
-    },
-    {
-      "id": "04_platform_google_secret_manager_secret_version_openbao_pushsecret_token",
-      "label": "google_secret_manager_secret_version.openbao_pushsecret_token",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "openbao.tf",
-      "file_type": "code",
-      "norm_label": "google_secret_manager_secret_version.openbao_pushsecret_token",
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L77"
-    },
-    {
-      "id": "04_platform_kubernetes_secret_v1_openbao_bootstrap_ca",
-      "label": "kubernetes_secret_v1.openbao_bootstrap_ca",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "openbao.tf",
-      "file_type": "code",
-      "norm_label": "kubernetes_secret_v1.openbao_bootstrap_ca",
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L22"
-    },
-    {
-      "id": "04_platform_kubernetes_secret_v1_openbao_bootstrap_token",
-      "label": "kubernetes_secret_v1.openbao_bootstrap_token",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "openbao.tf",
-      "file_type": "code",
-      "norm_label": "kubernetes_secret_v1.openbao_bootstrap_token",
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L6"
-    },
-    {
-      "id": "04_platform_kubernetes_secret_v1_openbao_external_secrets_token",
-      "label": "kubernetes_secret_v1.openbao_external_secrets_token",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "openbao.tf",
-      "file_type": "code",
-      "norm_label": "kubernetes_secret_v1.openbao_external_secrets_token",
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L52"
-    },
-    {
-      "id": "04_platform_kubernetes_secret_v1_openbao_pushsecret_token",
-      "label": "kubernetes_secret_v1.openbao_pushsecret_token",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "openbao.tf",
-      "file_type": "code",
-      "norm_label": "kubernetes_secret_v1.openbao_pushsecret_token",
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L82"
-    },
-    {
-      "id": "04_platform_random_password_openbao_external_secrets_token",
-      "label": "random_password.openbao_external_secrets_token",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "openbao.tf",
-      "file_type": "code",
-      "norm_label": "random_password.openbao_external_secrets_token",
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L34"
-    },
-    {
-      "id": "04_platform_random_password_openbao_pushsecret_token",
-      "label": "random_password.openbao_pushsecret_token",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "openbao.tf",
-      "file_type": "code",
-      "norm_label": "random_password.openbao_pushsecret_token",
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L64"
-    },
-    {
-      "id": "terraform_layers_04_platform_openbao",
-      "label": "openbao.tf",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "openbao.tf",
-      "file_type": "code",
-      "norm_label": "openbao.tf",
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": null
-    },
-    {
-      "id": "04_platform_helm_release_infisical",
-      "label": "helm_release.infisical",
-      "_origin": "ast",
-      "community": 43,
-      "community_name": "helm_release.infisical",
-      "file_type": "code",
-      "norm_label": "helm_release.infisical",
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L34"
-    },
-    {
-      "id": "04_platform_kubernetes_secret_v1_infisical_secrets",
-      "label": "kubernetes_secret_v1.infisical_secrets",
-      "_origin": "ast",
-      "community": 43,
-      "community_name": "helm_release.infisical",
-      "file_type": "code",
-      "norm_label": "kubernetes_secret_v1.infisical_secrets",
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L11"
-    },
-    {
-      "id": "04_platform_random_password_infisical_auth_secret",
-      "label": "random_password.infisical_auth_secret",
-      "_origin": "ast",
-      "community": 43,
-      "community_name": "helm_release.infisical",
-      "file_type": "code",
-      "norm_label": "random_password.infisical_auth_secret",
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L6"
-    },
-    {
-      "id": "04_platform_random_password_infisical_encryption_key",
-      "label": "random_password.infisical_encryption_key",
-      "_origin": "ast",
-      "community": 43,
-      "community_name": "helm_release.infisical",
-      "file_type": "code",
-      "norm_label": "random_password.infisical_encryption_key",
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L1"
-    },
-    {
-      "id": "04_platform_random_password_infisical_postgresql",
-      "label": "random_password.infisical_postgresql",
-      "_origin": "ast",
-      "community": 43,
-      "community_name": "helm_release.infisical",
-      "file_type": "code",
-      "norm_label": "random_password.infisical_postgresql",
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L25"
-    },
-    {
-      "id": "04_platform_random_password_infisical_redis",
-      "label": "random_password.infisical_redis",
-      "_origin": "ast",
-      "community": 43,
-      "community_name": "helm_release.infisical",
-      "file_type": "code",
-      "norm_label": "random_password.infisical_redis",
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L30"
-    },
-    {
-      "id": "terraform_layers_04_platform_infisical",
-      "label": "infisical.tf",
-      "_origin": "ast",
-      "community": 43,
-      "community_name": "helm_release.infisical",
-      "file_type": "code",
-      "norm_label": "infisical.tf",
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": null
-    },
-    {
       "id": "05_gcp_google_secret_manager_secret_backup_credentials",
       "label": "google_secret_manager_secret.backup_credentials",
       "_origin": "ast",
@@ -3099,17 +2729,6 @@
       "source_location": "L6"
     },
     {
-      "id": "05_gcp_google_secret_manager_secret_iam_member_openbao_unseal_key_reader",
-      "label": "google_secret_manager_secret_iam_member.openbao_unseal_key_reader",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "05-gcp/secrets.tf",
-      "file_type": "code",
-      "norm_label": "google_secret_manager_secret_iam_member.openbao_unseal_key_reader",
-      "source_file": "terraform/layers/05-gcp/secrets.tf",
-      "source_location": "L42"
-    },
-    {
       "id": "05_gcp_google_secret_manager_secret_keycloak_google_oauth",
       "label": "google_secret_manager_secret.keycloak_google_oauth",
       "_origin": "ast",
@@ -3119,28 +2738,6 @@
       "norm_label": "google_secret_manager_secret.keycloak_google_oauth",
       "source_file": "terraform/layers/05-gcp/secrets.tf",
       "source_location": "L26"
-    },
-    {
-      "id": "05_gcp_google_secret_manager_secret_openbao_root_token",
-      "label": "google_secret_manager_secret.openbao_root_token",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "05-gcp/secrets.tf",
-      "file_type": "code",
-      "norm_label": "google_secret_manager_secret.openbao_root_token",
-      "source_file": "terraform/layers/05-gcp/secrets.tf",
-      "source_location": "L49"
-    },
-    {
-      "id": "05_gcp_google_secret_manager_secret_openbao_unseal_key",
-      "label": "google_secret_manager_secret.openbao_unseal_key",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "05-gcp/secrets.tf",
-      "file_type": "code",
-      "norm_label": "google_secret_manager_secret.openbao_unseal_key",
-      "source_file": "terraform/layers/05-gcp/secrets.tf",
-      "source_location": "L34"
     },
     {
       "id": "05_gcp_google_secret_manager_secret_version_backup_encryption_key_version",
@@ -3165,39 +2762,6 @@
       "source_location": "L1"
     },
     {
-      "id": "05_gcp_var_project_id",
-      "label": "var.project_id",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "05-gcp/secrets.tf",
-      "file_type": "code",
-      "norm_label": "var.project_id",
-      "source_file": "terraform/layers/05-gcp/variables.tf",
-      "source_location": "L1"
-    },
-    {
-      "id": "05_gcp_var_region",
-      "label": "var.region",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "05-gcp/secrets.tf",
-      "file_type": "code",
-      "norm_label": "var.region",
-      "source_file": "terraform/layers/05-gcp/variables.tf",
-      "source_location": "L12"
-    },
-    {
-      "id": "05_gcp_var_secret_reader_service_account_email",
-      "label": "var.secret_reader_service_account_email",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "05-gcp/secrets.tf",
-      "file_type": "code",
-      "norm_label": "var.secret_reader_service_account_email",
-      "source_file": "terraform/layers/05-gcp/variables.tf",
-      "source_location": "L6"
-    },
-    {
       "id": "terraform_layers_05_gcp_secrets",
       "label": "05-gcp/secrets.tf",
       "_origin": "ast",
@@ -3206,17 +2770,6 @@
       "file_type": "code",
       "norm_label": "05-gcp/secrets.tf",
       "source_file": "terraform/layers/05-gcp/secrets.tf",
-      "source_location": null
-    },
-    {
-      "id": "terraform_layers_05_gcp_variables",
-      "label": "05-gcp/variables.tf",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "05-gcp/secrets.tf",
-      "file_type": "code",
-      "norm_label": "05-gcp/variables.tf",
-      "source_file": "terraform/layers/05-gcp/variables.tf",
       "source_location": null
     },
     {
@@ -3341,59 +2894,48 @@
       "source_location": null
     },
     {
-      "id": "completedprocess",
-      "label": "CompletedProcess",
+      "id": "05_gcp_var_project_id",
+      "label": "var.project_id",
       "_origin": "ast",
       "community": 9,
-      "community_name": "initialize-openbao.py",
+      "community_name": "05-gcp/variables.tf",
       "file_type": "code",
-      "norm_label": "completedprocess",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "tools_initialize_openbao",
-      "label": "initialize-openbao.py",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "initialize-openbao.py",
-      "file_type": "code",
-      "norm_label": "initialize-openbao.py",
-      "source_file": "tools/initialize-openbao.py",
+      "norm_label": "var.project_id",
+      "source_file": "terraform/layers/05-gcp/variables.tf",
       "source_location": "L1"
     },
     {
-      "id": "tools_initialize_openbao_py_argumentparser",
-      "label": "ArgumentParser",
+      "id": "05_gcp_var_region",
+      "label": "var.region",
       "_origin": "ast",
       "community": 9,
-      "community_name": "initialize-openbao.py",
+      "community_name": "05-gcp/variables.tf",
       "file_type": "code",
-      "norm_label": "argumentparser",
-      "source_file": "",
-      "source_location": ""
+      "norm_label": "var.region",
+      "source_file": "terraform/layers/05-gcp/variables.tf",
+      "source_location": "L12"
     },
     {
-      "id": "tools_initialize_openbao_py_path",
-      "label": "Path",
+      "id": "05_gcp_var_secret_reader_service_account_email",
+      "label": "var.secret_reader_service_account_email",
       "_origin": "ast",
       "community": 9,
-      "community_name": "initialize-openbao.py",
+      "community_name": "05-gcp/variables.tf",
       "file_type": "code",
-      "norm_label": "path",
-      "source_file": "",
-      "source_location": ""
+      "norm_label": "var.secret_reader_service_account_email",
+      "source_file": "terraform/layers/05-gcp/variables.tf",
+      "source_location": "L6"
     },
     {
-      "id": "tools_initialize_openbao_rationale_2",
-      "label": "Initialize, unseal, and bootstrap the persistent single-node OpenBao.",
+      "id": "terraform_layers_05_gcp_variables",
+      "label": "05-gcp/variables.tf",
       "_origin": "ast",
       "community": 9,
-      "community_name": "initialize-openbao.py",
-      "file_type": "rationale",
-      "norm_label": "initialize, unseal, and bootstrap the persistent single-node openbao.",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L2"
+      "community_name": "05-gcp/variables.tf",
+      "file_type": "code",
+      "norm_label": "05-gcp/variables.tf",
+      "source_file": "terraform/layers/05-gcp/variables.tf",
+      "source_location": null
     }
   ],
   "links": [
@@ -3455,138 +2997,6 @@
       "context": "call",
       "source_file": "tools/configure-keycloak-google-idp.py",
       "source_location": "L148",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_add_gcp_version",
-      "target": "tools_initialize_openbao_run",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L62",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_apply_bootstrap_secret",
-      "target": "tools_initialize_openbao_run",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L76",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_bao",
-      "target": "tools_initialize_openbao_run",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L37",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_gcp_secret",
-      "target": "tools_initialize_openbao_run",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L57",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_main",
-      "target": "tools_initialize_openbao_add_gcp_version",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L101",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_main",
-      "target": "tools_initialize_openbao_gcp_secret",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L104",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_main",
-      "target": "tools_initialize_openbao_apply_bootstrap_secret",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L112",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_main",
-      "target": "tools_initialize_openbao_run",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L113",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_main",
-      "target": "tools_initialize_openbao_parser",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L83",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_main",
-      "target": "tools_initialize_openbao_bao",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L90",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_parser",
-      "target": "tools_initialize_openbao_py_path",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -4082,30 +3492,6 @@
       "weight": 1.0
     },
     {
-      "source": "tools_initialize_openbao_bao",
-      "target": "completedprocess",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "generic_arg",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L36",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_run",
-      "target": "completedprocess",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "generic_arg",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L14",
-      "weight": 1.0
-    },
-    {
       "source": "tools_kubectl_keycloak_login_browser_login",
       "target": "tools_kubectl_keycloak_login_py_any",
       "relation": "references",
@@ -4286,30 +3672,6 @@
       "weight": 1.0
     },
     {
-      "source": "tools_initialize_openbao_apply_bootstrap_secret",
-      "target": "tools_initialize_openbao_py_path",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "parameter_type",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L68",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_bao",
-      "target": "tools_initialize_openbao_py_path",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "parameter_type",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L36",
-      "weight": 1.0
-    },
-    {
       "source": "tools_kubectl_keycloak_login_browser_login",
       "target": "tools_kubectl_keycloak_login_py_sslcontext",
       "relation": "references",
@@ -4415,18 +3777,6 @@
       "context": "return_type",
       "source_file": "tools/configure-keycloak-google-idp.py",
       "source_location": "L26",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_parser",
-      "target": "tools_initialize_openbao_py_argumentparser",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "return_type",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -5155,7 +4505,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L343",
+      "source_location": "L315",
       "weight": 1.0
     },
     {
@@ -5166,18 +4516,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L385",
-      "weight": 1.0
-    },
-    {
-      "source": "readme_terraform_layers",
-      "target": "readme_deploy_adguard_dns",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L103",
+      "source_location": "L357",
       "weight": 1.0
     },
     {
@@ -5188,7 +4527,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L159",
+      "source_location": "L140",
       "weight": 1.0
     },
     {
@@ -5199,7 +4538,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L218",
+      "source_location": "L199",
       "weight": 1.0
     },
     {
@@ -5210,7 +4549,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L307",
+      "source_location": "L288",
       "weight": 1.0
     },
     {
@@ -5221,7 +4560,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L439",
+      "source_location": "L411",
+      "weight": 1.0
+    },
+    {
+      "source": "readme_terraform_layers",
+      "target": "readme_deploy_adguard_dns",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
@@ -5243,7 +4593,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L15",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -5254,7 +4604,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L18",
+      "source_location": "L16",
       "weight": 1.0
     },
     {
@@ -5320,7 +4670,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L64",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -5331,7 +4681,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L69",
+      "source_location": "L67",
       "weight": 1.0
     },
     {
@@ -5665,72 +5015,6 @@
       "weight": 1.0
     },
     {
-      "source": "terraform_layers_04_platform_infisical",
-      "target": "04_platform_random_password_infisical_encryption_key",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L1",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_infisical",
-      "target": "04_platform_kubernetes_secret_v1_infisical_secrets",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L11",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_infisical",
-      "target": "04_platform_random_password_infisical_postgresql",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L25",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_infisical",
-      "target": "04_platform_random_password_infisical_redis",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L30",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_infisical",
-      "target": "04_platform_helm_release_infisical",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L34",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_infisical",
-      "target": "04_platform_random_password_infisical_auth_secret",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
       "source": "terraform_layers_04_platform_ingress",
       "target": "04_platform_helm_release_traefik",
       "relation": "contains",
@@ -5830,138 +5114,6 @@
       "weight": 1.0
     },
     {
-      "source": "terraform_layers_04_platform_openbao",
-      "target": "04_platform_data_google_secret_manager_secret_version_openbao_root_token",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L1",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_openbao",
-      "target": "04_platform_kubernetes_secret_v1_openbao_bootstrap_ca",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L22",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_openbao",
-      "target": "04_platform_random_password_openbao_external_secrets_token",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L34",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_openbao",
-      "target": "04_platform_google_secret_manager_secret_openbao_external_secrets_token",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L39",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_openbao",
-      "target": "04_platform_google_secret_manager_secret_version_openbao_external_secrets_token",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L47",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_openbao",
-      "target": "04_platform_kubernetes_secret_v1_openbao_external_secrets_token",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L52",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_openbao",
-      "target": "04_platform_kubernetes_secret_v1_openbao_bootstrap_token",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_openbao",
-      "target": "04_platform_random_password_openbao_pushsecret_token",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L64",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_openbao",
-      "target": "04_platform_google_secret_manager_secret_openbao_pushsecret_token",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L69",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_openbao",
-      "target": "04_platform_google_secret_manager_secret_version_openbao_pushsecret_token",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L77",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_openbao",
-      "target": "04_platform_kubernetes_secret_v1_openbao_pushsecret_token",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L82",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_openbao",
-      "target": "04_platform_helm_release_openbao",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L94",
-      "weight": 1.0
-    },
-    {
       "source": "terraform_layers_04_platform_outputs",
       "target": "04_platform_output_keycloak_ca_certificate_pem",
       "relation": "contains",
@@ -6018,46 +5170,13 @@
     },
     {
       "source": "terraform_layers_04_platform_pki",
-      "target": "04_platform_local_openbao_tls_secret_name",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L11",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_pki",
-      "target": "04_platform_local_infisical_tls_secret_name",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L12",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_pki",
-      "target": "04_platform_kubernetes_manifest_infisical_certificate",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L124",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_pki",
       "target": "04_platform_kubernetes_manifest_cert_manager",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L15",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -6068,7 +5187,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L25",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -6079,7 +5198,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L43",
+      "source_location": "L41",
       "weight": 1.0
     },
     {
@@ -6090,7 +5209,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L62",
+      "source_location": "L60",
       "weight": 1.0
     },
     {
@@ -6124,17 +5243,6 @@
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
       "source_location": "L9",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_pki",
-      "target": "04_platform_kubernetes_manifest_openbao_certificate",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L93",
       "weight": 1.0
     },
     {
@@ -6270,28 +5378,6 @@
       "weight": 1.0
     },
     {
-      "source": "terraform_layers_04_platform_variables",
-      "target": "04_platform_var_openbao_hostname",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/variables.tf",
-      "source_location": "L39",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_variables",
-      "target": "04_platform_var_infisical_hostname",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/variables.tf",
-      "source_location": "L50",
-      "weight": 1.0
-    },
-    {
       "source": "terraform_layers_05_gcp_providers",
       "target": "05_gcp_provider_google",
       "relation": "contains",
@@ -6344,39 +5430,6 @@
       "confidence_score": 1.0,
       "source_file": "terraform/layers/05-gcp/secrets.tf",
       "source_location": "L26",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_05_gcp_secrets",
-      "target": "05_gcp_google_secret_manager_secret_openbao_unseal_key",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/05-gcp/secrets.tf",
-      "source_location": "L34",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_05_gcp_secrets",
-      "target": "05_gcp_google_secret_manager_secret_iam_member_openbao_unseal_key_reader",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/05-gcp/secrets.tf",
-      "source_location": "L42",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_05_gcp_secrets",
-      "target": "05_gcp_google_secret_manager_secret_openbao_root_token",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/05-gcp/secrets.tf",
-      "source_location": "L49",
       "weight": 1.0
     },
     {
@@ -6509,83 +5562,6 @@
       "confidence_score": 1.0,
       "source_file": "tools/configure-keycloak-google-idp.py",
       "source_location": "L67",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao",
-      "target": "tools_initialize_openbao_run",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L14",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao",
-      "target": "tools_initialize_openbao_parser",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L24",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao",
-      "target": "tools_initialize_openbao_bao",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L36",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao",
-      "target": "tools_initialize_openbao_gcp_secret",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L56",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao",
-      "target": "tools_initialize_openbao_add_gcp_version",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L61",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao",
-      "target": "tools_initialize_openbao_apply_bootstrap_secret",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L68",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao",
-      "target": "tools_initialize_openbao_main",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L82",
       "weight": 1.0
     },
     {
@@ -6893,7 +5869,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L127",
+      "source_location": "L125",
       "weight": 1.0
     },
     {
@@ -6930,17 +5906,6 @@
       "weight": 1.0
     },
     {
-      "source": "04_platform_helm_release_infisical",
-      "target": "04_platform_kubernetes_secret_v1_infisical_secrets",
-      "relation": "depends_on",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L94",
-      "weight": 1.0
-    },
-    {
       "source": "04_platform_kubernetes_manifest_gcp_secret_store",
       "target": "04_platform_helm_release_external_secrets",
       "relation": "depends_on",
@@ -6952,17 +5917,6 @@
       "weight": 1.0
     },
     {
-      "source": "04_platform_kubernetes_manifest_infisical_certificate",
-      "target": "04_platform_kubernetes_manifest_private_ca_cluster_issuer",
-      "relation": "depends_on",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L152",
-      "weight": 1.0
-    },
-    {
       "source": "04_platform_kubernetes_manifest_keycloak_certificate",
       "target": "04_platform_kubernetes_manifest_private_ca_cluster_issuer",
       "relation": "depends_on",
@@ -6970,18 +5924,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L90",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_kubernetes_manifest_openbao_certificate",
-      "target": "04_platform_kubernetes_manifest_private_ca_cluster_issuer",
-      "relation": "depends_on",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L121",
+      "source_location": "L88",
       "weight": 1.0
     },
     {
@@ -6992,7 +5935,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L59",
+      "source_location": "L57",
       "weight": 1.0
     },
     {
@@ -7003,7 +5946,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L40",
+      "source_location": "L38",
       "weight": 1.0
     },
     {
@@ -7047,17 +5990,6 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/configure-keycloak-google-idp.py",
-      "source_location": "L2",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_rationale_2",
-      "target": "tools_initialize_openbao",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/initialize-openbao.py",
       "source_location": "L2",
       "weight": 1.0
     },
@@ -7113,7 +6045,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L105",
+      "source_location": "L103",
       "weight": 1.0
     },
     {
@@ -7124,7 +6056,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L111",
+      "source_location": "L109",
       "weight": 1.0
     },
     {
@@ -7135,7 +6067,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L117",
+      "source_location": "L115",
       "weight": 1.0
     },
     {
@@ -7146,7 +6078,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L71",
+      "source_location": "L69",
       "weight": 1.0
     },
     {
@@ -7157,7 +6089,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L81",
+      "source_location": "L79",
       "weight": 1.0
     },
     {
@@ -7168,7 +6100,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L65",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -7179,7 +6111,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L65",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -7234,7 +6166,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L15",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -7245,7 +6177,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L15",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -7256,7 +6188,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L42",
+      "source_location": "L40",
       "weight": 1.0
     },
     {
@@ -7267,7 +6199,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L61",
+      "source_location": "L59",
       "weight": 1.0
     },
     {
@@ -7502,116 +6434,6 @@
       "weight": 1.0
     },
     {
-      "source": "04_platform_google_secret_manager_secret_version_openbao_external_secrets_token",
-      "target": "04_platform_google_secret_manager_secret_openbao_external_secrets_token",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L48",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_google_secret_manager_secret_version_openbao_external_secrets_token",
-      "target": "04_platform_random_password_openbao_external_secrets_token",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L49",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_google_secret_manager_secret_version_openbao_pushsecret_token",
-      "target": "04_platform_google_secret_manager_secret_openbao_pushsecret_token",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L78",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_google_secret_manager_secret_version_openbao_pushsecret_token",
-      "target": "04_platform_random_password_openbao_pushsecret_token",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L79",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_helm_release_infisical",
-      "target": "04_platform_random_password_infisical_postgresql",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L54",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_helm_release_infisical",
-      "target": "04_platform_random_password_infisical_redis",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L68",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_helm_release_infisical",
-      "target": "04_platform_var_infisical_hostname",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L81",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_helm_release_infisical",
-      "target": "04_platform_local_infisical_tls_secret_name",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L84",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_helm_release_openbao",
-      "target": "04_platform_var_openbao_hostname",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L154",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_helm_release_openbao",
-      "target": "04_platform_local_openbao_tls_secret_name",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L159",
-      "weight": 1.0
-    },
-    {
       "source": "04_platform_kubernetes_manifest_gcp_secret_store",
       "target": "04_platform_var_gcp_project_id",
       "relation": "references",
@@ -7634,39 +6456,6 @@
       "weight": 1.0
     },
     {
-      "source": "04_platform_kubernetes_manifest_infisical_certificate",
-      "target": "04_platform_var_enable_cert_manager_issuance",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L125",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_kubernetes_manifest_infisical_certificate",
-      "target": "04_platform_local_infisical_tls_secret_name",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L135",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_kubernetes_manifest_infisical_certificate",
-      "target": "04_platform_var_infisical_hostname",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L141",
-      "weight": 1.0
-    },
-    {
       "source": "04_platform_kubernetes_manifest_keycloak_certificate",
       "target": "04_platform_var_enable_cert_manager_issuance",
       "relation": "references",
@@ -7674,7 +6463,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L63",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -7685,7 +6474,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L70",
+      "source_location": "L68",
       "weight": 1.0
     },
     {
@@ -7696,7 +6485,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L73",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -7707,40 +6496,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L79",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_kubernetes_manifest_openbao_certificate",
-      "target": "04_platform_local_openbao_tls_secret_name",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L104",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_kubernetes_manifest_openbao_certificate",
-      "target": "04_platform_var_openbao_hostname",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L110",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_kubernetes_manifest_openbao_certificate",
-      "target": "04_platform_var_enable_cert_manager_issuance",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L94",
+      "source_location": "L77",
       "weight": 1.0
     },
     {
@@ -7751,7 +6507,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L44",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -7762,7 +6518,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L54",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
@@ -7773,7 +6529,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L34",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -7784,29 +6540,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L35",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_kubernetes_secret_v1_infisical_secrets",
-      "target": "04_platform_random_password_infisical_encryption_key",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L20",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_kubernetes_secret_v1_infisical_secrets",
-      "target": "04_platform_random_password_infisical_auth_secret",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/infisical.tf",
-      "source_location": "L21",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -7843,61 +6577,6 @@
       "weight": 1.0
     },
     {
-      "source": "04_platform_kubernetes_secret_v1_openbao_bootstrap_ca",
-      "target": "04_platform_local_private_ca_certificate_pem",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L31",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_kubernetes_secret_v1_openbao_bootstrap_token",
-      "target": "04_platform_data_google_secret_manager_secret_version_openbao_root_token",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L15",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_kubernetes_secret_v1_openbao_external_secrets_token",
-      "target": "04_platform_random_password_openbao_external_secrets_token",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L61",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_kubernetes_secret_v1_openbao_pushsecret_token",
-      "target": "04_platform_random_password_openbao_pushsecret_token",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/openbao.tf",
-      "source_location": "L91",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_local_infisical_tls_secret_name",
-      "target": "04_platform_var_infisical_hostname",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L12",
-      "weight": 1.0
-    },
-    {
       "source": "04_platform_local_keycloak_admin_recovery_bundle",
       "target": "04_platform_local_keycloak_admin_username",
       "relation": "references",
@@ -7928,17 +6607,6 @@
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
       "source_location": "L10",
-      "weight": 1.0
-    },
-    {
-      "source": "04_platform_local_openbao_tls_secret_name",
-      "target": "04_platform_var_openbao_hostname",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L11",
       "weight": 1.0
     },
     {
@@ -8016,28 +6684,6 @@
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/providers.tf",
       "source_location": "L34",
-      "weight": 1.0
-    },
-    {
-      "source": "05_gcp_google_secret_manager_secret_iam_member_openbao_unseal_key_reader",
-      "target": "05_gcp_google_secret_manager_secret_openbao_unseal_key",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/05-gcp/secrets.tf",
-      "source_location": "L43",
-      "weight": 1.0
-    },
-    {
-      "source": "05_gcp_google_secret_manager_secret_iam_member_openbao_unseal_key_reader",
-      "target": "05_gcp_var_secret_reader_service_account_email",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/05-gcp/secrets.tf",
-      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -8121,32 +6767,8 @@
       "source_file": "tools/configure-keycloak-google-idp.py",
       "source_location": "L47",
       "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_main",
-      "target": "runtimeerror",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "call",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L86",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_initialize_openbao_run",
-      "target": "runtimeerror",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "call",
-      "source_file": "tools/initialize-openbao.py",
-      "source_location": "L18",
-      "weight": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "c157214b72a107418475a82d0abf9a2dd5ebb5fa"
+  "built_at_commit": "60f923c7d0dee7999c30f0f16af2b472c9ffa4bf"
 }

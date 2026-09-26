@@ -1,17 +1,17 @@
 # Graph Report - llm-studio  (2026-09-26)
 
 ## Corpus Check
-- 55 files · ~151,707 words
+- 55 files · ~151,759 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: (none) 3, .tftpl 2, .cfg 1)
 
 ## Summary
-- 293 nodes · 417 edges · 43 communities (20 shown, 11 thin omitted)
+- 296 nodes · 423 edges · 44 communities (21 shown, 11 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b9a2b330`
+- Built from commit: `c157214b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -47,6 +47,7 @@
 - merge-kubeconfig.py
 - configure-keycloak-google-idp.py
 - openbao.tf
+- helm_release.infisical
 
 ## God Nodes (most connected - your core abstractions)
 1. `What You Must Do When Invoked` - 12 edges
@@ -75,11 +76,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (43 total, 11 thin omitted)
+## Communities (44 total, 11 thin omitted)
 
 ### Community 0 - "pki.tf"
-Cohesion: 0.13
-Nodes (25): data.google_secret_manager_secret.private_ca, data.google_secret_manager_secret_version.private_ca, helm_release.cert_manager, helm_release.infisical, helm_release.openbao, helm_release.traefik, kubernetes_manifest.cert_manager, kubernetes_manifest.infisical_certificate (+17 more)
+Cohesion: 0.16
+Nodes (22): data.google_secret_manager_secret.private_ca, data.google_secret_manager_secret_version.private_ca, helm_release.cert_manager, helm_release.openbao, helm_release.traefik, kubernetes_manifest.cert_manager, kubernetes_manifest.infisical_certificate, kubernetes_manifest.keycloak_certificate (+14 more)
 
 ### Community 1 - "03-compute/variables.tf"
 Cohesion: 0.16
@@ -157,6 +158,10 @@ Nodes (11): RuntimeError, _json_object(), main(), _parser(), Any, ArgumentParser
 Cohesion: 0.27
 Nodes (11): data.google_secret_manager_secret_version.openbao_root_token, google_secret_manager_secret.openbao_external_secrets_token, google_secret_manager_secret.openbao_pushsecret_token, google_secret_manager_secret_version.openbao_external_secrets_token, google_secret_manager_secret_version.openbao_pushsecret_token, kubernetes_secret_v1.openbao_bootstrap_ca, kubernetes_secret_v1.openbao_bootstrap_token, kubernetes_secret_v1.openbao_external_secrets_token (+3 more)
 
+### Community 43 - "helm_release.infisical"
+Cohesion: 0.52
+Nodes (6): helm_release.infisical, kubernetes_secret_v1.infisical_secrets, random_password.infisical_auth_secret, random_password.infisical_encryption_key, random_password.infisical_postgresql, random_password.infisical_redis
+
 ## Knowledge Gaps
 - **75 isolated node(s):** `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local`, `provider.registry.opentofu.org/kreuzwerker/docker`, `provider.docker` (+70 more)
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 118 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
@@ -173,7 +178,5 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **What connects `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local` to the rest of the system?**
   _75 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `pki.tf` be split into smaller, more focused modules?**
-  _Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected._
 - **Should `What You Must Do When Invoked` be split into smaller, more focused modules?**
   _Cohesion score 0.08 - nodes in this community are weakly interconnected._

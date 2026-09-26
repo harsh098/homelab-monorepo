@@ -45,9 +45,8 @@ individually from their directories:
   Terraform manages the persistent paths under
   `terraform/layers/02-dns/adguard-managed/`: the generated source
   `adguard.platform.home.arpa` -> `192.168.1.4`, and
-  `openbao.platform.home.arpa`, `keycloak.platform.home.arpa`,
-  `capacitor.platform.home.arpa`, `traefik.platform.home.arpa`, and
-  `kube-api.platform.home.arpa` ->
+  `keycloak.platform.home.arpa`, `capacitor.platform.home.arpa`,
+  `traefik.platform.home.arpa`, and `kube-api.platform.home.arpa` ->
   `192.168.10.220`.
   The `dns_records` variable is a `map(string)` of hostname-to-IP entries
   merged over these defaults, so caller-supplied entries override them.
@@ -67,12 +66,10 @@ individually from their directories:
 - **04-platform** bootstraps the platform prerequisites after compute and K3s
   API readiness succeed. Terraform owns the `keycloak` and operator
   prerequisite namespaces, cert-manager/CA material, ingress certificates,
-  External Secrets installation, and the persistent single-node OpenBao
-  StatefulSet and PVC. Flux owns the CNPG operator, CNPG `Cluster`,
-  OpenBao-backed `ExternalSecret`, automatic OpenBao unsealer, Keycloak
-  Operator, Keycloak CR, and create-only `KeycloakRealmImport`. Database and
-  application credentials remain in OpenBao and are never stored in Git or
-  Terraform state.
+  and External Secrets installation. Flux owns the CNPG operator, CNPG
+  `Cluster`, Keycloak Operator, Keycloak CR, and create-only
+  `KeycloakRealmImport`. Secret-manager integration is intentionally
+  application-specific and is not deployed by this repository.
 - The platform cluster layer is not a generic application deployment layer.
   Flux reconciles the manifests under `clusters/platform/`. Traefik is the
   ingress controller and is exposed through the K3s `LoadBalancer` service at
@@ -80,25 +77,8 @@ individually from their directories:
   CloudNativePG-managed PostgreSQL cluster, and receives its TLS certificate
   from the retained private CA.
 
-OpenBao uses the chart's standalone file-storage backend on the retained
-`data-openbao-0` PVC. Its Shamir unseal key and root recovery token live in
-separate GCP Secret Manager secrets. The in-cluster unsealer may read only
-`openbao-unseal-key`; the root token is never synchronized into the cluster
-except transiently during an explicit bootstrap.
 
-After the first persistent OpenBao deployment, or after deliberately replacing
-its storage, initialize and bootstrap it:
 
-```bash
-tools/initialize-openbao.py --project "$GCP_PROJECT_ID"
-```
-
-The utility initializes with one recovery share, writes the unseal key and
-root token directly to `openbao-unseal-key` and `openbao-root-token`, unseals
-OpenBao, runs the Kubernetes-auth and secret-seeding Job, then deletes the
-temporary Kubernetes root-token Secret. It never prints recovery material.
-Subsequent pod restarts are unsealed automatically from the restricted GCP
-secret, and the retained PVC preserves all KV data.
 
 ### Deploy AdGuard DNS
 
@@ -126,11 +106,12 @@ claimed or verified.
 
 The `192.168.10.220` ingress address is on the current libvirt management
 network; it is not automatically routable from home-LAN clients on
-`192.168.1.0/24`. AdGuard itself binds on `192.168.1.4`, but the Keycloak and
-OpenBao hostnames require one of the following before they can be reached from
-other LAN devices: a home-router static route to `192.168.10.0/24` via
-`192.168.1.4`, host/firewall DNAT or a reverse proxy, or a LAN-reachable VM NIC.
-DNS answers alone do not establish application reachability from LAN devices.
+`192.168.1.0/24`. AdGuard itself binds on `192.168.1.4`; the Keycloak
+hostname requires one of the following before it can be reached from other
+LAN devices: a home-router static route to `192.168.10.0/24` via
+`192.168.1.4`, host/firewall DNAT or a reverse proxy, or a LAN-reachable VM
+NIC. DNS answers alone do not establish application reachability from LAN
+devices.
 For the current router's **Static Route** form, enter:
 
 | Field | Value |
@@ -238,7 +219,7 @@ The workflow starts and enables the host services needed after an outage
 autostarts the management network and compute domain, starts `k3s-node` if its
 `/readyz` response is available. It then reconciles
 `terraform/layers/02-dns` (AdGuard) and
-`terraform/layers/04-platform` (Traefik, OpenBao, and Keycloak) in that order.
+`terraform/layers/04-platform` (Traefik and Keycloak) in that order.
 OpenTofu is run locally by the Ansible localhost play; backend authentication
 must already be available in the environment. The bootstrap kubeconfig remains
 at `terraform/layers/03-compute/kubeconfig` with mode `0600` for automation
@@ -300,9 +281,9 @@ KUBECONFIG=terraform/layers/03-compute/kubeconfig kubectl get nodes,pods,svc -A
 ```
 
 Do not run a separate OpenTofu apply concurrently with the recovery workflow.
-The platform layer installs cert-manager, loads the retained
-`homelab-private-ca` Google Cloud Secret Manager bundle into the cluster, and
-uses it as the CA for Keycloak and OpenBao ingress certificates.
+The platform layer installs cert-manager and loads the retained
+`homelab-private-ca` Google Cloud Secret Manager bundle into the cluster for
+the Keycloak ingress certificate.
 
 ### Keycloak bootstrap and OIDC provisioning
 
@@ -322,18 +303,9 @@ access-role names. Realm imports do not update or delete an existing realm.
 
 Crossplane 2.4.1 and `provider-keycloak` 3.0.1 own ongoing `Platform` identity
 state in `clusters/platform/keycloak-gitops/identities.yaml`: realm roles,
-groups, group-role mappings, users, and group memberships. The provider
-authenticates with the confidential `crossplane` service-account client in the
-`openbao` KV mount path `platform/keycloak/crossplane`; no password or client
-secret is stored in Git.
-The `ProviderConfig` names only `Platform`. Crossplane neither authenticates to
-nor manages resources in `master`.
-
-The `crossplane` client needs the `realm-management/realm-admin` service-account
-role inside `Platform`. Creating that client is a one-time break-glass
-bootstrap after OpenBao has seeded its secret. Ongoing reconciliation then uses
-only client credentials issued by `Platform`; the master recovery credential
-is not mounted into Crossplane or External Secrets.
+groups, group-role mappings, users, and group memberships. Provider
+credentials are intentionally not provisioned by this repository; configure
+the selected secret-management strategy separately.
 
 Do not store user passwords in this repository or in the recovery secret.
 Google remains the interactive authentication source. The operator does not
@@ -472,7 +444,6 @@ tofu apply -auto-approve -input=false
 kubectl -n cert-manager get deployment cert-manager
 kubectl get clusterissuer homelab-private-ca
 kubectl -n keycloak get certificate,secret keycloak.platform.home.arpa-tls
-kubectl -n openbao get certificate,secret openbao.platform.home.arpa-tls
 
 # Verify the retained recovery secret without printing secret data.
 gcloud secrets versions list homelab-private-ca --project="$GCP_PROJECT_ID"

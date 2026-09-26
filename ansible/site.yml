@@ -27,7 +27,6 @@
     dns_domain: "platform.home.arpa"
     app_k8s_api_hostname: "kube-api.platform.home.arpa"
     app_keycloak_hostname: "keycloak.platform.home.arpa"
-    app_openbao_hostname: "openbao.platform.home.arpa"
     app_keycloak_platform_realm: "Platform"
     app_keycloak_api_url: "https://keycloak.platform.home.arpa"
   tasks:
@@ -306,7 +305,6 @@
           - -auto-approve
           - -input=false
           - "-var=keycloak_hostname={{ app_keycloak_hostname }}"
-          - "-var=openbao_hostname={{ app_openbao_hostname }}"
         chdir: "{{ platform_dir }}"
 
     - name: Read the public Keycloak CA certificate from platform state

@@ -36,24 +36,3 @@ variable "keycloak_hostname" {
 }
 
 
-variable "openbao_hostname" {
-  description = "Hostname used by the OpenBao ingress."
-  type        = string
-  default     = "openbao.platform.home.arpa"
-
-  validation {
-    condition     = can(regex("^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$", var.openbao_hostname))
-    error_message = "openbao_hostname must be a valid lowercase DNS hostname."
-  }
-}
-
-variable "infisical_hostname" {
-  description = "Hostname used by the Infisical ingress."
-  type        = string
-  default     = "infisical.platform.home.arpa"
-
-  validation {
-    condition     = can(regex("^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$", var.infisical_hostname))
-    error_message = "infisical_hostname must be a valid lowercase DNS hostname."
-  }
-}

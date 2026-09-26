@@ -26,8 +26,8 @@ resource "kubernetes_manifest" "keycloak" {
     }
   }
 }
-# Terraform owns only the namespace and bootstrap/recovery prerequisites. Flux
-# owns the CNPG Cluster and OpenBao-backed ExternalSecret in GitOps.
+# Terraform owns the namespace and bootstrap/recovery prerequisites. Flux owns
+# the CNPG Cluster and application resources in GitOps.
 
 resource "kubernetes_secret_v1" "keycloak_admin" {
   metadata {

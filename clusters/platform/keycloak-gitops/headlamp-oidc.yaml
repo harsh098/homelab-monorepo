@@ -25,13 +25,10 @@ spec:
     serviceAccountsEnabled: false
     validRedirectUris:
       - https://headlamp.platform.home.arpa/oidc-callback
-      - https://openbao.platform.home.arpa/ui/vault/auth/oidc/oidc/callback
     validPostLogoutRedirectUris:
       - https://headlamp.platform.home.arpa/
-      - https://openbao.platform.home.arpa/
     webOrigins:
       - https://headlamp.platform.home.arpa
-      - https://openbao.platform.home.arpa
   providerConfigRef:
     name: platform-keycloak
 ---
@@ -55,55 +52,3 @@ spec:
     addToUserinfo: true
   providerConfigRef:
     name: platform-keycloak
----
-apiVersion: external-secrets.io/v1
-kind: ExternalSecret
-metadata:
-  name: headlamp-oidc
-  namespace: kube-system
-spec:
-  refreshInterval: 1h
-  secretStoreRef:
-    name: openbao
-    kind: ClusterSecretStore
-  target:
-    name: headlamp-oidc
-    creationPolicy: Owner
-    deletionPolicy: Retain
-  data:
-    - secretKey: OIDC_CLIENT_ID
-      remoteRef:
-        key: platform/headlamp/oidc-client
-        property: client-id
-    - secretKey: OIDC_CLIENT_SECRET
-      remoteRef:
-        key: platform/headlamp/oidc-client
-        property: client-secret
-    - secretKey: OIDC_ISSUER_URL
-      remoteRef:
-        key: platform/headlamp/oidc-client
-        property: issuer-url
-    - secretKey: OIDC_SCOPES
-      remoteRef:
-        key: platform/headlamp/oidc-client
-        property: scopes
-    - secretKey: OIDC_CALLBACK_URL
-      remoteRef:
-        key: platform/headlamp/oidc-client
-        property: callback-url
-    - secretKey: OIDC_VALIDATOR_CLIENT_ID
-      remoteRef:
-        key: platform/headlamp/oidc-client
-        property: validator-client-id
-    - secretKey: OIDC_VALIDATOR_ISSUER_URL
-      remoteRef:
-        key: platform/headlamp/oidc-client
-        property: validator-issuer-url
-    - secretKey: OIDC_USE_ACCESS_TOKEN
-      remoteRef:
-        key: platform/headlamp/oidc-client
-        property: use-access-token
-    - secretKey: OIDC_USE_PKCE
-      remoteRef:
-        key: platform/headlamp/oidc-client
-        property: use-pkce

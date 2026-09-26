@@ -8,8 +8,6 @@ locals {
   private_ca_certificate_pem = local.private_ca_bundle.ca_certificate_pem
   private_ca_private_key_pem = local.private_ca_bundle.ca_private_key_pem
   keycloak_tls_secret_name   = "${var.keycloak_hostname}-tls"
-  openbao_tls_secret_name    = "${var.openbao_hostname}-tls"
-  infisical_tls_secret_name  = "${var.infisical_hostname}-tls"
 }
 
 resource "kubernetes_manifest" "cert_manager" {
@@ -90,65 +88,5 @@ resource "kubernetes_manifest" "keycloak_certificate" {
   depends_on = [kubernetes_manifest.private_ca_cluster_issuer]
 }
 
-resource "kubernetes_manifest" "openbao_certificate" {
-  count = var.enable_cert_manager_issuance ? 1 : 0
 
-  manifest = {
-    apiVersion = "cert-manager.io/v1"
-    kind       = "Certificate"
-    metadata = {
-      name      = "openbao-platform-home-arpa"
-      namespace = "openbao"
-    }
-    spec = {
-      secretName = local.openbao_tls_secret_name
-      issuerRef = {
-        name  = kubernetes_manifest.private_ca_cluster_issuer[0].manifest.metadata.name
-        kind  = "ClusterIssuer"
-        group = "cert-manager.io"
-      }
-      dnsNames = [var.openbao_hostname]
-      privateKey = {
-        algorithm      = "ECDSA"
-        rotationPolicy = "Always"
-      }
-      duration    = "2160h"
-      renewBefore = "720h"
-      usages      = ["digital signature", "key encipherment", "server auth"]
-    }
-  }
-
-  depends_on = [kubernetes_manifest.private_ca_cluster_issuer]
-}
-
-resource "kubernetes_manifest" "infisical_certificate" {
-  count = var.enable_cert_manager_issuance ? 1 : 0
-
-  manifest = {
-    apiVersion = "cert-manager.io/v1"
-    kind       = "Certificate"
-    metadata = {
-      name      = "infisical-platform-home-arpa"
-      namespace = "infisical"
-    }
-    spec = {
-      secretName = local.infisical_tls_secret_name
-      issuerRef = {
-        name  = kubernetes_manifest.private_ca_cluster_issuer[0].manifest.metadata.name
-        kind  = "ClusterIssuer"
-        group = "cert-manager.io"
-      }
-      dnsNames = [var.infisical_hostname]
-      privateKey = {
-        algorithm      = "ECDSA"
-        rotationPolicy = "Always"
-      }
-      duration    = "2160h"
-      renewBefore = "720h"
-      usages      = ["digital signature", "key encipherment", "server auth"]
-    }
-  }
-
-  depends_on = [kubernetes_manifest.private_ca_cluster_issuer]
-}
 

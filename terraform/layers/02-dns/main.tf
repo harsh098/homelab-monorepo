@@ -5,8 +5,6 @@ locals {
   work_dir         = "${local.managed_data_dir}/work"
   default_dns_records = {
     "adguard.${var.dns_domain}"   = "127.0.0.1"
-    "openbao.${var.dns_domain}"   = var.k8s_ingress_ip
-    "infisical.${var.dns_domain}" = var.k8s_ingress_ip
     "keycloak.${var.dns_domain}"  = var.k8s_ingress_ip
     "capacitor.${var.dns_domain}" = var.k8s_ingress_ip
     "traefik.${var.dns_domain}"   = var.k8s_ingress_ip

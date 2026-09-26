@@ -5,4 +5,5 @@ resources:
   - flux-source.yaml
   - controller
   - keycloak-gitops
+  - infisical-gitops.yaml
   - apps

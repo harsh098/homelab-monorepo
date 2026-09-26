@@ -1,0 +1,79 @@
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Group
+metadata:
+  name: platform-infisical-admins
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    realmId: Platform
+    name: infisical-admins
+  providerConfigRef:
+    name: platform-keycloak
+---
+apiVersion: openidclient.keycloak.crossplane.io/v1alpha2
+kind: Client
+metadata:
+  name: platform-infisical
+spec:
+  deletionPolicy: Orphan
+  writeConnectionSecretToRef:
+    name: infisical-oidc-client
+    namespace: keycloak
+  forProvider:
+    realmId: Platform
+    clientId: infisical
+    name: Infisical
+    description: OIDC client for the self-hosted Infisical console
+    accessType: CONFIDENTIAL
+    clientAuthenticatorType: client-secret
+    enabled: true
+    standardFlowEnabled: true
+    implicitFlowEnabled: false
+    directAccessGrantsEnabled: false
+    serviceAccountsEnabled: false
+    validRedirectUris:
+      - https://infisical.platform.home.arpa/api/v1/sso/oidc/callback
+    validPostLogoutRedirectUris:
+      - https://infisical.platform.home.arpa/
+    webOrigins:
+      - https://infisical.platform.home.arpa
+  providerConfigRef:
+    name: platform-keycloak
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Memberships
+metadata:
+  name: platform-infisical-admin-members
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    realmId: Platform
+    groupIdRef:
+      name: platform-infisical-admins
+      policy:
+        resolve: Always
+    members:
+      - hmisraji07@gmail.com
+  providerConfigRef:
+    name: platform-keycloak
+---
+apiVersion: openidgroup.keycloak.crossplane.io/v1alpha1
+kind: GroupMembershipProtocolMapper
+metadata:
+  name: platform-infisical-groups
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    realmId: Platform
+    clientIdRef:
+      name: platform-infisical
+      policy:
+        resolve: Always
+    name: groups
+    claimName: groups
+    fullPath: false
+    addToIdToken: true
+    addToAccessToken: true
+    addToUserinfo: true
+  providerConfigRef:
+    name: platform-keycloak

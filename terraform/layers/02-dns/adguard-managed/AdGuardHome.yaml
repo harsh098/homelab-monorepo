@@ -17,6 +17,9 @@
     "domain": "capacitor.platform.home.arpa"
     "enabled": true
   - "answer": "192.168.10.220"
+    "domain": "infisical.platform.home.arpa"
+    "enabled": true
+  - "answer": "192.168.10.220"
     "domain": "keycloak.platform.home.arpa"
     "enabled": true
   - "answer": "192.168.10.220"

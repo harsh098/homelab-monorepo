@@ -8,7 +8,7 @@
   "6": "04-platform/.terraform.lock.hcl",
   "7": "02-dns/.terraform.lock.hcl",
   "8": "05-gcp/.terraform.lock.hcl",
-  "9": "05-gcp/variables.tf",
+  "9": "05-gcp/infisical.tf",
   "10": "provider.registry.opentofu.org/dmacvicar/libvirt",
   "11": "provider.docker",
   "12": "provider.registry.opentofu.org/dmacvicar/libvirt",

@@ -1,17 +1,17 @@
 # Graph Report - llm-studio  (2026-09-26)
 
 ## Corpus Check
-- 55 files · ~151,759 words
+- 52 files · ~148,990 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: (none) 3, .tftpl 2, .cfg 1)
 
 ## Summary
-- 296 nodes · 423 edges · 44 communities (21 shown, 11 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.85)
+- 255 nodes · 341 edges · 42 communities (19 shown, 11 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c157214b`
+- Built from commit: `60f923c7`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -25,7 +25,7 @@
 - 04-platform/.terraform.lock.hcl
 - 02-dns/.terraform.lock.hcl
 - 05-gcp/.terraform.lock.hcl
-- initialize-openbao.py
+- 05-gcp/variables.tf
 - provider.registry.opentofu.org/dmacvicar/libvirt
 - provider.docker
 - provider.registry.opentofu.org/dmacvicar/libvirt
@@ -46,8 +46,6 @@
 - kubectl-keycloak-login.py
 - merge-kubeconfig.py
 - configure-keycloak-google-idp.py
-- openbao.tf
-- helm_release.infisical
 
 ## God Nodes (most connected - your core abstractions)
 1. `What You Must Do When Invoked` - 12 edges
@@ -56,31 +54,31 @@
 4. `/graphify` - 10 edges
 5. `_browser_login()` - 9 edges
 6. `merge_kubeconfig()` - 9 edges
-7. `run()` - 8 edges
-8. `main()` - 8 edges
-9. `graphify reference: extra exports and benchmark` - 8 edges
-10. `docker_container.adguardhome` - 7 edges
+7. `graphify reference: extra exports and benchmark` - 8 edges
+8. `docker_container.adguardhome` - 7 edges
+9. `libvirt_domain.k8s_node` - 7 edges
+10. `main()` - 7 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `kubernetes_secret_v1.openbao_bootstrap_ca` --references--> `local.private_ca_certificate_pem`  [EXTRACTED]
-  terraform/layers/04-platform/openbao.tf → terraform/layers/04-platform/pki.tf
-- `output.keycloak_ca_certificate_pem` --references--> `local.private_ca_certificate_pem`  [EXTRACTED]
-  terraform/layers/04-platform/outputs.tf → terraform/layers/04-platform/pki.tf
 - `docker_container.adguardhome` --references--> `var.host_lan_ip`  [EXTRACTED]
   terraform/layers/02-dns/main.tf → terraform/layers/02-dns/variables.tf
 - `libvirt_volume.k8s_node` --references--> `var.disk_size`  [EXTRACTED]
   terraform/layers/03-compute/main.tf → terraform/layers/03-compute/variables.tf
 - `libvirt_cloudinit_disk.k8s_cloudinit` --references--> `var.k8s_api_hostname`  [EXTRACTED]
   terraform/layers/03-compute/main.tf → terraform/layers/03-compute/variables.tf
+- `libvirt_cloudinit_disk.k8s_cloudinit` --references--> `var.ssh_public_key_path`  [EXTRACTED]
+  terraform/layers/03-compute/main.tf → terraform/layers/03-compute/variables.tf
+- `libvirt_domain.k8s_node` --references--> `var.network_name`  [EXTRACTED]
+  terraform/layers/03-compute/main.tf → terraform/layers/03-compute/variables.tf
 
 ## Import Cycles
 - None detected.
 
-## Communities (44 total, 11 thin omitted)
+## Communities (42 total, 11 thin omitted)
 
 ### Community 0 - "pki.tf"
-Cohesion: 0.16
-Nodes (22): data.google_secret_manager_secret.private_ca, data.google_secret_manager_secret_version.private_ca, helm_release.cert_manager, helm_release.openbao, helm_release.traefik, kubernetes_manifest.cert_manager, kubernetes_manifest.infisical_certificate, kubernetes_manifest.keycloak_certificate (+14 more)
+Cohesion: 0.19
+Nodes (15): data.google_secret_manager_secret.private_ca, data.google_secret_manager_secret_version.private_ca, helm_release.cert_manager, helm_release.traefik, kubernetes_manifest.cert_manager, kubernetes_manifest.keycloak_certificate, kubernetes_manifest.private_ca_cluster_issuer, kubernetes_secret_v1.cert_manager_ca (+7 more)
 
 ### Community 1 - "03-compute/variables.tf"
 Cohesion: 0.16
@@ -99,16 +97,16 @@ Cohesion: 0.31
 Nodes (7): helm_release.external_secrets, kubernetes_manifest.external_secrets, kubernetes_manifest.gcp_secret_store, provider.google, provider.helm, provider.kubernetes, var.gcp_project_id
 
 ### Community 5 - "05-gcp/secrets.tf"
-Cohesion: 0.19
-Nodes (11): google_secret_manager_secret.backup_credentials, google_secret_manager_secret.backup_encryption_key, google_secret_manager_secret_iam_member.openbao_unseal_key_reader, google_secret_manager_secret.keycloak_google_oauth, google_secret_manager_secret.openbao_root_token, google_secret_manager_secret.openbao_unseal_key, google_secret_manager_secret_version.backup_encryption_key_version, random_password.backup_key (+3 more)
+Cohesion: 0.47
+Nodes (5): google_secret_manager_secret.backup_credentials, google_secret_manager_secret.backup_encryption_key, google_secret_manager_secret.keycloak_google_oauth, google_secret_manager_secret_version.backup_encryption_key_version, random_password.backup_key
 
 ### Community 6 - "04-platform/.terraform.lock.hcl"
 Cohesion: 0.40
 Nodes (4): provider.registry.opentofu.org/hashicorp/google, provider.registry.opentofu.org/hashicorp/helm, provider.registry.opentofu.org/hashicorp/kubernetes, provider.registry.opentofu.org/hashicorp/random
 
-### Community 9 - "initialize-openbao.py"
-Cohesion: 0.36
-Nodes (11): CompletedProcess, add_gcp_version(), apply_bootstrap_secret(), bao(), gcp_secret(), main(), parser(), ArgumentParser (+3 more)
+### Community 9 - "05-gcp/variables.tf"
+Cohesion: 0.50
+Nodes (3): var.project_id, var.region, var.secret_reader_service_account_email
 
 ### Community 27 - "What You Must Do When Invoked"
 Cohesion: 0.08
@@ -154,28 +152,20 @@ Nodes (14): _atomic_dump(), _config(), _is_owned(), main(), _marker(), merge_kub
 Cohesion: 0.35
 Nodes (11): RuntimeError, _json_object(), main(), _parser(), Any, ArgumentParser, SSLContext, Create or update the Platform realm Google identity provider. Credentials are… (+3 more)
 
-### Community 42 - "openbao.tf"
-Cohesion: 0.27
-Nodes (11): data.google_secret_manager_secret_version.openbao_root_token, google_secret_manager_secret.openbao_external_secrets_token, google_secret_manager_secret.openbao_pushsecret_token, google_secret_manager_secret_version.openbao_external_secrets_token, google_secret_manager_secret_version.openbao_pushsecret_token, kubernetes_secret_v1.openbao_bootstrap_ca, kubernetes_secret_v1.openbao_bootstrap_token, kubernetes_secret_v1.openbao_external_secrets_token (+3 more)
-
-### Community 43 - "helm_release.infisical"
-Cohesion: 0.52
-Nodes (6): helm_release.infisical, kubernetes_secret_v1.infisical_secrets, random_password.infisical_auth_secret, random_password.infisical_encryption_key, random_password.infisical_postgresql, random_password.infisical_redis
-
 ## Knowledge Gaps
 - **75 isolated node(s):** `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local`, `provider.registry.opentofu.org/kreuzwerker/docker`, `provider.docker` (+70 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 118 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 116 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `OIDCError` connect `kubectl-keycloak-login.py` to `configure-keycloak-google-idp.py`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
-- **Why does `var.gcp_project_id` connect `kubernetes_manifest.gcp_secret_store` to `pki.tf`?**
   _High betweenness centrality (0.011) - this node is a cross-community bridge._
 - **Why does `kubernetes_manifest.keycloak_certificate` connect `pki.tf` to `keycloak.tf`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **Why does `var.gcp_project_id` connect `kubernetes_manifest.gcp_secret_store` to `pki.tf`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **What connects `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local` to the rest of the system?**
   _75 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `What You Must Do When Invoked` be split into smaller, more focused modules?**

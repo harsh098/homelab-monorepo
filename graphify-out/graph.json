@@ -459,6 +459,17 @@
       "source_location": "L33"
     },
     {
+      "id": "04_platform_helm_release_infisical",
+      "label": "helm_release.infisical",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "pki.tf",
+      "file_type": "code",
+      "norm_label": "helm_release.infisical",
+      "source_file": "terraform/layers/04-platform/infisical.tf",
+      "source_location": "L6"
+    },
+    {
       "id": "04_platform_helm_release_traefik",
       "label": "helm_release.traefik",
       "_origin": "ast",
@@ -478,7 +489,18 @@
       "file_type": "code",
       "norm_label": "kubernetes_manifest.cert_manager",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L13"
+      "source_location": "L14"
+    },
+    {
+      "id": "04_platform_kubernetes_manifest_infisical_certificate",
+      "label": "kubernetes_manifest.infisical_certificate",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "pki.tf",
+      "file_type": "code",
+      "norm_label": "kubernetes_manifest.infisical_certificate",
+      "source_file": "terraform/layers/04-platform/pki.tf",
+      "source_location": "L92"
     },
     {
       "id": "04_platform_kubernetes_manifest_keycloak_certificate",
@@ -489,7 +511,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_manifest.keycloak_certificate",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L60"
+      "source_location": "L61"
     },
     {
       "id": "04_platform_kubernetes_manifest_private_ca_cluster_issuer",
@@ -500,7 +522,7 @@
       "file_type": "code",
       "norm_label": "kubernetes_manifest.private_ca_cluster_issuer",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L41"
+      "source_location": "L42"
     },
     {
       "id": "04_platform_kubernetes_secret_v1_cert_manager_ca",
@@ -511,7 +533,18 @@
       "file_type": "code",
       "norm_label": "kubernetes_secret_v1.cert_manager_ca",
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L23"
+      "source_location": "L24"
+    },
+    {
+      "id": "04_platform_local_infisical_tls_secret_name",
+      "label": "local.infisical_tls_secret_name",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "pki.tf",
+      "file_type": "code",
+      "norm_label": "local.infisical_tls_secret_name",
+      "source_file": "terraform/layers/04-platform/pki.tf",
+      "source_location": "L11"
     },
     {
       "id": "04_platform_local_keycloak_tls_secret_name",
@@ -558,6 +591,17 @@
       "source_location": "L9"
     },
     {
+      "id": "04_platform_random_password_infisical_redis",
+      "label": "random_password.infisical_redis",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "pki.tf",
+      "file_type": "code",
+      "norm_label": "random_password.infisical_redis",
+      "source_file": "terraform/layers/04-platform/infisical.tf",
+      "source_location": "L1"
+    },
+    {
       "id": "04_platform_var_enable_cert_manager_issuance",
       "label": "var.enable_cert_manager_issuance",
       "_origin": "ast",
@@ -567,6 +611,17 @@
       "norm_label": "var.enable_cert_manager_issuance",
       "source_file": "terraform/layers/04-platform/variables.tf",
       "source_location": "L18"
+    },
+    {
+      "id": "04_platform_var_infisical_hostname",
+      "label": "var.infisical_hostname",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "pki.tf",
+      "file_type": "code",
+      "norm_label": "var.infisical_hostname",
+      "source_file": "terraform/layers/04-platform/variables.tf",
+      "source_location": "L39"
     },
     {
       "id": "04_platform_var_keycloak_hostname",
@@ -589,6 +644,17 @@
       "norm_label": "var.private_ca_secret_id",
       "source_file": "terraform/layers/04-platform/variables.tf",
       "source_location": "L13"
+    },
+    {
+      "id": "terraform_layers_04_platform_infisical",
+      "label": "04-platform/infisical.tf",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "pki.tf",
+      "file_type": "code",
+      "norm_label": "04-platform/infisical.tf",
+      "source_file": "terraform/layers/04-platform/infisical.tf",
+      "source_location": null
     },
     {
       "id": "terraform_layers_04_platform_ingress",
@@ -1718,6 +1784,18 @@
       "norm_label": "homelab",
       "source_file": "README.md",
       "source_location": "L1"
+    },
+    {
+      "id": "readme_infisical_recovery_and_bootstrap",
+      "label": "Infisical recovery and bootstrap",
+      "_origin": "ast",
+      "community": 29,
+      "community_name": "Terraform layers",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "infisical recovery and bootstrap",
+      "source_file": "README.md",
+      "source_location": "L463"
     },
     {
       "id": "readme_keycloak_bootstrap_and_oidc_provisioning",
@@ -2894,11 +2972,132 @@
       "source_location": null
     },
     {
+      "id": "05_gcp_google_secret_manager_secret_iam_member_infisical_bootstrap_reader",
+      "label": "google_secret_manager_secret_iam_member.infisical_bootstrap_reader",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "05-gcp/infisical.tf",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret_iam_member.infisical_bootstrap_reader",
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L64"
+    },
+    {
+      "id": "05_gcp_google_secret_manager_secret_infisical_bootstrap",
+      "label": "google_secret_manager_secret.infisical_bootstrap",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "05-gcp/infisical.tf",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret.infisical_bootstrap",
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L55"
+    },
+    {
+      "id": "05_gcp_google_secret_manager_secret_version_infisical_bootstrap",
+      "label": "google_secret_manager_secret_version.infisical_bootstrap",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "05-gcp/infisical.tf",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret_version.infisical_bootstrap",
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L71"
+    },
+    {
+      "id": "05_gcp_google_service_account_infisical_backup",
+      "label": "google_service_account.infisical_backup",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "05-gcp/infisical.tf",
+      "file_type": "code",
+      "norm_label": "google_service_account.infisical_backup",
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L34"
+    },
+    {
+      "id": "05_gcp_google_service_account_key_infisical_backup",
+      "label": "google_service_account_key.infisical_backup",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "05-gcp/infisical.tf",
+      "file_type": "code",
+      "norm_label": "google_service_account_key.infisical_backup",
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L51"
+    },
+    {
+      "id": "05_gcp_google_storage_bucket_iam_member_infisical_backup_writer",
+      "label": "google_storage_bucket_iam_member.infisical_backup_writer",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "05-gcp/infisical.tf",
+      "file_type": "code",
+      "norm_label": "google_storage_bucket_iam_member.infisical_backup_writer",
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L40"
+    },
+    {
+      "id": "05_gcp_google_storage_bucket_infisical_backups",
+      "label": "google_storage_bucket.infisical_backups",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "05-gcp/infisical.tf",
+      "file_type": "code",
+      "norm_label": "google_storage_bucket.infisical_backups",
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L16"
+    },
+    {
+      "id": "05_gcp_google_storage_hmac_key_infisical_backup",
+      "label": "google_storage_hmac_key.infisical_backup",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "05-gcp/infisical.tf",
+      "file_type": "code",
+      "norm_label": "google_storage_hmac_key.infisical_backup",
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L46"
+    },
+    {
+      "id": "05_gcp_random_password_infisical_auth_secret",
+      "label": "random_password.infisical_auth_secret",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "05-gcp/infisical.tf",
+      "file_type": "code",
+      "norm_label": "random_password.infisical_auth_secret",
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L11"
+    },
+    {
+      "id": "05_gcp_random_password_infisical_db_password",
+      "label": "random_password.infisical_db_password",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "05-gcp/infisical.tf",
+      "file_type": "code",
+      "norm_label": "random_password.infisical_db_password",
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L1"
+    },
+    {
+      "id": "05_gcp_random_password_infisical_encryption_key",
+      "label": "random_password.infisical_encryption_key",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "05-gcp/infisical.tf",
+      "file_type": "code",
+      "norm_label": "random_password.infisical_encryption_key",
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L6"
+    },
+    {
       "id": "05_gcp_var_project_id",
       "label": "var.project_id",
       "_origin": "ast",
       "community": 9,
-      "community_name": "05-gcp/variables.tf",
+      "community_name": "05-gcp/infisical.tf",
       "file_type": "code",
       "norm_label": "var.project_id",
       "source_file": "terraform/layers/05-gcp/variables.tf",
@@ -2909,7 +3108,7 @@
       "label": "var.region",
       "_origin": "ast",
       "community": 9,
-      "community_name": "05-gcp/variables.tf",
+      "community_name": "05-gcp/infisical.tf",
       "file_type": "code",
       "norm_label": "var.region",
       "source_file": "terraform/layers/05-gcp/variables.tf",
@@ -2920,18 +3119,29 @@
       "label": "var.secret_reader_service_account_email",
       "_origin": "ast",
       "community": 9,
-      "community_name": "05-gcp/variables.tf",
+      "community_name": "05-gcp/infisical.tf",
       "file_type": "code",
       "norm_label": "var.secret_reader_service_account_email",
       "source_file": "terraform/layers/05-gcp/variables.tf",
       "source_location": "L6"
     },
     {
+      "id": "terraform_layers_05_gcp_infisical",
+      "label": "05-gcp/infisical.tf",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "05-gcp/infisical.tf",
+      "file_type": "code",
+      "norm_label": "05-gcp/infisical.tf",
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": null
+    },
+    {
       "id": "terraform_layers_05_gcp_variables",
       "label": "05-gcp/variables.tf",
       "_origin": "ast",
       "community": 9,
-      "community_name": "05-gcp/variables.tf",
+      "community_name": "05-gcp/infisical.tf",
       "file_type": "code",
       "norm_label": "05-gcp/variables.tf",
       "source_file": "terraform/layers/05-gcp/variables.tf",
@@ -4565,6 +4775,17 @@
     },
     {
       "source": "readme_terraform_layers",
+      "target": "readme_infisical_recovery_and_bootstrap",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "L463",
+      "weight": 1.0
+    },
+    {
+      "source": "readme_terraform_layers",
       "target": "readme_deploy_adguard_dns",
       "relation": "contains",
       "_origin": "ast",
@@ -5015,6 +5236,28 @@
       "weight": 1.0
     },
     {
+      "source": "terraform_layers_04_platform_infisical",
+      "target": "04_platform_random_password_infisical_redis",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/infisical.tf",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_04_platform_infisical",
+      "target": "04_platform_helm_release_infisical",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/infisical.tf",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
       "source": "terraform_layers_04_platform_ingress",
       "target": "04_platform_helm_release_traefik",
       "relation": "contains",
@@ -5170,13 +5413,24 @@
     },
     {
       "source": "terraform_layers_04_platform_pki",
+      "target": "04_platform_local_infisical_tls_secret_name",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/pki.tf",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_04_platform_pki",
       "target": "04_platform_kubernetes_manifest_cert_manager",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -5187,7 +5441,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L23",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -5198,7 +5452,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L41",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -5209,7 +5463,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L60",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -5243,6 +5497,17 @@
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
       "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_04_platform_pki",
+      "target": "04_platform_kubernetes_manifest_infisical_certificate",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/pki.tf",
+      "source_location": "L92",
       "weight": 1.0
     },
     {
@@ -5375,6 +5640,138 @@
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/variables.tf",
       "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_04_platform_variables",
+      "target": "04_platform_var_infisical_hostname",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/variables.tf",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_infisical",
+      "target": "05_gcp_random_password_infisical_db_password",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_infisical",
+      "target": "05_gcp_random_password_infisical_auth_secret",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_infisical",
+      "target": "05_gcp_google_storage_bucket_infisical_backups",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_infisical",
+      "target": "05_gcp_google_service_account_infisical_backup",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_infisical",
+      "target": "05_gcp_google_storage_bucket_iam_member_infisical_backup_writer",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_infisical",
+      "target": "05_gcp_google_storage_hmac_key_infisical_backup",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_infisical",
+      "target": "05_gcp_google_service_account_key_infisical_backup",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_infisical",
+      "target": "05_gcp_google_secret_manager_secret_infisical_bootstrap",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_infisical",
+      "target": "05_gcp_random_password_infisical_encryption_key",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_infisical",
+      "target": "05_gcp_google_secret_manager_secret_iam_member_infisical_bootstrap_reader",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_infisical",
+      "target": "05_gcp_google_secret_manager_secret_version_infisical_bootstrap",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -5906,6 +6303,17 @@
       "weight": 1.0
     },
     {
+      "source": "04_platform_helm_release_infisical",
+      "target": "04_platform_kubernetes_manifest_infisical_certificate",
+      "relation": "depends_on",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/infisical.tf",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
       "source": "04_platform_kubernetes_manifest_gcp_secret_store",
       "target": "04_platform_helm_release_external_secrets",
       "relation": "depends_on",
@@ -5917,6 +6325,17 @@
       "weight": 1.0
     },
     {
+      "source": "04_platform_kubernetes_manifest_infisical_certificate",
+      "target": "04_platform_kubernetes_manifest_private_ca_cluster_issuer",
+      "relation": "depends_on",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/pki.tf",
+      "source_location": "L120",
+      "weight": 1.0
+    },
+    {
       "source": "04_platform_kubernetes_manifest_keycloak_certificate",
       "target": "04_platform_kubernetes_manifest_private_ca_cluster_issuer",
       "relation": "depends_on",
@@ -5924,7 +6343,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L88",
+      "source_location": "L89",
       "weight": 1.0
     },
     {
@@ -5935,7 +6354,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L57",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
@@ -5946,7 +6365,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L38",
+      "source_location": "L39",
       "weight": 1.0
     },
     {
@@ -6434,6 +6853,39 @@
       "weight": 1.0
     },
     {
+      "source": "04_platform_helm_release_infisical",
+      "target": "04_platform_random_password_infisical_redis",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/infisical.tf",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "04_platform_helm_release_infisical",
+      "target": "04_platform_var_infisical_hostname",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/infisical.tf",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "04_platform_helm_release_infisical",
+      "target": "04_platform_local_infisical_tls_secret_name",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/infisical.tf",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
       "source": "04_platform_kubernetes_manifest_gcp_secret_store",
       "target": "04_platform_var_gcp_project_id",
       "relation": "references",
@@ -6456,6 +6908,39 @@
       "weight": 1.0
     },
     {
+      "source": "04_platform_kubernetes_manifest_infisical_certificate",
+      "target": "04_platform_local_infisical_tls_secret_name",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/pki.tf",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "04_platform_kubernetes_manifest_infisical_certificate",
+      "target": "04_platform_var_infisical_hostname",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/pki.tf",
+      "source_location": "L109",
+      "weight": 1.0
+    },
+    {
+      "source": "04_platform_kubernetes_manifest_infisical_certificate",
+      "target": "04_platform_var_enable_cert_manager_issuance",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/pki.tf",
+      "source_location": "L93",
+      "weight": 1.0
+    },
+    {
       "source": "04_platform_kubernetes_manifest_keycloak_certificate",
       "target": "04_platform_var_enable_cert_manager_issuance",
       "relation": "references",
@@ -6463,7 +6948,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L61",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -6474,7 +6959,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L68",
+      "source_location": "L69",
       "weight": 1.0
     },
     {
@@ -6485,7 +6970,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L71",
+      "source_location": "L72",
       "weight": 1.0
     },
     {
@@ -6496,7 +6981,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L77",
+      "source_location": "L78",
       "weight": 1.0
     },
     {
@@ -6507,7 +6992,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L42",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -6518,7 +7003,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0
     },
     {
@@ -6529,7 +7014,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -6540,7 +7025,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/pki.tf",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0
     },
     {
@@ -6574,6 +7059,17 @@
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
       "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "04_platform_local_infisical_tls_secret_name",
+      "target": "04_platform_var_infisical_hostname",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/pki.tf",
+      "source_location": "L11",
       "weight": 1.0
     },
     {
@@ -6687,6 +7183,39 @@
       "weight": 1.0
     },
     {
+      "source": "05_gcp_google_secret_manager_secret_iam_member_infisical_bootstrap_reader",
+      "target": "05_gcp_google_secret_manager_secret_infisical_bootstrap",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_secret_manager_secret_iam_member_infisical_bootstrap_reader",
+      "target": "05_gcp_var_secret_reader_service_account_email",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_secret_manager_secret_infisical_bootstrap",
+      "target": "05_gcp_var_project_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
       "source": "05_gcp_google_secret_manager_secret_version_backup_encryption_key_version",
       "target": "05_gcp_google_secret_manager_secret_backup_encryption_key",
       "relation": "references",
@@ -6706,6 +7235,171 @@
       "confidence_score": 1.0,
       "source_file": "terraform/layers/05-gcp/secrets.tf",
       "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_secret_manager_secret_version_infisical_bootstrap",
+      "target": "05_gcp_google_secret_manager_secret_infisical_bootstrap",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_secret_manager_secret_version_infisical_bootstrap",
+      "target": "05_gcp_random_password_infisical_encryption_key",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_secret_manager_secret_version_infisical_bootstrap",
+      "target": "05_gcp_random_password_infisical_auth_secret",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_secret_manager_secret_version_infisical_bootstrap",
+      "target": "05_gcp_random_password_infisical_db_password",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L77",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_secret_manager_secret_version_infisical_bootstrap",
+      "target": "05_gcp_google_storage_bucket_infisical_backups",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_secret_manager_secret_version_infisical_bootstrap",
+      "target": "05_gcp_google_storage_hmac_key_infisical_backup",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L80",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_secret_manager_secret_version_infisical_bootstrap",
+      "target": "05_gcp_google_service_account_key_infisical_backup",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_service_account_infisical_backup",
+      "target": "05_gcp_var_project_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_service_account_key_infisical_backup",
+      "target": "05_gcp_google_service_account_infisical_backup",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_storage_bucket_iam_member_infisical_backup_writer",
+      "target": "05_gcp_google_storage_bucket_infisical_backups",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_storage_bucket_iam_member_infisical_backup_writer",
+      "target": "05_gcp_google_service_account_infisical_backup",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_storage_bucket_infisical_backups",
+      "target": "05_gcp_var_region",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_storage_bucket_infisical_backups",
+      "target": "05_gcp_var_project_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_storage_hmac_key_infisical_backup",
+      "target": "05_gcp_google_service_account_infisical_backup",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_storage_hmac_key_infisical_backup",
+      "target": "05_gcp_var_project_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/infisical.tf",
+      "source_location": "L48",
       "weight": 1.0
     },
     {
@@ -6770,5 +7464,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "60f923c7d0dee7999c30f0f16af2b472c9ffa4bf"
+  "built_at_commit": "67d08007be3b779f8ab5e0fb120a2a942c7f0188"
 }

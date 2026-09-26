@@ -1,17 +1,17 @@
 # Graph Report - llm-studio  (2026-09-26)
 
 ## Corpus Check
-- 52 files · ~148,990 words
+- 54 files · ~149,957 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: (none) 3, .tftpl 2, .cfg 1)
 
 ## Summary
-- 255 nodes · 341 edges · 42 communities (19 shown, 11 thin omitted)
+- 274 nodes · 385 edges · 42 communities (19 shown, 11 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `60f923c7`
+- Built from commit: `67d08007`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -25,7 +25,7 @@
 - 04-platform/.terraform.lock.hcl
 - 02-dns/.terraform.lock.hcl
 - 05-gcp/.terraform.lock.hcl
-- 05-gcp/variables.tf
+- 05-gcp/infisical.tf
 - provider.registry.opentofu.org/dmacvicar/libvirt
 - provider.docker
 - provider.registry.opentofu.org/dmacvicar/libvirt
@@ -54,10 +54,10 @@
 4. `/graphify` - 10 edges
 5. `_browser_login()` - 9 edges
 6. `merge_kubeconfig()` - 9 edges
-7. `graphify reference: extra exports and benchmark` - 8 edges
-8. `docker_container.adguardhome` - 7 edges
-9. `libvirt_domain.k8s_node` - 7 edges
-10. `main()` - 7 edges
+7. `google_secret_manager_secret_version.infisical_bootstrap` - 8 edges
+8. `graphify reference: extra exports and benchmark` - 8 edges
+9. `docker_container.adguardhome` - 7 edges
+10. `libvirt_domain.k8s_node` - 7 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `docker_container.adguardhome` --references--> `var.host_lan_ip`  [EXTRACTED]
@@ -77,8 +77,8 @@
 ## Communities (42 total, 11 thin omitted)
 
 ### Community 0 - "pki.tf"
-Cohesion: 0.19
-Nodes (15): data.google_secret_manager_secret.private_ca, data.google_secret_manager_secret_version.private_ca, helm_release.cert_manager, helm_release.traefik, kubernetes_manifest.cert_manager, kubernetes_manifest.keycloak_certificate, kubernetes_manifest.private_ca_cluster_issuer, kubernetes_secret_v1.cert_manager_ca (+7 more)
+Cohesion: 0.16
+Nodes (20): data.google_secret_manager_secret.private_ca, data.google_secret_manager_secret_version.private_ca, helm_release.cert_manager, helm_release.infisical, helm_release.traefik, kubernetes_manifest.cert_manager, kubernetes_manifest.infisical_certificate, kubernetes_manifest.keycloak_certificate (+12 more)
 
 ### Community 1 - "03-compute/variables.tf"
 Cohesion: 0.16
@@ -104,9 +104,9 @@ Nodes (5): google_secret_manager_secret.backup_credentials, google_secret_manage
 Cohesion: 0.40
 Nodes (4): provider.registry.opentofu.org/hashicorp/google, provider.registry.opentofu.org/hashicorp/helm, provider.registry.opentofu.org/hashicorp/kubernetes, provider.registry.opentofu.org/hashicorp/random
 
-### Community 9 - "05-gcp/variables.tf"
-Cohesion: 0.50
-Nodes (3): var.project_id, var.region, var.secret_reader_service_account_email
+### Community 9 - "05-gcp/infisical.tf"
+Cohesion: 0.27
+Nodes (14): google_secret_manager_secret_iam_member.infisical_bootstrap_reader, google_secret_manager_secret.infisical_bootstrap, google_secret_manager_secret_version.infisical_bootstrap, google_service_account.infisical_backup, google_service_account_key.infisical_backup, google_storage_bucket_iam_member.infisical_backup_writer, google_storage_bucket.infisical_backups, google_storage_hmac_key.infisical_backup (+6 more)
 
 ### Community 27 - "What You Must Do When Invoked"
 Cohesion: 0.08
@@ -117,8 +117,8 @@ Cohesion: 0.22
 Nodes (8): graphify reference: extra exports and benchmark, Step 6b - Wiki (only if --wiki flag), Step 7 - Neo4j export (only if --neo4j or --neo4j-push flag), Step 7a - FalkorDB export (only if --falkordb or --falkordb-push flag), Step 7b - SVG export (only if --svg flag), Step 7c - GraphML export (only if --graphml flag), Step 7d - MCP server (only if --mcp flag), Step 8 - Token reduction benchmark (only if total_words > 5000)
 
 ### Community 29 - "Terraform layers"
-Cohesion: 0.17
-Nodes (11): Deploy AdGuard DNS, Deploy Headlamp, GitOps role and user workflow, Homelab, Keycloak bootstrap and OIDC provisioning, Manual Google sign-in runbook, Power outage recovery, Prerequisites (+3 more)
+Cohesion: 0.15
+Nodes (12): Deploy AdGuard DNS, Deploy Headlamp, GitOps role and user workflow, Homelab, Infisical recovery and bootstrap, Keycloak bootstrap and OIDC provisioning, Manual Google sign-in runbook, Power outage recovery (+4 more)
 
 ### Community 30 - "graphify reference: query, path, explain"
 Cohesion: 0.33
@@ -153,20 +153,20 @@ Cohesion: 0.35
 Nodes (11): RuntimeError, _json_object(), main(), _parser(), Any, ArgumentParser, SSLContext, Create or update the Platform realm Google identity provider. Credentials are… (+3 more)
 
 ## Knowledge Gaps
-- **75 isolated node(s):** `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local`, `provider.registry.opentofu.org/kreuzwerker/docker`, `provider.docker` (+70 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 116 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **73 isolated node(s):** `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local`, `provider.registry.opentofu.org/kreuzwerker/docker`, `provider.docker` (+68 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 114 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `OIDCError` connect `kubectl-keycloak-login.py` to `configure-keycloak-google-idp.py`?**
-  _High betweenness centrality (0.011) - this node is a cross-community bridge._
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
 - **Why does `kubernetes_manifest.keycloak_certificate` connect `pki.tf` to `keycloak.tf`?**
   _High betweenness centrality (0.009) - this node is a cross-community bridge._
 - **Why does `var.gcp_project_id` connect `kubernetes_manifest.gcp_secret_store` to `pki.tf`?**
   _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **What connects `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local` to the rest of the system?**
-  _75 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _73 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `What You Must Do When Invoked` be split into smaller, more focused modules?**
   _Cohesion score 0.08 - nodes in this community are weakly interconnected._

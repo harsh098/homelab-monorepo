@@ -1,17 +1,17 @@
-# Graph Report - llm-studio  (2026-09-26)
+# Graph Report - llm-studio  (2026-09-27)
 
 ## Corpus Check
-- 54 files · ~149,957 words
+- 54 files · ~150,044 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: (none) 3, .tftpl 2, .cfg 1)
 
 ## Summary
-- 274 nodes · 385 edges · 42 communities (19 shown, 11 thin omitted)
+- 275 nodes · 387 edges · 42 communities (19 shown, 11 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `67d08007`
+- Built from commit: `c1fe5efa`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -52,9 +52,9 @@
 2. `main()` - 11 edges
 3. `OIDCError` - 10 edges
 4. `/graphify` - 10 edges
-5. `_browser_login()` - 9 edges
-6. `merge_kubeconfig()` - 9 edges
-7. `google_secret_manager_secret_version.infisical_bootstrap` - 8 edges
+5. `google_secret_manager_secret_version.infisical_bootstrap` - 9 edges
+6. `_browser_login()` - 9 edges
+7. `merge_kubeconfig()` - 9 edges
 8. `graphify reference: extra exports and benchmark` - 8 edges
 9. `docker_container.adguardhome` - 7 edges
 10. `libvirt_domain.k8s_node` - 7 edges
@@ -105,8 +105,8 @@ Cohesion: 0.40
 Nodes (4): provider.registry.opentofu.org/hashicorp/google, provider.registry.opentofu.org/hashicorp/helm, provider.registry.opentofu.org/hashicorp/kubernetes, provider.registry.opentofu.org/hashicorp/random
 
 ### Community 9 - "05-gcp/infisical.tf"
-Cohesion: 0.27
-Nodes (14): google_secret_manager_secret_iam_member.infisical_bootstrap_reader, google_secret_manager_secret.infisical_bootstrap, google_secret_manager_secret_version.infisical_bootstrap, google_service_account.infisical_backup, google_service_account_key.infisical_backup, google_storage_bucket_iam_member.infisical_backup_writer, google_storage_bucket.infisical_backups, google_storage_hmac_key.infisical_backup (+6 more)
+Cohesion: 0.25
+Nodes (15): google_secret_manager_secret_iam_member.infisical_bootstrap_reader, google_secret_manager_secret.infisical_bootstrap, google_secret_manager_secret_version.infisical_bootstrap, google_service_account.infisical_backup, google_service_account_key.infisical_backup, google_storage_bucket_iam_member.infisical_backup_writer, google_storage_bucket.infisical_backups, google_storage_hmac_key.infisical_backup (+7 more)
 
 ### Community 27 - "What You Must Do When Invoked"
 Cohesion: 0.08

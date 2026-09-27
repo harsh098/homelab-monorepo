@@ -1870,6 +1870,18 @@
       "source_location": "L140"
     },
     {
+      "id": "readme_stateful_database_safety",
+      "label": "Stateful database safety",
+      "_origin": "ast",
+      "community": 29,
+      "community_name": "Terraform layers",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "stateful database safety",
+      "source_file": "README.md",
+      "source_location": "L514"
+    },
+    {
       "id": "readme_terraform_layers",
       "label": "Terraform layers",
       "_origin": "ast",
@@ -4797,6 +4809,17 @@
     },
     {
       "source": "readme_terraform_layers",
+      "target": "readme_stateful_database_safety",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "L514",
+      "weight": 1.0
+    },
+    {
+      "source": "readme_terraform_layers",
       "target": "readme_deploy_adguard_dns",
       "relation": "contains",
       "_origin": "ast",
@@ -7497,5 +7520,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "c1fe5efa9ae25a19102d814bc70efef0c618989f"
+  "built_at_commit": "331382be253b94259486d8fb9c61751db9424314"
 }

@@ -510,3 +510,27 @@ https://infisical.platform.home.arpa
 The initial Infisical organization, project, administrator, and machine
 identity are intentionally a one-time bootstrap operation. Do not commit
 client credentials or decoded bootstrap-secret values to Git.
+
+### Stateful database safety
+
+Keycloak and Infisical PostgreSQL clusters are protected by
+`clusters/platform/database-safety.yaml`.
+
+- `ValidatingAdmissionPolicy` blocks deletion of the CNPG clusters and their
+  PVCs.
+- `local-path-retain` is the StorageClass for newly created platform database
+  volumes.
+- Existing database PVs have been changed to `Retain`.
+- Flux prune is disabled on the CNPG Cluster resources.
+
+Do not remove a protected database resource to force reconciliation. Recovery
+must restore the existing PVC or restore a verified CNPG backup into a new
+cluster, then switch the application explicitly.
+
+Crossplane does not protect database data. In this repository it provisions
+Keycloak API objects such as clients, groups, roles, and protocol mappers.
+Those are control-plane resources stored in Keycloak's PostgreSQL database.
+Crossplane cannot restore a deleted CNPG PVC, reconstruct Keycloak realm data,
+or prevent another controller from deleting the database. Database durability
+belongs to CNPG, storage reclaim policy, backup/restore, and admission
+controls.

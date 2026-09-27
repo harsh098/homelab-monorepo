@@ -92,6 +92,8 @@ kind: Cluster
 metadata:
   name: infisical-db
   namespace: infisical
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
 spec:
   instances: 1
   imageName: ghcr.io/cloudnative-pg/postgresql:16
@@ -103,7 +105,7 @@ spec:
         name: infisical-db-credentials
   storage:
     size: 20Gi
-    storageClass: local-path
+    storageClass: local-path-retain
   backup:
     barmanObjectStore:
       destinationPath: s3://hmx-infisical-backups/infisical

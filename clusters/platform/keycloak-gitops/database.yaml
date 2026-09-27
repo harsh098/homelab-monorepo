@@ -27,6 +27,8 @@ kind: Cluster
 metadata:
   name: keycloak-db
   namespace: keycloak
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
 spec:
   instances: 1
   imageName: ghcr.io/cloudnative-pg/postgresql:17
@@ -38,4 +40,4 @@ spec:
         name: keycloak-db-credentials
   storage:
     size: 8Gi
-    storageClass: local-path
+    storageClass: local-path-retain

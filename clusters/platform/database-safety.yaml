@@ -1,0 +1,57 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-path-retain
+provisioner: rancher.io/local-path
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicy
+metadata:
+  name: protect-platform-database-clusters
+spec:
+  failurePolicy: Fail
+  matchConstraints:
+    resourceRules:
+      - apiGroups: ["postgresql.cnpg.io"]
+        apiVersions: ["v1"]
+        operations: ["DELETE"]
+        resources: ["clusters"]
+        scope: "Namespaced"
+  validations:
+    - expression: "!(request.name in ['keycloak-db', 'infisical-db'])"
+      message: "Deleting a platform database cluster is blocked; perform an explicit recovery procedure."
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicyBinding
+metadata:
+  name: protect-platform-database-clusters
+spec:
+  policyName: protect-platform-database-clusters
+  validationActions: ["Deny"]
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicy
+metadata:
+  name: protect-platform-database-pvcs
+spec:
+  failurePolicy: Fail
+  matchConstraints:
+    resourceRules:
+      - apiGroups: [""]
+        apiVersions: ["v1"]
+        operations: ["DELETE"]
+        resources: ["persistentvolumeclaims"]
+        scope: "Namespaced"
+  validations:
+    - expression: "!(request.name in ['keycloak-db-1', 'data-keycloak-postgresql-0', 'infisical-db-1', 'redis-data-redis-master-0'])"
+      message: "Deleting a platform database PVC is blocked; perform an explicit recovery procedure."
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicyBinding
+metadata:
+  name: protect-platform-database-pvcs
+spec:
+  policyName: protect-platform-database-pvcs
+  validationActions: ["Deny"]

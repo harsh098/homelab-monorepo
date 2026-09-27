@@ -13,6 +13,11 @@ resource "random_password" "infisical_auth_secret" {
   special = false
 }
 
+resource "random_password" "keycloak_db_password" {
+  length  = 32
+  special = false
+}
+
 resource "google_storage_bucket" "infisical_backups" {
   name                        = "hmx-infisical-backups"
   location                    = var.region
@@ -75,6 +80,8 @@ resource "google_secret_manager_secret_version" "infisical_bootstrap" {
     auth_secret          = random_password.infisical_auth_secret.result
     db_username          = "infisical"
     db_password          = random_password.infisical_db_password.result
+    keycloak_db_username = "keycloak"
+    keycloak_db_password = random_password.keycloak_db_password.result
     db_connection_uri    = "postgresql://infisical:${random_password.infisical_db_password.result}@infisical-db-rw.infisical.svc.cluster.local:5432/infisical"
     backup_bucket        = google_storage_bucket.infisical_backups.name
     backup_access_key    = google_storage_hmac_key.infisical_backup.access_id

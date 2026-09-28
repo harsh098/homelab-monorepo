@@ -48,6 +48,12 @@ resource "google_storage_bucket_iam_member" "infisical_backup_writer" {
   member = "serviceAccount:${google_service_account.infisical_backup.email}"
 }
 
+resource "google_storage_bucket_iam_member" "infisical_backup_bucket_reader" {
+  bucket = google_storage_bucket.infisical_backups.name
+  role   = "roles/storage.legacyBucketReader"
+  member = "serviceAccount:${google_service_account.infisical_backup.email}"
+}
+
 resource "google_storage_hmac_key" "infisical_backup" {
   service_account_email = google_service_account.infisical_backup.email
   project               = var.project_id

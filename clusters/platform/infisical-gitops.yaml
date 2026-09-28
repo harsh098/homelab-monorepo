@@ -87,6 +87,24 @@ spec:
         key: infisical-bootstrap
         property: db_connection_uri
 ---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: infisical-backups
+  namespace: infisical
+spec:
+  configuration:
+    destinationPath: gs://hmx-infisical-backups/infisical
+    googleCredentials:
+      applicationCredentials:
+        name: infisical-bootstrap
+        key: SERVICE_ACCOUNT_JSON
+    data:
+      compression: gzip
+      encryption: AES256
+    wal:
+      compression: gzip
+---
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -106,18 +124,22 @@ spec:
   storage:
     size: 20Gi
     storageClass: local-path-retain
-  backup:
-    barmanObjectStore:
-      destinationPath: s3://hmx-infisical-backups/infisical
-      endpointURL: https://storage.googleapis.com
-      s3Credentials:
-        accessKeyId:
-          name: infisical-bootstrap
-          key: ACCESS_KEY_ID
-        secretAccessKey:
-          name: infisical-bootstrap
-          key: ACCESS_SECRET_KEY
-      wal:
-        compression: gzip
-      data:
-        compression: gzip
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: infisical-backups
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: infisical-db-daily
+  namespace: infisical
+spec:
+  schedule: "0 0 2 * * *"
+  backupOwnerReference: self
+  cluster:
+    name: infisical-db
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io

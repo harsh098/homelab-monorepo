@@ -24,13 +24,13 @@ data "google_project" "current" {
 }
 
 resource "google_kms_key_ring" "infisical_backups" {
-  name     = "infisical-backups"
-  location = var.region
+  name     = "infisical-backups-in"
+  location = "asia-south1"
   project  = var.project_id
 }
 
 resource "google_kms_crypto_key" "infisical_backups" {
-  name            = "infisical-backups"
+  name            = "infisical-backups-in"
   key_ring        = google_kms_key_ring.infisical_backups.id
   rotation_period = "7776000s"
 }
@@ -48,8 +48,8 @@ resource "google_kms_crypto_key_iam_member" "gcs_service_agent" {
 }
 
 resource "google_storage_bucket" "infisical_backups" {
-  name                        = "hmx-infisical-backups"
-  location                    = var.region
+  name                        = "hmx-infisical-backups-in"
+  location                    = "asia-south1"
   project                     = var.project_id
   uniform_bucket_level_access = true
   public_access_prevention    = "enforced"

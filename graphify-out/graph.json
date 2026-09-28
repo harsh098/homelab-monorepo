@@ -1879,7 +1879,7 @@
       "node_kind": "heading",
       "norm_label": "stateful database safety",
       "source_file": "README.md",
-      "source_location": "L514"
+      "source_location": "L515"
     },
     {
       "id": "readme_terraform_layers",
@@ -4881,7 +4881,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L514",
+      "source_location": "L515",
       "weight": 1.0
     },
     {
@@ -7427,17 +7427,6 @@
     },
     {
       "source": "05_gcp_google_kms_key_ring_infisical_backups",
-      "target": "05_gcp_var_region",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/05-gcp/infisical.tf",
-      "source_location": "L28",
-      "weight": 1.0
-    },
-    {
-      "source": "05_gcp_google_kms_key_ring_infisical_backups",
       "target": "05_gcp_var_project_id",
       "relation": "references",
       "_origin": "ast",
@@ -7658,17 +7647,6 @@
     },
     {
       "source": "05_gcp_google_storage_bucket_infisical_backups",
-      "target": "05_gcp_var_region",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/05-gcp/infisical.tf",
-      "source_location": "L52",
-      "weight": 1.0
-    },
-    {
-      "source": "05_gcp_google_storage_bucket_infisical_backups",
       "target": "05_gcp_var_project_id",
       "relation": "references",
       "_origin": "ast",
@@ -7773,5 +7751,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "0dcf0cb934fbc112f52df7036fbd2cb2dbcba39f"
+  "built_at_commit": "c4eccd78c690f171d194c9c4b66c222997789f52"
 }

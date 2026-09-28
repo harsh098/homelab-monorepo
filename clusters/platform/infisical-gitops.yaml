@@ -94,7 +94,7 @@ metadata:
   namespace: infisical
 spec:
   configuration:
-    destinationPath: gs://hmx-infisical-backups/infisical
+    destinationPath: gs://hmx-infisical-backups-in/infisical
     googleCredentials:
       applicationCredentials:
         name: infisical-bootstrap

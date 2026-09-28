@@ -464,9 +464,10 @@ tofu apply -auto-approve -input=false
 
 The self-hosted Infisical deployment is split across Terraform and Flux:
 
-- Terraform creates the private `hmx-infisical-backups` GCS bucket, enforces
-  uniform bucket-level access and public-access prevention, and deletes objects
-  older than 48 hours.
+- Terraform creates the private `hmx-infisical-backups-in` GCS bucket in
+  `asia-south1` (Mumbai), enforces uniform bucket-level access and public-access
+  prevention, encrypts objects with the regional Cloud KMS key
+  `infisical-backups-in`, and deletes objects older than 48 hours.
 - Terraform creates the `infisical-bootstrap` GCP Secret Manager secret. It
   contains the Infisical encryption/auth values, CNPG database credentials,
   GCS backup credentials, and the backup service-account JSON.

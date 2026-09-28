@@ -1,17 +1,17 @@
 # Graph Report - llm-studio  (2026-09-28)
 
 ## Corpus Check
-- 54 files · ~150,454 words
+- 54 files · ~150,466 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: (none) 3, .tftpl 2, .cfg 1)
 
 ## Summary
-- 282 nodes · 405 edges · 42 communities (19 shown, 11 thin omitted)
+- 282 nodes · 403 edges · 42 communities (19 shown, 11 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0dcf0cb9`
+- Built from commit: `c4eccd78`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -105,7 +105,7 @@ Cohesion: 0.40
 Nodes (4): provider.registry.opentofu.org/hashicorp/google, provider.registry.opentofu.org/hashicorp/helm, provider.registry.opentofu.org/hashicorp/kubernetes, provider.registry.opentofu.org/hashicorp/random
 
 ### Community 9 - "05-gcp/infisical.tf"
-Cohesion: 0.20
+Cohesion: 0.19
 Nodes (21): data.google_project.current, google_kms_crypto_key_iam_member.gcs_service_agent, google_kms_crypto_key_iam_member.infisical_backup_encrypter, google_kms_crypto_key.infisical_backups, google_kms_key_ring.infisical_backups, google_secret_manager_secret_iam_member.infisical_bootstrap_reader, google_secret_manager_secret.infisical_bootstrap, google_secret_manager_secret_version.infisical_bootstrap (+13 more)
 
 ### Community 27 - "What You Must Do When Invoked"
@@ -153,8 +153,8 @@ Cohesion: 0.35
 Nodes (11): RuntimeError, _json_object(), main(), _parser(), Any, ArgumentParser, SSLContext, Create or update the Platform realm Google identity provider. Credentials are… (+3 more)
 
 ## Knowledge Gaps
-- **74 isolated node(s):** `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local`, `provider.registry.opentofu.org/kreuzwerker/docker`, `provider.docker` (+69 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 115 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **75 isolated node(s):** `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local`, `provider.registry.opentofu.org/kreuzwerker/docker`, `provider.docker` (+70 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 116 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
@@ -167,7 +167,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `var.gcp_project_id` connect `kubernetes_manifest.gcp_secret_store` to `pki.tf`?**
   _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **What connects `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local` to the rest of the system?**
-  _74 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _75 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `What You Must Do When Invoked` be split into smaller, more focused modules?**
   _Cohesion score 0.08 - nodes in this community are weakly interconnected._
 - **Should `Terraform layers` be split into smaller, more focused modules?**

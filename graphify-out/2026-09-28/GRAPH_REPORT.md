@@ -1,17 +1,17 @@
-# Graph Report - llm-studio  (2026-09-28)
+# Graph Report - llm-studio  (2026-09-27)
 
 ## Corpus Check
-- 54 files · ~150,386 words
+- 54 files · ~150,328 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: (none) 3, .tftpl 2, .cfg 1)
 
 ## Summary
-- 277 nodes · 391 edges · 42 communities (19 shown, 11 thin omitted)
+- 276 nodes · 388 edges · 42 communities (19 shown, 11 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3382cf3a`
+- Built from commit: `331382be`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -105,8 +105,8 @@ Cohesion: 0.40
 Nodes (4): provider.registry.opentofu.org/hashicorp/google, provider.registry.opentofu.org/hashicorp/helm, provider.registry.opentofu.org/hashicorp/kubernetes, provider.registry.opentofu.org/hashicorp/random
 
 ### Community 9 - "05-gcp/infisical.tf"
-Cohesion: 0.24
-Nodes (16): google_secret_manager_secret_iam_member.infisical_bootstrap_reader, google_secret_manager_secret.infisical_bootstrap, google_secret_manager_secret_version.infisical_bootstrap, google_service_account.infisical_backup, google_service_account_key.infisical_backup, google_storage_bucket_iam_member.infisical_backup_bucket_reader, google_storage_bucket_iam_member.infisical_backup_writer, google_storage_bucket.infisical_backups (+8 more)
+Cohesion: 0.25
+Nodes (15): google_secret_manager_secret_iam_member.infisical_bootstrap_reader, google_secret_manager_secret.infisical_bootstrap, google_secret_manager_secret_version.infisical_bootstrap, google_service_account.infisical_backup, google_service_account_key.infisical_backup, google_storage_bucket_iam_member.infisical_backup_writer, google_storage_bucket.infisical_backups, google_storage_hmac_key.infisical_backup (+7 more)
 
 ### Community 27 - "What You Must Do When Invoked"
 Cohesion: 0.08

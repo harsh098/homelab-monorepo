@@ -101,7 +101,6 @@ spec:
         key: SERVICE_ACCOUNT_JSON
     data:
       compression: gzip
-      encryption: AES256
     wal:
       compression: gzip
 ---

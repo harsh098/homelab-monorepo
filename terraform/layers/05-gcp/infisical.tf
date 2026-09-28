@@ -18,6 +18,35 @@ resource "random_password" "keycloak_db_password" {
   special = false
 }
 
+
+data "google_project" "current" {
+  project_id = var.project_id
+}
+
+resource "google_kms_key_ring" "infisical_backups" {
+  name     = "infisical-backups"
+  location = var.region
+  project  = var.project_id
+}
+
+resource "google_kms_crypto_key" "infisical_backups" {
+  name            = "infisical-backups"
+  key_ring        = google_kms_key_ring.infisical_backups.id
+  rotation_period = "7776000s"
+}
+
+resource "google_kms_crypto_key_iam_member" "infisical_backup_encrypter" {
+  crypto_key_id = google_kms_crypto_key.infisical_backups.id
+  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+  member        = "serviceAccount:${google_service_account.infisical_backup.email}"
+}
+
+resource "google_kms_crypto_key_iam_member" "gcs_service_agent" {
+  crypto_key_id = google_kms_crypto_key.infisical_backups.id
+  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+  member        = "serviceAccount:service-${data.google_project.current.number}@gs-project-accounts.iam.gserviceaccount.com"
+}
+
 resource "google_storage_bucket" "infisical_backups" {
   name                        = "hmx-infisical-backups"
   location                    = var.region
@@ -25,6 +54,9 @@ resource "google_storage_bucket" "infisical_backups" {
   uniform_bucket_level_access = true
   public_access_prevention    = "enforced"
   force_destroy               = false
+  encryption {
+    default_kms_key_name = google_kms_crypto_key.infisical_backups.id
+  }
 
   lifecycle_rule {
     condition {

@@ -15,13 +15,13 @@ write_files:
   - path: /etc/systemd/resolved.conf.d/10-homelab-dns.conf
     content: |
       [Resolve]
-      DNS=1.1.1.1
-      FallbackDNS=8.8.8.8
+      DNS=192.168.1.4
+      FallbackDNS=192.168.1.4
     permissions: "0644"
 
 runcmd:
-  - systemctl restart systemd-resolved
-  - curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --disable traefik --disable-network-policy --tls-san ${k8s_api_hostname}" sh -s -
+  - ln -sfn /run/systemd/resolve/resolv.conf /etc/resolv.conf
+  - curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --disable traefik --disable-network-policy --resolv-conf /run/systemd/resolve/resolv.conf --tls-san ${k8s_api_hostname}" sh -s -
   - |
     node_ip="$(hostname -I | awk '{print $1}')"
     mkdir -p /home/ubuntu/.kube

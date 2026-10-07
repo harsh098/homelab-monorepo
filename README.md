@@ -45,9 +45,9 @@ individually from their directories:
   Terraform manages the persistent paths under
   `terraform/layers/02-dns/adguard-managed/`: the generated source
   `adguard.platform.home.arpa` -> `192.168.1.4`, and
-  `keycloak.platform.home.arpa`, `capacitor.platform.home.arpa`,
-  `traefik.platform.home.arpa`, and `kube-api.platform.home.arpa` ->
-  `192.168.10.220`.
+  `keycloak.platform.home.arpa`, `infisical.platform.home.arpa`,
+  `capacitor.platform.home.arpa`, `traefik.platform.home.arpa`, and
+  `kube-api.platform.home.arpa` -> `192.168.10.220`.
   The `dns_records` variable is a `map(string)` of hostname-to-IP entries
   merged over these defaults, so caller-supplied entries override them.
   For example, add Grafana with:
@@ -513,6 +513,23 @@ The expected Infisical URL is:
 ```text
 https://infisical.platform.home.arpa
 ```
+
+For browser access, the client must resolve this name through AdGuard
+(`192.168.1.4`) and trust the homelab private CA. On Fedora, export only the
+public CA certificate from the cluster and install it in the system trust store:
+
+```bash
+KUBECONFIG=terraform/layers/03-compute/kubeconfig \
+  kubectl -n cert-manager get secret homelab-private-ca \
+  -o jsonpath='{.data.tls\.crt}' | base64 -d > /tmp/homelab-ca.crt
+sudo install -m 0644 /tmp/homelab-ca.crt \
+  /etc/pki/ca-trust/source/anchors/homelab-ca.crt
+sudo update-ca-trust
+```
+
+Restart the browser after installing the CA. On other devices, import the
+same public certificate into that device's trusted certificate authorities;
+never export or install the CA private key on clients.
 
 The initial Infisical organization, project, administrator, and machine
 identity are intentionally a one-time bootstrap operation. Do not commit

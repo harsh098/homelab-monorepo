@@ -1,7 +1,7 @@
 # Graph Report - llm-studio  (2026-10-08)
 
 ## Corpus Check
-- 54 files · ~150,710 words
+- 54 files · ~150,816 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: (none) 3, .tftpl 2, .cfg 1)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d3db7050`
+- Built from commit: `579328b8`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 

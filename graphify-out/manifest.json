@@ -72,9 +72,9 @@
     "semantic_hash": "e6b02ca53f9ae81c708b33cef0ba723d"
   },
   "terraform/layers/02-dns/main.tf": {
-    "mtime": 1790446315.812777,
-    "seen": 1790446639.6555133,
-    "ast_hash": "c53b1059071823811d72c5f7b6273060",
+    "mtime": 1791405852.517211,
+    "seen": 1791406021.5620158,
+    "ast_hash": "43c4c275759758602a96b91198eb5a00",
     "semantic_hash": ""
   },
   "terraform/layers/02-dns/providers.tf": {
@@ -282,9 +282,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1791405034.156794,
-    "seen": 1791405084.42438,
-    "ast_hash": "a80e9afe4d904b5d7898487f2403840c",
+    "mtime": 1791406007.7817647,
+    "seen": 1791406021.5620675,
+    "ast_hash": "f1a367c2df6bf85a376e4b6e47f24232",
     "semantic_hash": ""
   },
   "ansible/infra.yml": {
@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "terraform/layers/02-dns/adguard-managed/AdGuardHome.yaml": {
-    "mtime": 1790443967.6946552,
-    "seen": 1790444264.4026687,
-    "ast_hash": "291daca30d16b8cb649a6be4712e347d",
+    "mtime": 1791405867.104451,
+    "seen": 1791406021.5621312,
+    "ast_hash": "c9f10dbf383da7af8cd573cb35655796",
     "semantic_hash": ""
   },
   "tools/kubectl-keycloak-login.py": {

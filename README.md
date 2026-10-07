@@ -471,10 +471,11 @@ The self-hosted Infisical deployment is split across Terraform and Flux:
 - Terraform creates the `infisical-bootstrap` GCP Secret Manager secret. It
   contains the Infisical encryption/auth values, CNPG database credentials,
   GCS backup credentials, and the backup service-account JSON.
-- Flux creates the `infisical` namespace, the CNPG PostgreSQL cluster, and
-  ExternalSecrets that read the bootstrap secret.
-- The Infisical Helm release uses the CNPG connection string and a persistent
-  Redis instance.
+- Terraform creates the `infisical` namespace, TLS certificate, and the
+  Redis Helm-values Secret containing the existing generated password.
+- Flux creates the CNPG PostgreSQL cluster and ExternalSecrets, then manages
+  the pinned Infisical Helm release (including persistent Redis). Apply the
+  Terraform layer before Flux so its namespace and Redis values exist.
 
 Recover or rebuild in this order:
 
@@ -488,9 +489,9 @@ cd ../04-platform
 tofu init
 tofu apply -auto-approve -input=false
 
+# Run from the repository root after Terraform has finished:
 KUBECONFIG=terraform/layers/03-compute/kubeconfig \
-  kubectl apply -k ../../clusters/platform
-```
+  kubectl apply -k clusters/platform
 
 Verify the bootstrap material and database:
 

@@ -97,7 +97,7 @@ resource "kubernetes_manifest" "infisical_certificate" {
     kind       = "Certificate"
     metadata = {
       name      = "infisical-platform-home-arpa"
-      namespace = "infisical"
+      namespace = kubernetes_manifest.infisical.manifest.metadata.name
     }
     spec = {
       secretName = local.infisical_tls_secret_name

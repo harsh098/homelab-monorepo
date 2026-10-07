@@ -168,9 +168,9 @@
     "semantic_hash": ""
   },
   "terraform/layers/04-platform/pki.tf": {
-    "mtime": 1790446332.5910513,
-    "seen": 1790446639.6555364,
-    "ast_hash": "6dc45cba2b06fe366d1d2b98180c18cd",
+    "mtime": 1791401782.0642865,
+    "seen": 1791401986.8765688,
+    "ast_hash": "fa04eaaff5825b19dc898d101b783e2a",
     "semantic_hash": ""
   },
   "terraform/layers/04-platform/providers.tf": {
@@ -282,9 +282,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1790618325.2692895,
-    "seen": 1790618332.4473557,
-    "ast_hash": "6c314fba5b48c0d81c0805cb6206fe5f",
+    "mtime": 1791401879.2778413,
+    "seen": 1791401986.8765948,
+    "ast_hash": "7baf937ee334778b0cfdd58908d47c99",
     "semantic_hash": ""
   },
   "ansible/infra.yml": {
@@ -318,9 +318,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/kustomization.yaml": {
-    "mtime": 1790606307.9579098,
-    "seen": 1790607229.5967057,
-    "ast_hash": "a0ff880bc9629d2c08af53b596cfcd1e",
+    "mtime": 1791401787.0613666,
+    "seen": 1791401986.8766286,
+    "ast_hash": "ce5a43f262ec8027845acca71beffbcf",
     "semantic_hash": ""
   },
   "platform-os/README.md": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "terraform/layers/04-platform/infisical.tf": {
-    "mtime": 1790446322.0988798,
-    "seen": 1790446639.6555297,
-    "ast_hash": "a9a634cf8f832a91bfdeedc8ae6fd175",
+    "mtime": 1791401782.0632865,
+    "seen": 1791401986.8765619,
+    "ast_hash": "aeaa98d6612c8b9e240f3874003b53ad",
     "semantic_hash": ""
   },
   "terraform/layers/05-gcp/infisical.tf": {
@@ -474,9 +474,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/infisical-gitops.yaml": {
-    "mtime": 1790617833.581199,
-    "seen": 1790618332.4473698,
-    "ast_hash": "1e6f568163fe8c952e79d11cf4ef009e",
+    "mtime": 1791401787.0613666,
+    "seen": 1791401986.8766167,
+    "ast_hash": "545e4965344d7f8a74efad1b59478b3a",
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/infisical-oidc.yaml": {
@@ -495,6 +495,12 @@
     "mtime": 1790511913.4615424,
     "seen": 1790511964.0639625,
     "ast_hash": "688968090eafc37e7ce7126945a5455c",
+    "semantic_hash": ""
+  },
+  "clusters/platform/infisical-release.yaml": {
+    "mtime": 1791401799.7585695,
+    "seen": 1791401986.8766184,
+    "ast_hash": "cf38174dbe5ef4a2da9e6e3a5c33d331",
     "semantic_hash": ""
   }
 }

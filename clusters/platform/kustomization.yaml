@@ -8,4 +8,5 @@ resources:
   - controller
   - keycloak-gitops
   - infisical-gitops.yaml
+  - infisical-release.yaml
   - apps

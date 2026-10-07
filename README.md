@@ -303,9 +303,11 @@ access-role names. Realm imports do not update or delete an existing realm.
 
 Crossplane 2.4.1 and `provider-keycloak` 3.0.1 own ongoing `Platform` identity
 state in `clusters/platform/keycloak-gitops/identities.yaml`: realm roles,
-groups, group-role mappings, users, and group memberships. Provider
-credentials are intentionally not provisioned by this repository; configure
-the selected secret-management strategy separately.
+groups, group-role mappings, users, and group memberships. Terraform supplies
+`crossplane-system/keycloak-crossplane-credentials` from the Keycloak bootstrap
+admin password; Flux installs the provider and its ProviderConfig. Apply the
+platform Terraform layer before Flux. Rotate the admin password through the
+Keycloak API and Terraform credential source together when replacing it.
 
 Do not store user passwords in this repository or in the recovery secret.
 Google remains the interactive authentication source. The operator does not

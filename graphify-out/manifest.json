@@ -150,9 +150,9 @@
     "semantic_hash": ""
   },
   "terraform/layers/04-platform/keycloak.tf": {
-    "mtime": 1790444007.933384,
-    "seen": 1790444264.4026086,
-    "ast_hash": "743bacb29df5b24563eea78624404b33",
+    "mtime": 1791403192.4559069,
+    "seen": 1791403458.216001,
+    "ast_hash": "9f6d118caf334d92cec2825b4b1c06c2",
     "semantic_hash": ""
   },
   "terraform/layers/04-platform/main.tf": {
@@ -282,9 +282,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1791401879.2778413,
-    "seen": 1791401986.8765948,
-    "ast_hash": "7baf937ee334778b0cfdd58908d47c99",
+    "mtime": 1791403433.113784,
+    "seen": 1791403458.2160199,
+    "ast_hash": "ec621751580e17c82e96b5eca8f64921",
     "semantic_hash": ""
   },
   "ansible/infra.yml": {
@@ -312,9 +312,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/keycloak-gitops/kustomization.yaml": {
-    "mtime": 1790508434.9113455,
-    "seen": 1790508984.5482764,
-    "ast_hash": "7535b5a0f502e5be92e64d5451a6d4ea",
+    "mtime": 1791403205.7961218,
+    "seen": 1791403458.2160397,
+    "ast_hash": "6f1c373e7124616dbc2424d96da2870a",
     "semantic_hash": ""
   },
   "clusters/platform/kustomization.yaml": {
@@ -501,6 +501,12 @@
     "mtime": 1791401799.7585695,
     "seen": 1791401986.8766184,
     "ast_hash": "cf38174dbe5ef4a2da9e6e3a5c33d331",
+    "semantic_hash": ""
+  },
+  "clusters/platform/keycloak-gitops/crossplane-provider.yaml": {
+    "mtime": 1791403198.978012,
+    "seen": 1791403458.2160351,
+    "ast_hash": "0f8bfe423239873db24a60362cbf583e",
     "semantic_hash": ""
   }
 }

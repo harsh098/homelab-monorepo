@@ -45,6 +45,25 @@ resource "kubernetes_secret_v1" "keycloak_admin" {
   data_wo_revision = 1
 }
 
+resource "kubernetes_secret_v1" "keycloak_crossplane_credentials" {
+  metadata {
+    name      = "keycloak-crossplane-credentials"
+    namespace = "crossplane-system"
+  }
+
+  type = "Opaque"
+  data_wo = {
+    credentials = jsonencode({
+      client_id = "admin-cli"
+      username  = local.keycloak_admin_username
+      password  = random_password.keycloak_admin.result
+      url       = "http://keycloak-service.keycloak.svc:8080"
+      realm     = "master"
+    })
+  }
+  data_wo_revision = 1
+}
+
 
 resource "google_secret_manager_secret" "keycloak_admin_recovery" {
   secret_id = "keycloak-admin-recovery"

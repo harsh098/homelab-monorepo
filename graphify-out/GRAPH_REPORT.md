@@ -1,17 +1,17 @@
 # Graph Report - llm-studio  (2026-10-08)
 
 ## Corpus Check
-- 54 files · ~150,502 words
+- 54 files · ~150,600 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: (none) 3, .tftpl 2, .cfg 1)
 
 ## Summary
-- 282 nodes · 402 edges · 42 communities (19 shown, 11 thin omitted)
+- 283 nodes · 405 edges · 42 communities (19 shown, 11 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `60016468`
+- Built from commit: `36ee07ad`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -85,8 +85,8 @@ Cohesion: 0.16
 Nodes (17): libvirt_cloudinit_disk.k8s_cloudinit, libvirt_domain.k8s_node, libvirt_volume.k8s_node, libvirt_volume.ubuntu_base, output.k8s_node_ip, output.k8s_node_mac, output.kubeconfig_path, provider.libvirt (+9 more)
 
 ### Community 2 - "keycloak.tf"
-Cohesion: 0.29
-Nodes (10): google_secret_manager_secret.keycloak_admin_recovery, google_secret_manager_secret_version.keycloak_admin_recovery_initial, kubernetes_manifest.keycloak, kubernetes_secret_v1.keycloak_admin, local.keycloak_admin_recovery_bundle, local.keycloak_admin_username, output.keycloak_admin_recovery_secret_name, output.keycloak_admin_recovery_secret_version (+2 more)
+Cohesion: 0.28
+Nodes (11): google_secret_manager_secret.keycloak_admin_recovery, google_secret_manager_secret_version.keycloak_admin_recovery_initial, kubernetes_manifest.keycloak, kubernetes_secret_v1.keycloak_admin, kubernetes_secret_v1.keycloak_crossplane_credentials, local.keycloak_admin_recovery_bundle, local.keycloak_admin_username, output.keycloak_admin_recovery_secret_name (+3 more)
 
 ### Community 3 - "02-dns/main.tf"
 Cohesion: 0.24
@@ -160,10 +160,10 @@ Nodes (11): RuntimeError, _json_object(), main(), _parser(), Any, ArgumentParser
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
+- **Why does `kubernetes_manifest.keycloak_certificate` connect `pki.tf` to `keycloak.tf`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
 - **Why does `OIDCError` connect `kubectl-keycloak-login.py` to `configure-keycloak-google-idp.py`?**
   _High betweenness centrality (0.009) - this node is a cross-community bridge._
-- **Why does `kubernetes_manifest.keycloak_certificate` connect `pki.tf` to `keycloak.tf`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **Why does `var.gcp_project_id` connect `kubernetes_manifest.gcp_secret_store` to `pki.tf`?**
   _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **What connects `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local` to the rest of the system?**

@@ -1124,7 +1124,7 @@
       "file_type": "code",
       "norm_label": "google_secret_manager_secret.keycloak_admin_recovery",
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L49"
+      "source_location": "L68"
     },
     {
       "id": "04_platform_google_secret_manager_secret_version_keycloak_admin_recovery_initial",
@@ -1135,7 +1135,7 @@
       "file_type": "code",
       "norm_label": "google_secret_manager_secret_version.keycloak_admin_recovery_initial",
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L57"
+      "source_location": "L76"
     },
     {
       "id": "04_platform_kubernetes_manifest_keycloak",
@@ -1158,6 +1158,17 @@
       "norm_label": "kubernetes_secret_v1.keycloak_admin",
       "source_file": "terraform/layers/04-platform/keycloak.tf",
       "source_location": "L32"
+    },
+    {
+      "id": "04_platform_kubernetes_secret_v1_keycloak_crossplane_credentials",
+      "label": "kubernetes_secret_v1.keycloak_crossplane_credentials",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "keycloak.tf",
+      "file_type": "code",
+      "norm_label": "kubernetes_secret_v1.keycloak_crossplane_credentials",
+      "source_file": "terraform/layers/04-platform/keycloak.tf",
+      "source_location": "L48"
     },
     {
       "id": "04_platform_local_keycloak_admin_recovery_bundle",
@@ -1770,7 +1781,7 @@
       "node_kind": "heading",
       "norm_label": "deploy headlamp",
       "source_file": "README.md",
-      "source_location": "L411"
+      "source_location": "L413"
     },
     {
       "id": "readme_gitops_role_and_user_workflow",
@@ -1782,7 +1793,7 @@
       "node_kind": "heading",
       "norm_label": "gitops role and user workflow",
       "source_file": "README.md",
-      "source_location": "L357"
+      "source_location": "L359"
     },
     {
       "id": "readme_homelab",
@@ -1806,7 +1817,7 @@
       "node_kind": "heading",
       "norm_label": "infisical recovery and bootstrap",
       "source_file": "README.md",
-      "source_location": "L463"
+      "source_location": "L465"
     },
     {
       "id": "readme_keycloak_bootstrap_and_oidc_provisioning",
@@ -1830,7 +1841,7 @@
       "node_kind": "heading",
       "norm_label": "manual google sign-in runbook",
       "source_file": "README.md",
-      "source_location": "L315"
+      "source_location": "L317"
     },
     {
       "id": "readme_power_outage_recovery",
@@ -4803,7 +4814,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L315",
+      "source_location": "L317",
       "weight": 1.0
     },
     {
@@ -4814,7 +4825,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L357",
+      "source_location": "L359",
       "weight": 1.0
     },
     {
@@ -4858,7 +4869,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L411",
+      "source_location": "L413",
       "weight": 1.0
     },
     {
@@ -4869,7 +4880,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L463",
+      "source_location": "L465",
       "weight": 1.0
     },
     {
@@ -5424,24 +5435,13 @@
     },
     {
       "source": "terraform_layers_04_platform_keycloak",
-      "target": "04_platform_google_secret_manager_secret_keycloak_admin_recovery",
+      "target": "04_platform_kubernetes_secret_v1_keycloak_crossplane_credentials",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L49",
-      "weight": 1.0
-    },
-    {
-      "source": "terraform_layers_04_platform_keycloak",
-      "target": "04_platform_google_secret_manager_secret_version_keycloak_admin_recovery_initial",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L57",
+      "source_location": "L48",
       "weight": 1.0
     },
     {
@@ -5453,6 +5453,28 @@
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
       "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_04_platform_keycloak",
+      "target": "04_platform_google_secret_manager_secret_keycloak_admin_recovery",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/keycloak.tf",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_04_platform_keycloak",
+      "target": "04_platform_google_secret_manager_secret_version_keycloak_admin_recovery_initial",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/keycloak.tf",
+      "source_location": "L76",
       "weight": 1.0
     },
     {
@@ -7003,7 +7025,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L58",
+      "source_location": "L77",
       "weight": 1.0
     },
     {
@@ -7014,7 +7036,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
-      "source_location": "L59",
+      "source_location": "L78",
       "weight": 1.0
     },
     {
@@ -7224,6 +7246,28 @@
       "confidence_score": 1.0,
       "source_file": "terraform/layers/04-platform/keycloak.tf",
       "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "04_platform_kubernetes_secret_v1_keycloak_crossplane_credentials",
+      "target": "04_platform_local_keycloak_admin_username",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/keycloak.tf",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "04_platform_kubernetes_secret_v1_keycloak_crossplane_credentials",
+      "target": "04_platform_random_password_keycloak_admin",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/04-platform/keycloak.tf",
+      "source_location": "L59",
       "weight": 1.0
     },
     {
@@ -7739,5 +7783,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "60016468c20beee4f827b4262d1a2b261d630128"
+  "built_at_commit": "36ee07ad92f6c42059643a8ef798600003902bdc"
 }

@@ -282,9 +282,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1791403433.113784,
-    "seen": 1791403458.2160199,
-    "ast_hash": "ec621751580e17c82e96b5eca8f64921",
+    "mtime": 1791405034.156794,
+    "seen": 1791405084.42438,
+    "ast_hash": "a80e9afe4d904b5d7898487f2403840c",
     "semantic_hash": ""
   },
   "ansible/infra.yml": {
@@ -311,16 +311,10 @@
     "ast_hash": "05c1a941d25b77e3b2e9de6aa9340d83",
     "semantic_hash": ""
   },
-  "clusters/platform/keycloak-gitops/kustomization.yaml": {
-    "mtime": 1791403205.7961218,
-    "seen": 1791403458.2160397,
-    "ast_hash": "6f1c373e7124616dbc2424d96da2870a",
-    "semantic_hash": ""
-  },
   "clusters/platform/kustomization.yaml": {
-    "mtime": 1791401787.0613666,
-    "seen": 1791401986.8766286,
-    "ast_hash": "ce5a43f262ec8027845acca71beffbcf",
+    "mtime": 1791405023.8806255,
+    "seen": 1791405084.4244044,
+    "ast_hash": "384b94ff5a631bf3e29a63f7ac2030d8",
     "semantic_hash": ""
   },
   "platform-os/README.md": {
@@ -341,28 +335,10 @@
     "ast_hash": "a10aa6822d9637b4e9b51809884d0a68",
     "semantic_hash": ""
   },
-  "clusters/platform/keycloak-gitops/rbac.yaml": {
-    "mtime": 1789806390.577101,
-    "seen": 1789818626.7902262,
-    "ast_hash": "b9061b36778918705b30b846c73097c9",
-    "semantic_hash": ""
-  },
   "tools/merge-kubeconfig.py": {
     "mtime": 1789392837.688942,
     "seen": 1789392892.3244293,
     "ast_hash": "dd4cd30fcc9fcb6dc217957fe730384a",
-    "semantic_hash": ""
-  },
-  "clusters/platform/keycloak-gitops/keycloak.yaml": {
-    "mtime": 1789586021.641092,
-    "seen": 1789754764.3630185,
-    "ast_hash": "40f82d6366a8b419fedeac8091ee0eb7",
-    "semantic_hash": ""
-  },
-  "clusters/platform/keycloak-gitops/realm-import.yaml": {
-    "mtime": 1790443935.0860648,
-    "seen": 1790444264.402665,
-    "ast_hash": "2d28cfa42f0283575d212f5c6040bf06",
     "semantic_hash": ""
   },
   "clusters/platform/apps/kustomization.yaml": {
@@ -371,70 +347,10 @@
     "ast_hash": "658d8f8ff56efd869bc18740fcb724ed",
     "semantic_hash": ""
   },
-  "clusters/platform/controller/cnpg-operator.yaml": {
-    "mtime": 1789496060.507696,
-    "seen": 1789496358.9724672,
-    "ast_hash": "3c0bd45c869eff464a663b13785c96ab",
-    "semantic_hash": ""
-  },
-  "clusters/platform/controller/keycloakoidcclients.k8s.keycloak.org-v1.yml": {
-    "mtime": 1789495829.2428484,
-    "seen": 1789496358.972468,
-    "ast_hash": "ed0aebb2ca56189a42c5ade28a2550b4",
-    "semantic_hash": ""
-  },
-  "clusters/platform/controller/keycloakrealmimports.k8s.keycloak.org-v1.yml": {
-    "mtime": 1789495828.797841,
-    "seen": 1789496358.9724684,
-    "ast_hash": "7da49de248a3c21fc1cfbb4be8523c05",
-    "semantic_hash": ""
-  },
-  "clusters/platform/controller/keycloaks.k8s.keycloak.org-v1.yml": {
-    "mtime": 1789495828.2308316,
-    "seen": 1789496358.9724693,
-    "ast_hash": "ff5ff4e33c2979bc7221250d12217987",
-    "semantic_hash": ""
-  },
-  "clusters/platform/controller/kustomization.yaml": {
-    "mtime": 1789840188.3732285,
-    "seen": 1789840196.5189192,
-    "ast_hash": "2de146eb06195ad9a20c7de6326e73f0",
-    "semantic_hash": ""
-  },
-  "clusters/platform/controller/operator.yaml": {
-    "mtime": 1789496037.3373103,
-    "seen": 1789496358.9724708,
-    "ast_hash": "14312eaf055f5ab876d72b59a665e19d",
-    "semantic_hash": ""
-  },
-  "clusters/platform/controller/keycloaksamlclients.k8s.keycloak.org-v1.yml": {
-    "mtime": 1789584195.8370218,
-    "seen": 1789584223.081446,
-    "ast_hash": "f7fa56cb97b1e38eb23e9b19f682c881",
-    "semantic_hash": ""
-  },
-  "clusters/platform/controller/coredns-custom.yaml": {
-    "mtime": 1789584978.519696,
-    "seen": 1789585609.5423844,
-    "ast_hash": "c6f304672d64289b75cc1b3550df02e3",
-    "semantic_hash": ""
-  },
   "tools/configure-keycloak-google-idp.py": {
     "mtime": 1789754670.1497858,
     "seen": 1789754764.3629937,
     "ast_hash": "e0c9aa9a13833c432f96ccfb88bd4985",
-    "semantic_hash": ""
-  },
-  "clusters/platform/controller/crossplane.yaml": {
-    "mtime": 1789755931.8054821,
-    "seen": 1789757422.6810317,
-    "ast_hash": "d6368a2c23967087c2d8482379b1fb74",
-    "semantic_hash": ""
-  },
-  "clusters/platform/keycloak-gitops/identities.yaml": {
-    "mtime": 1789834856.7076283,
-    "seen": 1789835487.6000981,
-    "ast_hash": "4d3af281058823384cd215f20a845ede",
     "semantic_hash": ""
   },
   "clusters/platform/apps/headlamp/ingress.yaml": {
@@ -447,12 +363,6 @@
     "mtime": 1789840882.7726555,
     "seen": 1789840909.8765287,
     "ast_hash": "10332abac066319ac1a4da96cb9ad310",
-    "semantic_hash": ""
-  },
-  "clusters/platform/keycloak-gitops/headlamp-oidc.yaml": {
-    "mtime": 1790443926.697913,
-    "seen": 1790444264.4026585,
-    "ast_hash": "fb57f8d7ca7ad0779006a11b61407f06",
     "semantic_hash": ""
   },
   "clusters/platform/apps/headlamp/helmrelease.yaml": {
@@ -473,40 +383,190 @@
     "ast_hash": "831a74bef6435d41b6ebb258b8d26e84",
     "semantic_hash": ""
   },
-  "clusters/platform/infisical-gitops.yaml": {
-    "mtime": 1791401787.0613666,
-    "seen": 1791401986.8766167,
-    "ast_hash": "545e4965344d7f8a74efad1b59478b3a",
+  "clusters/platform/controllers/cnpg/kustomization.yaml": {
+    "mtime": 1791404949.6304088,
+    "seen": 1791405084.4243863,
+    "ast_hash": "a503908349eb491ffa339ddee3367da8",
     "semantic_hash": ""
   },
-  "clusters/platform/keycloak-gitops/infisical-oidc.yaml": {
-    "mtime": 1790445762.8657317,
-    "seen": 1790446639.6555867,
-    "ast_hash": "4f79396a4c9f4665427036d7998330c3",
+  "clusters/platform/controllers/cnpg/operator.yaml": {
+    "mtime": 1791404965.398667,
+    "seen": 1791405084.4243872,
+    "ast_hash": "3c0bd45c869eff464a663b13785c96ab",
     "semantic_hash": ""
   },
-  "clusters/platform/keycloak-gitops/database.yaml": {
-    "mtime": 1790511916.8555973,
-    "seen": 1790511964.0639656,
+  "clusters/platform/controllers/crossplane/crossplane.yaml": {
+    "mtime": 1791404965.4316676,
+    "seen": 1791405084.4243882,
+    "ast_hash": "d6368a2c23967087c2d8482379b1fb74",
+    "semantic_hash": ""
+  },
+  "clusters/platform/controllers/crossplane/kustomization.yaml": {
+    "mtime": 1791404951.971447,
+    "seen": 1791405084.4243886,
+    "ast_hash": "5888a64aba9da2fd1b8b3a8afd781bdb",
+    "semantic_hash": ""
+  },
+  "clusters/platform/controllers/dns/coredns-custom.yaml": {
+    "mtime": 1791404965.4326677,
+    "seen": 1791405084.4243891,
+    "ast_hash": "c6f304672d64289b75cc1b3550df02e3",
+    "semantic_hash": ""
+  },
+  "clusters/platform/controllers/dns/kustomization.yaml": {
+    "mtime": 1791404955.9045115,
+    "seen": 1791405084.4243896,
+    "ast_hash": "154a000c9735a2a1081ce1d4ddd5dc4b",
+    "semantic_hash": ""
+  },
+  "clusters/platform/controllers/keycloak/keycloakoidcclients.k8s.keycloak.org-v1.yml": {
+    "mtime": 1791404965.4766684,
+    "seen": 1791405084.42439,
+    "ast_hash": "ed0aebb2ca56189a42c5ade28a2550b4",
+    "semantic_hash": ""
+  },
+  "clusters/platform/controllers/keycloak/keycloakrealmimports.k8s.keycloak.org-v1.yml": {
+    "mtime": 1791404965.4566681,
+    "seen": 1791405084.4243908,
+    "ast_hash": "7da49de248a3c21fc1cfbb4be8523c05",
+    "semantic_hash": ""
+  },
+  "clusters/platform/controllers/keycloak/keycloaks.k8s.keycloak.org-v1.yml": {
+    "mtime": 1791404965.4346676,
+    "seen": 1791405084.4243915,
+    "ast_hash": "ff5ff4e33c2979bc7221250d12217987",
+    "semantic_hash": ""
+  },
+  "clusters/platform/controllers/keycloak/keycloaksamlclients.k8s.keycloak.org-v1.yml": {
+    "mtime": 1791404965.4786685,
+    "seen": 1791405084.424392,
+    "ast_hash": "f7fa56cb97b1e38eb23e9b19f682c881",
+    "semantic_hash": ""
+  },
+  "clusters/platform/controllers/keycloak/kustomization.yaml": {
+    "mtime": 1791404958.559555,
+    "seen": 1791405084.4243925,
+    "ast_hash": "ebdaa2b0a0d456d8b2d7ba32645da6ec",
+    "semantic_hash": ""
+  },
+  "clusters/platform/controllers/keycloak/operator.yaml": {
+    "mtime": 1791404965.4326677,
+    "seen": 1791405084.424393,
+    "ast_hash": "14312eaf055f5ab876d72b59a665e19d",
+    "semantic_hash": ""
+  },
+  "clusters/platform/controllers/kustomization.yaml": {
+    "mtime": 1791404942.5512927,
+    "seen": 1791405084.4243937,
+    "ast_hash": "f3a7f6b315bb3e12b754382fc2225d01",
+    "semantic_hash": ""
+  },
+  "clusters/platform/controllers/tekton/kustomization.yaml": {
+    "mtime": 1791404961.2565992,
+    "seen": 1791405084.4243941,
+    "ast_hash": "d1f87867d782e41ebc81919f00f49e0a",
+    "semantic_hash": ""
+  },
+  "clusters/platform/identity/keycloak-app/database.yaml": {
+    "mtime": 1791404997.732197,
+    "seen": 1791405084.4243968,
     "ast_hash": "6546f10e6b1c3fa435d6a1cc808102ee",
     "semantic_hash": ""
   },
-  "clusters/platform/database-safety.yaml": {
-    "mtime": 1790511913.4615424,
-    "seen": 1790511964.0639625,
+  "clusters/platform/identity/keycloak-app/keycloak.yaml": {
+    "mtime": 1791404997.731197,
+    "seen": 1791405084.4243975,
+    "ast_hash": "40f82d6366a8b419fedeac8091ee0eb7",
+    "semantic_hash": ""
+  },
+  "clusters/platform/identity/keycloak-app/kustomization.yaml": {
+    "mtime": 1791404990.6847394,
+    "seen": 1791405084.4243984,
+    "ast_hash": "d303bdbca1aaabe10f4430dc7e983fd2",
+    "semantic_hash": ""
+  },
+  "clusters/platform/identity/keycloak-app/realm-import.yaml": {
+    "mtime": 1791404997.733197,
+    "seen": 1791405084.424399,
+    "ast_hash": "2d28cfa42f0283575d212f5c6040bf06",
+    "semantic_hash": ""
+  },
+  "clusters/platform/identity/keycloak-gitops/crossplane-provider.yaml": {
+    "mtime": 1791404997.7341971,
+    "seen": 1791405084.4243996,
+    "ast_hash": "0f8bfe423239873db24a60362cbf583e",
+    "semantic_hash": ""
+  },
+  "clusters/platform/identity/keycloak-gitops/headlamp-oidc.yaml": {
+    "mtime": 1791404997.7375216,
+    "seen": 1791405084.4244,
+    "ast_hash": "fb57f8d7ca7ad0779006a11b61407f06",
+    "semantic_hash": ""
+  },
+  "clusters/platform/identity/keycloak-gitops/identities.yaml": {
+    "mtime": 1791404997.735478,
+    "seen": 1791405084.4244006,
+    "ast_hash": "417326ab87dff0efa060d8fcd0d221a9",
+    "semantic_hash": ""
+  },
+  "clusters/platform/identity/keycloak-gitops/infisical-oidc.yaml": {
+    "mtime": 1791404997.736994,
+    "seen": 1791405084.424401,
+    "ast_hash": "4f79396a4c9f4665427036d7998330c3",
+    "semantic_hash": ""
+  },
+  "clusters/platform/identity/keycloak-gitops/kustomization.yaml": {
+    "mtime": 1791404993.944135,
+    "seen": 1791405084.4244027,
+    "ast_hash": "1fe159804784496bc79bbc88c9c4ac74",
+    "semantic_hash": ""
+  },
+  "clusters/platform/identity/keycloak-gitops/rbac.yaml": {
+    "mtime": 1791404997.7361848,
+    "seen": 1791405084.4244032,
+    "ast_hash": "b9061b36778918705b30b846c73097c9",
+    "semantic_hash": ""
+  },
+  "clusters/platform/identity/kustomization.yaml": {
+    "mtime": 1791404985.2919931,
+    "seen": 1791405084.424404,
+    "ast_hash": "114640c5e3702bee756d25562fca553c",
+    "semantic_hash": ""
+  },
+  "clusters/platform/policies/database-safety.yaml": {
+    "mtime": 1791405018.120531,
+    "seen": 1791405084.4244053,
     "ast_hash": "688968090eafc37e7ce7126945a5455c",
     "semantic_hash": ""
   },
-  "clusters/platform/infisical-release.yaml": {
-    "mtime": 1791401799.7585695,
-    "seen": 1791401986.8766184,
+  "clusters/platform/policies/kustomization.yaml": {
+    "mtime": 1791405015.3274853,
+    "seen": 1791405084.424406,
+    "ast_hash": "ab8d4acc60a15481a801db775bae78b9",
+    "semantic_hash": ""
+  },
+  "clusters/platform/secrets-management/infisical/gitops.yaml": {
+    "mtime": 1791405009.633392,
+    "seen": 1791405084.4244065,
+    "ast_hash": "a73d7f6a144823448915d36df0289a45",
+    "semantic_hash": ""
+  },
+  "clusters/platform/secrets-management/infisical/kustomization.yaml": {
+    "mtime": 1791405006.4380777,
+    "seen": 1791405084.424407,
+    "ast_hash": "7655fa4b18cda82d3f3c4c0a15bfc8c3",
+    "semantic_hash": ""
+  },
+  "clusters/platform/secrets-management/infisical/release.yaml": {
+    "mtime": 1791405009.6383922,
+    "seen": 1791405084.4244077,
     "ast_hash": "cf38174dbe5ef4a2da9e6e3a5c33d331",
     "semantic_hash": ""
   },
-  "clusters/platform/keycloak-gitops/crossplane-provider.yaml": {
-    "mtime": 1791403198.978012,
-    "seen": 1791403458.2160351,
-    "ast_hash": "0f8bfe423239873db24a60362cbf583e",
+  "clusters/platform/secrets-management/kustomization.yaml": {
+    "mtime": 1791405003.9462988,
+    "seen": 1791405084.4244084,
+    "ast_hash": "d33e486a375a03202dfcf60e5b6a1154",
     "semantic_hash": ""
   }
 }

@@ -1,12 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - database-safety.yaml
-  - https://github.com/cloudnative-pg/plugin-barman-cloud/releases/download/v0.15.0/manifest.yaml
   - flux-managed.yaml
   - flux-source.yaml
-  - controller
-  - keycloak-gitops
-  - infisical-gitops.yaml
-  - infisical-release.yaml
+  - controllers
+  - identity
+  - secrets-management
   - apps
+  - policies

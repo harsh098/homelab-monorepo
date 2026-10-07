@@ -67,15 +67,16 @@ individually from their directories:
   API readiness succeed. Terraform owns the `keycloak` and operator
   prerequisite namespaces, cert-manager/CA material, ingress certificates,
   and External Secrets installation. Flux owns the CNPG operator, CNPG
-  `Cluster`, Keycloak Operator, Keycloak CR, and create-only
-  `KeycloakRealmImport`. Secret-manager integration is intentionally
-  application-specific and is not deployed by this repository.
+  `Cluster`, Keycloak Operator, Keycloak CR, create-only
+  `KeycloakRealmImport`, and Infisical Helm release.
 - The platform cluster layer is not a generic application deployment layer.
-  Flux reconciles the manifests under `clusters/platform/`. Traefik is the
-  ingress controller and is exposed through the K3s `LoadBalancer` service at
-  `192.168.10.220`. Keycloak 26.7.3 is operator-owned, uses a
-  CloudNativePG-managed PostgreSQL cluster, and receives its TLS certificate
-  from the retained private CA.
+  Flux reconciles `clusters/platform/` through one platform Kustomization:
+  `controllers/` holds controller-specific installations, `identity/` holds
+  `keycloak-app/` and `keycloak-gitops/`, `secrets-management/` holds Infisical,
+  `apps/` holds user applications, and `policies/` holds platform safeguards.
+  Traefik is exposed through the K3s `LoadBalancer` service at
+  `192.168.10.220`. Keycloak 26.7.3 uses a CloudNativePG-managed PostgreSQL
+  cluster and receives its TLS certificate from the retained private CA.
 
 
 
@@ -302,7 +303,7 @@ authorization-code + PKCE redirect URI, protocol mappers, and the initial
 access-role names. Realm imports do not update or delete an existing realm.
 
 Crossplane 2.4.1 and `provider-keycloak` 3.0.1 own ongoing `Platform` identity
-state in `clusters/platform/keycloak-gitops/identities.yaml`: realm roles,
+state in `clusters/platform/identity/keycloak-gitops/identities.yaml`: realm roles,
 groups, group-role mappings, users, and group memberships. Terraform supplies
 `crossplane-system/keycloak-crossplane-credentials` from the Keycloak bootstrap
 admin password; Flux installs the provider and its ProviderConfig. Apply the
@@ -358,7 +359,7 @@ Keycloak.
 
 #### GitOps role and user workflow
 
-Edit `clusters/platform/keycloak-gitops/identities.yaml` and push to `main`.
+Edit `clusters/platform/identity/keycloak-gitops/identities.yaml` and push to `main`.
 Each person has one `user.keycloak.crossplane.io/User`; access is the
 authoritative `members` list on a
 `group.keycloak.crossplane.io/Memberships` resource. Capacitor access is the
@@ -520,7 +521,7 @@ client credentials or decoded bootstrap-secret values to Git.
 ### Stateful database safety
 
 Keycloak and Infisical PostgreSQL clusters are protected by
-`clusters/platform/database-safety.yaml`.
+`clusters/platform/policies/database-safety.yaml`.
 
 - `ValidatingAdmissionPolicy` blocks deletion of the CNPG clusters and their
   PVCs.

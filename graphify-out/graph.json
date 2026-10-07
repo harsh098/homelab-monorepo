@@ -1769,7 +1769,7 @@
       "node_kind": "heading",
       "norm_label": "deploy adguard dns",
       "source_file": "README.md",
-      "source_location": "L83"
+      "source_location": "L84"
     },
     {
       "id": "readme_deploy_headlamp",
@@ -1781,7 +1781,7 @@
       "node_kind": "heading",
       "norm_label": "deploy headlamp",
       "source_file": "README.md",
-      "source_location": "L413"
+      "source_location": "L414"
     },
     {
       "id": "readme_gitops_role_and_user_workflow",
@@ -1793,7 +1793,7 @@
       "node_kind": "heading",
       "norm_label": "gitops role and user workflow",
       "source_file": "README.md",
-      "source_location": "L359"
+      "source_location": "L360"
     },
     {
       "id": "readme_homelab",
@@ -1817,7 +1817,7 @@
       "node_kind": "heading",
       "norm_label": "infisical recovery and bootstrap",
       "source_file": "README.md",
-      "source_location": "L465"
+      "source_location": "L466"
     },
     {
       "id": "readme_keycloak_bootstrap_and_oidc_provisioning",
@@ -1829,7 +1829,7 @@
       "node_kind": "heading",
       "norm_label": "keycloak bootstrap and oidc provisioning",
       "source_file": "README.md",
-      "source_location": "L288"
+      "source_location": "L289"
     },
     {
       "id": "readme_manual_google_sign_in_runbook",
@@ -1841,7 +1841,7 @@
       "node_kind": "heading",
       "norm_label": "manual google sign-in runbook",
       "source_file": "README.md",
-      "source_location": "L317"
+      "source_location": "L318"
     },
     {
       "id": "readme_power_outage_recovery",
@@ -1853,7 +1853,7 @@
       "node_kind": "heading",
       "norm_label": "power outage recovery",
       "source_file": "README.md",
-      "source_location": "L199"
+      "source_location": "L200"
     },
     {
       "id": "readme_prerequisites",
@@ -1889,7 +1889,7 @@
       "node_kind": "heading",
       "norm_label": "routed libvirt management network",
       "source_file": "README.md",
-      "source_location": "L140"
+      "source_location": "L141"
     },
     {
       "id": "readme_terraform_layers",
@@ -4814,7 +4814,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L317",
+      "source_location": "L318",
       "weight": 1.0
     },
     {
@@ -4825,7 +4825,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L359",
+      "source_location": "L360",
       "weight": 1.0
     },
     {
@@ -4836,7 +4836,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L140",
+      "source_location": "L141",
       "weight": 1.0
     },
     {
@@ -4847,7 +4847,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L199",
+      "source_location": "L200",
       "weight": 1.0
     },
     {
@@ -4858,7 +4858,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L288",
+      "source_location": "L289",
       "weight": 1.0
     },
     {
@@ -4869,7 +4869,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L413",
+      "source_location": "L414",
       "weight": 1.0
     },
     {
@@ -4880,7 +4880,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L465",
+      "source_location": "L466",
       "weight": 1.0
     },
     {
@@ -4891,7 +4891,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L83",
+      "source_location": "L84",
       "weight": 1.0
     },
     {
@@ -7783,5 +7783,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "36ee07ad92f6c42059643a8ef798600003902bdc"
+  "built_at_commit": "d3db705078e91cad6fa0828ca042d811545cfc0a"
 }

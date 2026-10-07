@@ -475,7 +475,9 @@ The self-hosted Infisical deployment is split across Terraform and Flux:
   GCS backup credentials, and the backup service-account JSON.
 - Terraform creates the `infisical` namespace, TLS certificate, and the
   Redis Helm-values Secret containing the existing generated password.
-- Flux creates the CNPG PostgreSQL cluster and ExternalSecrets, then manages
+- Flux also declares the namespace with pruning disabled, so a future
+  GitOps refactor cannot delete the stateful namespace or its PVCs.
+  Flux creates the CNPG PostgreSQL cluster and ExternalSecrets, then manages
   the pinned Infisical Helm release (including persistent Redis). Apply the
   Terraform layer before Flux so its namespace and Redis values exist.
 

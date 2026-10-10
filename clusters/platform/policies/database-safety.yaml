@@ -20,7 +20,7 @@ spec:
         resources: ["clusters"]
         scope: "Namespaced"
   validations:
-    - expression: "!(request.name in ['keycloak-db', 'infisical-db'])"
+    - expression: "request.name != 'keycloak-db'"
       message: "Deleting a platform database cluster is blocked; perform an explicit recovery procedure."
 ---
 apiVersion: admissionregistration.k8s.io/v1
@@ -45,7 +45,7 @@ spec:
         resources: ["persistentvolumeclaims"]
         scope: "Namespaced"
   validations:
-    - expression: "!(request.name in ['keycloak-db-1', 'data-keycloak-postgresql-0', 'infisical-db-1', 'redis-data-redis-master-0'])"
+    - expression: "!(request.name in ['keycloak-db-1', 'data-keycloak-postgresql-0'])"
       message: "Deleting a platform database PVC is blocked; perform an explicit recovery procedure."
 ---
 apiVersion: admissionregistration.k8s.io/v1

@@ -5,6 +5,5 @@ resources:
   - flux-source.yaml
   - controllers
   - identity
-  - secrets-management
   - apps
   - policies

@@ -4,4 +4,3 @@ resources:
   - crossplane-provider.yaml
   - identities.yaml
   - rbac.yaml
-  - infisical-oidc.yaml

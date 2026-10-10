@@ -13,10 +13,6 @@ resource "random_password" "infisical_auth_secret" {
   special = false
 }
 
-resource "random_password" "keycloak_db_password" {
-  length  = 32
-  special = false
-}
 
 
 data "google_project" "current" {

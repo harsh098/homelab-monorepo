@@ -15,11 +15,11 @@ spec:
   data:
     - secretKey: username
       remoteRef:
-        key: infisical-bootstrap
+        key: keycloak-db-credentials
         property: keycloak_db_username
     - secretKey: password
       remoteRef:
-        key: infisical-bootstrap
+        key: keycloak-db-credentials
         property: keycloak_db_password
 ---
 apiVersion: postgresql.cnpg.io/v1

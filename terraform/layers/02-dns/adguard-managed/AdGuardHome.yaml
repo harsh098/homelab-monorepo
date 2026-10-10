@@ -22,9 +22,6 @@
   - "answer": "192.168.10.220"
     "domain": "kube-api.platform.home.arpa"
     "enabled": true
-  - "answer": "192.168.10.221"
-    "domain": "mail.platform.home.arpa"
-    "enabled": true
   - "answer": "192.168.10.220"
     "domain": "traefik.platform.home.arpa"
     "enabled": true

@@ -1,3 +1,7 @@
+data "google_project" "current" {
+  project_id = var.project_id
+}
+
 resource "random_password" "backup_key" {
   length  = 32
   special = true

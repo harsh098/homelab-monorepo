@@ -34,10 +34,3 @@ variable "keycloak_hostname" {
     error_message = "keycloak_hostname must be a valid lowercase DNS hostname."
   }
 }
-
-
-variable "infisical_hostname" {
-  description = "Hostname used by the Infisical ingress."
-  type        = string
-  default     = "infisical.platform.home.arpa"
-}

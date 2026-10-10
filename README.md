@@ -45,9 +45,9 @@ individually from their directories:
   Terraform manages the persistent paths under
   `terraform/layers/02-dns/adguard-managed/`: the generated source
   `adguard.platform.home.arpa` -> `192.168.1.4`, and
-  `keycloak.platform.home.arpa`, `infisical.platform.home.arpa`,
-  `capacitor.platform.home.arpa`, `traefik.platform.home.arpa`, and
-  `kube-api.platform.home.arpa` -> `192.168.10.220`.
+  `keycloak.platform.home.arpa`, `capacitor.platform.home.arpa`,
+  `traefik.platform.home.arpa`, and `kube-api.platform.home.arpa` ->
+  `192.168.10.220`.
   The `dns_records` variable is a `map(string)` of hostname-to-IP entries
   merged over these defaults, so caller-supplied entries override them.
   For example, add Grafana with:
@@ -67,13 +67,13 @@ individually from their directories:
   API readiness succeed. Terraform owns the `keycloak` and operator
   prerequisite namespaces, cert-manager/CA material, ingress certificates,
   and External Secrets installation. Flux owns the CNPG operator, CNPG
-  `Cluster`, Keycloak Operator, Keycloak CR, create-only
-  `KeycloakRealmImport`, and Infisical Helm release.
+  `Cluster`, Keycloak Operator, Keycloak CR, and create-only
+  `KeycloakRealmImport`.
 - The platform cluster layer is not a generic application deployment layer.
   Flux reconciles `clusters/platform/` through one platform Kustomization:
   `controllers/` holds controller-specific installations, `identity/` holds
-  `keycloak-app/` and `keycloak-gitops/`, `secrets-management/` holds Infisical,
-  `apps/` holds user applications, and `policies/` holds platform safeguards.
+  `keycloak-app/` and `keycloak-gitops/`, `apps/` holds user applications,
+  and `policies/` holds platform safeguards.
   Traefik is exposed through the K3s `LoadBalancer` service at
   `192.168.10.220`. Keycloak 26.7.3 uses a CloudNativePG-managed PostgreSQL
   cluster and receives its TLS certificate from the retained private CA.
@@ -463,81 +463,24 @@ tofu apply -auto-approve -input=false
 ```
 
 
-### Infisical recovery and bootstrap
+### Keycloak database credentials
 
-The self-hosted Infisical deployment is split across Terraform and Flux:
+`05-gcp` stores the existing Keycloak PostgreSQL password in the dedicated
+`keycloak-db-credentials` Secret Manager secret. The `keycloak` namespace's
+`keycloak-db-credentials` ExternalSecret reads it through the existing
+`gcp-secret-manager` ClusterSecretStore. Preserve the Terraform-managed
+`random_password.keycloak_db_password` state and the Secret Manager version
+when recovering the database: regenerating the password without changing
+PostgreSQL breaks Keycloak logins. This GCP bootstrap dependency must remain
+available independently of any future secrets manager.
 
-- Terraform creates the private `hmx-infisical-backups-in` GCS bucket in
-  `asia-south1` (Mumbai), enforces uniform bucket-level access and public-access
-  prevention, encrypts objects with the regional Cloud KMS key
-  `infisical-backups-in`, and deletes objects older than 48 hours.
-- Terraform creates the `infisical-bootstrap` GCP Secret Manager secret. It
-  contains the Infisical encryption/auth values, CNPG database credentials,
-  GCS backup credentials, and the backup service-account JSON.
-- Terraform creates the `infisical` namespace, TLS certificate, and the
-  Redis Helm-values Secret containing the existing generated password.
-- Flux also declares the namespace with pruning disabled, so a future
-  GitOps refactor cannot delete the stateful namespace or its PVCs.
-  Flux creates the CNPG PostgreSQL cluster and ExternalSecrets, then manages
-  the pinned Infisical Helm release (including persistent Redis). Apply the
-  Terraform layer before Flux so its namespace and Redis values exist.
-
-Recover or rebuild in this order:
-
-```bash
-cd terraform/layers/05-gcp
-tofu init
-tofu apply -auto-approve -input=false \
-  -var=project_id=learninggcp-470023
-
-cd ../04-platform
-tofu init
-tofu apply -auto-approve -input=false
-
-# Run from the repository root after Terraform has finished:
-KUBECONFIG=terraform/layers/03-compute/kubeconfig \
-  kubectl apply -k clusters/platform
-
-Verify the bootstrap material and database:
-
-```bash
-KUBECONFIG=terraform/layers/03-compute/kubeconfig \
-  kubectl -n infisical get externalsecret,secret,cluster,pods
-
-curl -k --resolve infisical.platform.home.arpa:443:192.168.10.220 \
-  https://infisical.platform.home.arpa/api/status
-```
-
-The expected Infisical URL is:
-
-```text
-https://infisical.platform.home.arpa
-```
-
-For browser access, the client must resolve this name through AdGuard
-(`192.168.1.4`) and trust the homelab private CA. On Fedora, export only the
-public CA certificate from the cluster and install it in the system trust store:
-
-```bash
-KUBECONFIG=terraform/layers/03-compute/kubeconfig \
-  kubectl -n cert-manager get secret homelab-private-ca \
-  -o jsonpath='{.data.tls\.crt}' | base64 -d > /tmp/homelab-ca.crt
-sudo install -m 0644 /tmp/homelab-ca.crt \
-  /etc/pki/ca-trust/source/anchors/homelab-ca.crt
-sudo update-ca-trust
-```
-
-Restart the browser after installing the CA. On other devices, import the
-same public certificate into that device's trusted certificate authorities;
-never export or install the CA private key on clients.
-
-The initial Infisical organization, project, administrator, and machine
-identity are intentionally a one-time bootstrap operation. Do not commit
-client credentials or decoded bootstrap-secret values to Git.
+OpenBao has not been deployed. Its storage, unseal, authentication, backup,
+and bootstrap design must be agreed before introducing a Helm release or
+moving existing secrets.
 
 ### Stateful database safety
 
-Keycloak and Infisical PostgreSQL clusters are protected by
+The Keycloak PostgreSQL cluster is protected by
 `clusters/platform/policies/database-safety.yaml`.
 
 - `ValidatingAdmissionPolicy` blocks deletion of the CNPG clusters and their

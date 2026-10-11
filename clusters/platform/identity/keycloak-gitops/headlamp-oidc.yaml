@@ -51,3 +51,22 @@ spec:
     addToUserinfo: true
   providerConfigRef:
     name: platform-keycloak
+---
+apiVersion: openidgroup.keycloak.crossplane.io/v1alpha1
+kind: AudienceProtocolMapper
+metadata:
+  name: platform-headlamp-kubernetes-audience
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    realmId: Platform
+    clientIdRef:
+      name: platform-headlamp
+      policy:
+        resolve: Always
+    name: kubernetes-audience
+    includedClientAudience: kubernetes
+    addToIdToken: true
+    addToAccessToken: true
+  providerConfigRef:
+    name: platform-keycloak

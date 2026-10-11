@@ -115,6 +115,11 @@ path "platform/metadata/keycloak/clients/headlamp" {
 }
 '''
     _request(context, base, token, "PUT", "sys/policies/acl/headlamp-client-publisher", {"policy": headlamp_policy})
+    headlamp_reader_policy = '''path "platform/data/keycloak/clients/headlamp" {
+  capabilities = ["read"]
+}
+'''
+    _request(context, base, token, "PUT", "sys/policies/acl/headlamp-oidc-reader", {"policy": headlamp_reader_policy})
     backup_policy = '''path "sys/storage/raft/snapshot" {
   capabilities = ["read"]
 }
@@ -167,6 +172,14 @@ path "platform/metadata/keycloak/clients/headlamp" {
         "token_ttl": "15m",
         "token_max_ttl": "1h",
     })
+    _request(context, base, token, "POST", "auth/kubernetes/role/headlamp-oidc-reader", {
+        "bound_service_account_names": ["headlamp-oidc-reader"],
+        "bound_service_account_namespaces": ["kube-system"],
+        "audience": "vault",
+        "token_policies": ["headlamp-oidc-reader"],
+        "token_ttl": "15m",
+        "token_max_ttl": "1h",
+    })
     _request(context, base, token, "POST", "auth/kubernetes/role/openbao-snapshot-backup", {
         "bound_service_account_names": ["openbao-backup"],
         "bound_service_account_namespaces": ["openbao"],
@@ -175,7 +188,7 @@ path "platform/metadata/keycloak/clients/headlamp" {
         "token_ttl": "15m",
         "token_max_ttl": "1h",
     })
-    print("OpenBao Platform OIDC and scoped Kubernetes publisher configured")
+    print("OpenBao Platform OIDC, scoped Kubernetes publishers, and Headlamp OIDC reader configured")
     return 0
 
 

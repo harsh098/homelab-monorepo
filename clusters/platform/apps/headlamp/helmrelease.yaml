@@ -40,9 +40,16 @@ spec:
       type: ClusterIP
     clusterRoleBinding:
       create: false
+    env:
+      - name: OIDC_ISSUER_URL
+        value: https://keycloak.platform.home.arpa/realms/Platform
+      - name: OIDC_CALLBACK_URL
+        value: https://headlamp.platform.home.arpa/oidc-callback
     config:
       oidc:
+        secret:
+          create: false
         externalSecret:
           enabled: true
           name: headlamp-oidc
-          hasScopes: true
+          hasScopes: false

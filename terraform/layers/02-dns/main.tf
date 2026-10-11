@@ -10,6 +10,7 @@ locals {
     "capacitor.${var.dns_domain}" = var.k8s_ingress_ip
     "traefik.${var.dns_domain}"   = var.k8s_ingress_ip
     "kube-api.${var.dns_domain}"  = var.k8s_ingress_ip
+    "headlamp.${var.dns_domain}"  = var.k8s_ingress_ip
   }
   dns_records = merge(local.default_dns_records, var.dns_records)
 }

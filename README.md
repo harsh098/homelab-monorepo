@@ -44,12 +44,12 @@ individually from their directories:
   `adguard/adguardhome:v0.107.79@sha256:aba9e3bf0613be3ba3755e1fc311b126e2c24bec25e18b6483894a88283074f0`.
   Terraform manages the persistent paths under
   `terraform/layers/02-dns/adguard-managed/`: the generated source
-  `adguard.platform.home.arpa` -> `192.168.1.4`, and
-  `keycloak.platform.home.arpa`, `openbao.platform.home.arpa`,
-  `capacitor.platform.home.arpa`, `traefik.platform.home.arpa`, and
-  `kube-api.platform.home.arpa` -> `192.168.10.220`.
-  The `dns_records` variable is a `map(string)` of hostname-to-IP entries
-  merged over these defaults, so caller-supplied entries override them.
+  `adguard.platform.home.arpa` -> `192.168.1.4`; and
+  `headlamp.platform.home.arpa`, `keycloak.platform.home.arpa`,
+  `openbao.platform.home.arpa`, `capacitor.platform.home.arpa`,
+  `traefik.platform.home.arpa`, and `kube-api.platform.home.arpa` ->
+  `192.168.10.220`. The `dns_records` variable maps hostnames to IPs,
+  merged over these defaults so caller-supplied entries override them.
   For example, add Grafana with:
 
   ```bash
@@ -78,8 +78,17 @@ individually from their directories:
   `192.168.10.220`. Keycloak 26.7.3 uses a CloudNativePG-managed PostgreSQL
   cluster and receives its TLS certificate from the retained private CA.
 
+### Retired mail archive
 
-
+The mail server VM, SMTP/IMAP endpoints, DNS record, and backup writer identity
+were removed. The detached `mail-data.qcow2` volume remains in the
+`homelab-dir` libvirt pool; encrypted restic snapshots remain in
+`gs://hmx-mail-backups-in/mail/`. Terraform retains the bucket and its
+`mail-backups-in` KMS key in `05-gcp`, and keeps the original restic decryption
+password as the sensitive `mail_backup_password` output in `03-compute`.
+Keep the password, disk, and KMS key until the archived mailbox is no longer
+needed. The former mail VM service account and its GCP key have been revoked;
+an authorized recovery operator must use their own GCS read access.
 
 ### Deploy AdGuard DNS
 
@@ -422,10 +431,35 @@ service account has no cluster RBAC binding.
 Users must be members of the `kubectl-admin` or `kubectl-readonly` Keycloak
 group. The Kubernetes API applies the corresponding OIDC RBAC policy.
 
+Crossplane manages the confidential `headlamp` client in Keycloak. Its
+connection Secret is published to OpenBao at
+`platform/keycloak/clients/headlamp`. Run `tools/configure-openbao-access.py`
+after the Keycloak publisher is healthy to install the dedicated read-only
+`headlamp-oidc-reader` Kubernetes auth role. External Secrets then creates
+`kube-system/headlamp-oidc` with only `OIDC_CLIENT_ID` and
+`OIDC_CLIENT_SECRET`; Headlamp's Helm chart consumes these as environment
+variables. No OIDC client secret belongs in Git or Headlamp's service account.
+The Keycloak client mapper adds `kubernetes` to the ID token audience, while
+the groups mapper emits `kubectl-admin` or `kubectl-readonly` in `groups`.
+Both claims are required by the K3s OIDC authenticator and its RBAC bindings.
+
 The OIDC callback is:
 
 ```text
 https://headlamp.platform.home.arpa/oidc-callback
+```
+
+Check the public route and Secret sync without revealing credentials:
+
+```bash
+dig @192.168.1.4 headlamp.platform.home.arpa +short
+KUBECONFIG=terraform/layers/03-compute/kubeconfig
+export KUBECONFIG
+kubectl -n kube-system get secretstore openbao-headlamp
+kubectl -n kube-system get externalsecret headlamp-oidc
+kubectl -n kube-system get deployment headlamp
+curl --cacert ~/.config/homelab/keycloak-ca.crt \
+  -I https://headlamp.platform.home.arpa/
 ```
 
 The dashboard is also available locally when needed:

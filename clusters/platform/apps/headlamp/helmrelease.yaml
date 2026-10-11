@@ -36,6 +36,11 @@ spec:
     remediation:
       retries: 3
   values:
+    # Built from v0.45.0 with upstream popup completion fix #7842.
+    image:
+      registry: us-central1-docker.pkg.dev
+      repository: learninggcp-470023/homelab-headlamp/headlamp
+      tag: 0.45.0-oidc-8ad4e1a4127e
     service:
       type: ClusterIP
     clusterRoleBinding:

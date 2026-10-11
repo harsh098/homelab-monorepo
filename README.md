@@ -482,6 +482,18 @@ there is no high availability. Its 8Gi PVC uses `local-path-retain`; the PV
 and its data remain if the Helm release is removed. Traefik serves
 `https://openbao.platform.home.arpa` with the homelab private CA.
 
+Clients must trust the homelab private CA. On Fedora, install only its public
+certificate and restart the browser:
+
+```bash
+KUBECONFIG=terraform/layers/03-compute/kubeconfig \
+  kubectl -n cert-manager get secret homelab-private-ca \
+  -o jsonpath='{.data.tls\.crt}' | base64 -d > /tmp/homelab-ca.crt
+sudo install -m 0644 /tmp/homelab-ca.crt \
+  /etc/pki/ca-trust/source/anchors/homelab-ca.crt
+sudo update-ca-trust
+```
+
 OpenBao uses manual unseal. The one unseal share and initial root token live in
 the `openbao-recovery` GCP Secret Manager secret. Terraform manages only the
 secret container; its version was uploaded separately so recovery material
@@ -503,7 +515,15 @@ gcloud secrets versions access latest --secret=openbao-recovery \
   python3 -c 'import json,sys,urllib.request; key=json.load(sys.stdin)["unseal_keys_b64"][0]; req=urllib.request.Request("http://127.0.0.1:8200/v1/sys/unseal",data=json.dumps({"key":key}).encode(),headers={"Content-Type":"application/json"}); print("sealed:",json.load(urllib.request.urlopen(req))["sealed"])'
 ```
 
-Use the initial root token from the same GCP secret to sign into the UI.
+To sign into the UI, extract the initial root token in a private terminal
+(the following command prints a privileged credential):
+
+```bash
+gcloud secrets versions access latest --secret=openbao-recovery \
+  --project=learninggcp-470023 |
+  python3 -c 'import json,sys; print(json.load(sys.stdin)["root_token"])'
+```
+
 There is no Keycloak login, auto-unseal, or off-node backup yet. The ingress
 terminates TLS at Traefik; traffic to the OpenBao pod is HTTP within K3s.
 Do not treat the retained PVC as a backup or store indispensable application

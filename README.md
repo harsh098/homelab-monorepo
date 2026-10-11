@@ -494,26 +494,31 @@ sudo install -m 0644 /tmp/homelab-ca.crt \
 sudo update-ca-trust
 ```
 
-OpenBao uses manual unseal. The one unseal share and initial root token live in
-the `openbao-recovery` GCP Secret Manager secret. Terraform manages only the
-secret container; its version was uploaded separately so recovery material
-never enters Terraform state or Git. Protect access to this secret: anyone
-with its contents can unseal OpenBao and authenticate as root.
+OpenBao auto-unseals through the first-party GCP KMS plugin. The dedicated
+`openbao-unseal-in` key ring and key in `asia-south1` are protected against
+accidental Terraform destruction. A scoped `openbao-unseal` service account
+can only inspect, encrypt, and decrypt with that key. External Secrets syncs
+its JSON credential from the `openbao-kms-credentials` GCP secret into the
+`openbao` namespace; OpenBao mounts it read-only. The service account key
+is sensitive Terraform state, not a Git-managed value.
 
-After a restart, port-forward directly to the sealed pod (the UI service may
-not have a ready endpoint), then post the unseal key over the local port
-forward. In separate terminals from the repository root:
+The original one-share Shamir seal was migrated to GCP KMS. Its share became
+the recovery key and remains, along with the initial root token, in the
+`openbao-recovery` GCP Secret Manager version. The JSON field is still named
+`unseal_keys_b64` because it is the original initialization record; **do not
+use it to manually unseal this KMS-sealed server**. Terraform manages only
+the recovery secret container, not that version. Keep access restricted.
+
+After a restart, OpenBao unseals automatically if GCP KMS and its credential
+are reachable. Check with:
 
 ```bash
 KUBECONFIG=terraform/layers/03-compute/kubeconfig \
-  kubectl -n openbao port-forward pod/openbao-0 8200:8200
+  kubectl -n openbao exec openbao-0 -- bao status
 ```
 
-```bash
-gcloud secrets versions access latest --secret=openbao-recovery \
-  --project=learninggcp-470023 |
-  python3 -c 'import json,sys,urllib.request; key=json.load(sys.stdin)["unseal_keys_b64"][0]; req=urllib.request.Request("http://127.0.0.1:8200/v1/sys/unseal",data=json.dumps({"key":key}).encode(),headers={"Content-Type":"application/json"}); print("sealed:",json.load(urllib.request.urlopen(req))["sealed"])'
-```
+Never disable or destroy any KMS key version used by this seal. Recovery
+shares cannot decrypt OpenBao without the KMS key, even from a Raft backup.
 
 To sign into the UI, extract the initial root token in a private terminal
 (the following command prints a privileged credential):
@@ -524,10 +529,10 @@ gcloud secrets versions access latest --secret=openbao-recovery \
   python3 -c 'import json,sys; print(json.load(sys.stdin)["root_token"])'
 ```
 
-There is no Keycloak login, auto-unseal, or off-node backup yet. The ingress
-terminates TLS at Traefik; traffic to the OpenBao pod is HTTP within K3s.
-Do not treat the retained PVC as a backup or store indispensable application
-secrets before an off-node backup and restore procedure exists.
+There is no Keycloak login or off-node backup yet. The ingress terminates
+TLS at Traefik; traffic to the OpenBao pod is HTTP within K3s. Do not treat
+the retained PVC as a backup or store indispensable application secrets
+before an off-node backup and restore procedure exists.
 
 
 ### Stateful database safety

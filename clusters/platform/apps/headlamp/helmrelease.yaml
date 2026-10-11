@@ -45,6 +45,19 @@ spec:
         value: https://keycloak.platform.home.arpa/realms/Platform
       - name: OIDC_CALLBACK_URL
         value: https://headlamp.platform.home.arpa/oidc-callback
+      - name: SSL_CERT_FILE
+        value: /etc/headlamp-ca/ca.crt
+    volumes:
+      - name: keycloak-ca
+        secret:
+          secretName: headlamp.platform.home.arpa-tls
+          items:
+            - key: ca.crt
+              path: ca.crt
+    volumeMounts:
+      - name: keycloak-ca
+        mountPath: /etc/headlamp-ca
+        readOnly: true
     config:
       oidc:
         secret:

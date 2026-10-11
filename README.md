@@ -443,6 +443,10 @@ The Keycloak client mapper adds `kubernetes` to the ID token audience, while
 the groups mapper emits `kubectl-admin` or `kubectl-readonly` in `groups`.
 Both claims are required by the K3s OIDC authenticator and its RBAC bindings.
 
+Headlamp mounts only the public `ca.crt` item from its cert-manager-issued
+`kube-system/headlamp.platform.home.arpa-tls` Secret and sets `SSL_CERT_FILE`
+so the backend trusts Keycloak's private-CA-signed OIDC discovery endpoint.
+
 The OIDC callback is:
 
 ```text

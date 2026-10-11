@@ -43,7 +43,7 @@ spec:
       enabled: false
     server:
       authDelegator:
-        enabled: false
+        enabled: true
       extraInitContainers:
         - name: prepare-kms-plugin-directory
           image: quay.io/openbao/openbao:2.7.1

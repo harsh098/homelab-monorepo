@@ -4,3 +4,4 @@ resources:
   - credentials.yaml
   - release.yaml
   - ingress.yaml
+  - keycloak-push.yaml

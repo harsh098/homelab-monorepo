@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: openbao-keycloak-publisher
+  namespace: keycloak
+---
+apiVersion: external-secrets.io/v1
+kind: SecretStore
+metadata:
+  name: openbao-keycloak
+  namespace: keycloak
+spec:
+  provider:
+    vault:
+      server: http://openbao.openbao.svc.cluster.local:8200
+      path: platform
+      version: v2
+      auth:
+        kubernetes:
+          mountPath: kubernetes
+          role: keycloak-client-publisher
+          serviceAccountRef:
+            name: openbao-keycloak-publisher
+            audiences:
+              - vault
+---
+apiVersion: external-secrets.io/v1alpha1
+kind: PushSecret
+metadata:
+  name: openbao-oidc-client
+  namespace: keycloak
+spec:
+  refreshInterval: 1h
+  deletionPolicy: None
+  secretStoreRefs:
+    - name: openbao-keycloak
+      kind: SecretStore
+  selector:
+    secret:
+      name: openbao-oidc-client
+  data:
+    - match:
+        secretKey: clientID
+        remoteRef:
+          remoteKey: keycloak/clients/openbao
+          property: client_id
+    - match:
+        secretKey: clientSecret
+        remoteRef:
+          remoteKey: keycloak/clients/openbao
+          property: client_secret

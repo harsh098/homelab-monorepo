@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
   - crossplane-provider.yaml
   - identities.yaml
+  - openbao-oidc.yaml
   - rbac.yaml

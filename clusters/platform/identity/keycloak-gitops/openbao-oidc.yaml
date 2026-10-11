@@ -1,0 +1,81 @@
+apiVersion: openidclient.keycloak.crossplane.io/v1alpha2
+kind: Client
+metadata:
+  name: platform-openbao
+  labels:
+    app.kubernetes.io/name: openbao
+    app.kubernetes.io/part-of: platform
+spec:
+  deletionPolicy: Orphan
+  writeConnectionSecretToRef:
+    name: openbao-oidc-client
+    namespace: keycloak
+  forProvider:
+    realmId: Platform
+    clientId: openbao
+    name: OpenBao
+    description: OIDC client for the OpenBao web UI and CLI
+    accessType: CONFIDENTIAL
+    clientAuthenticatorType: client-secret
+    enabled: true
+    standardFlowEnabled: true
+    implicitFlowEnabled: false
+    directAccessGrantsEnabled: false
+    serviceAccountsEnabled: false
+    validRedirectUris:
+      - https://openbao.platform.home.arpa/ui/vault/auth/oidc/oidc/callback
+      - http://localhost:8250/oidc/callback
+    webOrigins:
+      - https://openbao.platform.home.arpa
+  providerConfigRef:
+    name: platform-keycloak
+---
+apiVersion: openidgroup.keycloak.crossplane.io/v1alpha1
+kind: GroupMembershipProtocolMapper
+metadata:
+  name: platform-openbao-groups
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    realmId: Platform
+    clientIdRef:
+      name: platform-openbao
+      policy:
+        resolve: Always
+    name: groups
+    claimName: groups
+    fullPath: false
+    addToIdToken: true
+    addToAccessToken: true
+    addToUserinfo: true
+  providerConfigRef:
+    name: platform-keycloak
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Group
+metadata:
+  name: platform-openbao-admin
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    realmId: Platform
+    name: openbao-admin
+  providerConfigRef:
+    name: platform-keycloak
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Memberships
+metadata:
+  name: platform-openbao-admin-members
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    realmId: Platform
+    groupIdRef:
+      name: platform-openbao-admin
+      policy:
+        resolve: Always
+    members:
+      - hmisraji07@gmail.com
+  providerConfigRef:
+    name: platform-keycloak

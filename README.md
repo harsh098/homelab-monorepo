@@ -528,16 +528,24 @@ Only members of `openbao-admin` receive the OpenBao operator policy. The
 group's membership list is in
 `clusters/platform/identity/keycloak-gitops/openbao-oidc.yaml`.
 
-Crossplane writes this client's generated ID and secret to the
-`keycloak/openbao-oidc-client` Kubernetes Secret. The namespaced ESO
-`PushSecret` publishes both fields to OpenBao KV v2 at
-`platform/keycloak/clients/openbao`. It authenticates with a short-lived
-Kubernetes service-account token, bound to the `keycloak` namespace and only
-that KV path; the credential and OpenBao token are never stored in Git. This
-is the in-cluster publishing pattern for other Keycloak clients: declare each
-client and its connection Secret in Git, then assign a separate namespaced
-publisher identity, KV path, and scoped policy. Do not give other namespaces
-the OpenBao OIDC publisher's access.
+Two GitOps-managed confidential clients publish their generated `clientID`
+and `clientSecret` from Crossplane connection Secrets in `keycloak` through
+separate namespaced ESO `PushSecret` resources:
+
+| Client | Connection Secret | OpenBao KV v2 path |
+| --- | --- | --- |
+| `openbao` | `keycloak/openbao-oidc-client` | `platform/keycloak/clients/openbao` |
+| `headlamp` | `keycloak/headlamp-oidc-client` | `platform/keycloak/clients/headlamp` |
+
+Each publisher uses its own Kubernetes service account, auth role, and policy
+restricted to its single KV path. No client secret or OpenBao token is stored
+in Git. The `kubernetes` client is public and has **no client secret** to
+publish; Keycloak's built-in administrative clients are not application
+credentials. For another confidential client, declare the Crossplane client
+and connection Secret, then add a separate publisher, path, role, and policy.
+Publishing Headlamp's client credential does not configure Headlamp's
+`kube-system/headlamp-oidc` runtime Secret; that consumer still needs its own
+delivery path.
 
 The OIDC and Kubernetes auth mounts, KV mount, roles, and policies require
 privileged initial configuration; Flux must not hold the root token.
@@ -549,11 +557,9 @@ the bootstrap kubeconfig, and the private CA at
 ```bash
 tools/configure-openbao-access.py
 KUBECONFIG=terraform/layers/03-compute/kubeconfig \
-  kubectl -n keycloak get secretstore openbao-keycloak \
-  -o jsonpath='{.status.conditions[0].status}'
-KUBECONFIG=terraform/layers/03-compute/kubeconfig \
-  kubectl -n keycloak get pushsecret openbao-oidc-client \
-  -o jsonpath='{.status.conditions[0].status}'
+  kubectl -n keycloak get pushsecrets \
+  openbao-oidc-client headlamp-oidc-client \
+  -o custom-columns=NAME:.metadata.name,READY:.status.conditions[0].status
 ```
 
 The idempotent utility reads the recovery root token from GCP Secret Manager

@@ -90,11 +90,15 @@ Keep the password, disk, and KMS key until the archived mailbox is no longer
 needed. The former mail VM service account and its GCP key have been revoked;
 an authorized recovery operator must use their own GCS read access.
 
-Mail decommission used a **mail-only targeted plan**. Do not apply an
-unreviewed full `03-compute` plan: the live K3s disk is 40GiB while the
-declared `disk_size` default is 20GiB, and the current full plan also replaces
-K3s cloud-init. Reconcile that separate K3s drift without replacing its live
-root volume before the next full compute apply.
+Mail decommission used a mail-only targeted plan to protect the live K3s
+volume. The separate compute drift has since been reconciled: `disk_size` now
+matches the existing 40GiB root volume, and the cloud-init ISO was regenerated
+from the current template without replacing the root volume or restarting the
+VM. The existing guest's `systemd-resolved` drop-in was updated to use
+`192.168.1.4`; K3s already uses `/run/systemd/resolve/resolv.conf` through
+its on-node `config.yaml`. Cloud-init first-boot commands do not rerun when an
+ISO is replaced. A full `03-compute` plan now has no changes. Review future
+plans before applying: changing `disk_size` replaces the K3s root volume.
 
 ### Deploy AdGuard DNS
 

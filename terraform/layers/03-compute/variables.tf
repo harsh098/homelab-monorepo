@@ -53,5 +53,5 @@ variable "k8s_api_hostname" {
 variable "disk_size" {
   description = "Size of the node root volume in bytes"
   type        = number
-  default     = 20 * 1024 * 1024 * 1024
+  default     = 40 * 1024 * 1024 * 1024
 }

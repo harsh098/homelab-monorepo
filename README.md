@@ -90,6 +90,12 @@ Keep the password, disk, and KMS key until the archived mailbox is no longer
 needed. The former mail VM service account and its GCP key have been revoked;
 an authorized recovery operator must use their own GCS read access.
 
+Mail decommission used a **mail-only targeted plan**. Do not apply an
+unreviewed full `03-compute` plan: the live K3s disk is 40GiB while the
+declared `disk_size` default is 20GiB, and the current full plan also replaces
+K3s cloud-init. Reconcile that separate K3s drift without replacing its live
+root volume before the next full compute apply.
+
 ### Deploy AdGuard DNS
 
 Run the following from the DNS layer directory:
@@ -429,7 +435,10 @@ confidential client and passes each user's OIDC token to Kubernetes; the
 service account has no cluster RBAC binding.
 
 Users must be members of the `kubectl-admin` or `kubectl-readonly` Keycloak
-group. The Kubernetes API applies the corresponding OIDC RBAC policy.
+group and have a verified email address. K3s uses `email` as the OIDC username
+claim and rejects ID tokens with `email_verified: false`. The Kubernetes API
+applies the corresponding group RBAC policy; the default read-only `view`
+binding permits namespaced resources but not cluster-scoped Nodes.
 
 Crossplane manages the confidential `headlamp` client in Keycloak. Its
 connection Secret is published to OpenBao at

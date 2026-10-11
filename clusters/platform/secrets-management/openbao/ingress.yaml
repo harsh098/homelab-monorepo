@@ -1,0 +1,45 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: openbao-platform-home-arpa
+  namespace: openbao
+spec:
+  secretName: openbao.platform.home.arpa-tls
+  issuerRef:
+    name: homelab-private-ca
+    kind: ClusterIssuer
+    group: cert-manager.io
+  dnsNames:
+    - openbao.platform.home.arpa
+  privateKey:
+    algorithm: ECDSA
+    rotationPolicy: Always
+  duration: 2160h
+  renewBefore: 720h
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: openbao
+  namespace: openbao
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - openbao.platform.home.arpa
+      secretName: openbao.platform.home.arpa-tls
+  rules:
+    - host: openbao.platform.home.arpa
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: openbao-ui
+                port:
+                  number: 8200

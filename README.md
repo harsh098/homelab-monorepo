@@ -460,6 +460,21 @@ Headlamp mounts only the public `ca.crt` item from its cert-manager-issued
 `kube-system/headlamp.platform.home.arpa-tls` Secret and sets `SSL_CERT_FILE`
 so the backend trusts Keycloak's private-CA-signed OIDC discovery endpoint.
 
+Headlamp v0.45.0 has an
+[upstream popup completion bug](https://github.com/kubernetes-sigs/headlamp/issues/7789):
+OIDC succeeds, but the popup can remain on “Redirecting to main page…” while
+the original tab stays on the login screen. The pending
+[upstream fix](https://github.com/kubernetes-sigs/headlamp/pull/7842) is
+vendored in `tools/headlamp-oidc-popup.patch` until released. The pinned
+`tools/build-headlamp-oidc-image.sh` rebuilds only the frontend from the
+v0.45.0 source, runs the upstream popup regression tests, and overlays it on
+the pinned official backend image. It publishes an immutable tag derived from
+the patch checksum to the **public-read, isolated** `homelab-headlamp`
+Artifact Registry repository managed in `05-gcp`. Run the script with
+authenticated `gcloud` and Podman before referencing a new patch checksum in
+`clusters/platform/apps/headlamp/helmrelease.yaml`. Never place private images
+or credentials in this public-read repository.
+
 The OIDC callback is:
 
 ```text

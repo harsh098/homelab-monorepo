@@ -52,6 +52,12 @@ resource "google_storage_bucket" "platform_backups" {
     is_locked        = false
   }
 
+  # Barman replaces backup.info during a backup; keep every replaced generation
+  # protected by retention rather than allowing an overwrite to erase it.
+  versioning {
+    enabled = each.key == "keycloak"
+  }
+
   soft_delete_policy {
     retention_duration_seconds = 1209600
   }
@@ -62,6 +68,17 @@ resource "google_storage_bucket" "platform_backups" {
     }
     condition {
       age = 90
+    }
+  }
+
+  lifecycle_rule {
+    action {
+      type = "Delete"
+    }
+    condition {
+      with_state                 = "ARCHIVED"
+      num_newer_versions         = 1
+      days_since_noncurrent_time = 90
     }
   }
 
@@ -79,7 +96,7 @@ resource "google_service_account" "platform_backups" {
   project      = var.project_id
 }
 
-# The writer may list and verify objects, but never delete an existing backup.
+# OpenBao never replaces objects; the Barman writer must replace backup.info.
 resource "google_project_iam_custom_role" "platform_backup_writer" {
   role_id = "platformBackupWriter"
   title   = "Platform backup object writer"
@@ -95,8 +112,24 @@ resource "google_project_iam_custom_role" "platform_backup_writer" {
 resource "google_storage_bucket_iam_member" "platform_backup_writer" {
   for_each = local.platform_backups
   bucket   = google_storage_bucket.platform_backups[each.key].name
-  role     = google_project_iam_custom_role.platform_backup_writer.id
+  role     = each.key == "keycloak" ? google_project_iam_custom_role.keycloak_barman_writer.id : google_project_iam_custom_role.platform_backup_writer.id
   member   = "serviceAccount:${google_service_account.platform_backups[each.key].email}"
+}
+
+resource "google_project_iam_custom_role" "keycloak_barman_writer" {
+  role_id = "keycloakBarmanBackupWriter"
+  title   = "Keycloak Barman cloud backup writer"
+  project = var.project_id
+  permissions = [
+    "storage.buckets.get",
+    "storage.multipartUploads.abort",
+    "storage.multipartUploads.create",
+    "storage.multipartUploads.listParts",
+    "storage.objects.create",
+    "storage.objects.delete",
+    "storage.objects.get",
+    "storage.objects.list",
+  ]
 }
 
 resource "google_service_account_key" "platform_backups" {

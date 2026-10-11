@@ -117,6 +117,7 @@ metadata:
   namespace: openbao
 spec:
   schedule: '0 */6 * * *'
+  timeZone: Etc/UTC
   concurrencyPolicy: Forbid
   startingDeadlineSeconds: 3600
   successfulJobsHistoryLimit: 4

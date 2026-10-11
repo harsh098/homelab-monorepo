@@ -575,10 +575,111 @@ gcloud secrets versions access latest --secret=openbao-recovery \
   python3 -c 'import json,sys; print(json.load(sys.stdin)["root_token"])'
 ```
 
-There is no off-node OpenBao backup yet. The ingress terminates TLS at
-Traefik; traffic to the OpenBao pod is HTTP within K3s. Do not treat the
-retained PVC as a backup or store indispensable application secrets before an
-off-node backup and restore procedure exists.
+OpenBao Raft is snapshotted every six hours (UTC) by
+`openbao/openbao-backup`. Its Kubernetes auth role can only read
+`sys/storage/raft/snapshot`; the job uploads a unique object to
+`gs://hmx-openbao-backups-in/raft/` and verifies the remote SHA-256 and length
+before succeeding. Its GCP identity cannot delete objects. Do not confuse this
+off-node copy with the retained local PVC. The snapshot contains secrets:
+restrict access to the bucket, its GCP Secret Manager credential
+`openbao-backup-gcs`, and the Terraform state.
+
+Keycloak's CNPG `ScheduledBackup` (`keycloak-db-daily`) creates a PostgreSQL
+base backup each day at 02:00 (the CNPG controller's time zone), with
+continuous WAL archival by the Barman Cloud plugin. Both are stored under
+`gs://hmx-keycloak-backups-in/keycloak/keycloak-db/`. The Barman GCP identity
+has only bucket-scoped read, write, multipart upload, and overwrite rights;
+overwrites of `backup.info` require `storage.objects.delete`. The bucket
+versions overwritten objects. A separate GCP KMS key encrypts each bucket:
+`platform-backups-in/openbao-backups-in` and
+`platform-backups-in/keycloak-backups-in` in `asia-south1`, respectively.
+Neither backup uses the OpenBao auto-unseal key. Both buckets have 14-day
+GCS retention and soft deletion, plus 90-day lifecycle cleanup (including
+noncurrent Keycloak generations). Keep backup KMS key versions enabled: GCS
+cannot read CMEK-encrypted objects after a required key version is disabled.
+These keys, buckets, bucket IAM, and backup service account keys are in
+`terraform/layers/05-gcp/platform-backups.tf`. The credentials live in GCP
+Secret Manager and are synced into Kubernetes by External Secrets; restoring
+either backup does not require a working OpenBao instance.
+
+Run and inspect an OpenBao backup without waiting for the next schedule:
+
+```bash
+KUBECONFIG=terraform/layers/03-compute/kubeconfig
+export KUBECONFIG
+backup_job="openbao-backup-manual-$(date +%s)"
+kubectl -n openbao create job "$backup_job" --from=cronjob/openbao-backup
+kubectl -n openbao wait --for=condition=complete "job/$backup_job" --timeout=180s
+kubectl -n openbao logs "job/$backup_job" -c backup
+gcloud storage ls -l gs://hmx-openbao-backups-in/raft/
+```
+
+For Keycloak, create a one-off `postgresql.cnpg.io/v1` `Backup` in `keycloak`
+with `spec.cluster.name: keycloak-db`, `spec.method: plugin`, and
+`spec.pluginConfiguration.name: barman-cloud.cloudnative-pg.io`. Wait for
+`.status.phase: completed`; check that GCS contains both `base/<backup-id>/`
+and `wals/` under the Keycloak path. A failed `Backup` or an archived WAL
+alone does not prove that a recoverable base backup exists. Confirm object
+`kms_key` with `gcloud storage objects describe gs://... --format=json`.
+
+Restore drills must never reuse the production OpenBao PVC or CNPG cluster
+name. For OpenBao, start a disposable Raft server and empty data volume in
+a different namespace with the **same GCP unseal KMS plugin/configuration**,
+using an ExternalSecret for `openbao-kms-credentials`. Initialize the empty
+auto-unseal server with one recovery share, download a snapshot from GCS,
+then send it to that disposable server's
+`sys/storage/raft/snapshot-force` endpoint with its disposable root token.
+Force is necessary because the new server has different barrier keys; do
+not send a snapshot to the production endpoint. After restore, authenticate
+with the original root token in the `openbao-recovery` GCP secret and read
+`platform/keycloak/clients/openbao` (check keys, not secret values). Keep
+snapshot bytes and privileged tokens off persistent local storage and logs;
+delete the disposable namespace afterward. This was exercised with a fresh
+emptyDir-backed server, without changing `openbao/openbao-0`.
+
+For an isolated Keycloak restore, while `keycloak/keycloak-gcs` and its
+ExternalSecret are healthy, apply a **new** CNPG `Cluster` in `keycloak`:
+
+```yaml
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: keycloak-db-restore-drill
+  namespace: keycloak
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:17
+  bootstrap:
+    recovery:
+      source: keycloak-db-source
+  externalClusters:
+    - name: keycloak-db-source
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: keycloak-gcs
+          serverName: keycloak-db
+  storage:
+    size: 8Gi
+    storageClass: local-path
+```
+
+Wait for `kubectl -n keycloak wait --for=condition=Ready
+cluster/keycloak-db-restore-drill --timeout=240s`, then query the restored
+database without exposing credentials:
+
+```bash
+kubectl -n keycloak exec keycloak-db-restore-drill-1 -c postgres -- \
+  psql -U postgres -d keycloak -At \
+  -c "SELECT name, (SELECT count(*) FROM client WHERE realm_id = realm.id) AS clients FROM realm WHERE name = 'Platform';"
+```
+
+This recovery cluster has no WAL archiver: it must **not** write to the source
+archive. Delete only the disposable cluster and its `local-path` PVC after
+verification. For a real cutover, retain the restored PVC, configure a
+distinct backup destination before enabling archival, and switch Keycloak's
+database connection explicitly. Preserve `keycloak-db-credentials` in GCP;
+recreating its password independently of PostgreSQL breaks Keycloak logins.
 
 
 ### Stateful database safety

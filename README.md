@@ -520,8 +520,48 @@ KUBECONFIG=terraform/layers/03-compute/kubeconfig \
 Never disable or destroy any KMS key version used by this seal. Recovery
 shares cannot decrypt OpenBao without the KMS key, even from a Raft backup.
 
-To sign into the UI, extract the initial root token in a private terminal
-(the following command prints a privileged credential):
+For normal operator sign-in, select **OIDC** at the OpenBao UI, leave the role
+blank (default `platform-operators`), and authenticate through the Keycloak
+`Platform` realm. The `openbao` confidential client, `openbao-admin` group,
+membership, and group claim mapper are managed by Crossplane through Flux.
+Only members of `openbao-admin` receive the OpenBao operator policy. The
+group's membership list is in
+`clusters/platform/identity/keycloak-gitops/openbao-oidc.yaml`.
+
+Crossplane writes this client's generated ID and secret to the
+`keycloak/openbao-oidc-client` Kubernetes Secret. The namespaced ESO
+`PushSecret` publishes both fields to OpenBao KV v2 at
+`platform/keycloak/clients/openbao`. It authenticates with a short-lived
+Kubernetes service-account token, bound to the `keycloak` namespace and only
+that KV path; the credential and OpenBao token are never stored in Git. This
+is the in-cluster publishing pattern for other Keycloak clients: declare each
+client and its connection Secret in Git, then assign a separate namespaced
+publisher identity, KV path, and scoped policy. Do not give other namespaces
+the OpenBao OIDC publisher's access.
+
+The OIDC and Kubernetes auth mounts, KV mount, roles, and policies require
+privileged initial configuration; Flux must not hold the root token.
+After Crossplane has produced `keycloak/openbao-oidc-client` and the OpenBao
+Helm release is ready, run from the repository root with `gcloud` access,
+the bootstrap kubeconfig, and the private CA at
+`~/.config/homelab/keycloak-ca.crt`:
+
+```bash
+tools/configure-openbao-access.py
+KUBECONFIG=terraform/layers/03-compute/kubeconfig \
+  kubectl -n keycloak get secretstore openbao-keycloak \
+  -o jsonpath='{.status.conditions[0].status}'
+KUBECONFIG=terraform/layers/03-compute/kubeconfig \
+  kubectl -n keycloak get pushsecret openbao-oidc-client \
+  -o jsonpath='{.status.conditions[0].status}'
+```
+
+The idempotent utility reads the recovery root token from GCP Secret Manager
+and the OIDC client secret from the Kubernetes connection Secret into process
+memory; it does not print either. Rerun it after rotating the Keycloak client
+secret. Keep the initial root token in GCP as break-glass access when Keycloak
+is unavailable; do not use it for normal login. To retrieve it privately for
+emergency use (this command **prints a privileged credential**):
 
 ```bash
 gcloud secrets versions access latest --secret=openbao-recovery \
@@ -529,10 +569,10 @@ gcloud secrets versions access latest --secret=openbao-recovery \
   python3 -c 'import json,sys; print(json.load(sys.stdin)["root_token"])'
 ```
 
-There is no Keycloak login or off-node backup yet. The ingress terminates
-TLS at Traefik; traffic to the OpenBao pod is HTTP within K3s. Do not treat
-the retained PVC as a backup or store indispensable application secrets
-before an off-node backup and restore procedure exists.
+There is no off-node OpenBao backup yet. The ingress terminates TLS at
+Traefik; traffic to the OpenBao pod is HTTP within K3s. Do not treat the
+retained PVC as a backup or store indispensable application secrets before an
+off-node backup and restore procedure exists.
 
 
 ### Stateful database safety

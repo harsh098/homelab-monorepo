@@ -45,9 +45,9 @@ individually from their directories:
   Terraform manages the persistent paths under
   `terraform/layers/02-dns/adguard-managed/`: the generated source
   `adguard.platform.home.arpa` -> `192.168.1.4`, and
-  `keycloak.platform.home.arpa`, `capacitor.platform.home.arpa`,
-  `traefik.platform.home.arpa`, and `kube-api.platform.home.arpa` ->
-  `192.168.10.220`.
+  `keycloak.platform.home.arpa`, `openbao.platform.home.arpa`,
+  `capacitor.platform.home.arpa`, `traefik.platform.home.arpa`, and
+  `kube-api.platform.home.arpa` -> `192.168.10.220`.
   The `dns_records` variable is a `map(string)` of hostname-to-IP entries
   merged over these defaults, so caller-supplied entries override them.
   For example, add Grafana with:
@@ -72,8 +72,8 @@ individually from their directories:
 - The platform cluster layer is not a generic application deployment layer.
   Flux reconciles `clusters/platform/` through one platform Kustomization:
   `controllers/` holds controller-specific installations, `identity/` holds
-  `keycloak-app/` and `keycloak-gitops/`, `apps/` holds user applications,
-  and `policies/` holds platform safeguards.
+  `keycloak-app/` and `keycloak-gitops/`, `secrets-management/` holds OpenBao,
+  `apps/` holds user applications, and `policies/` holds platform safeguards.
   Traefik is exposed through the K3s `LoadBalancer` service at
   `192.168.10.220`. Keycloak 26.7.3 uses a CloudNativePG-managed PostgreSQL
   cluster and receives its TLS certificate from the retained private CA.
@@ -474,9 +474,41 @@ when recovering the database: regenerating the password without changing
 PostgreSQL breaks Keycloak logins. This GCP bootstrap dependency must remain
 available independently of any future secrets manager.
 
-OpenBao has not been deployed. Its storage, unseal, authentication, backup,
-and bootstrap design must be agreed before introducing a Helm release or
-moving existing secrets.
+### OpenBao
+
+Flux installs OpenBao 2.7.1 using chart 0.30.3 in `openbao`. The Helm chart's
+Raft mode requires `ha.enabled`, but `replicas: 1` runs exactly one server:
+there is no high availability. Its 8Gi PVC uses `local-path-retain`; the PV
+and its data remain if the Helm release is removed. Traefik serves
+`https://openbao.platform.home.arpa` with the homelab private CA.
+
+OpenBao uses manual unseal. The one unseal share and initial root token live in
+the `openbao-recovery` GCP Secret Manager secret. Terraform manages only the
+secret container; its version was uploaded separately so recovery material
+never enters Terraform state or Git. Protect access to this secret: anyone
+with its contents can unseal OpenBao and authenticate as root.
+
+After a restart, port-forward directly to the sealed pod (the UI service may
+not have a ready endpoint), then post the unseal key over the local port
+forward. In separate terminals from the repository root:
+
+```bash
+KUBECONFIG=terraform/layers/03-compute/kubeconfig \
+  kubectl -n openbao port-forward pod/openbao-0 8200:8200
+```
+
+```bash
+gcloud secrets versions access latest --secret=openbao-recovery \
+  --project=learninggcp-470023 |
+  python3 -c 'import json,sys,urllib.request; key=json.load(sys.stdin)["unseal_keys_b64"][0]; req=urllib.request.Request("http://127.0.0.1:8200/v1/sys/unseal",data=json.dumps({"key":key}).encode(),headers={"Content-Type":"application/json"}); print("sealed:",json.load(urllib.request.urlopen(req))["sealed"])'
+```
+
+Use the initial root token from the same GCP secret to sign into the UI.
+There is no Keycloak login, auto-unseal, or off-node backup yet. The ingress
+terminates TLS at Traefik; traffic to the OpenBao pod is HTTP within K3s.
+Do not treat the retained PVC as a backup or store indispensable application
+secrets before an off-node backup and restore procedure exists.
+
 
 ### Stateful database safety
 

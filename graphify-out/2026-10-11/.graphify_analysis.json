@@ -1,0 +1,346 @@
+{
+  "communities": {
+    "0": [
+      "04_platform_data_google_secret_manager_secret_private_ca",
+      "04_platform_data_google_secret_manager_secret_version_private_ca",
+      "04_platform_helm_release_cert_manager",
+      "04_platform_helm_release_openbao",
+      "04_platform_helm_release_traefik",
+      "04_platform_kubernetes_manifest_openbao_certificate",
+      "04_platform_kubernetes_manifest_private_ca_cluster_issuer",
+      "04_platform_kubernetes_namespace_v1_cert_manager",
+      "04_platform_kubernetes_secret_v1_cert_manager_ca",
+      "04_platform_local_openbao_tls_secret_name",
+      "04_platform_local_private_ca_bundle",
+      "04_platform_local_private_ca_certificate_pem",
+      "04_platform_local_private_ca_private_key_pem",
+      "04_platform_var_enable_cert_manager_issuance",
+      "04_platform_var_keycloak_postgresql_storage_size",
+      "04_platform_var_openbao_hostname",
+      "04_platform_var_private_ca_secret_id",
+      "terraform_layers_04_platform_ingress",
+      "terraform_layers_04_platform_openbao",
+      "terraform_layers_04_platform_pki",
+      "terraform_layers_04_platform_secrets",
+      "terraform_layers_04_platform_variables"
+    ],
+    "1": [
+      "03_compute_libvirt_cloudinit_disk_k8s_cloudinit",
+      "03_compute_libvirt_domain_k8s_node",
+      "03_compute_libvirt_volume_k8s_node",
+      "03_compute_libvirt_volume_ubuntu_base",
+      "03_compute_output_k8s_node_ip",
+      "03_compute_output_k8s_node_mac",
+      "03_compute_output_kubeconfig_path",
+      "03_compute_provider_libvirt",
+      "03_compute_var_disk_size",
+      "03_compute_var_libvirt_uri",
+      "03_compute_var_network_name",
+      "03_compute_var_node_mac",
+      "03_compute_var_node_name",
+      "03_compute_var_pool_name",
+      "03_compute_var_ssh_public_key_path",
+      "03_compute_var_ubuntu_image_url",
+      "terraform_layers_03_compute_main",
+      "terraform_layers_03_compute_outputs",
+      "terraform_layers_03_compute_providers",
+      "terraform_layers_03_compute_variables"
+    ],
+    "2": [
+      "04_platform_google_secret_manager_secret_keycloak_admin_recovery",
+      "04_platform_google_secret_manager_secret_version_keycloak_admin_recovery_initial",
+      "04_platform_helm_release_keycloak",
+      "04_platform_kubernetes_manifest_keycloak_certificate",
+      "04_platform_kubernetes_namespace_v1_keycloak",
+      "04_platform_kubernetes_secret_v1_keycloak_admin",
+      "04_platform_kubernetes_secret_v1_keycloak_postgresql",
+      "04_platform_local_keycloak_admin_recovery_bundle",
+      "04_platform_local_keycloak_admin_username",
+      "04_platform_local_keycloak_tls_secret_name",
+      "04_platform_output_keycloak_admin_recovery_secret_name",
+      "04_platform_output_keycloak_admin_recovery_secret_version",
+      "04_platform_random_password_keycloak_admin",
+      "04_platform_random_password_keycloak_postgresql_admin",
+      "04_platform_random_password_keycloak_postgresql_user",
+      "04_platform_var_keycloak_hostname",
+      "terraform_layers_04_platform_keycloak",
+      "terraform_layers_04_platform_outputs"
+    ],
+    "3": [
+      "02_dns_docker_container_adguardhome",
+      "02_dns_docker_image_adguard",
+      "02_dns_local_config_dir",
+      "02_dns_local_config_file",
+      "02_dns_local_default_dns_records",
+      "02_dns_local_dns_records",
+      "02_dns_local_file_adguard_config",
+      "02_dns_local_managed_data_dir",
+      "02_dns_local_work_dir",
+      "02_dns_var_dns_domain",
+      "02_dns_var_dns_records",
+      "02_dns_var_host_lan_ip",
+      "02_dns_var_image_digest",
+      "02_dns_var_image_tag",
+      "02_dns_var_k8s_ingress_ip",
+      "terraform_layers_02_dns_main",
+      "terraform_layers_02_dns_variables"
+    ],
+    "4": [
+      "04_platform_helm_release_external_secrets",
+      "04_platform_kubernetes_manifest_gcp_secret_store",
+      "04_platform_kubernetes_manifest_keycloak_google_oauth_secret",
+      "04_platform_provider_google",
+      "04_platform_provider_helm",
+      "04_platform_provider_kubernetes",
+      "04_platform_var_gcp_project_id",
+      "terraform_layers_04_platform_external_secrets",
+      "terraform_layers_04_platform_providers"
+    ],
+    "5": [
+      "05_gcp_google_secret_manager_secret_backup_credentials",
+      "05_gcp_google_secret_manager_secret_backup_encryption_key",
+      "05_gcp_google_secret_manager_secret_keycloak_google_oauth",
+      "05_gcp_google_secret_manager_secret_version_backup_encryption_key_version",
+      "05_gcp_random_password_backup_key",
+      "terraform_layers_05_gcp_secrets"
+    ],
+    "6": [
+      "04_platform_provider_registry_opentofu_org_hashicorp_google",
+      "04_platform_provider_registry_opentofu_org_hashicorp_helm",
+      "04_platform_provider_registry_opentofu_org_hashicorp_kubernetes",
+      "04_platform_provider_registry_opentofu_org_hashicorp_random",
+      "terraform_layers_04_platform_terraform_lock"
+    ],
+    "7": [
+      "02_dns_provider_registry_opentofu_org_hashicorp_local",
+      "02_dns_provider_registry_opentofu_org_kreuzwerker_docker",
+      "terraform_layers_02_dns_terraform_lock"
+    ],
+    "8": [
+      "05_gcp_provider_registry_opentofu_org_hashicorp_google",
+      "05_gcp_provider_registry_opentofu_org_hashicorp_random",
+      "terraform_layers_05_gcp_terraform_lock"
+    ],
+    "9": [
+      "05_gcp_var_project_id",
+      "05_gcp_var_region",
+      "terraform_layers_05_gcp_variables"
+    ],
+    "10": [
+      "01_infra_provider_registry_opentofu_org_dmacvicar_libvirt",
+      "terraform_layers_01_infra_terraform_lock"
+    ],
+    "11": [
+      "02_dns_provider_docker",
+      "terraform_layers_02_dns_providers"
+    ],
+    "12": [
+      "03_compute_provider_registry_opentofu_org_dmacvicar_libvirt",
+      "terraform_layers_03_compute_terraform_lock"
+    ],
+    "13": [
+      "05_gcp_provider_google",
+      "terraform_layers_05_gcp_providers"
+    ],
+    "14": [
+      "platform_os_build_image",
+      "platform_os_build_image_sh__entry"
+    ],
+    "15": [
+      "terraform_layers_01_infra_backend"
+    ],
+    "16": [
+      "terraform_layers_01_infra_main"
+    ],
+    "17": [
+      "terraform_layers_01_infra_networks"
+    ],
+    "18": [
+      "terraform_layers_01_infra_outputs"
+    ],
+    "19": [
+      "terraform_layers_01_infra_pool"
+    ],
+    "20": [
+      "terraform_layers_01_infra_providers"
+    ],
+    "21": [
+      "terraform_layers_01_infra_variables"
+    ],
+    "22": [
+      "terraform_layers_02_dns_backend"
+    ],
+    "23": [
+      "terraform_layers_03_compute_backend"
+    ],
+    "24": [
+      "terraform_layers_04_platform_backend"
+    ],
+    "25": [
+      "terraform_layers_04_platform_main"
+    ],
+    "26": [
+      "terraform_layers_05_gcp_backend"
+    ]
+  },
+  "cohesion": {
+    "0": 0.16017316017316016,
+    "1": 0.1631578947368421,
+    "2": 0.22875816993464052,
+    "3": 0.2426470588235294,
+    "4": 0.2777777777777778,
+    "5": 0.4666666666666667,
+    "6": 0.4,
+    "7": 0.6666666666666666,
+    "8": 0.6666666666666666,
+    "9": 0.6666666666666666,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0
+  },
+  "gods": [
+    {
+      "id": "04_platform_helm_release_keycloak",
+      "label": "helm_release.keycloak",
+      "degree": 9
+    },
+    {
+      "id": "03_compute_libvirt_domain_k8s_node",
+      "label": "libvirt_domain.k8s_node",
+      "degree": 7
+    },
+    {
+      "id": "04_platform_kubernetes_manifest_keycloak_certificate",
+      "label": "kubernetes_manifest.keycloak_certificate",
+      "degree": 7
+    },
+    {
+      "id": "02_dns_docker_container_adguardhome",
+      "label": "docker_container.adguardhome",
+      "degree": 7
+    },
+    {
+      "id": "04_platform_kubernetes_manifest_private_ca_cluster_issuer",
+      "label": "kubernetes_manifest.private_ca_cluster_issuer",
+      "degree": 6
+    },
+    {
+      "id": "04_platform_kubernetes_secret_v1_cert_manager_ca",
+      "label": "kubernetes_secret_v1.cert_manager_ca",
+      "degree": 6
+    },
+    {
+      "id": "04_platform_kubernetes_namespace_v1_keycloak",
+      "label": "kubernetes_namespace_v1.keycloak",
+      "degree": 6
+    },
+    {
+      "id": "04_platform_kubernetes_manifest_openbao_certificate",
+      "label": "kubernetes_manifest.openbao_certificate",
+      "degree": 5
+    },
+    {
+      "id": "03_compute_libvirt_volume_k8s_node",
+      "label": "libvirt_volume.k8s_node",
+      "degree": 5
+    },
+    {
+      "id": "04_platform_kubernetes_secret_v1_keycloak_postgresql",
+      "label": "kubernetes_secret_v1.keycloak_postgresql",
+      "degree": 5
+    }
+  ],
+  "surprises": [
+    {
+      "source": "helm_release.keycloak",
+      "target": "var.keycloak_postgresql_storage_size",
+      "source_files": [
+        "terraform/layers/04-platform/keycloak.tf",
+        "terraform/layers/04-platform/variables.tf"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "bridges separate communities; peripheral node `var.keycloak_postgresql_storage_size` unexpectedly reaches hub `helm_release.keycloak`"
+    },
+    {
+      "source": "kubernetes_manifest.keycloak_certificate",
+      "target": "var.enable_cert_manager_issuance",
+      "source_files": [
+        "terraform/layers/04-platform/pki.tf",
+        "terraform/layers/04-platform/variables.tf"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "libvirt_domain.k8s_node",
+      "target": "var.network_name",
+      "source_files": [
+        "terraform/layers/03-compute/main.tf",
+        "terraform/layers/03-compute/variables.tf"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "peripheral node `var.network_name` unexpectedly reaches hub `libvirt_domain.k8s_node`"
+    },
+    {
+      "source": "libvirt_domain.k8s_node",
+      "target": "var.node_name",
+      "source_files": [
+        "terraform/layers/03-compute/main.tf",
+        "terraform/layers/03-compute/variables.tf"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "peripheral node `var.node_name` unexpectedly reaches hub `libvirt_domain.k8s_node`"
+    },
+    {
+      "source": "output.k8s_node_ip",
+      "target": "libvirt_domain.k8s_node",
+      "source_files": [
+        "terraform/layers/03-compute/outputs.tf",
+        "terraform/layers/03-compute/main.tf"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "peripheral node `output.k8s_node_ip` unexpectedly reaches hub `libvirt_domain.k8s_node`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `helm_release.keycloak` connect `Community 2` to `Community 0`?",
+      "why": "High betweenness centrality (0.039) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `kubernetes_manifest.keycloak_certificate` connect `Community 2` to `Community 0`?",
+      "why": "High betweenness centrality (0.034) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `var.gcp_project_id` connect `Community 4` to `Community 0`?",
+      "why": "High betweenness centrality (0.027) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `helm_release.traefik`, `output.kubeconfig_path`, `provider.registry.opentofu.org/dmacvicar/libvirt` to the rest of the system?",
+      "why": "21 weakly-connected nodes found - possible documentation gaps or missing edges."
+    }
+  ]
+}

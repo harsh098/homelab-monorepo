@@ -67,3 +67,4 @@ terraform/layers/02-dns/adguard-managed/conf/
 terraform/layers/02-dns/adguard-managed/work/
 terraform/layers/02-dns/adguard/conf/
 terraform/layers/02-dns/adguard/work/
+terraform/layers/03-compute/images/

@@ -1769,7 +1769,7 @@
       "node_kind": "heading",
       "norm_label": "deploy adguard dns",
       "source_file": "README.md",
-      "source_location": "L83"
+      "source_location": "L84"
     },
     {
       "id": "readme_deploy_headlamp",
@@ -1781,7 +1781,7 @@
       "node_kind": "heading",
       "norm_label": "deploy headlamp",
       "source_file": "README.md",
-      "source_location": "L413"
+      "source_location": "L414"
     },
     {
       "id": "readme_gitops_role_and_user_workflow",
@@ -1793,7 +1793,7 @@
       "node_kind": "heading",
       "norm_label": "gitops role and user workflow",
       "source_file": "README.md",
-      "source_location": "L359"
+      "source_location": "L360"
     },
     {
       "id": "readme_homelab",
@@ -1817,7 +1817,7 @@
       "node_kind": "heading",
       "norm_label": "infisical recovery and bootstrap",
       "source_file": "README.md",
-      "source_location": "L465"
+      "source_location": "L466"
     },
     {
       "id": "readme_keycloak_bootstrap_and_oidc_provisioning",
@@ -1829,7 +1829,7 @@
       "node_kind": "heading",
       "norm_label": "keycloak bootstrap and oidc provisioning",
       "source_file": "README.md",
-      "source_location": "L288"
+      "source_location": "L289"
     },
     {
       "id": "readme_manual_google_sign_in_runbook",
@@ -1841,7 +1841,7 @@
       "node_kind": "heading",
       "norm_label": "manual google sign-in runbook",
       "source_file": "README.md",
-      "source_location": "L317"
+      "source_location": "L318"
     },
     {
       "id": "readme_power_outage_recovery",
@@ -1853,7 +1853,7 @@
       "node_kind": "heading",
       "norm_label": "power outage recovery",
       "source_file": "README.md",
-      "source_location": "L199"
+      "source_location": "L200"
     },
     {
       "id": "readme_prerequisites",
@@ -1889,7 +1889,7 @@
       "node_kind": "heading",
       "norm_label": "routed libvirt management network",
       "source_file": "README.md",
-      "source_location": "L140"
+      "source_location": "L141"
     },
     {
       "id": "readme_terraform_layers",
@@ -1912,7 +1912,7 @@
       "file_type": "code",
       "norm_label": "docker_container.adguardhome",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L67"
+      "source_location": "L68"
     },
     {
       "id": "02_dns_docker_image_adguard",
@@ -1923,7 +1923,7 @@
       "file_type": "code",
       "norm_label": "docker_image.adguard",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L62"
+      "source_location": "L63"
     },
     {
       "id": "02_dns_local_config_dir",
@@ -1967,7 +1967,7 @@
       "file_type": "code",
       "norm_label": "local.dns_records",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L13"
+      "source_location": "L14"
     },
     {
       "id": "02_dns_local_file_adguard_config",
@@ -1978,7 +1978,7 @@
       "file_type": "code",
       "norm_label": "local_file.adguard_config",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L16"
+      "source_location": "L17"
     },
     {
       "id": "02_dns_local_managed_data_dir",
@@ -4814,7 +4814,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L317",
+      "source_location": "L318",
       "weight": 1.0
     },
     {
@@ -4825,7 +4825,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L359",
+      "source_location": "L360",
       "weight": 1.0
     },
     {
@@ -4836,7 +4836,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L140",
+      "source_location": "L141",
       "weight": 1.0
     },
     {
@@ -4847,7 +4847,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L199",
+      "source_location": "L200",
       "weight": 1.0
     },
     {
@@ -4858,7 +4858,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L288",
+      "source_location": "L289",
       "weight": 1.0
     },
     {
@@ -4869,7 +4869,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L413",
+      "source_location": "L414",
       "weight": 1.0
     },
     {
@@ -4880,7 +4880,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L465",
+      "source_location": "L466",
       "weight": 1.0
     },
     {
@@ -4891,7 +4891,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L83",
+      "source_location": "L84",
       "weight": 1.0
     },
     {
@@ -4913,7 +4913,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -4924,7 +4924,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -4990,7 +4990,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L62",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -5001,7 +5001,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L67",
+      "source_location": "L68",
       "weight": 1.0
     },
     {
@@ -6464,7 +6464,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L125",
+      "source_location": "L126",
       "weight": 1.0
     },
     {
@@ -6651,7 +6651,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L103",
+      "source_location": "L104",
       "weight": 1.0
     },
     {
@@ -6662,7 +6662,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L109",
+      "source_location": "L110",
       "weight": 1.0
     },
     {
@@ -6673,7 +6673,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L115",
+      "source_location": "L116",
       "weight": 1.0
     },
     {
@@ -6684,7 +6684,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L69",
+      "source_location": "L70",
       "weight": 1.0
     },
     {
@@ -6695,7 +6695,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L79",
+      "source_location": "L80",
       "weight": 1.0
     },
     {
@@ -6706,7 +6706,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L63",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
@@ -6717,7 +6717,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L63",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
@@ -6772,7 +6772,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -6783,7 +6783,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -6794,7 +6794,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L40",
+      "source_location": "L41",
       "weight": 1.0
     },
     {
@@ -6805,7 +6805,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L59",
+      "source_location": "L60",
       "weight": 1.0
     },
     {
@@ -7783,5 +7783,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "36ee07ad92f6c42059643a8ef798600003902bdc"
+  "built_at_commit": "579328b8a065726cef0d33692c0082b90a13d677"
 }

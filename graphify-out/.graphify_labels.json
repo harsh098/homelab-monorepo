@@ -8,10 +8,10 @@
   "6": "04-platform/.terraform.lock.hcl",
   "7": "02-dns/.terraform.lock.hcl",
   "8": "05-gcp/.terraform.lock.hcl",
-  "9": "05-gcp/infisical.tf",
+  "9": "var.project_id",
   "10": "provider.registry.opentofu.org/dmacvicar/libvirt",
   "11": "provider.docker",
-  "12": "provider.registry.opentofu.org/dmacvicar/libvirt",
+  "12": "03-compute/.terraform.lock.hcl",
   "13": "provider.google",
   "14": "build-image.sh",
   "15": "01-infra/backend.tf",
@@ -40,5 +40,8 @@
   "38": "extraction-spec.md",
   "39": "kubectl-keycloak-login.py",
   "40": "merge-kubeconfig.py",
-  "41": "configure-keycloak-google-idp.py"
+  "41": "RuntimeError",
+  "42": "google_kms_crypto_key_iam_member.mail_backup_gcs_service_agent",
+  "43": "build-headlamp-oidc-image.sh",
+  "44": "google_secret_manager_secret.keycloak_db_credentials"
 }

@@ -44,6 +44,23 @@ spec:
     server:
       authDelegator:
         enabled: false
+      extraInitContainers:
+        - name: prepare-kms-plugin-directory
+          image: quay.io/openbao/openbao:2.7.1
+          command: ["/bin/sh", "-ec"]
+          args: ["mkdir -p /openbao/data/plugins"]
+          volumeMounts:
+            - name: data
+              mountPath: /openbao/data
+      volumes:
+        - name: kms-credentials
+          secret:
+            secretName: openbao-kms-credentials
+            defaultMode: 0440
+      volumeMounts:
+        - name: kms-credentials
+          mountPath: /openbao/userconfig/gcp-kms
+          readOnly: true
       dataStorage:
         enabled: true
         size: 8Gi
@@ -65,5 +82,33 @@ spec:
         raft:
           enabled: true
           setNodeId: true
+          config: |
+            ui = true
+            plugin_directory = "/openbao/data/plugins"
+            plugin_auto_download = true
+
+            plugin "kms" "gcpckms" {
+              image = "ghcr.io/openbao/openbao-plugin-kms-gcp:v0.1.0@sha256:ed0b6e44716dfb77286dc53e8ee2322e41c8e9b14d9652a20f71dd8384f31842"
+            }
+
+            seal "gcpckms" {
+              credentials = "/openbao/userconfig/gcp-kms/credentials.json"
+              project     = "learninggcp-470023"
+              region      = "asia-south1"
+              key_ring    = "openbao-unseal-in"
+              crypto_key  = "openbao-unseal-in"
+            }
+
+            listener "tcp" {
+              tls_disable     = 1
+              address         = "[::]:8200"
+              cluster_address = "[::]:8201"
+            }
+
+            storage "raft" {
+              path = "/openbao/data"
+            }
+
+            service_registration "kubernetes" {}
     ui:
       enabled: true

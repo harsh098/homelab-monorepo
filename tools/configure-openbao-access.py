@@ -107,6 +107,14 @@ path "platform/metadata/keycloak/clients/openbao" {
 }
 '''
     _request(context, base, token, "PUT", "sys/policies/acl/keycloak-client-publisher", {"policy": publisher_policy})
+    headlamp_policy = '''path "platform/data/keycloak/clients/headlamp" {
+  capabilities = ["create", "read", "update"]
+}
+path "platform/metadata/keycloak/clients/headlamp" {
+  capabilities = ["create", "read", "update"]
+}
+'''
+    _request(context, base, token, "PUT", "sys/policies/acl/headlamp-client-publisher", {"policy": headlamp_policy})
     # This group is the sole human login role. The emergency root token stays
     # outside the cluster, independently of Keycloak's availability.
     admin_policy = '''path "*" {
@@ -143,6 +151,14 @@ path "platform/metadata/keycloak/clients/openbao" {
         "bound_service_account_namespaces": ["keycloak"],
         "audience": "vault",
         "token_policies": ["keycloak-client-publisher"],
+        "token_ttl": "15m",
+        "token_max_ttl": "1h",
+    })
+    _request(context, base, token, "POST", "auth/kubernetes/role/headlamp-client-publisher", {
+        "bound_service_account_names": ["openbao-keycloak-headlamp-publisher"],
+        "bound_service_account_namespaces": ["keycloak"],
+        "audience": "vault",
+        "token_policies": ["headlamp-client-publisher"],
         "token_ttl": "15m",
         "token_max_ttl": "1h",
     })

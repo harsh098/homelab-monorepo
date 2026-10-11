@@ -18,7 +18,6 @@ spec:
     accessType: CONFIDENTIAL
     clientAuthenticatorType: client-secret
     enabled: true
-    import: true
     standardFlowEnabled: true
     implicitFlowEnabled: false
     directAccessGrantsEnabled: false

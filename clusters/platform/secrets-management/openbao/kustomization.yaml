@@ -5,3 +5,4 @@ resources:
   - release.yaml
   - ingress.yaml
   - keycloak-push.yaml
+  - backup.yaml

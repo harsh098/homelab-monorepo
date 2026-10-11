@@ -115,6 +115,11 @@ path "platform/metadata/keycloak/clients/headlamp" {
 }
 '''
     _request(context, base, token, "PUT", "sys/policies/acl/headlamp-client-publisher", {"policy": headlamp_policy})
+    backup_policy = '''path "sys/storage/raft/snapshot" {
+  capabilities = ["read"]
+}
+'''
+    _request(context, base, token, "PUT", "sys/policies/acl/openbao-snapshot-backup", {"policy": backup_policy})
     # This group is the sole human login role. The emergency root token stays
     # outside the cluster, independently of Keycloak's availability.
     admin_policy = '''path "*" {
@@ -159,6 +164,14 @@ path "platform/metadata/keycloak/clients/headlamp" {
         "bound_service_account_namespaces": ["keycloak"],
         "audience": "vault",
         "token_policies": ["headlamp-client-publisher"],
+        "token_ttl": "15m",
+        "token_max_ttl": "1h",
+    })
+    _request(context, base, token, "POST", "auth/kubernetes/role/openbao-snapshot-backup", {
+        "bound_service_account_names": ["openbao-backup"],
+        "bound_service_account_namespaces": ["openbao"],
+        "audience": "vault",
+        "token_policies": ["openbao-snapshot-backup"],
         "token_ttl": "15m",
         "token_max_ttl": "1h",
     })

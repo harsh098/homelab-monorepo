@@ -1,0 +1,206 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: openbao-backup-gcs
+  namespace: openbao
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: gcp-secret-manager
+    kind: ClusterSecretStore
+  target:
+    name: openbao-backup-gcs
+    creationPolicy: Owner
+    deletionPolicy: Retain
+  data:
+    - secretKey: credentials.json
+      remoteRef:
+        key: openbao-backup-gcs
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: openbao-backup
+  namespace: openbao
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openbao-backup
+  namespace: openbao
+data:
+  backup.py: |
+    import datetime
+    import hashlib
+    import json
+    import os
+    import pathlib
+    import subprocess
+    import sys
+    import urllib.request
+    import uuid
+
+    # Bound the snapshot to the 8 GiB Raft volume and the 9 GiB scratch volume.
+    MAX_SNAPSHOT_BYTES = 8 * 1024**3
+    CHUNK_BYTES = 1024**2
+    SNAPSHOT = pathlib.Path('/scratch/raft.snapshot')
+    BASE_URL = 'http://openbao.openbao.svc.cluster.local:8200/v1'
+    stage = 'Kubernetes login'
+    os.umask(0o077)
+
+    try:
+        jwt = pathlib.Path('/var/run/secrets/openbao/token').read_text().strip()
+        login = urllib.request.Request(
+            BASE_URL + '/auth/kubernetes/login',
+            data=json.dumps({'role': 'openbao-snapshot-backup', 'jwt': jwt}).encode(),
+            headers={'Content-Type': 'application/json'},
+            method='POST',
+        )
+        with urllib.request.urlopen(login, timeout=30) as response:
+            token = json.load(response)['auth']['client_token']
+        del jwt
+
+        stage = 'Raft snapshot download'
+        request = urllib.request.Request(
+            BASE_URL + '/sys/storage/raft/snapshot',
+            headers={'X-Vault-Token': token},
+            method='GET',
+        )
+        digest = hashlib.sha256()
+        size = 0
+        with urllib.request.urlopen(request, timeout=180) as response, SNAPSHOT.open('xb') as output:
+            while chunk := response.read(CHUNK_BYTES):
+                size += len(chunk)
+                if size > MAX_SNAPSHOT_BYTES:
+                    raise ValueError('snapshot exceeds 8 GiB limit')
+                output.write(chunk)
+                digest.update(chunk)
+        del token
+        if size == 0:
+            raise ValueError('empty snapshot')
+
+        # Each Pod attempt gets a distinct name; GCS must also reject any overwrite.
+        timestamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
+        object_url = (
+            'gs://hmx-openbao-backups-in/raft/' + timestamp + '-'
+            + os.environ['POD_UID'] + '-' + uuid.uuid4().hex + '.snapshot'
+        )
+        stage = 'GCS upload'
+        subprocess.run(
+            ['gcloud', 'storage', 'cp', '--if-generation-match=0', str(SNAPSHOT), object_url],
+            check=True,
+        )
+
+        # Stream the uploaded object back, without needing a second local snapshot.
+        stage = 'GCS readback verification'
+        remote_digest = hashlib.sha256()
+        remote_size = 0
+        with subprocess.Popen(['gcloud', 'storage', 'cat', object_url], stdout=subprocess.PIPE) as reader:
+            while chunk := reader.stdout.read(CHUNK_BYTES):
+                remote_size += len(chunk)
+                remote_digest.update(chunk)
+            if reader.wait() != 0:
+                raise RuntimeError('GCS readback failed')
+        if remote_size != size or remote_digest.digest() != digest.digest():
+            raise ValueError('GCS readback checksum or size mismatch')
+        print('Verified Raft snapshot:', object_url, 'bytes:', size, flush=True)
+    except Exception as exc:
+        # Neither the Kubernetes JWT nor the OpenBao client token is ever logged.
+        print('OpenBao backup failed during ' + stage + ': ' + type(exc).__name__, file=sys.stderr)
+        sys.exit(1)
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: openbao-backup
+  namespace: openbao
+spec:
+  schedule: '0 */6 * * *'
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 3600
+  successfulJobsHistoryLimit: 4
+  failedJobsHistoryLimit: 4
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      activeDeadlineSeconds: 5400
+      ttlSecondsAfterFinished: 86400
+      template:
+        spec:
+          serviceAccountName: openbao-backup
+          automountServiceAccountToken: false
+          restartPolicy: Never
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 65532
+            runAsGroup: 65532
+            fsGroup: 65532
+            seccompProfile:
+              type: RuntimeDefault
+          containers:
+            - name: backup
+              image: gcr.io/google.com/cloudsdktool/google-cloud-cli:573.0.0-slim@sha256:c70e59ec375164bcd0bfe09d542ea88d805013625cd0c0e22e55eaa14b52d4ca
+              imagePullPolicy: IfNotPresent
+              command: ['python3', '/scripts/backup.py']
+              env:
+                - name: CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE
+                  value: /var/run/secrets/gcp/credentials.json
+                - name: CLOUDSDK_STORAGE_PARALLEL_COMPOSITE_UPLOAD_ENABLED
+                  value: 'false'
+                - name: CLOUDSDK_CONFIG
+                  value: /scratch/.gcloud
+                - name: HOME
+                  value: /scratch
+                - name: TMPDIR
+                  value: /scratch
+                - name: PYTHONDONTWRITEBYTECODE
+                  value: '1'
+                - name: POD_UID
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.uid
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 256Mi
+                  ephemeral-storage: 9Gi
+                limits:
+                  memory: 1Gi
+                  ephemeral-storage: 10Gi
+              securityContext:
+                allowPrivilegeEscalation: false
+                readOnlyRootFilesystem: true
+                capabilities:
+                  drop: ['ALL']
+              volumeMounts:
+                - name: backup-script
+                  mountPath: /scripts
+                  readOnly: true
+                - name: openbao-token
+                  mountPath: /var/run/secrets/openbao
+                  readOnly: true
+                - name: gcp-credentials
+                  mountPath: /var/run/secrets/gcp
+                  readOnly: true
+                - name: scratch
+                  mountPath: /scratch
+          volumes:
+            - name: backup-script
+              configMap:
+                name: openbao-backup
+                defaultMode: 0444
+            - name: openbao-token
+              projected:
+                sources:
+                  - serviceAccountToken:
+                      path: token
+                      audience: vault
+                      expirationSeconds: 3600
+            - name: gcp-credentials
+              secret:
+                secretName: openbao-backup-gcs
+                defaultMode: 0440
+            - name: scratch
+              emptyDir:
+                sizeLimit: 9Gi

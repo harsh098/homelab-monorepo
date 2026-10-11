@@ -1,0 +1,46 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: keycloak-backup-gcs
+  namespace: keycloak
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: gcp-secret-manager
+    kind: ClusterSecretStore
+  target:
+    name: keycloak-backup-gcs
+    creationPolicy: Owner
+    deletionPolicy: Retain
+  data:
+    - secretKey: gcsCredentials
+      remoteRef:
+        key: keycloak-backup-gcs
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: keycloak-gcs
+  namespace: keycloak
+spec:
+  configuration:
+    destinationPath: gs://hmx-keycloak-backups-in/keycloak
+    googleCredentials:
+      applicationCredentials:
+        name: keycloak-backup-gcs
+        key: gcsCredentials
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: keycloak-db-daily
+  namespace: keycloak
+spec:
+  schedule: "0 0 2 * * *"
+  immediate: true
+  backupOwnerReference: none
+  cluster:
+    name: keycloak-db
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io

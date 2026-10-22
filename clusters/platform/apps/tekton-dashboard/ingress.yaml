@@ -27,7 +27,7 @@ metadata:
   name: tekton-dashboard
   namespace: tekton-pipelines
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: tekton-pipelines-tekton-dashboard-basic-auth@kubernetescrd
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   ingressClassName: traefik
   tls:
@@ -42,6 +42,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: tekton-dashboard
+                name: oauth2-proxy
                 port:
-                  number: 9097
+                  number: 4180

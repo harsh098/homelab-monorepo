@@ -282,9 +282,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1792689654.711557,
-    "seen": 1792689670.8572671,
-    "ast_hash": "cc9bfb54bdc04f3c7a120eb5144f37d1",
+    "mtime": 1792690680.9698472,
+    "seen": 1792690989.395138,
+    "ast_hash": "e91503711735bd3cc77cee02c4003a0c",
     "semantic_hash": ""
   },
   "ansible/infra.yml": {
@@ -498,9 +498,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/identity/keycloak-gitops/kustomization.yaml": {
-    "mtime": 1791735368.444296,
-    "seen": 1791735524.1837547,
-    "ast_hash": "15380f48b2fd9693e6896eb287f9dfe8",
+    "mtime": 1792690679.376822,
+    "seen": 1792690989.395162,
+    "ast_hash": "fc27ceb700d3097fb5a2d0f9153b9f89",
     "semantic_hash": ""
   },
   "clusters/platform/identity/keycloak-gitops/rbac.yaml": {
@@ -570,9 +570,9 @@
     "semantic_hash": ""
   },
   "tools/configure-openbao-access.py": {
-    "mtime": 1791738503.1804693,
-    "seen": 1791740047.1172202,
-    "ast_hash": "8eecfcbefd0c7e8279349da11102a933",
+    "mtime": 1792690692.365028,
+    "seen": 1792690989.3951275,
+    "ast_hash": "7245272db5cefb75a7725a1a213e2013",
     "semantic_hash": ""
   },
   "clusters/platform/identity/keycloak-gitops/openbao-oidc.yaml": {
@@ -582,9 +582,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/secrets-management/openbao/keycloak-push.yaml": {
-    "mtime": 1791735403.580869,
-    "seen": 1791735524.1837602,
-    "ast_hash": "0af46b5b6b7004f33940f17fb9b4a34d",
+    "mtime": 1792690684.618905,
+    "seen": 1792690989.3951693,
+    "ast_hash": "32e5efa387b19509e4320e30bb82a1d3",
     "semantic_hash": ""
   },
   "terraform/layers/05-gcp/platform-backups.tf": {
@@ -780,33 +780,27 @@
     "semantic_hash": ""
   },
   "clusters/platform/apps/tekton-dashboard/kustomization.yaml": {
-    "mtime": 1792689465.7345545,
-    "seen": 1792689670.8572798,
-    "ast_hash": "953e7a4da7d6470d1c4b5b5103ebed7f",
-    "semantic_hash": ""
-  },
-  "terraform/layers/05-gcp/tekton-dashboard.tf": {
-    "mtime": 1792689473.9706857,
-    "seen": 1792689670.857222,
-    "ast_hash": "f393f1fd340632db7c2238102fe4c7e3",
-    "semantic_hash": ""
-  },
-  "tools/bootstrap-tekton-dashboard-auth.py": {
-    "mtime": 1792689500.6306076,
-    "seen": 1792689670.8572483,
-    "ast_hash": "859a32d4c16b0bdd6446e2014cf46b20",
-    "semantic_hash": ""
-  },
-  "clusters/platform/apps/tekton-dashboard/auth.yaml": {
-    "mtime": 1792689477.1117356,
-    "seen": 1792689670.8572772,
-    "ast_hash": "aef8037a09c34183018bd2debd5f62e5",
+    "mtime": 1792690720.6034758,
+    "seen": 1792690989.3951447,
+    "ast_hash": "7052ad934eff4d6e9c8466fc8d16e470",
     "semantic_hash": ""
   },
   "clusters/platform/apps/tekton-dashboard/ingress.yaml": {
-    "mtime": 1792689474.9247007,
-    "seen": 1792689670.8572783,
-    "ast_hash": "dc684dd029690308ee3259cdaa75355e",
+    "mtime": 1792690873.115894,
+    "seen": 1792690989.3951442,
+    "ast_hash": "cb133717e15e0b754a65b81ff6aafc7c",
+    "semantic_hash": ""
+  },
+  "clusters/platform/apps/tekton-dashboard/proxy.yaml": {
+    "mtime": 1792690873.116894,
+    "seen": 1792690989.3951457,
+    "ast_hash": "7bd50a3316f33bf51e455016ce988e59",
+    "semantic_hash": ""
+  },
+  "clusters/platform/identity/keycloak-gitops/tekton-oidc.yaml": {
+    "mtime": 1792690719.354456,
+    "seen": 1792690989.3951643,
+    "ast_hash": "64b807652193c79c1e88a941ef30fea8",
     "semantic_hash": ""
   }
 }

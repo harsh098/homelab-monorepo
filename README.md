@@ -552,27 +552,23 @@ display pipelines, runs, and logs but cannot create or edit them.
 
 The Dashboard has **no login of its own**. The LAN-only
 `https://tekton.platform.home.arpa/` route terminates TLS with the homelab
-private CA and requires Traefik BasicAuth before any request reaches the
-ClusterIP service. AdGuard rewrites that name to the private Traefik ingress
-address; there is no public DNS record or Cloudflare Tunnel. Trust the homelab
-CA on your browser and use an authorized GCP account to retrieve the
-`username` and `password` fields from the `tekton-dashboard-basic-auth`
-Secret Manager secret. Only the bcrypt `users` record is synced into the
-cluster; the password does not enter Git, Terraform state, or Kubernetes.
+private CA and sends every request through oauth2-proxy before reaching the
+ClusterIP Dashboard service. oauth2-proxy uses the Platform Keycloak realm,
+and only members of the `kubectl-admin` group can view the UI and its
+cluster-wide run logs. AdGuard rewrites the name to the private Traefik
+ingress address; there is no public DNS record or Cloudflare Tunnel. Trust
+the homelab CA in the browser to complete the Keycloak login.
 
-After provisioning `terraform/layers/05-gcp`, initialize the credentials:
-
-```bash
-python3 tools/bootstrap-tekton-dashboard-auth.py --project learninggcp-470023
-```
-
-The script requires `gcloud` access and `htpasswd`, prints no credentials,
-and refuses to replace an existing enabled version. Pass `--rotate` to
-generate a replacement. External Secrets refreshes the
-Kubernetes htpasswd secret hourly, so allow for that delay after rotation.
-Apply `terraform/layers/02-dns` to publish the LAN rewrite. The HTTPS
-Ingress references the BasicAuth middleware: if that dependency is missing,
-Traefik does not route requests to the unauthenticated Dashboard.
+Crossplane provisions the confidential `tekton-dashboard` Keycloak client.
+Its connection secret is published to OpenBao and synced to the proxy via
+External Secrets, using scoped Kubernetes service accounts. External Secrets
+generates the proxy's session-cookie key once; neither credential is stored
+in Git or Terraform state. Run `python3 tools/configure-openbao-access.py`
+after the Keycloak client and its publisher and reader service accounts have
+been created to provision their scoped OpenBao policies and roles. On
+recovery, check the Tekton client, PushSecret, ExternalSecret and proxy
+Deployment before troubleshooting the Ingress. If oauth2-proxy is
+unavailable, the Ingress does not route around it to the Dashboard.
 
 For break-glass access from this host, an authorized kubeconfig can bypass
 Traefik by forwarding the ClusterIP service:

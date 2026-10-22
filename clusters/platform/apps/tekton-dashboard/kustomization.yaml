@@ -1,0 +1,6 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  # v0.64 supports the installed Tekton Pipelines v1.6.x LTS series.
+  # The read-only release must not be exposed without authentication.
+  - https://infra.tekton.dev/tekton-releases/dashboard/previous/v0.64.0/release.yaml

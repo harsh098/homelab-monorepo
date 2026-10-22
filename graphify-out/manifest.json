@@ -342,9 +342,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/apps/kustomization.yaml": {
-    "mtime": 1789839104.3554525,
-    "seen": 1789839175.6129718,
-    "ast_hash": "658d8f8ff56efd869bc18740fcb724ed",
+    "mtime": 1792688790.054798,
+    "seen": 1792688842.9311728,
+    "ast_hash": "60b0064907b1337ab3b7b0ccf18f913e",
     "semantic_hash": ""
   },
   "tools/configure-keycloak-google-idp.py": {
@@ -450,9 +450,9 @@
     "semantic_hash": ""
   },
   "clusters/platform/controllers/tekton/kustomization.yaml": {
-    "mtime": 1791404961.2565992,
-    "seen": 1791405084.4243941,
-    "ast_hash": "d1f87867d782e41ebc81919f00f49e0a",
+    "mtime": 1792688790.0557978,
+    "seen": 1792688842.9311838,
+    "ast_hash": "c711a0d4cafc52668384f50bd6b16233",
     "semantic_hash": ""
   },
   "clusters/platform/identity/keycloak-app/database.yaml": {
@@ -777,6 +777,12 @@
     "mtime": 1792687128.53151,
     "seen": 1792687195.4090664,
     "ast_hash": "56c4d641a2d8d98a397becaeca47d987",
+    "semantic_hash": ""
+  },
+  "clusters/platform/apps/tekton-dashboard/kustomization.yaml": {
+    "mtime": 1792688787.4457564,
+    "seen": 1792688842.9311745,
+    "ast_hash": "e9b16d0341c29d047d4cbbec8ffb8275",
     "semantic_hash": ""
   }
 }

@@ -51,7 +51,6 @@
   "50": "06-app-secrets/backend.tf",
   "51": "07-apps/backend.tf",
   "52": "cloudflare_dns_record.this",
-  "53": "google_secret_manager_secret.keycloak_db_credentials",
   "54": "trilium.tf",
   "55": "backup-trilium.py",
   "56": "restore-trilium.py",

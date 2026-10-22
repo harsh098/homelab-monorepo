@@ -542,6 +542,33 @@ tofu apply -auto-approve -input=false
 ```
 
 
+### Tekton Dashboard
+
+Flux installs the read-only Tekton Dashboard v0.64.0 in `tekton-pipelines`
+alongside the already-running Tekton Pipelines v1.6.0 controller. Both
+release URLs are pinned; v0.64.0 supports the v1.6.x Pipelines LTS series.
+The Dashboard uses its own cluster-wide **view** service account, so it can
+display pipelines, runs, and logs but cannot create or edit them.
+
+The Dashboard has **no login of its own**. It deliberately has only a
+ClusterIP service—no Ingress, LAN DNS record, Cloudflare Tunnel, or public
+URL. Do not expose the service until an authenticated proxy and suitable
+Kubernetes authorization are in place. To use the UI from this host, run
+the port-forward with a kubeconfig authorized to access the service:
+
+```bash
+KUBECONFIG=terraform/layers/03-compute/kubeconfig \
+  kubectl -n tekton-pipelines port-forward --address 127.0.0.1 \
+  service/tekton-dashboard 9097:9097
+```
+
+Open `http://127.0.0.1:9097/` while the command runs. The live Dashboard's
+About page reports `ReadOnly: True`, Dashboard v0.64.0, and Pipelines
+v1.6.0; its Pipelines page currently has no pipelines. The bootc VM
+build and GHCR publishing pipeline is a **separate future change**: no
+build jobs, image publication credentials, or external registry triggers
+are installed by this Dashboard deployment.
+
 ### Keycloak database credentials
 
 `05-gcp` stores the existing Keycloak PostgreSQL password in the dedicated

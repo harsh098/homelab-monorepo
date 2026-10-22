@@ -1,17 +1,17 @@
 # Graph Report - llm-studio  (2026-10-22)
 
 ## Corpus Check
-- 84 files · ~158,911 words
+- 84 files · ~159,120 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 11 file(s) not represented in the graph (top: (none) 3, .tftpl 2, .cfg 1)
 
 ## Summary
-- 409 nodes · 604 edges · 58 communities (26 shown, 17 thin omitted)
+- 410 nodes · 605 edges · 57 communities (25 shown, 17 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 11 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `59daef1f`
+- Built from commit: `6f4155df`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -54,7 +54,6 @@
 - provider.registry.opentofu.org/hashicorp/vault
 - provider.vault
 - cloudflare_dns_record.this
-- google_secret_manager_secret.keycloak_db_credentials
 - trilium.tf
 - backup-trilium.py
 - restore-trilium.py
@@ -64,10 +63,10 @@
 1. `var.project_id` - 18 edges
 2. `What You Must Do When Invoked` - 12 edges
 3. `main()` - 11 edges
-4. `local.platform_backups` - 10 edges
-5. `OIDCError` - 10 edges
-6. `/graphify` - 10 edges
-7. `Terraform layers` - 10 edges
+4. `Terraform layers` - 11 edges
+5. `local.platform_backups` - 10 edges
+6. `OIDCError` - 10 edges
+7. `/graphify` - 10 edges
 8. `_browser_login()` - 9 edges
 9. `merge_kubeconfig()` - 9 edges
 10. `var.project_id` - 8 edges
@@ -87,7 +86,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (58 total, 17 thin omitted)
+## Communities (57 total, 17 thin omitted)
 
 ### Community 0 - "pki.tf"
 Cohesion: 0.19
@@ -118,8 +117,8 @@ Cohesion: 0.40
 Nodes (4): provider.registry.opentofu.org/hashicorp/google, provider.registry.opentofu.org/hashicorp/helm, provider.registry.opentofu.org/hashicorp/kubernetes, provider.registry.opentofu.org/hashicorp/random
 
 ### Community 9 - "var.project_id"
-Cohesion: 0.12
-Nodes (33): data.google_project.current, google_artifact_registry_repository.headlamp, google_artifact_registry_repository_iam_member.headlamp_public_pull, google_kms_crypto_key_iam_member.mail_backup_gcs_service_agent, google_kms_crypto_key_iam_member.openbao_unseal, google_kms_crypto_key_iam_member.platform_backup_gcs_agent, google_kms_crypto_key.mail_backups, google_kms_crypto_key.openbao_unseal (+25 more)
+Cohesion: 0.11
+Nodes (37): data.google_project.current, google_artifact_registry_repository.headlamp, google_artifact_registry_repository_iam_member.headlamp_public_pull, google_kms_crypto_key_iam_member.mail_backup_gcs_service_agent, google_kms_crypto_key_iam_member.openbao_unseal, google_kms_crypto_key_iam_member.platform_backup_gcs_agent, google_kms_crypto_key.mail_backups, google_kms_crypto_key.openbao_unseal (+29 more)
 
 ### Community 27 - "What You Must Do When Invoked"
 Cohesion: 0.08
@@ -131,7 +130,7 @@ Nodes (8): graphify reference: extra exports and benchmark, Step 6b - Wiki (only
 
 ### Community 29 - "Terraform layers"
 Cohesion: 0.11
-Nodes (17): Deploy AdGuard DNS, Deploy Headlamp, Deploy host applications: Trilium, GitOps role and user workflow, Homelab, Keycloak bootstrap and OIDC provisioning, Keycloak database credentials, Manual Google sign-in runbook (+9 more)
+Nodes (18): Deploy AdGuard DNS, Deploy Headlamp, Deploy host applications: Trilium, GitOps role and user workflow, Homelab, Keycloak bootstrap and OIDC provisioning, Keycloak database credentials, Manual Google sign-in runbook (+10 more)
 
 ### Community 30 - "graphify reference: query, path, explain"
 Cohesion: 0.33
@@ -177,10 +176,6 @@ Nodes (8): module.trilium_ingress, output.trilium_tunnel_token, provider.cloudfl
 Cohesion: 0.27
 Nodes (8): cloudflare_dns_record.this, output.id, var.content, var.name, var.proxied, var.ttl, var.type, var.zone_id
 
-### Community 53 - "google_secret_manager_secret.keycloak_db_credentials"
-Cohesion: 0.70
-Nodes (4): google_secret_manager_secret_iam_member.keycloak_db_credentials_reader, google_secret_manager_secret.keycloak_db_credentials, google_secret_manager_secret_version.keycloak_db_credentials, random_password.keycloak_db_password
-
 ### Community 54 - "trilium.tf"
 Cohesion: 0.26
 Nodes (13): data.google_project.current, google_kms_crypto_key_iam_member.trilium_backup_gcs_agent, google_kms_crypto_key.trilium_backups, google_kms_key_ring.trilium_backups, google_project_iam_custom_role.trilium_backup_writer, google_secret_manager_secret.trilium_backup_credentials, google_secret_manager_secret_version.trilium_backup_credentials, google_service_account_key.trilium_backup (+5 more)
@@ -194,24 +189,24 @@ Cohesion: 0.42
 Nodes (9): TarInfo, archive_members(), check_database(), empty_destination(), main(), Path, TarFile, Download and safely restore a Trilium backup into an empty isolated directory. (+1 more)
 
 ## Knowledge Gaps
-- **86 isolated node(s):** `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local`, `provider.registry.opentofu.org/kreuzwerker/docker`, `provider.docker` (+81 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 148 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **87 isolated node(s):** `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local`, `provider.registry.opentofu.org/kreuzwerker/docker`, `provider.docker` (+82 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 149 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **17 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `var.project_id` connect `var.project_id` to `google_secret_manager_secret.keycloak_db_credentials`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **Why does `OIDCError` connect `kubectl-keycloak-login.py` to `RuntimeError`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **Why does `kubernetes_manifest.keycloak_certificate` connect `pki.tf` to `keycloak.tf`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
 - **Are the 10 inferred relationships involving `RuntimeError` (e.g. with `_json_object()` and `main()`) actually correct?**
   _`RuntimeError` has 10 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local` to the rest of the system?**
-  _86 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _87 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `03-compute/variables.tf` be split into smaller, more focused modules?**
   _Cohesion score 0.12666666666666668 - nodes in this community are weakly interconnected._
 - **Should `var.project_id` be split into smaller, more focused modules?**
-  _Cohesion score 0.12375533428165007 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10631229235880399 - nodes in this community are weakly interconnected._
+- **Should `What You Must Do When Invoked` be split into smaller, more focused modules?**
+  _Cohesion score 0.08 - nodes in this community are weakly interconnected._

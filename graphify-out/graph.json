@@ -1999,7 +1999,7 @@
       "node_kind": "heading",
       "norm_label": "deploy host applications: trilium",
       "source_file": "README.md",
-      "source_location": "L788"
+      "source_location": "L815"
     },
     {
       "id": "readme_gitops_role_and_user_workflow",
@@ -2047,7 +2047,7 @@
       "node_kind": "heading",
       "norm_label": "keycloak database credentials",
       "source_file": "README.md",
-      "source_location": "L545"
+      "source_location": "L572"
     },
     {
       "id": "readme_manual_google_sign_in_runbook",
@@ -2071,7 +2071,7 @@
       "node_kind": "heading",
       "norm_label": "openbao",
       "source_file": "README.md",
-      "source_location": "L556"
+      "source_location": "L583"
     },
     {
       "id": "readme_power_outage_recovery",
@@ -2143,7 +2143,19 @@
       "node_kind": "heading",
       "norm_label": "stateful database safety",
       "source_file": "README.md",
-      "source_location": "L764"
+      "source_location": "L791"
+    },
+    {
+      "id": "readme_tekton_dashboard",
+      "label": "Tekton Dashboard",
+      "_origin": "ast",
+      "community": 29,
+      "community_name": "Terraform layers",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "tekton dashboard",
+      "source_file": "README.md",
+      "source_location": "L545"
     },
     {
       "id": "readme_terraform_layers",
@@ -2167,7 +2179,7 @@
       "node_kind": "heading",
       "norm_label": "trilium off-node backups",
       "source_file": "README.md",
-      "source_location": "L882"
+      "source_location": "L909"
     },
     {
       "id": "02_dns_docker_container_adguardhome",
@@ -3752,61 +3764,6 @@
       "source_location": null
     },
     {
-      "id": "05_gcp_google_secret_manager_secret_iam_member_keycloak_db_credentials_reader",
-      "label": "google_secret_manager_secret_iam_member.keycloak_db_credentials_reader",
-      "_origin": "ast",
-      "community": 53,
-      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
-      "file_type": "code",
-      "norm_label": "google_secret_manager_secret_iam_member.keycloak_db_credentials_reader",
-      "source_file": "terraform/layers/05-gcp/keycloak.tf",
-      "source_location": "L15"
-    },
-    {
-      "id": "05_gcp_google_secret_manager_secret_keycloak_db_credentials",
-      "label": "google_secret_manager_secret.keycloak_db_credentials",
-      "_origin": "ast",
-      "community": 53,
-      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
-      "file_type": "code",
-      "norm_label": "google_secret_manager_secret.keycloak_db_credentials",
-      "source_file": "terraform/layers/05-gcp/keycloak.tf",
-      "source_location": "L6"
-    },
-    {
-      "id": "05_gcp_google_secret_manager_secret_version_keycloak_db_credentials",
-      "label": "google_secret_manager_secret_version.keycloak_db_credentials",
-      "_origin": "ast",
-      "community": 53,
-      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
-      "file_type": "code",
-      "norm_label": "google_secret_manager_secret_version.keycloak_db_credentials",
-      "source_file": "terraform/layers/05-gcp/keycloak.tf",
-      "source_location": "L22"
-    },
-    {
-      "id": "05_gcp_random_password_keycloak_db_password",
-      "label": "random_password.keycloak_db_password",
-      "_origin": "ast",
-      "community": 53,
-      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
-      "file_type": "code",
-      "norm_label": "random_password.keycloak_db_password",
-      "source_file": "terraform/layers/05-gcp/keycloak.tf",
-      "source_location": "L1"
-    },
-    {
-      "id": "terraform_layers_05_gcp_keycloak",
-      "label": "05-gcp/keycloak.tf",
-      "_origin": "ast",
-      "community": 53,
-      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
-      "file_type": "code",
-      "norm_label": "05-gcp/keycloak.tf",
-      "source_file": "terraform/layers/05-gcp/keycloak.tf",
-      "source_location": null
-    },
-    {
       "id": "08_app_backups_data_google_project_current",
       "label": "data.google_project.current",
       "_origin": "ast",
@@ -4412,6 +4369,17 @@
       "source_location": "L100"
     },
     {
+      "id": "05_gcp_google_secret_manager_secret_iam_member_keycloak_db_credentials_reader",
+      "label": "google_secret_manager_secret_iam_member.keycloak_db_credentials_reader",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "var.project_id",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret_iam_member.keycloak_db_credentials_reader",
+      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "source_location": "L15"
+    },
+    {
       "id": "05_gcp_google_secret_manager_secret_iam_member_openbao_kms_credentials_reader",
       "label": "google_secret_manager_secret_iam_member.openbao_kms_credentials_reader",
       "_origin": "ast",
@@ -4432,6 +4400,17 @@
       "norm_label": "google_secret_manager_secret_iam_member.platform_backup_credentials_reader",
       "source_file": "terraform/layers/05-gcp/platform-backups.tf",
       "source_location": "L159"
+    },
+    {
+      "id": "05_gcp_google_secret_manager_secret_keycloak_db_credentials",
+      "label": "google_secret_manager_secret.keycloak_db_credentials",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "var.project_id",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret.keycloak_db_credentials",
+      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "source_location": "L6"
     },
     {
       "id": "05_gcp_google_secret_manager_secret_openbao_kms_credentials",
@@ -4465,6 +4444,17 @@
       "norm_label": "google_secret_manager_secret.platform_backup_credentials",
       "source_file": "terraform/layers/05-gcp/platform-backups.tf",
       "source_location": "L142"
+    },
+    {
+      "id": "05_gcp_google_secret_manager_secret_version_keycloak_db_credentials",
+      "label": "google_secret_manager_secret_version.keycloak_db_credentials",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "var.project_id",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret_version.keycloak_db_credentials",
+      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "source_location": "L22"
     },
     {
       "id": "05_gcp_google_secret_manager_secret_version_openbao_kms_credentials",
@@ -4577,6 +4567,17 @@
       "source_location": "L2"
     },
     {
+      "id": "05_gcp_random_password_keycloak_db_password",
+      "label": "random_password.keycloak_db_password",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "var.project_id",
+      "file_type": "code",
+      "norm_label": "random_password.keycloak_db_password",
+      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "source_location": "L1"
+    },
+    {
       "id": "05_gcp_var_project_id",
       "label": "var.project_id",
       "_origin": "ast",
@@ -4618,6 +4619,17 @@
       "file_type": "code",
       "norm_label": "headlamp.tf",
       "source_file": "terraform/layers/05-gcp/headlamp.tf",
+      "source_location": null
+    },
+    {
+      "id": "terraform_layers_05_gcp_keycloak",
+      "label": "05-gcp/keycloak.tf",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "var.project_id",
+      "file_type": "code",
+      "norm_label": "05-gcp/keycloak.tf",
+      "source_file": "terraform/layers/05-gcp/keycloak.tf",
       "source_location": null
     },
     {
@@ -6643,7 +6655,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L882",
+      "source_location": "L909",
       "weight": 1.0
     },
     {
@@ -6687,7 +6699,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L788",
+      "source_location": "L815",
       "weight": 1.0
     },
     {
@@ -6769,7 +6781,7 @@
     },
     {
       "source": "readme_terraform_layers",
-      "target": "readme_keycloak_database_credentials",
+      "target": "readme_tekton_dashboard",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -6780,13 +6792,24 @@
     },
     {
       "source": "readme_terraform_layers",
+      "target": "readme_keycloak_database_credentials",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "L572",
+      "weight": 1.0
+    },
+    {
+      "source": "readme_terraform_layers",
       "target": "readme_openbao",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L556",
+      "source_location": "L583",
       "weight": 1.0
     },
     {
@@ -6797,7 +6820,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L764",
+      "source_location": "L791",
       "weight": 1.0
     },
     {
@@ -11433,5 +11456,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "59daef1f03436586b08931ec5e613a252832776e"
+  "built_at_commit": "6f4155dfb2a0a99ccecc55b337bf36ca709f68aa"
 }

@@ -101,3 +101,55 @@ spec:
         remoteRef:
           remoteKey: keycloak/clients/headlamp
           property: client_secret
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: openbao-keycloak-tekton-publisher
+  namespace: keycloak
+---
+apiVersion: external-secrets.io/v1
+kind: SecretStore
+metadata:
+  name: openbao-keycloak-tekton
+  namespace: keycloak
+spec:
+  provider:
+    vault:
+      server: http://openbao.openbao.svc.cluster.local:8200
+      path: platform
+      version: v2
+      auth:
+        kubernetes:
+          mountPath: kubernetes
+          role: tekton-client-publisher
+          serviceAccountRef:
+            name: openbao-keycloak-tekton-publisher
+            audiences:
+              - vault
+---
+apiVersion: external-secrets.io/v1alpha1
+kind: PushSecret
+metadata:
+  name: tekton-dashboard-oidc-client
+  namespace: keycloak
+spec:
+  refreshInterval: 1h
+  deletionPolicy: None
+  secretStoreRefs:
+    - name: openbao-keycloak-tekton
+      kind: SecretStore
+  selector:
+    secret:
+      name: tekton-dashboard-oidc-client
+  data:
+    - match:
+        secretKey: clientID
+        remoteRef:
+          remoteKey: keycloak/clients/tekton-dashboard
+          property: client_id
+    - match:
+        secretKey: clientSecret
+        remoteRef:
+          remoteKey: keycloak/clients/tekton-dashboard
+          property: client_secret

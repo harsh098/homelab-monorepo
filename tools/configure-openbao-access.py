@@ -4,7 +4,8 @@
 Only non-secret configuration is in Git. The initial root token is read from
 Secret Manager and the OIDC client credential from the in-cluster Crossplane
 connection Secret; neither is written to disk, passed as an argument, or logged.
-Run after the GitOps Keycloak client and OpenBao service account exist.
+Run after the OpenBao GitOps Keycloak client and OpenBao service account exist;
+Tekton's client is not needed when applying its publisher and reader roles.
 """
 
 from __future__ import annotations
@@ -120,6 +121,19 @@ path "platform/metadata/keycloak/clients/headlamp" {
 }
 '''
     _request(context, base, token, "PUT", "sys/policies/acl/headlamp-oidc-reader", {"policy": headlamp_reader_policy})
+    tekton_publisher_policy = '''path "platform/data/keycloak/clients/tekton-dashboard" {
+  capabilities = ["create", "read", "update"]
+}
+path "platform/metadata/keycloak/clients/tekton-dashboard" {
+  capabilities = ["create", "read", "update"]
+}
+'''
+    _request(context, base, token, "PUT", "sys/policies/acl/tekton-client-publisher", {"policy": tekton_publisher_policy})
+    tekton_reader_policy = '''path "platform/data/keycloak/clients/tekton-dashboard" {
+  capabilities = ["read"]
+}
+'''
+    _request(context, base, token, "PUT", "sys/policies/acl/tekton-oidc-reader", {"policy": tekton_reader_policy})
     backup_policy = '''path "sys/storage/raft/snapshot" {
   capabilities = ["read"]
 }
@@ -172,11 +186,27 @@ path "platform/metadata/keycloak/clients/headlamp" {
         "token_ttl": "15m",
         "token_max_ttl": "1h",
     })
+    _request(context, base, token, "POST", "auth/kubernetes/role/tekton-client-publisher", {
+        "bound_service_account_names": ["openbao-keycloak-tekton-publisher"],
+        "bound_service_account_namespaces": ["keycloak"],
+        "audience": "vault",
+        "token_policies": ["tekton-client-publisher"],
+        "token_ttl": "15m",
+        "token_max_ttl": "1h",
+    })
     _request(context, base, token, "POST", "auth/kubernetes/role/headlamp-oidc-reader", {
         "bound_service_account_names": ["headlamp-oidc-reader"],
         "bound_service_account_namespaces": ["kube-system"],
         "audience": "vault",
         "token_policies": ["headlamp-oidc-reader"],
+        "token_ttl": "15m",
+        "token_max_ttl": "1h",
+    })
+    _request(context, base, token, "POST", "auth/kubernetes/role/tekton-oidc-reader", {
+        "bound_service_account_names": ["tekton-oidc-reader"],
+        "bound_service_account_namespaces": ["tekton-pipelines"],
+        "audience": "vault",
+        "token_policies": ["tekton-oidc-reader"],
         "token_ttl": "15m",
         "token_max_ttl": "1h",
     })
@@ -188,7 +218,7 @@ path "platform/metadata/keycloak/clients/headlamp" {
         "token_ttl": "15m",
         "token_max_ttl": "1h",
     })
-    print("OpenBao Platform OIDC, scoped Kubernetes publishers, and Headlamp OIDC reader configured")
+    print("OpenBao Platform OIDC, scoped Kubernetes publishers, and Headlamp/Tekton OIDC readers configured")
     return 0
 
 

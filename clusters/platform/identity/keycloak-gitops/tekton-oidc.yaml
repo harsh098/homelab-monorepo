@@ -1,0 +1,70 @@
+apiVersion: openidclient.keycloak.crossplane.io/v1alpha2
+kind: Client
+metadata:
+  name: platform-tekton-dashboard
+  labels:
+    app.kubernetes.io/name: tekton-dashboard
+    app.kubernetes.io/part-of: platform
+spec:
+  deletionPolicy: Orphan
+  writeConnectionSecretToRef:
+    name: tekton-dashboard-oidc-client
+    namespace: keycloak
+  forProvider:
+    realmId: Platform
+    clientId: tekton-dashboard
+    name: Tekton Dashboard
+    description: OIDC client for the Tekton Dashboard oauth2-proxy
+    accessType: CONFIDENTIAL
+    clientAuthenticatorType: client-secret
+    enabled: true
+    standardFlowEnabled: true
+    implicitFlowEnabled: false
+    directAccessGrantsEnabled: false
+    serviceAccountsEnabled: false
+    validRedirectUris:
+      - https://tekton.platform.home.arpa/oauth2/callback
+    webOrigins:
+      - https://tekton.platform.home.arpa
+  providerConfigRef:
+    name: platform-keycloak
+---
+apiVersion: openidgroup.keycloak.crossplane.io/v1alpha1
+kind: GroupMembershipProtocolMapper
+metadata:
+  name: platform-tekton-dashboard-groups
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    realmId: Platform
+    clientIdRef:
+      name: platform-tekton-dashboard
+      policy:
+        resolve: Always
+    name: groups
+    claimName: groups
+    fullPath: false
+    addToIdToken: true
+    addToAccessToken: true
+    addToUserinfo: true
+  providerConfigRef:
+    name: platform-keycloak
+---
+apiVersion: openidgroup.keycloak.crossplane.io/v1alpha1
+kind: AudienceProtocolMapper
+metadata:
+  name: platform-tekton-dashboard-audience
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    realmId: Platform
+    clientIdRef:
+      name: platform-tekton-dashboard
+      policy:
+        resolve: Always
+    name: tekton-dashboard-audience
+    includedClientAudience: tekton-dashboard
+    addToIdToken: true
+    addToAccessToken: true
+  providerConfigRef:
+    name: platform-keycloak

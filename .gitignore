@@ -27,6 +27,16 @@ credentials.*
 service-account*.json
 *-service-account*.json
 
+# Trilium runtime identity and database files
+trilium-tunnel-token
+trilium-backup-gcs.json
+session_secret.txt
+document.db
+document.db-*
+trilium*.tar.gz
+apps/trilium/config.ini
+**/trilium-data/
+
 # Kubernetes configuration
 kubeconfig
 kubeconfig.*
@@ -68,3 +78,7 @@ terraform/layers/02-dns/adguard-managed/work/
 terraform/layers/02-dns/adguard/conf/
 terraform/layers/02-dns/adguard/work/
 terraform/layers/03-compute/images/
+
+# Graphify's generated snapshots and rehydratable AST cache
+graphify-out/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/
+graphify-out/cache/ast/

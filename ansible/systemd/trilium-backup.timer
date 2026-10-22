@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily Trilium backup to GCS
+
+[Timer]
+OnCalendar=*-*-* 03:15:00 UTC
+Persistent=true
+RandomizedDelaySec=10m
+Unit=trilium-backup.service
+
+[Install]
+WantedBy=timers.target

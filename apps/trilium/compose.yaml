@@ -1,0 +1,34 @@
+services:
+  trilium:
+    image: triliumnext/trilium:v0.106.0@sha256:be93e82699b12950ac4e2e7b565ce092fe215b8dd6ddfc47921e37b49e6a0e8b
+    restart: unless-stopped
+    mem_limit: 1g
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - /var/lib/homelab/apps/trilium:/home/node/trilium-data:Z
+    networks:
+      - trilium_origin
+
+  cloudflared:
+    image: cloudflare/cloudflared:2026.10.3@sha256:faa8e0a1475f137c910be6025f43c8e4092fdd35461b31e19fd1390657a1ff39
+    profiles:
+      - public
+    restart: unless-stopped
+    user: "65532:65532" # Match the owner of the read-only tunnel token.
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    command: tunnel --no-autoupdate run --token-file /run/secrets/trilium-tunnel-token
+    volumes:
+      - /opt/homelab/apps/trilium/trilium-tunnel-token:/run/secrets/trilium-tunnel-token:ro,Z
+    depends_on:
+      - trilium
+    networks:
+      - trilium_origin
+
+networks:
+  trilium_origin:
+    driver: bridge

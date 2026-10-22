@@ -1,0 +1,12 @@
+[Unit]
+Description=Consistent Trilium snapshot to GCS
+Wants=network-online.target
+After=network-online.target docker.service
+ConditionPathIsDirectory=/var/lib/homelab/apps/trilium
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+UMask=0077
+ExecStart=/usr/bin/python3 /usr/local/libexec/homelab/backup-trilium.py --data-dir /var/lib/homelab/apps/trilium --bucket hmx-trilium-backups-in --credentials /etc/homelab/trilium-backup-gcs.json --gcloud-bin {{ trilium_gcloud_binary.stdout }}

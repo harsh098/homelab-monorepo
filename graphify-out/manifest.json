@@ -282,9 +282,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1791744382.5005124,
-    "seen": 1791744389.9952366,
-    "ast_hash": "1d20470cc93bbe22bf5f299c365cdec5",
+    "mtime": 1792687182.935373,
+    "seen": 1792687195.4090745,
+    "ast_hash": "7d8b07087e86925b6552a0ee6f4c2b28",
     "semantic_hash": ""
   },
   "ansible/infra.yml": {
@@ -621,6 +621,162 @@
     "mtime": 1791743811.4675682,
     "seen": 1791744389.9952269,
     "ast_hash": "36105dddc2bb3b4989a71f0608c22206",
+    "semantic_hash": ""
+  },
+  "terraform/layers/06-app-secrets/.terraform.lock.hcl": {
+    "mtime": 1792591781.2437267,
+    "seen": 1792591952.442803,
+    "ast_hash": "2aca0784ecb548e6814cdee3a0de4ae8",
+    "semantic_hash": ""
+  },
+  "terraform/layers/06-app-secrets/backend.tf": {
+    "mtime": 1792591651.4746895,
+    "seen": 1792591952.4428043,
+    "ast_hash": "a78e43e9d1da24fedd399d47ace49631",
+    "semantic_hash": ""
+  },
+  "terraform/layers/06-app-secrets/main.tf": {
+    "mtime": 1792593990.5410733,
+    "seen": 1792594095.9480686,
+    "ast_hash": "d2e5f40341ec944a3aed22630350d176",
+    "semantic_hash": ""
+  },
+  "terraform/layers/06-app-secrets/providers.tf": {
+    "mtime": 1792591653.997729,
+    "seen": 1792591952.4428055,
+    "ast_hash": "4def1f7a2c20a14d95426385dda9c8b5",
+    "semantic_hash": ""
+  },
+  "terraform/layers/07-apps/.terraform.lock.hcl": {
+    "mtime": 1792591784.205773,
+    "seen": 1792591952.4428067,
+    "ast_hash": "c1a7ec1dea019bd9926a8ff6d055249d",
+    "semantic_hash": ""
+  },
+  "terraform/layers/07-apps/backend.tf": {
+    "mtime": 1792591668.8449621,
+    "seen": 1792591952.4428072,
+    "ast_hash": "1fb73899fb2b5cb1883af0657284019f",
+    "semantic_hash": ""
+  },
+  "terraform/layers/07-apps/main.tf": {
+    "mtime": 1792591802.915067,
+    "seen": 1792591952.442808,
+    "ast_hash": "1b6f0e9daf8ebdc27923053bf7fd2f31",
+    "semantic_hash": ""
+  },
+  "terraform/layers/07-apps/outputs.tf": {
+    "mtime": 1792591679.4845822,
+    "seen": 1792591952.4428084,
+    "ast_hash": "dd59f0f6cdb74bff58e685e979b78123",
+    "semantic_hash": ""
+  },
+  "terraform/layers/07-apps/providers.tf": {
+    "mtime": 1792687095.0209785,
+    "seen": 1792687195.4090526,
+    "ast_hash": "d183a2f80f51c75cd82e1ae4d533eb44",
+    "semantic_hash": ""
+  },
+  "terraform/layers/07-apps/variables.tf": {
+    "mtime": 1792687095.0219784,
+    "seen": 1792687195.409054,
+    "ast_hash": "4a4e1d6382f1818dca231ffe4e63abd4",
+    "semantic_hash": ""
+  },
+  "terraform/modules/public_ingress/main.tf": {
+    "mtime": 1792592353.9407263,
+    "seen": 1792592444.6829715,
+    "ast_hash": "2ac90fd0f8142da50e8faa0e33d5c8d2",
+    "semantic_hash": ""
+  },
+  "terraform/modules/public_ingress/outputs.tf": {
+    "mtime": 1792591621.7452228,
+    "seen": 1792591952.4428105,
+    "ast_hash": "1f1610effc598a4187f2465d969c6472",
+    "semantic_hash": ""
+  },
+  "terraform/modules/public_ingress/variables.tf": {
+    "mtime": 1792591618.923478,
+    "seen": 1792591952.4428113,
+    "ast_hash": "712596ad3961d81784d6a8b49c0d2d60",
+    "semantic_hash": ""
+  },
+  "ansible/apps.yml": {
+    "mtime": 1792687108.745196,
+    "seen": 1792687195.409075,
+    "ast_hash": "ae99d7a924b21a0a614840f866f988d5",
+    "semantic_hash": ""
+  },
+  "apps/trilium/compose.yaml": {
+    "mtime": 1792674879.441587,
+    "seen": 1792674905.0374613,
+    "ast_hash": "9414d5bb4e208729b9dbfd28fe07a10b",
+    "semantic_hash": ""
+  },
+  "terraform/modules/dns_record/main.tf": {
+    "mtime": 1792592331.5163736,
+    "seen": 1792592444.6829686,
+    "ast_hash": "dcf34f3db34a784cfaf8eac60f11eeac",
+    "semantic_hash": ""
+  },
+  "terraform/modules/dns_record/outputs.tf": {
+    "mtime": 1792592339.945506,
+    "seen": 1792592444.6829698,
+    "ast_hash": "ba6118204eca0559fc14042552a2e37a",
+    "semantic_hash": ""
+  },
+  "terraform/modules/dns_record/variables.tf": {
+    "mtime": 1792592337.1154616,
+    "seen": 1792592444.6829703,
+    "ast_hash": "2d6cbba5c601042be490062a02e9e0c1",
+    "semantic_hash": ""
+  },
+  "terraform/layers/08-app-backups/.terraform.lock.hcl": {
+    "mtime": 1792675941.897272,
+    "seen": 1792676321.6389134,
+    "ast_hash": "776aad26863846a68a500337e4f57954",
+    "semantic_hash": ""
+  },
+  "terraform/layers/08-app-backups/backend.tf": {
+    "mtime": 1792675673.907602,
+    "seen": 1792676321.6389146,
+    "ast_hash": "e98d1bd9b0528717aecf5f2deb8d4a65",
+    "semantic_hash": ""
+  },
+  "terraform/layers/08-app-backups/providers.tf": {
+    "mtime": 1792675676.4277003,
+    "seen": 1792676321.6389153,
+    "ast_hash": "fd393e6073b94cdcf5dcf0cd0eab1eb7",
+    "semantic_hash": ""
+  },
+  "terraform/layers/08-app-backups/trilium.tf": {
+    "mtime": 1792676119.1340547,
+    "seen": 1792676321.638916,
+    "ast_hash": "508ef1efb8d4044c50bca0f6000edfdb",
+    "semantic_hash": ""
+  },
+  "terraform/layers/08-app-backups/variables.tf": {
+    "mtime": 1792675678.6391346,
+    "seen": 1792676321.6389165,
+    "ast_hash": "5c40cb927a83b34b102e95cf2166f04b",
+    "semantic_hash": ""
+  },
+  "tools/backup-trilium.py": {
+    "mtime": 1792675859.4529762,
+    "seen": 1792676321.6389217,
+    "ast_hash": "c8165e6b5937a20f43db0d671d89917b",
+    "semantic_hash": ""
+  },
+  "tools/restore-trilium.py": {
+    "mtime": 1792675844.5827427,
+    "seen": 1792676321.6389258,
+    "ast_hash": "e103dc99bf8c51d7faa80856e23e5aaa",
+    "semantic_hash": ""
+  },
+  "tools/mint-trilium-vault-token.py": {
+    "mtime": 1792687128.53151,
+    "seen": 1792687195.4090664,
+    "ast_hash": "56c4d641a2d8d98a397becaeca47d987",
     "semantic_hash": ""
   }
 }

@@ -69,14 +69,27 @@ individually from their directories:
   and External Secrets installation. Flux owns the CNPG operator, CNPG
   `Cluster`, Keycloak Operator, Keycloak CR, and create-only
   `KeycloakRealmImport`.
-- The platform cluster layer is not a generic application deployment layer.
-  Flux reconciles `clusters/platform/` through one platform Kustomization:
-  `controllers/` holds controller-specific installations, `identity/` holds
-  `keycloak-app/` and `keycloak-gitops/`, `secrets-management/` holds OpenBao,
-  `apps/` holds user applications, and `policies/` holds platform safeguards.
+- The platform Flux Kustomization owns platform services only:
+  `controllers/` installs controllers, `identity/` holds Keycloak and
+  identity GitOps, `secrets-management/` holds OpenBao, `apps/` holds
+  Headlamp (platform tooling), and `policies/` holds safeguards. Host
+  applications are deployed separately through `ansible/apps.yml`; the
+  platform Flux Kustomization does not reconcile them.
   Traefik is exposed through the K3s `LoadBalancer` service at
   `192.168.10.220`. Keycloak 26.7.3 uses a CloudNativePG-managed PostgreSQL
   cluster and receives its TLS certificate from the retained private CA.
+- **06-app-secrets** creates the KV v2 metadata entry for
+  `platform/apps/cloudflare` after OpenBao is ready. It does not write a
+  secret version; the operator adds the Cloudflare credentials manually.
+- **07-apps** reads those credentials from OpenBao and creates the Trilium
+  Cloudflare tunnel, published hostname, and DNS record. It has a separate
+  GCS state from the platform and supplies the connector token to the
+  standalone app deployment playbook. `public_ingress` uses the reusable
+  `terraform/modules/dns_record` module for its DNS CNAME; other callers can
+  use the same module for independent Cloudflare records.
+- **08-app-backups** owns the dedicated Trilium GCS bucket, CMEK key,
+  scoped service account and its Secret Manager credential. It has its
+  own state, separate from both platform and public-ingress resources.
 
 ### Retired mail archive
 
@@ -771,3 +784,151 @@ Crossplane cannot restore a deleted CNPG PVC, reconstruct Keycloak realm data,
 or prevent another controller from deleting the database. Database durability
 belongs to CNPG, storage reclaim policy, backup/restore, and admission
 controls.
+
+## Deploy host applications: Trilium
+
+`ansible/apps.yml` is separate from platform bootstrap. Its first application
+is Trilium on the local Docker host. The platform prerequisite is an initialized,
+unsealed OpenBao with the `platform` KV v2 mount. Docker Compose and OpenTofu
+must be installed on the host.
+
+`terraform/modules/dns_record` accepts `zone_id`, fully qualified `name`,
+`type`, and `content`; `proxied` defaults to `false` and `ttl` defaults to
+Cloudflare automatic (`1`). The caller supplies its configured Cloudflare
+provider. `public_ingress` passes the tunnel hostname and CNAME target to
+this module; it does not create a second record. Existing DNS state is moved
+into the child module without replacing the record.
+
+1. For the **one-time** `06-app-secrets` setup, authenticate to OpenBao with
+   permission to create and read `platform/metadata/apps/cloudflare`. Set
+   `VAULT_ADDR` to `https://openbao.platform.home.arpa`, `VAULT_CACERT` to
+   the trusted homelab CA certificate, and `VAULT_TOKEN` in the operator
+   environment for this step. Create the secret metadata entry with:
+
+   ```bash
+   tofu -chdir=terraform/layers/06-app-secrets init
+   tofu -chdir=terraform/layers/06-app-secrets apply
+   ```
+
+   Terraform creates only the metadata entry. OpenBao KV v2 path
+   `platform/apps/cloudflare` currently has a scoped Cloudflare API token
+   under `api_token`; the provider uses bearer-token authentication. Rotate
+   the token by creating a new secret version, not by changing Terraform.
+   The apps layer uses an ephemeral OpenBao KV read, so the API token is not
+   copied into its Terraform state.
+2. `07-apps` defaults to account `ce2c13dc20ba8de1db482e430b408fd5`,
+   zone `c9e0a4d0e328d189813cd553dcda1bd7`, and hostname
+   `trilium.hmx86.cloud`. The host playbook does **not** need an operator
+   OpenBao token or `VAULT_*` environment variables. It needs an active
+   `gcloud` login authorized to read the `openbao-recovery` Secret Manager
+   secret and sudo for system directories and Docker service management:
+
+   ```bash
+   ansible-playbook -i ansible/inventory.ini ansible/apps.yml \
+     --ask-become-pass
+   ```
+
+   `tools/mint-trilium-vault-token.py` reads the existing GCP-held recovery
+   root token in memory and exchanges it for a 30-minute orphan token with
+   only `platform/data/apps/cloudflare` read access and self-lookup access.
+   OpenTofu reads that scoped token from a mode-`0600` temporary file; the
+   playbook removes the file even if apply fails. The recovery token is
+   never passed to OpenTofu, written to disk, or logged. TLS uses the
+   existing `~/.config/homelab/keycloak-ca.crt`, already trusted for
+   OpenBao; certificate verification is not disabled. **Access to the GCP
+   recovery secret is effectively OpenBao root access**: grant it only to
+   trusted operators and never use the recovery token directly as the
+   OpenTofu provider token. `07-apps` still uses an ephemeral KV read so
+   the Cloudflare API token does not enter its state.
+
+   The playbook applies `07-apps` and `08-app-backups`, deploys Trilium with
+   a 1 GiB container memory limit, and installs a daily GCS backup timer.
+   Trilium listens only on `127.0.0.1:8080`. Its data persists under
+   `/var/lib/homelab/apps/trilium`. A first run does **not** start the
+   Cloudflare connector: open `http://127.0.0.1:8080` on the host and
+   complete Trilium setup, including a password.
+
+   On this Docker-enabled host, local setup can start before the privileged
+   playbook: `docker compose -f apps/trilium/compose.yaml up -d trilium`.
+   This starts only Trilium, not cloudflared; ensure the host data directory
+   remains mode `0700`. Run the playbook later to install the connector token
+   and reconcile the system deployment before publishing.
+3. Only after setup, publish the service:
+
+   ```bash
+   ansible-playbook -i ansible/inventory.ini ansible/apps.yml \
+     --ask-become-pass -e trilium_public_enabled=true
+   ```
+
+   Rerunning without the flag keeps an already-running connector active;
+   it does not retract a published application. Trilium and cloudflared
+   share only the project-scoped `trilium_origin` Compose bridge. The
+   connector uses `http://trilium:8080` on that bridge, runs non-root with
+   a read-only filesystem and no Linux capabilities, and has no published
+   ports, host network, or Docker socket. Docker publishes Trilium only on
+   loopback. The connector still requires outbound Internet access to
+   Cloudflare; this bridge does not enforce Cloudflare-only egress.
+   Its token is stored in the restricted `07-apps` GCS state and installed
+   as a read-only `/opt/homelab/apps/trilium/trilium-tunnel-token` host file,
+   not an environment variable or CLI argument. Restrict access to both.
+   Publishing the hostname exposes Trilium to the Internet; this setup
+   uses Trilium's own login, not Cloudflare Access.
+   Before resetting or restoring Trilium to an uninitialized data directory,
+   stop the connector with `sudo docker compose -f
+   /opt/homelab/apps/trilium/compose.yaml --profile public stop cloudflared`;
+   an existing connector survives normal playbook reruns and would otherwise
+   expose the first-run setup screen again.
+
+### Trilium off-node backups
+
+`08-app-backups` provisions `gs://hmx-trilium-backups-in/` in `asia-south1`
+with a dedicated CMEK key, enforced public-access prevention, 14-day
+unlocked object retention and soft deletion, and lifecycle deletion after
+90 days. The `trilium-backup` service account can create, read, and list
+objects in this bucket but cannot delete them. Its JSON key is in GCP Secret
+Manager as `trilium-backup-gcs` and in the restricted Terraform state.
+GCS CMEK encrypts objects **at rest**; these archives are not separately
+client-side encrypted. Restrict access to the bucket, key, Secret Manager
+secret, host credential file, and state. Keep the KMS key versions enabled
+for the lifetime of the backups.
+
+`ansible/apps.yml --ask-become-pass` installs the key as
+`/etc/homelab/trilium-backup-gcs.json` (root-only), a
+`trilium-backup.service`, and a persistent daily timer scheduled for
+03:15 UTC (up to 10 minutes randomized delay). The timer is **not active
+until the privileged playbook succeeds**. The service snapshots live
+`document.db` with SQLite's online backup API, checks its integrity, and
+archives it with persistent data-directory files such as `config.ini` and
+`session_secret.txt`. It excludes live WAL/SHM, logs, temporary files,
+and Trilium's local backups. Each run uploads a unique archive and checks
+its remote size and MD5; GCS retention/lifecycle, not the writer identity,
+handles deletion. A real GCS upload and isolated restore have been
+exercised; this does not prove the timer is installed on the host.
+
+After installing the timer, trigger and inspect a service run:
+
+```bash
+sudo systemctl start trilium-backup.service
+sudo systemctl status trilium-backup.timer
+sudo journalctl -u trilium-backup.service -n 30 --no-pager
+gcloud storage ls --recursive gs://hmx-trilium-backups-in/trilium/
+```
+
+For a restore drill, choose an exact `gs://...tar.gz` object URI from that
+listing and restore into a new, empty directory **outside** the live data
+directory. The tool rejects symlink/traversal archive members and checks
+SQLite integrity before placing files in the destination:
+
+```bash
+read -r -p "Exact backup object URI: " backup_object
+sudo python3 tools/restore-trilium.py \
+  --object "$backup_object" \
+  --destination /var/tmp/trilium-restore-drill \
+  --credentials /etc/homelab/trilium-backup-gcs.json \
+  --gcloud-bin "$(command -v gcloud)"
+```
+
+Never restore over a running Trilium instance. For an actual recovery,
+stop the public connector before exposing a first-run instance, stop
+Trilium, verify the isolated restore, and only then arrange an explicit
+cutover of the data directory.

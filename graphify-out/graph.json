@@ -486,6 +486,174 @@
       "source_location": "L54"
     },
     {
+      "id": "tools_mint_trilium_vault_token_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "RuntimeError",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "tools/mint-trilium-vault-token.py",
+      "source_location": "L47"
+    },
+    {
+      "id": "tools_mint_trilium_vault_token_request",
+      "label": "request()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "RuntimeError",
+      "file_type": "code",
+      "norm_label": "request()",
+      "source_file": "tools/mint-trilium-vault-token.py",
+      "source_location": "L30"
+    },
+    {
+      "id": "tools_backup_trilium_add_file",
+      "label": "add_file()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "backup-trilium.py",
+      "file_type": "code",
+      "norm_label": "add_file()",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L41"
+    },
+    {
+      "id": "tools_backup_trilium_check_database",
+      "label": "check_database()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "backup-trilium.py",
+      "file_type": "code",
+      "norm_label": "check_database()",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L26"
+    },
+    {
+      "id": "tools_backup_trilium_checksum",
+      "label": "checksum()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "backup-trilium.py",
+      "file_type": "code",
+      "norm_label": "checksum()",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L88"
+    },
+    {
+      "id": "tools_backup_trilium_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "backup-trilium.py",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L98"
+    },
+    {
+      "id": "tools_backup_trilium_make_archive",
+      "label": "make_archive()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "backup-trilium.py",
+      "file_type": "code",
+      "norm_label": "make_archive()",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L57"
+    },
+    {
+      "id": "tools_backup_trilium_raise_walk_error",
+      "label": "raise_walk_error()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "backup-trilium.py",
+      "file_type": "code",
+      "norm_label": "raise_walk_error()",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L53"
+    },
+    {
+      "id": "tools_backup_trilium_snapshot_database",
+      "label": "snapshot_database()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "backup-trilium.py",
+      "file_type": "code",
+      "norm_label": "snapshot_database()",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L32"
+    },
+    {
+      "id": "tools_restore_trilium_archive_members",
+      "label": "archive_members()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "restore-trilium.py",
+      "file_type": "code",
+      "norm_label": "archive_members()",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L35"
+    },
+    {
+      "id": "tools_restore_trilium_check_database",
+      "label": "check_database()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "restore-trilium.py",
+      "file_type": "code",
+      "norm_label": "check_database()",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L77"
+    },
+    {
+      "id": "tools_restore_trilium_empty_destination",
+      "label": "empty_destination()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "restore-trilium.py",
+      "file_type": "code",
+      "norm_label": "empty_destination()",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L25"
+    },
+    {
+      "id": "tools_restore_trilium_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "restore-trilium.py",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L83"
+    },
+    {
+      "id": "tools_restore_trilium_unpack",
+      "label": "unpack()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "restore-trilium.py",
+      "file_type": "code",
+      "norm_label": "unpack()",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L58"
+    },
+    {
       "id": "04_platform_data_google_secret_manager_secret_private_ca",
       "label": "data.google_secret_manager_secret.private_ca",
       "_origin": "ast",
@@ -1807,7 +1975,7 @@
       "node_kind": "heading",
       "norm_label": "deploy adguard dns",
       "source_file": "README.md",
-      "source_location": "L103"
+      "source_location": "L116"
     },
     {
       "id": "readme_deploy_headlamp",
@@ -1819,7 +1987,19 @@
       "node_kind": "heading",
       "norm_label": "deploy headlamp",
       "source_file": "README.md",
-      "source_location": "L433"
+      "source_location": "L446"
+    },
+    {
+      "id": "readme_deploy_host_applications_trilium",
+      "label": "Deploy host applications: Trilium",
+      "_origin": "ast",
+      "community": 29,
+      "community_name": "Terraform layers",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "deploy host applications: trilium",
+      "source_file": "README.md",
+      "source_location": "L788"
     },
     {
       "id": "readme_gitops_role_and_user_workflow",
@@ -1831,7 +2011,7 @@
       "node_kind": "heading",
       "norm_label": "gitops role and user workflow",
       "source_file": "README.md",
-      "source_location": "L379"
+      "source_location": "L392"
     },
     {
       "id": "readme_homelab",
@@ -1855,7 +2035,7 @@
       "node_kind": "heading",
       "norm_label": "keycloak bootstrap and oidc provisioning",
       "source_file": "README.md",
-      "source_location": "L308"
+      "source_location": "L321"
     },
     {
       "id": "readme_keycloak_database_credentials",
@@ -1867,7 +2047,7 @@
       "node_kind": "heading",
       "norm_label": "keycloak database credentials",
       "source_file": "README.md",
-      "source_location": "L532"
+      "source_location": "L545"
     },
     {
       "id": "readme_manual_google_sign_in_runbook",
@@ -1879,7 +2059,7 @@
       "node_kind": "heading",
       "norm_label": "manual google sign-in runbook",
       "source_file": "README.md",
-      "source_location": "L337"
+      "source_location": "L350"
     },
     {
       "id": "readme_openbao",
@@ -1891,7 +2071,7 @@
       "node_kind": "heading",
       "norm_label": "openbao",
       "source_file": "README.md",
-      "source_location": "L543"
+      "source_location": "L556"
     },
     {
       "id": "readme_power_outage_recovery",
@@ -1903,7 +2083,7 @@
       "node_kind": "heading",
       "norm_label": "power outage recovery",
       "source_file": "README.md",
-      "source_location": "L219"
+      "source_location": "L232"
     },
     {
       "id": "readme_prerequisites",
@@ -1939,7 +2119,7 @@
       "node_kind": "heading",
       "norm_label": "retired mail archive",
       "source_file": "README.md",
-      "source_location": "L81"
+      "source_location": "L94"
     },
     {
       "id": "readme_routed_libvirt_management_network",
@@ -1951,7 +2131,7 @@
       "node_kind": "heading",
       "norm_label": "routed libvirt management network",
       "source_file": "README.md",
-      "source_location": "L160"
+      "source_location": "L173"
     },
     {
       "id": "readme_stateful_database_safety",
@@ -1963,7 +2143,7 @@
       "node_kind": "heading",
       "norm_label": "stateful database safety",
       "source_file": "README.md",
-      "source_location": "L751"
+      "source_location": "L764"
     },
     {
       "id": "readme_terraform_layers",
@@ -1976,6 +2156,18 @@
       "norm_label": "terraform layers",
       "source_file": "README.md",
       "source_location": "L36"
+    },
+    {
+      "id": "readme_trilium_off_node_backups",
+      "label": "Trilium off-node backups",
+      "_origin": "ast",
+      "community": 29,
+      "community_name": "Terraform layers",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "trilium off-node backups",
+      "source_file": "README.md",
+      "source_location": "L882"
     },
     {
       "id": "02_dns_docker_container_adguardhome",
@@ -2903,6 +3095,28 @@
       "source_location": ""
     },
     {
+      "id": "tools_mint_trilium_vault_token",
+      "label": "mint-trilium-vault-token.py",
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "RuntimeError",
+      "file_type": "code",
+      "norm_label": "mint-trilium-vault-token.py",
+      "source_file": "tools/mint-trilium-vault-token.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tools_mint_trilium_vault_token_py_sslcontext",
+      "label": "SSLContext",
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "RuntimeError",
+      "file_type": "code",
+      "norm_label": "sslcontext",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
       "id": "tools_configure_keycloak_google_idp_rationale_2",
       "label": "Create or update the Platform realm Google identity provider. Credentials are\u2026",
       "_origin": "ast",
@@ -2925,58 +3139,146 @@
       "source_location": "L2"
     },
     {
-      "id": "05_gcp_google_kms_crypto_key_iam_member_mail_backup_gcs_service_agent",
-      "label": "google_kms_crypto_key_iam_member.mail_backup_gcs_service_agent",
+      "id": "tools_mint_trilium_vault_token_rationale_2",
+      "label": "Exchange the GCP-held OpenBao recovery token for a short-lived read-only app\u2026",
       "_origin": "ast",
-      "community": 42,
-      "community_name": "google_kms_crypto_key_iam_member.mail_backup_gcs_service_agent",
-      "file_type": "code",
-      "norm_label": "google_kms_crypto_key_iam_member.mail_backup_gcs_service_agent",
-      "source_file": "terraform/layers/05-gcp/mail.tf",
-      "source_location": "L24"
+      "community": 41,
+      "community_name": "RuntimeError",
+      "file_type": "rationale",
+      "norm_label": "exchange the gcp-held openbao recovery token for a short-lived read-only app...",
+      "source_file": "tools/mint-trilium-vault-token.py",
+      "source_location": "L2"
     },
     {
-      "id": "05_gcp_google_kms_crypto_key_mail_backups",
-      "label": "google_kms_crypto_key.mail_backups",
+      "id": "public_ingress_cloudflare_zero_trust_tunnel_cloudflared_config_this",
+      "label": "cloudflare_zero_trust_tunnel_cloudflared_config.this",
       "_origin": "ast",
       "community": 42,
-      "community_name": "google_kms_crypto_key_iam_member.mail_backup_gcs_service_agent",
+      "community_name": "cloudflare_zero_trust_tunnel_cloudflared_config.this",
       "file_type": "code",
-      "norm_label": "google_kms_crypto_key.mail_backups",
-      "source_file": "terraform/layers/05-gcp/mail.tf",
-      "source_location": "L14"
+      "norm_label": "cloudflare_zero_trust_tunnel_cloudflared_config.this",
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L16"
     },
     {
-      "id": "05_gcp_google_kms_key_ring_mail_backups",
-      "label": "google_kms_key_ring.mail_backups",
+      "id": "public_ingress_cloudflare_zero_trust_tunnel_cloudflared_this",
+      "label": "cloudflare_zero_trust_tunnel_cloudflared.this",
       "_origin": "ast",
       "community": 42,
-      "community_name": "google_kms_crypto_key_iam_member.mail_backup_gcs_service_agent",
+      "community_name": "cloudflare_zero_trust_tunnel_cloudflared_config.this",
       "file_type": "code",
-      "norm_label": "google_kms_key_ring.mail_backups",
-      "source_file": "terraform/layers/05-gcp/mail.tf",
-      "source_location": "L4"
+      "norm_label": "cloudflare_zero_trust_tunnel_cloudflared.this",
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L10"
     },
     {
-      "id": "05_gcp_google_storage_bucket_mail_backups",
-      "label": "google_storage_bucket.mail_backups",
+      "id": "public_ingress_data_cloudflare_zero_trust_tunnel_cloudflared_token_this",
+      "label": "data.cloudflare_zero_trust_tunnel_cloudflared_token.this",
       "_origin": "ast",
       "community": 42,
-      "community_name": "google_kms_crypto_key_iam_member.mail_backup_gcs_service_agent",
+      "community_name": "cloudflare_zero_trust_tunnel_cloudflared_config.this",
       "file_type": "code",
-      "norm_label": "google_storage_bucket.mail_backups",
-      "source_file": "terraform/layers/05-gcp/mail.tf",
-      "source_location": "L30"
+      "norm_label": "data.cloudflare_zero_trust_tunnel_cloudflared_token.this",
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L47"
     },
     {
-      "id": "terraform_layers_05_gcp_mail",
-      "label": "mail.tf",
+      "id": "public_ingress_module_dns_record",
+      "label": "module.dns_record",
       "_origin": "ast",
       "community": 42,
-      "community_name": "google_kms_crypto_key_iam_member.mail_backup_gcs_service_agent",
+      "community_name": "cloudflare_zero_trust_tunnel_cloudflared_config.this",
       "file_type": "code",
-      "norm_label": "mail.tf",
-      "source_file": "terraform/layers/05-gcp/mail.tf",
+      "norm_label": "module.dns_record",
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L33"
+    },
+    {
+      "id": "public_ingress_output_tunnel_token",
+      "label": "output.tunnel_token",
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "cloudflare_zero_trust_tunnel_cloudflared_config.this",
+      "file_type": "code",
+      "norm_label": "output.tunnel_token",
+      "source_file": "terraform/modules/public_ingress/outputs.tf",
+      "source_location": "L1"
+    },
+    {
+      "id": "public_ingress_var_account_id",
+      "label": "var.account_id",
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "cloudflare_zero_trust_tunnel_cloudflared_config.this",
+      "file_type": "code",
+      "norm_label": "var.account_id",
+      "source_file": "terraform/modules/public_ingress/variables.tf",
+      "source_location": "L1"
+    },
+    {
+      "id": "public_ingress_var_hostname",
+      "label": "var.hostname",
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "cloudflare_zero_trust_tunnel_cloudflared_config.this",
+      "file_type": "code",
+      "norm_label": "var.hostname",
+      "source_file": "terraform/modules/public_ingress/variables.tf",
+      "source_location": "L11"
+    },
+    {
+      "id": "public_ingress_var_origin_service",
+      "label": "var.origin_service",
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "cloudflare_zero_trust_tunnel_cloudflared_config.this",
+      "file_type": "code",
+      "norm_label": "var.origin_service",
+      "source_file": "terraform/modules/public_ingress/variables.tf",
+      "source_location": "L16"
+    },
+    {
+      "id": "public_ingress_var_zone_id",
+      "label": "var.zone_id",
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "cloudflare_zero_trust_tunnel_cloudflared_config.this",
+      "file_type": "code",
+      "norm_label": "var.zone_id",
+      "source_file": "terraform/modules/public_ingress/variables.tf",
+      "source_location": "L6"
+    },
+    {
+      "id": "terraform_modules_public_ingress_main",
+      "label": "public_ingress/main.tf",
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "cloudflare_zero_trust_tunnel_cloudflared_config.this",
+      "file_type": "code",
+      "norm_label": "public_ingress/main.tf",
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": null
+    },
+    {
+      "id": "terraform_modules_public_ingress_outputs",
+      "label": "public_ingress/outputs.tf",
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "cloudflare_zero_trust_tunnel_cloudflared_config.this",
+      "file_type": "code",
+      "norm_label": "public_ingress/outputs.tf",
+      "source_file": "terraform/modules/public_ingress/outputs.tf",
+      "source_location": null
+    },
+    {
+      "id": "terraform_modules_public_ingress_variables",
+      "label": "public_ingress/variables.tf",
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "cloudflare_zero_trust_tunnel_cloudflared_config.this",
+      "file_type": "code",
+      "norm_label": "public_ingress/variables.tf",
+      "source_file": "terraform/modules/public_ingress/variables.tf",
       "source_location": null
     },
     {
@@ -3010,58 +3312,234 @@
       "source_location": "L1"
     },
     {
-      "id": "05_gcp_google_secret_manager_secret_iam_member_keycloak_db_credentials_reader",
-      "label": "google_secret_manager_secret_iam_member.keycloak_db_credentials_reader",
+      "id": "07_apps_module_trilium_ingress",
+      "label": "module.trilium_ingress",
       "_origin": "ast",
       "community": 44,
-      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
+      "community_name": "module.trilium_ingress",
       "file_type": "code",
-      "norm_label": "google_secret_manager_secret_iam_member.keycloak_db_credentials_reader",
-      "source_file": "terraform/layers/05-gcp/keycloak.tf",
-      "source_location": "L15"
-    },
-    {
-      "id": "05_gcp_google_secret_manager_secret_keycloak_db_credentials",
-      "label": "google_secret_manager_secret.keycloak_db_credentials",
-      "_origin": "ast",
-      "community": 44,
-      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
-      "file_type": "code",
-      "norm_label": "google_secret_manager_secret.keycloak_db_credentials",
-      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "norm_label": "module.trilium_ingress",
+      "source_file": "terraform/layers/07-apps/main.tf",
       "source_location": "L6"
     },
     {
-      "id": "05_gcp_google_secret_manager_secret_version_keycloak_db_credentials",
-      "label": "google_secret_manager_secret_version.keycloak_db_credentials",
+      "id": "07_apps_output_trilium_tunnel_token",
+      "label": "output.trilium_tunnel_token",
       "_origin": "ast",
       "community": 44,
-      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
+      "community_name": "module.trilium_ingress",
       "file_type": "code",
-      "norm_label": "google_secret_manager_secret_version.keycloak_db_credentials",
-      "source_file": "terraform/layers/05-gcp/keycloak.tf",
-      "source_location": "L22"
-    },
-    {
-      "id": "05_gcp_random_password_keycloak_db_password",
-      "label": "random_password.keycloak_db_password",
-      "_origin": "ast",
-      "community": 44,
-      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
-      "file_type": "code",
-      "norm_label": "random_password.keycloak_db_password",
-      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "norm_label": "output.trilium_tunnel_token",
+      "source_file": "terraform/layers/07-apps/outputs.tf",
       "source_location": "L1"
     },
     {
-      "id": "terraform_layers_05_gcp_keycloak",
-      "label": "05-gcp/keycloak.tf",
+      "id": "07_apps_provider_cloudflare",
+      "label": "provider.cloudflare",
       "_origin": "ast",
       "community": 44,
-      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
+      "community_name": "module.trilium_ingress",
       "file_type": "code",
-      "norm_label": "05-gcp/keycloak.tf",
-      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "norm_label": "provider.cloudflare",
+      "source_file": "terraform/layers/07-apps/providers.tf",
+      "source_location": "L28"
+    },
+    {
+      "id": "07_apps_provider_vault",
+      "label": "provider.vault",
+      "_origin": "ast",
+      "community": 44,
+      "community_name": "module.trilium_ingress",
+      "file_type": "code",
+      "norm_label": "provider.vault",
+      "source_file": "terraform/layers/07-apps/providers.tf",
+      "source_location": "L18"
+    },
+    {
+      "id": "07_apps_var_cloudflare_account_id",
+      "label": "var.cloudflare_account_id",
+      "_origin": "ast",
+      "community": 44,
+      "community_name": "module.trilium_ingress",
+      "file_type": "code",
+      "norm_label": "var.cloudflare_account_id",
+      "source_file": "terraform/layers/07-apps/variables.tf",
+      "source_location": "L1"
+    },
+    {
+      "id": "07_apps_var_cloudflare_zone_id",
+      "label": "var.cloudflare_zone_id",
+      "_origin": "ast",
+      "community": 44,
+      "community_name": "module.trilium_ingress",
+      "file_type": "code",
+      "norm_label": "var.cloudflare_zone_id",
+      "source_file": "terraform/layers/07-apps/variables.tf",
+      "source_location": "L7"
+    },
+    {
+      "id": "07_apps_var_trilium_hostname",
+      "label": "var.trilium_hostname",
+      "_origin": "ast",
+      "community": 44,
+      "community_name": "module.trilium_ingress",
+      "file_type": "code",
+      "norm_label": "var.trilium_hostname",
+      "source_file": "terraform/layers/07-apps/variables.tf",
+      "source_location": "L13"
+    },
+    {
+      "id": "07_apps_var_vault_token_file",
+      "label": "var.vault_token_file",
+      "_origin": "ast",
+      "community": 44,
+      "community_name": "module.trilium_ingress",
+      "file_type": "code",
+      "norm_label": "var.vault_token_file",
+      "source_file": "terraform/layers/07-apps/variables.tf",
+      "source_location": "L19"
+    },
+    {
+      "id": "terraform_layers_07_apps_main",
+      "label": "07-apps/main.tf",
+      "_origin": "ast",
+      "community": 44,
+      "community_name": "module.trilium_ingress",
+      "file_type": "code",
+      "norm_label": "07-apps/main.tf",
+      "source_file": "terraform/layers/07-apps/main.tf",
+      "source_location": null
+    },
+    {
+      "id": "terraform_layers_07_apps_outputs",
+      "label": "07-apps/outputs.tf",
+      "_origin": "ast",
+      "community": 44,
+      "community_name": "module.trilium_ingress",
+      "file_type": "code",
+      "norm_label": "07-apps/outputs.tf",
+      "source_file": "terraform/layers/07-apps/outputs.tf",
+      "source_location": null
+    },
+    {
+      "id": "terraform_layers_07_apps_providers",
+      "label": "07-apps/providers.tf",
+      "_origin": "ast",
+      "community": 44,
+      "community_name": "module.trilium_ingress",
+      "file_type": "code",
+      "norm_label": "07-apps/providers.tf",
+      "source_file": "terraform/layers/07-apps/providers.tf",
+      "source_location": null
+    },
+    {
+      "id": "terraform_layers_07_apps_variables",
+      "label": "07-apps/variables.tf",
+      "_origin": "ast",
+      "community": 44,
+      "community_name": "module.trilium_ingress",
+      "file_type": "code",
+      "norm_label": "07-apps/variables.tf",
+      "source_file": "terraform/layers/07-apps/variables.tf",
+      "source_location": null
+    },
+    {
+      "id": "06_app_secrets_vault_generic_endpoint_cloudflare_metadata",
+      "label": "vault_generic_endpoint.cloudflare_metadata",
+      "_origin": "ast",
+      "community": 45,
+      "community_name": "vault_generic_endpoint.cloudflare_metadata",
+      "file_type": "code",
+      "norm_label": "vault_generic_endpoint.cloudflare_metadata",
+      "source_file": "terraform/layers/06-app-secrets/main.tf",
+      "source_location": "L3"
+    },
+    {
+      "id": "terraform_layers_06_app_secrets_main",
+      "label": "06-app-secrets/main.tf",
+      "_origin": "ast",
+      "community": 45,
+      "community_name": "vault_generic_endpoint.cloudflare_metadata",
+      "file_type": "code",
+      "norm_label": "06-app-secrets/main.tf",
+      "source_file": "terraform/layers/06-app-secrets/main.tf",
+      "source_location": null
+    },
+    {
+      "id": "07_apps_provider_registry_opentofu_org_cloudflare_cloudflare",
+      "label": "provider.registry.opentofu.org/cloudflare/cloudflare",
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "07-apps/.terraform.lock.hcl",
+      "file_type": "code",
+      "norm_label": "provider.registry.opentofu.org/cloudflare/cloudflare",
+      "source_file": "terraform/layers/07-apps/.terraform.lock.hcl",
+      "source_location": "L4"
+    },
+    {
+      "id": "07_apps_provider_registry_opentofu_org_hashicorp_vault",
+      "label": "provider.registry.opentofu.org/hashicorp/vault",
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "07-apps/.terraform.lock.hcl",
+      "file_type": "code",
+      "norm_label": "provider.registry.opentofu.org/hashicorp/vault",
+      "source_file": "terraform/layers/07-apps/.terraform.lock.hcl",
+      "source_location": "L28"
+    },
+    {
+      "id": "terraform_layers_07_apps_terraform_lock",
+      "label": "07-apps/.terraform.lock.hcl",
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "07-apps/.terraform.lock.hcl",
+      "file_type": "code",
+      "norm_label": "07-apps/.terraform.lock.hcl",
+      "source_file": "terraform/layers/07-apps/.terraform.lock.hcl",
+      "source_location": null
+    },
+    {
+      "id": "06_app_secrets_provider_registry_opentofu_org_hashicorp_vault",
+      "label": "provider.registry.opentofu.org/hashicorp/vault",
+      "_origin": "ast",
+      "community": 48,
+      "community_name": "provider.registry.opentofu.org/hashicorp/vault",
+      "file_type": "code",
+      "norm_label": "provider.registry.opentofu.org/hashicorp/vault",
+      "source_file": "terraform/layers/06-app-secrets/.terraform.lock.hcl",
+      "source_location": "L4"
+    },
+    {
+      "id": "terraform_layers_06_app_secrets_terraform_lock",
+      "label": "06-app-secrets/.terraform.lock.hcl",
+      "_origin": "ast",
+      "community": 48,
+      "community_name": "provider.registry.opentofu.org/hashicorp/vault",
+      "file_type": "code",
+      "norm_label": "06-app-secrets/.terraform.lock.hcl",
+      "source_file": "terraform/layers/06-app-secrets/.terraform.lock.hcl",
+      "source_location": null
+    },
+    {
+      "id": "06_app_secrets_provider_vault",
+      "label": "provider.vault",
+      "_origin": "ast",
+      "community": 49,
+      "community_name": "provider.vault",
+      "file_type": "code",
+      "norm_label": "provider.vault",
+      "source_file": "terraform/layers/06-app-secrets/providers.tf",
+      "source_location": "L13"
+    },
+    {
+      "id": "terraform_layers_06_app_secrets_providers",
+      "label": "06-app-secrets/providers.tf",
+      "_origin": "ast",
+      "community": 49,
+      "community_name": "provider.vault",
+      "file_type": "code",
+      "norm_label": "06-app-secrets/providers.tf",
+      "source_file": "terraform/layers/06-app-secrets/providers.tf",
       "source_location": null
     },
     {
@@ -3128,6 +3606,523 @@
       "file_type": "code",
       "norm_label": "05-gcp/secrets.tf",
       "source_file": "terraform/layers/05-gcp/secrets.tf",
+      "source_location": null
+    },
+    {
+      "id": "terraform_layers_06_app_secrets_backend",
+      "label": "06-app-secrets/backend.tf",
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "06-app-secrets/backend.tf",
+      "file_type": "code",
+      "norm_label": "06-app-secrets/backend.tf",
+      "source_file": "terraform/layers/06-app-secrets/backend.tf",
+      "source_location": null
+    },
+    {
+      "id": "terraform_layers_07_apps_backend",
+      "label": "07-apps/backend.tf",
+      "_origin": "ast",
+      "community": 51,
+      "community_name": "07-apps/backend.tf",
+      "file_type": "code",
+      "norm_label": "07-apps/backend.tf",
+      "source_file": "terraform/layers/07-apps/backend.tf",
+      "source_location": null
+    },
+    {
+      "id": "dns_record_cloudflare_dns_record_this",
+      "label": "cloudflare_dns_record.this",
+      "_origin": "ast",
+      "community": 52,
+      "community_name": "cloudflare_dns_record.this",
+      "file_type": "code",
+      "norm_label": "cloudflare_dns_record.this",
+      "source_file": "terraform/modules/dns_record/main.tf",
+      "source_location": "L10"
+    },
+    {
+      "id": "dns_record_output_id",
+      "label": "output.id",
+      "_origin": "ast",
+      "community": 52,
+      "community_name": "cloudflare_dns_record.this",
+      "file_type": "code",
+      "norm_label": "output.id",
+      "source_file": "terraform/modules/dns_record/outputs.tf",
+      "source_location": "L1"
+    },
+    {
+      "id": "dns_record_var_content",
+      "label": "var.content",
+      "_origin": "ast",
+      "community": 52,
+      "community_name": "cloudflare_dns_record.this",
+      "file_type": "code",
+      "norm_label": "var.content",
+      "source_file": "terraform/modules/dns_record/variables.tf",
+      "source_location": "L16"
+    },
+    {
+      "id": "dns_record_var_name",
+      "label": "var.name",
+      "_origin": "ast",
+      "community": 52,
+      "community_name": "cloudflare_dns_record.this",
+      "file_type": "code",
+      "norm_label": "var.name",
+      "source_file": "terraform/modules/dns_record/variables.tf",
+      "source_location": "L6"
+    },
+    {
+      "id": "dns_record_var_proxied",
+      "label": "var.proxied",
+      "_origin": "ast",
+      "community": 52,
+      "community_name": "cloudflare_dns_record.this",
+      "file_type": "code",
+      "norm_label": "var.proxied",
+      "source_file": "terraform/modules/dns_record/variables.tf",
+      "source_location": "L21"
+    },
+    {
+      "id": "dns_record_var_ttl",
+      "label": "var.ttl",
+      "_origin": "ast",
+      "community": 52,
+      "community_name": "cloudflare_dns_record.this",
+      "file_type": "code",
+      "norm_label": "var.ttl",
+      "source_file": "terraform/modules/dns_record/variables.tf",
+      "source_location": "L27"
+    },
+    {
+      "id": "dns_record_var_type",
+      "label": "var.type",
+      "_origin": "ast",
+      "community": 52,
+      "community_name": "cloudflare_dns_record.this",
+      "file_type": "code",
+      "norm_label": "var.type",
+      "source_file": "terraform/modules/dns_record/variables.tf",
+      "source_location": "L11"
+    },
+    {
+      "id": "dns_record_var_zone_id",
+      "label": "var.zone_id",
+      "_origin": "ast",
+      "community": 52,
+      "community_name": "cloudflare_dns_record.this",
+      "file_type": "code",
+      "norm_label": "var.zone_id",
+      "source_file": "terraform/modules/dns_record/variables.tf",
+      "source_location": "L1"
+    },
+    {
+      "id": "terraform_modules_dns_record_main",
+      "label": "dns_record/main.tf",
+      "_origin": "ast",
+      "community": 52,
+      "community_name": "cloudflare_dns_record.this",
+      "file_type": "code",
+      "norm_label": "dns_record/main.tf",
+      "source_file": "terraform/modules/dns_record/main.tf",
+      "source_location": null
+    },
+    {
+      "id": "terraform_modules_dns_record_outputs",
+      "label": "dns_record/outputs.tf",
+      "_origin": "ast",
+      "community": 52,
+      "community_name": "cloudflare_dns_record.this",
+      "file_type": "code",
+      "norm_label": "dns_record/outputs.tf",
+      "source_file": "terraform/modules/dns_record/outputs.tf",
+      "source_location": null
+    },
+    {
+      "id": "terraform_modules_dns_record_variables",
+      "label": "dns_record/variables.tf",
+      "_origin": "ast",
+      "community": 52,
+      "community_name": "cloudflare_dns_record.this",
+      "file_type": "code",
+      "norm_label": "dns_record/variables.tf",
+      "source_file": "terraform/modules/dns_record/variables.tf",
+      "source_location": null
+    },
+    {
+      "id": "05_gcp_google_secret_manager_secret_iam_member_keycloak_db_credentials_reader",
+      "label": "google_secret_manager_secret_iam_member.keycloak_db_credentials_reader",
+      "_origin": "ast",
+      "community": 53,
+      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret_iam_member.keycloak_db_credentials_reader",
+      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "source_location": "L15"
+    },
+    {
+      "id": "05_gcp_google_secret_manager_secret_keycloak_db_credentials",
+      "label": "google_secret_manager_secret.keycloak_db_credentials",
+      "_origin": "ast",
+      "community": 53,
+      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret.keycloak_db_credentials",
+      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "source_location": "L6"
+    },
+    {
+      "id": "05_gcp_google_secret_manager_secret_version_keycloak_db_credentials",
+      "label": "google_secret_manager_secret_version.keycloak_db_credentials",
+      "_origin": "ast",
+      "community": 53,
+      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret_version.keycloak_db_credentials",
+      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "source_location": "L22"
+    },
+    {
+      "id": "05_gcp_random_password_keycloak_db_password",
+      "label": "random_password.keycloak_db_password",
+      "_origin": "ast",
+      "community": 53,
+      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
+      "file_type": "code",
+      "norm_label": "random_password.keycloak_db_password",
+      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "source_location": "L1"
+    },
+    {
+      "id": "terraform_layers_05_gcp_keycloak",
+      "label": "05-gcp/keycloak.tf",
+      "_origin": "ast",
+      "community": 53,
+      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
+      "file_type": "code",
+      "norm_label": "05-gcp/keycloak.tf",
+      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "source_location": null
+    },
+    {
+      "id": "08_app_backups_data_google_project_current",
+      "label": "data.google_project.current",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "data.google_project.current",
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L1"
+    },
+    {
+      "id": "08_app_backups_google_kms_crypto_key_iam_member_trilium_backup_gcs_agent",
+      "label": "google_kms_crypto_key_iam_member.trilium_backup_gcs_agent",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "google_kms_crypto_key_iam_member.trilium_backup_gcs_agent",
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L25"
+    },
+    {
+      "id": "08_app_backups_google_kms_crypto_key_trilium_backups",
+      "label": "google_kms_crypto_key.trilium_backups",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "google_kms_crypto_key.trilium_backups",
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L15"
+    },
+    {
+      "id": "08_app_backups_google_kms_key_ring_trilium_backups",
+      "label": "google_kms_key_ring.trilium_backups",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "google_kms_key_ring.trilium_backups",
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L5"
+    },
+    {
+      "id": "08_app_backups_google_project_iam_custom_role_trilium_backup_writer",
+      "label": "google_project_iam_custom_role.trilium_backup_writer",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "google_project_iam_custom_role.trilium_backup_writer",
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L77"
+    },
+    {
+      "id": "08_app_backups_google_secret_manager_secret_trilium_backup_credentials",
+      "label": "google_secret_manager_secret.trilium_backup_credentials",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret.trilium_backup_credentials",
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L100"
+    },
+    {
+      "id": "08_app_backups_google_secret_manager_secret_version_trilium_backup_credentials",
+      "label": "google_secret_manager_secret_version.trilium_backup_credentials",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret_version.trilium_backup_credentials",
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L110"
+    },
+    {
+      "id": "08_app_backups_google_service_account_key_trilium_backup",
+      "label": "google_service_account_key.trilium_backup",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "google_service_account_key.trilium_backup",
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L95"
+    },
+    {
+      "id": "08_app_backups_google_service_account_trilium_backup",
+      "label": "google_service_account.trilium_backup",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "google_service_account.trilium_backup",
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L69"
+    },
+    {
+      "id": "08_app_backups_google_storage_bucket_iam_member_trilium_backup_writer",
+      "label": "google_storage_bucket_iam_member.trilium_backup_writer",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "google_storage_bucket_iam_member.trilium_backup_writer",
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L89"
+    },
+    {
+      "id": "08_app_backups_google_storage_bucket_trilium_backups",
+      "label": "google_storage_bucket.trilium_backups",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "google_storage_bucket.trilium_backups",
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L31"
+    },
+    {
+      "id": "08_app_backups_provider_google",
+      "label": "provider.google",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "provider.google",
+      "source_file": "terraform/layers/08-app-backups/providers.tf",
+      "source_location": "L10"
+    },
+    {
+      "id": "08_app_backups_var_project_id",
+      "label": "var.project_id",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "var.project_id",
+      "source_file": "terraform/layers/08-app-backups/variables.tf",
+      "source_location": "L1"
+    },
+    {
+      "id": "terraform_layers_08_app_backups_providers",
+      "label": "08-app-backups/providers.tf",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "08-app-backups/providers.tf",
+      "source_file": "terraform/layers/08-app-backups/providers.tf",
+      "source_location": null
+    },
+    {
+      "id": "terraform_layers_08_app_backups_trilium",
+      "label": "trilium.tf",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "trilium.tf",
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": null
+    },
+    {
+      "id": "terraform_layers_08_app_backups_variables",
+      "label": "08-app-backups/variables.tf",
+      "_origin": "ast",
+      "community": 54,
+      "community_name": "trilium.tf",
+      "file_type": "code",
+      "norm_label": "08-app-backups/variables.tf",
+      "source_file": "terraform/layers/08-app-backups/variables.tf",
+      "source_location": null
+    },
+    {
+      "id": "oserror",
+      "label": "OSError",
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "backup-trilium.py",
+      "file_type": "code",
+      "norm_label": "oserror",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "tools_backup_trilium",
+      "label": "backup-trilium.py",
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "backup-trilium.py",
+      "file_type": "code",
+      "norm_label": "backup-trilium.py",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tools_backup_trilium_py_path",
+      "label": "Path",
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "backup-trilium.py",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "tools_backup_trilium_py_tarfile",
+      "label": "TarFile",
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "backup-trilium.py",
+      "file_type": "code",
+      "norm_label": "tarfile",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "tools_backup_trilium_rationale_2",
+      "label": "Snapshot Trilium's live SQLite database and upload a restorable data archive.",
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "backup-trilium.py",
+      "file_type": "rationale",
+      "norm_label": "snapshot trilium's live sqlite database and upload a restorable data archive.",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L2"
+    },
+    {
+      "id": "tarinfo",
+      "label": "TarInfo",
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "restore-trilium.py",
+      "file_type": "code",
+      "norm_label": "tarinfo",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "tools_restore_trilium",
+      "label": "restore-trilium.py",
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "restore-trilium.py",
+      "file_type": "code",
+      "norm_label": "restore-trilium.py",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tools_restore_trilium_py_path",
+      "label": "Path",
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "restore-trilium.py",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "tools_restore_trilium_py_tarfile",
+      "label": "TarFile",
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "restore-trilium.py",
+      "file_type": "code",
+      "norm_label": "tarfile",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "tools_restore_trilium_rationale_2",
+      "label": "Download and safely restore a Trilium backup into an empty isolated directory.",
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "restore-trilium.py",
+      "file_type": "rationale",
+      "norm_label": "download and safely restore a trilium backup into an empty isolated directory.",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L2"
+    },
+    {
+      "id": "08_app_backups_provider_registry_opentofu_org_hashicorp_google",
+      "label": "provider.registry.opentofu.org/hashicorp/google",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "provider.registry.opentofu.org/hashicorp/google",
+      "file_type": "code",
+      "norm_label": "provider.registry.opentofu.org/hashicorp/google",
+      "source_file": "terraform/layers/08-app-backups/.terraform.lock.hcl",
+      "source_location": "L4"
+    },
+    {
+      "id": "terraform_layers_08_app_backups_terraform_lock",
+      "label": "08-app-backups/.terraform.lock.hcl",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "provider.registry.opentofu.org/hashicorp/google",
+      "file_type": "code",
+      "norm_label": "08-app-backups/.terraform.lock.hcl",
+      "source_file": "terraform/layers/08-app-backups/.terraform.lock.hcl",
+      "source_location": null
+    },
+    {
+      "id": "terraform_layers_08_app_backups_backend",
+      "label": "08-app-backups/backend.tf",
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "08-app-backups/backend.tf",
+      "file_type": "code",
+      "norm_label": "08-app-backups/backend.tf",
+      "source_file": "terraform/layers/08-app-backups/backend.tf",
       "source_location": null
     },
     {
@@ -3285,6 +4280,17 @@
       "source_location": "L15"
     },
     {
+      "id": "05_gcp_google_kms_crypto_key_iam_member_mail_backup_gcs_service_agent",
+      "label": "google_kms_crypto_key_iam_member.mail_backup_gcs_service_agent",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "var.project_id",
+      "file_type": "code",
+      "norm_label": "google_kms_crypto_key_iam_member.mail_backup_gcs_service_agent",
+      "source_file": "terraform/layers/05-gcp/mail.tf",
+      "source_location": "L24"
+    },
+    {
       "id": "05_gcp_google_kms_crypto_key_iam_member_openbao_unseal",
       "label": "google_kms_crypto_key_iam_member.openbao_unseal",
       "_origin": "ast",
@@ -3307,6 +4313,17 @@
       "source_location": "L29"
     },
     {
+      "id": "05_gcp_google_kms_crypto_key_mail_backups",
+      "label": "google_kms_crypto_key.mail_backups",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "var.project_id",
+      "file_type": "code",
+      "norm_label": "google_kms_crypto_key.mail_backups",
+      "source_file": "terraform/layers/05-gcp/mail.tf",
+      "source_location": "L14"
+    },
+    {
       "id": "05_gcp_google_kms_crypto_key_openbao_unseal",
       "label": "google_kms_crypto_key.openbao_unseal",
       "_origin": "ast",
@@ -3327,6 +4344,17 @@
       "norm_label": "google_kms_crypto_key.platform_backups",
       "source_file": "terraform/layers/05-gcp/platform-backups.tf",
       "source_location": "L18"
+    },
+    {
+      "id": "05_gcp_google_kms_key_ring_mail_backups",
+      "label": "google_kms_key_ring.mail_backups",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "var.project_id",
+      "file_type": "code",
+      "norm_label": "google_kms_key_ring.mail_backups",
+      "source_file": "terraform/layers/05-gcp/mail.tf",
+      "source_location": "L4"
     },
     {
       "id": "05_gcp_google_kms_key_ring_openbao_unseal",
@@ -3516,6 +4544,17 @@
       "source_location": "L112"
     },
     {
+      "id": "05_gcp_google_storage_bucket_mail_backups",
+      "label": "google_storage_bucket.mail_backups",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "var.project_id",
+      "file_type": "code",
+      "norm_label": "google_storage_bucket.mail_backups",
+      "source_file": "terraform/layers/05-gcp/mail.tf",
+      "source_location": "L30"
+    },
+    {
       "id": "05_gcp_google_storage_bucket_platform_backups",
       "label": "google_storage_bucket.platform_backups",
       "_origin": "ast",
@@ -3582,6 +4621,17 @@
       "source_location": null
     },
     {
+      "id": "terraform_layers_05_gcp_mail",
+      "label": "mail.tf",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "var.project_id",
+      "file_type": "code",
+      "norm_label": "mail.tf",
+      "source_file": "terraform/layers/05-gcp/mail.tf",
+      "source_location": null
+    },
+    {
       "id": "terraform_layers_05_gcp_openbao",
       "label": "openbao.tf",
       "_origin": "ast",
@@ -3616,6 +4666,90 @@
     }
   ],
   "links": [
+    {
+      "source": "tools_backup_trilium_main",
+      "target": "tools_backup_trilium_py_path",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium_main",
+      "target": "tools_backup_trilium_snapshot_database",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L116",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium_main",
+      "target": "tools_backup_trilium_make_archive",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L118",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium_main",
+      "target": "tools_backup_trilium_checksum",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L119",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium_make_archive",
+      "target": "tools_backup_trilium_add_file",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium_make_archive",
+      "target": "tools_backup_trilium_py_path",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium_snapshot_database",
+      "target": "tools_backup_trilium_check_database",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L38",
+      "weight": 1.0
+    },
     {
       "source": "tools_configure_keycloak_google_idp_main",
       "target": "tools_configure_keycloak_google_idp_parser",
@@ -4181,6 +5315,78 @@
       "weight": 1.0
     },
     {
+      "source": "tools_mint_trilium_vault_token_main",
+      "target": "tools_mint_trilium_vault_token_request",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/mint-trilium-vault-token.py",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium_main",
+      "target": "tools_restore_trilium_py_path",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L101",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium_main",
+      "target": "tools_restore_trilium_archive_members",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L112",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium_main",
+      "target": "tools_restore_trilium_unpack",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium_main",
+      "target": "tools_restore_trilium_check_database",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L115",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium_main",
+      "target": "tools_restore_trilium_empty_destination",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L96",
+      "weight": 1.0
+    },
+    {
       "source": "tools_configure_keycloak_google_idp_json_object",
       "target": "tools_configure_keycloak_google_idp_py_any",
       "relation": "references",
@@ -4409,6 +5615,126 @@
       "weight": 1.0
     },
     {
+      "source": "tools_restore_trilium_archive_members",
+      "target": "tarinfo",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium_unpack",
+      "target": "tarinfo",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium",
+      "target": "tools_backup_trilium_py_tarfile",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium",
+      "target": "tools_restore_trilium_py_tarfile",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium_add_file",
+      "target": "tools_backup_trilium_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium_add_file",
+      "target": "tools_backup_trilium_py_tarfile",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium_check_database",
+      "target": "tools_backup_trilium_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium_checksum",
+      "target": "tools_backup_trilium_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium_raise_walk_error",
+      "target": "oserror",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium_snapshot_database",
+      "target": "tools_backup_trilium_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
       "source": "tools_configure_keycloak_google_idp_request",
       "target": "tools_configure_keycloak_google_idp_py_sslcontext",
       "relation": "references",
@@ -4538,6 +5864,78 @@
       "context": "parameter_type",
       "source_file": "tools/merge-kubeconfig.py",
       "source_location": "L108",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_mint_trilium_vault_token_request",
+      "target": "tools_mint_trilium_vault_token_py_sslcontext",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tools/mint-trilium-vault-token.py",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium_archive_members",
+      "target": "tools_restore_trilium_py_tarfile",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium_check_database",
+      "target": "tools_restore_trilium_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L77",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium_empty_destination",
+      "target": "tools_restore_trilium_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium_unpack",
+      "target": "tools_restore_trilium_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium_unpack",
+      "target": "tools_restore_trilium_py_tarfile",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
@@ -5238,6 +6636,17 @@
       "weight": 1.0
     },
     {
+      "source": "readme_deploy_host_applications_trilium",
+      "target": "readme_trilium_off_node_backups",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "L882",
+      "weight": 1.0
+    },
+    {
       "source": "readme_homelab",
       "target": "readme_provision_the_compute_node",
       "relation": "contains",
@@ -5271,6 +6680,17 @@
       "weight": 1.0
     },
     {
+      "source": "readme_homelab",
+      "target": "readme_deploy_host_applications_trilium",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "L788",
+      "weight": 1.0
+    },
+    {
       "source": "readme_keycloak_bootstrap_and_oidc_provisioning",
       "target": "readme_manual_google_sign_in_runbook",
       "relation": "contains",
@@ -5278,7 +6698,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L337",
+      "source_location": "L350",
       "weight": 1.0
     },
     {
@@ -5289,7 +6709,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L379",
+      "source_location": "L392",
       "weight": 1.0
     },
     {
@@ -5300,7 +6720,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L103",
+      "source_location": "L116",
       "weight": 1.0
     },
     {
@@ -5311,7 +6731,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L160",
+      "source_location": "L173",
       "weight": 1.0
     },
     {
@@ -5322,7 +6742,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L219",
+      "source_location": "L232",
       "weight": 1.0
     },
     {
@@ -5333,7 +6753,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L308",
+      "source_location": "L321",
       "weight": 1.0
     },
     {
@@ -5344,7 +6764,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L433",
+      "source_location": "L446",
       "weight": 1.0
     },
     {
@@ -5355,7 +6775,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L532",
+      "source_location": "L545",
       "weight": 1.0
     },
     {
@@ -5366,7 +6786,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L543",
+      "source_location": "L556",
       "weight": 1.0
     },
     {
@@ -5377,7 +6797,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L751",
+      "source_location": "L764",
       "weight": 1.0
     },
     {
@@ -5388,7 +6808,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L81",
+      "source_location": "L94",
       "weight": 1.0
     },
     {
@@ -6745,6 +8165,567 @@
       "weight": 1.0
     },
     {
+      "source": "terraform_layers_06_app_secrets_main",
+      "target": "06_app_secrets_vault_generic_endpoint_cloudflare_metadata",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/06-app-secrets/main.tf",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_06_app_secrets_providers",
+      "target": "06_app_secrets_provider_vault",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/06-app-secrets/providers.tf",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_06_app_secrets_terraform_lock",
+      "target": "06_app_secrets_provider_registry_opentofu_org_hashicorp_vault",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/06-app-secrets/.terraform.lock.hcl",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_07_apps_main",
+      "target": "07_apps_module_trilium_ingress",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/07-apps/main.tf",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_07_apps_outputs",
+      "target": "07_apps_output_trilium_tunnel_token",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/07-apps/outputs.tf",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_07_apps_providers",
+      "target": "07_apps_provider_vault",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/07-apps/providers.tf",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_07_apps_providers",
+      "target": "07_apps_provider_cloudflare",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/07-apps/providers.tf",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_07_apps_terraform_lock",
+      "target": "07_apps_provider_registry_opentofu_org_hashicorp_vault",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/07-apps/.terraform.lock.hcl",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_07_apps_terraform_lock",
+      "target": "07_apps_provider_registry_opentofu_org_cloudflare_cloudflare",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/07-apps/.terraform.lock.hcl",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_07_apps_variables",
+      "target": "07_apps_var_cloudflare_account_id",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/07-apps/variables.tf",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_07_apps_variables",
+      "target": "07_apps_var_trilium_hostname",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/07-apps/variables.tf",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_07_apps_variables",
+      "target": "07_apps_var_vault_token_file",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/07-apps/variables.tf",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_07_apps_variables",
+      "target": "07_apps_var_cloudflare_zone_id",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/07-apps/variables.tf",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_08_app_backups_providers",
+      "target": "08_app_backups_provider_google",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/providers.tf",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_08_app_backups_terraform_lock",
+      "target": "08_app_backups_provider_registry_opentofu_org_hashicorp_google",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/.terraform.lock.hcl",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_08_app_backups_trilium",
+      "target": "08_app_backups_data_google_project_current",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_08_app_backups_trilium",
+      "target": "08_app_backups_google_secret_manager_secret_trilium_backup_credentials",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_08_app_backups_trilium",
+      "target": "08_app_backups_google_secret_manager_secret_version_trilium_backup_credentials",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L110",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_08_app_backups_trilium",
+      "target": "08_app_backups_google_kms_crypto_key_trilium_backups",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_08_app_backups_trilium",
+      "target": "08_app_backups_google_kms_crypto_key_iam_member_trilium_backup_gcs_agent",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_08_app_backups_trilium",
+      "target": "08_app_backups_google_storage_bucket_trilium_backups",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_08_app_backups_trilium",
+      "target": "08_app_backups_google_kms_key_ring_trilium_backups",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_08_app_backups_trilium",
+      "target": "08_app_backups_google_service_account_trilium_backup",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_08_app_backups_trilium",
+      "target": "08_app_backups_google_project_iam_custom_role_trilium_backup_writer",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L77",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_08_app_backups_trilium",
+      "target": "08_app_backups_google_storage_bucket_iam_member_trilium_backup_writer",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L89",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_08_app_backups_trilium",
+      "target": "08_app_backups_google_service_account_key_trilium_backup",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L95",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_08_app_backups_variables",
+      "target": "08_app_backups_var_project_id",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/variables.tf",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_dns_record_main",
+      "target": "dns_record_cloudflare_dns_record_this",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/dns_record/main.tf",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_dns_record_outputs",
+      "target": "dns_record_output_id",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/dns_record/outputs.tf",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_dns_record_variables",
+      "target": "dns_record_var_zone_id",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/dns_record/variables.tf",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_dns_record_variables",
+      "target": "dns_record_var_type",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/dns_record/variables.tf",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_dns_record_variables",
+      "target": "dns_record_var_content",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/dns_record/variables.tf",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_dns_record_variables",
+      "target": "dns_record_var_proxied",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/dns_record/variables.tf",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_dns_record_variables",
+      "target": "dns_record_var_ttl",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/dns_record/variables.tf",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_dns_record_variables",
+      "target": "dns_record_var_name",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/dns_record/variables.tf",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_public_ingress_main",
+      "target": "public_ingress_cloudflare_zero_trust_tunnel_cloudflared_this",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_public_ingress_main",
+      "target": "public_ingress_cloudflare_zero_trust_tunnel_cloudflared_config_this",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_public_ingress_main",
+      "target": "public_ingress_module_dns_record",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_public_ingress_main",
+      "target": "public_ingress_data_cloudflare_zero_trust_tunnel_cloudflared_token_this",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_public_ingress_outputs",
+      "target": "public_ingress_output_tunnel_token",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/outputs.tf",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_public_ingress_variables",
+      "target": "public_ingress_var_account_id",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/variables.tf",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_public_ingress_variables",
+      "target": "public_ingress_var_hostname",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/variables.tf",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_public_ingress_variables",
+      "target": "public_ingress_var_origin_service",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/variables.tf",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_modules_public_ingress_variables",
+      "target": "public_ingress_var_zone_id",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/variables.tf",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium",
+      "target": "tools_backup_trilium_check_database",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium",
+      "target": "tools_backup_trilium_snapshot_database",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium",
+      "target": "tools_backup_trilium_add_file",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium",
+      "target": "tools_backup_trilium_raise_walk_error",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium",
+      "target": "tools_backup_trilium_make_archive",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium",
+      "target": "tools_backup_trilium_checksum",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium",
+      "target": "tools_backup_trilium_main",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L98",
+      "weight": 1.0
+    },
+    {
       "source": "tools_build_headlamp_oidc_image",
       "target": "tools_build_headlamp_oidc_image_sh__entry",
       "relation": "contains",
@@ -7174,6 +9155,83 @@
       "weight": 1.0
     },
     {
+      "source": "tools_mint_trilium_vault_token",
+      "target": "tools_mint_trilium_vault_token_request",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/mint-trilium-vault-token.py",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_mint_trilium_vault_token",
+      "target": "tools_mint_trilium_vault_token_main",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/mint-trilium-vault-token.py",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium",
+      "target": "tools_restore_trilium_empty_destination",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium",
+      "target": "tools_restore_trilium_archive_members",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium",
+      "target": "tools_restore_trilium_unpack",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium",
+      "target": "tools_restore_trilium_check_database",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L77",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium",
+      "target": "tools_restore_trilium_main",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/restore-trilium.py",
+      "source_location": "L83",
+      "weight": 1.0
+    },
+    {
       "source": "02_dns_docker_container_adguardhome",
       "target": "02_dns_local_file_adguard_config",
       "relation": "depends_on",
@@ -7284,6 +9342,28 @@
       "weight": 1.0
     },
     {
+      "source": "08_app_backups_google_storage_bucket_trilium_backups",
+      "target": "08_app_backups_google_kms_crypto_key_iam_member_trilium_backup_gcs_agent",
+      "relation": "depends_on",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "public_ingress_data_cloudflare_zero_trust_tunnel_cloudflared_token_this",
+      "target": "public_ingress_cloudflare_zero_trust_tunnel_cloudflared_config_this",
+      "relation": "depends_on",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
       "source": "tools_kubectl_keycloak_login_oidcerror",
       "target": "runtimeerror",
       "relation": "inherits",
@@ -7314,6 +9394,17 @@
       "confidence_score": 1.0,
       "source_file": "tools/kubectl-keycloak-login.py",
       "source_location": "L199",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium_rationale_2",
+      "target": "tools_backup_trilium",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L2",
       "weight": 1.0
     },
     {
@@ -7379,6 +9470,28 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/merge-kubeconfig.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_mint_trilium_vault_token_rationale_2",
+      "target": "tools_mint_trilium_vault_token",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/mint-trilium-vault-token.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_restore_trilium_rationale_2",
+      "target": "tools_restore_trilium",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/restore-trilium.py",
       "source_location": "L2",
       "weight": 1.0
     },
@@ -8736,6 +10849,469 @@
       "weight": 1.0
     },
     {
+      "source": "07_apps_module_trilium_ingress",
+      "target": "07_apps_var_trilium_hostname",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/07-apps/main.tf",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "07_apps_module_trilium_ingress",
+      "target": "07_apps_var_cloudflare_account_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/07-apps/main.tf",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "07_apps_module_trilium_ingress",
+      "target": "07_apps_var_cloudflare_zone_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/07-apps/main.tf",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "07_apps_output_trilium_tunnel_token",
+      "target": "07_apps_module_trilium_ingress",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/07-apps/outputs.tf",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "07_apps_provider_vault",
+      "target": "07_apps_var_vault_token_file",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/07-apps/providers.tf",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_data_google_project_current",
+      "target": "08_app_backups_var_project_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_google_kms_crypto_key_iam_member_trilium_backup_gcs_agent",
+      "target": "08_app_backups_google_kms_crypto_key_trilium_backups",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_google_kms_crypto_key_iam_member_trilium_backup_gcs_agent",
+      "target": "08_app_backups_data_google_project_current",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_google_kms_crypto_key_trilium_backups",
+      "target": "08_app_backups_google_kms_key_ring_trilium_backups",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_google_kms_key_ring_trilium_backups",
+      "target": "08_app_backups_var_project_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_google_project_iam_custom_role_trilium_backup_writer",
+      "target": "08_app_backups_var_project_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L80",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_google_secret_manager_secret_trilium_backup_credentials",
+      "target": "08_app_backups_var_project_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L102",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_google_secret_manager_secret_version_trilium_backup_credentials",
+      "target": "08_app_backups_google_secret_manager_secret_trilium_backup_credentials",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_google_secret_manager_secret_version_trilium_backup_credentials",
+      "target": "08_app_backups_google_service_account_key_trilium_backup",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L112",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_google_service_account_key_trilium_backup",
+      "target": "08_app_backups_google_service_account_trilium_backup",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L96",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_google_service_account_trilium_backup",
+      "target": "08_app_backups_var_project_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_google_storage_bucket_iam_member_trilium_backup_writer",
+      "target": "08_app_backups_google_storage_bucket_trilium_backups",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_google_storage_bucket_iam_member_trilium_backup_writer",
+      "target": "08_app_backups_google_project_iam_custom_role_trilium_backup_writer",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L91",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_google_storage_bucket_iam_member_trilium_backup_writer",
+      "target": "08_app_backups_google_service_account_trilium_backup",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L92",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_google_storage_bucket_trilium_backups",
+      "target": "08_app_backups_var_project_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_google_storage_bucket_trilium_backups",
+      "target": "08_app_backups_google_kms_crypto_key_trilium_backups",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/trilium.tf",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "08_app_backups_provider_google",
+      "target": "08_app_backups_var_project_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/08-app-backups/providers.tf",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "dns_record_cloudflare_dns_record_this",
+      "target": "dns_record_var_zone_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/dns_record/main.tf",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "dns_record_cloudflare_dns_record_this",
+      "target": "dns_record_var_name",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/dns_record/main.tf",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "dns_record_cloudflare_dns_record_this",
+      "target": "dns_record_var_type",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/dns_record/main.tf",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "dns_record_cloudflare_dns_record_this",
+      "target": "dns_record_var_content",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/dns_record/main.tf",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "dns_record_cloudflare_dns_record_this",
+      "target": "dns_record_var_proxied",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/dns_record/main.tf",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "dns_record_cloudflare_dns_record_this",
+      "target": "dns_record_var_ttl",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/dns_record/main.tf",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "dns_record_output_id",
+      "target": "dns_record_cloudflare_dns_record_this",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/dns_record/outputs.tf",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "public_ingress_cloudflare_zero_trust_tunnel_cloudflared_config_this",
+      "target": "public_ingress_var_account_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "public_ingress_cloudflare_zero_trust_tunnel_cloudflared_config_this",
+      "target": "public_ingress_cloudflare_zero_trust_tunnel_cloudflared_this",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "public_ingress_cloudflare_zero_trust_tunnel_cloudflared_config_this",
+      "target": "public_ingress_var_hostname",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "public_ingress_cloudflare_zero_trust_tunnel_cloudflared_config_this",
+      "target": "public_ingress_var_origin_service",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "public_ingress_cloudflare_zero_trust_tunnel_cloudflared_this",
+      "target": "public_ingress_var_account_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "public_ingress_cloudflare_zero_trust_tunnel_cloudflared_this",
+      "target": "public_ingress_var_hostname",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "public_ingress_data_cloudflare_zero_trust_tunnel_cloudflared_token_this",
+      "target": "public_ingress_var_account_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "public_ingress_data_cloudflare_zero_trust_tunnel_cloudflared_token_this",
+      "target": "public_ingress_cloudflare_zero_trust_tunnel_cloudflared_this",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "public_ingress_module_dns_record",
+      "target": "public_ingress_var_zone_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "public_ingress_module_dns_record",
+      "target": "public_ingress_var_hostname",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "public_ingress_module_dns_record",
+      "target": "public_ingress_cloudflare_zero_trust_tunnel_cloudflared_this",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/main.tf",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "public_ingress_output_tunnel_token",
+      "target": "public_ingress_data_cloudflare_zero_trust_tunnel_cloudflared_token_this",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/modules/public_ingress/outputs.tf",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_backup_trilium_make_archive",
+      "target": "tools_backup_trilium_raise_walk_error",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "tools/backup-trilium.py",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
       "source": "tools_configure_keycloak_google_idp_json_object",
       "target": "runtimeerror",
       "relation": "calls",
@@ -8842,8 +11418,20 @@
       "source_file": "tools/configure-openbao-access.py",
       "source_location": "L69",
       "weight": 1.0
+    },
+    {
+      "source": "tools_mint_trilium_vault_token_request",
+      "target": "runtimeerror",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "call",
+      "source_file": "tools/mint-trilium-vault-token.py",
+      "source_location": "L44",
+      "weight": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "279ee1579f81caee99b92246a1d13be817efee34"
+  "built_at_commit": "59daef1f03436586b08931ec5e613a252832776e"
 }

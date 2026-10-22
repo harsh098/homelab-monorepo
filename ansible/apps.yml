@@ -1,0 +1,239 @@
+---
+- name: Deploy Trilium on localhost
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    apps_layer_dir: "{{ playbook_dir }}/../terraform/layers/07-apps"
+    trilium_compose_dir: /opt/homelab/apps/trilium
+    trilium_token_file: "{{ trilium_compose_dir }}/trilium-tunnel-token"
+    # Only opt in after initializing Trilium and setting its password via 127.0.0.1:8080.
+    # Example: ansible-playbook -i ansible/inventory.ini ansible/apps.yml -e trilium_public_enabled=true
+    trilium_public_enabled: false
+  tasks:
+    - name: Apply apps layer with a scoped OpenBao token
+      block:
+        - name: Mint a temporary read-only OpenBao token
+          ansible.builtin.command:
+            argv:
+              - python3
+              - "{{ playbook_dir }}/../tools/mint-trilium-vault-token.py"
+          register: trilium_vault_token
+
+        - name: Initialize the apps layer
+          ansible.builtin.command:
+            argv:
+              - tofu
+              - init
+              - -input=false
+            chdir: "{{ apps_layer_dir }}"
+          no_log: true
+
+        - name: Apply the apps layer
+          ansible.builtin.command:
+            argv:
+              - tofu
+              - apply
+              - -auto-approve
+              - -input=false
+              - "-var=vault_token_file={{ trilium_vault_token.stdout }}"
+            chdir: "{{ apps_layer_dir }}"
+          no_log: true
+      always:
+        - name: Remove the temporary OpenBao token
+          ansible.builtin.file:
+            path: "{{ trilium_vault_token.stdout }}"
+            state: absent
+          when: trilium_vault_token.stdout is defined and trilium_vault_token.stdout | length > 0
+          no_log: true
+
+    - name: Retrieve the Trilium tunnel token
+      ansible.builtin.command:
+        argv:
+          - tofu
+          - output
+          - -raw
+          - trilium_tunnel_token
+        chdir: "{{ apps_layer_dir }}"
+      register: trilium_tunnel_token
+      changed_when: false
+      no_log: true
+
+    - name: Ensure Docker starts on boot and is running
+      become: true
+      ansible.builtin.systemd_service:
+        name: docker.service
+        enabled: true
+        state: started
+
+    - name: Create persistent Trilium data directory
+      become: true
+      ansible.builtin.file:
+        path: /var/lib/homelab/apps/trilium
+        state: directory
+        owner: "1000"
+        group: "1000"
+        mode: "0700"
+
+    - name: Create root-only Trilium deployment directory
+      become: true
+      ansible.builtin.file:
+        path: "{{ trilium_compose_dir }}"
+        state: directory
+        owner: root
+        group: root
+        mode: "0700"
+
+    - name: Install Trilium Compose definition
+      become: true
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../apps/trilium/compose.yaml"
+        dest: "{{ trilium_compose_dir }}/compose.yaml"
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Install root-only tunnel token
+      become: true
+      ansible.builtin.copy:
+        content: "{{ trilium_tunnel_token.stdout }}"
+        dest: "{{ trilium_token_file }}"
+        owner: "65532"
+        group: "65532"
+        mode: "0400"
+      register: trilium_token_install
+      no_log: true
+
+    - name: Detect whether the public tunnel is already running
+      become: true
+      ansible.builtin.command:
+        argv:
+          - docker
+          - compose
+          - --profile
+          - public
+          - ps
+          - -q
+          - cloudflared
+        chdir: "{{ trilium_compose_dir }}"
+      register: trilium_public_running
+      changed_when: false
+
+    - name: Start or update Trilium for local setup
+      become: true
+      ansible.builtin.command:
+        argv:
+          - docker
+          - compose
+          - up
+          - -d
+          - trilium
+        chdir: "{{ trilium_compose_dir }}"
+
+    - name: Initialize app backup infrastructure
+      ansible.builtin.command:
+        argv:
+          - tofu
+          - init
+          - -input=false
+        chdir: "{{ playbook_dir }}/../terraform/layers/08-app-backups"
+      no_log: true
+
+    - name: Apply app backup infrastructure
+      ansible.builtin.command:
+        argv:
+          - tofu
+          - apply
+          - -auto-approve
+          - -input=false
+        chdir: "{{ playbook_dir }}/../terraform/layers/08-app-backups"
+      no_log: true
+
+    - name: Locate the operator's gcloud binary
+      ansible.builtin.shell: command -v gcloud
+      register: trilium_gcloud_binary
+      changed_when: false
+
+    - name: Read the scoped Trilium backup credential
+      ansible.builtin.command:
+        argv:
+          - "{{ trilium_gcloud_binary.stdout }}"
+          - secrets
+          - versions
+          - access
+          - latest
+          - --secret=trilium-backup-gcs
+          - --project=learninggcp-470023
+      register: trilium_backup_credential
+      changed_when: false
+      no_log: true
+
+    - name: Create protected backup credential directory
+      become: true
+      ansible.builtin.file:
+        path: /etc/homelab
+        state: directory
+        owner: root
+        group: root
+        mode: "0700"
+
+    - name: Install Trilium backup credential
+      become: true
+      ansible.builtin.copy:
+        content: "{{ trilium_backup_credential.stdout }}"
+        dest: /etc/homelab/trilium-backup-gcs.json
+        owner: root
+        group: root
+        mode: "0600"
+      no_log: true
+
+    - name: Create backup executable directory
+      become: true
+      ansible.builtin.file:
+        path: /usr/local/libexec/homelab
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: Install Trilium backup program
+      become: true
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../tools/backup-trilium.py"
+        dest: /usr/local/libexec/homelab/backup-trilium.py
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: Install Trilium backup service
+      become: true
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/systemd/trilium-backup.service.j2"
+        dest: /etc/systemd/system/trilium-backup.service
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Install Trilium backup timer
+      become: true
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/systemd/trilium-backup.timer"
+        dest: /etc/systemd/system/trilium-backup.timer
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Enable the daily Trilium backup timer
+      become: true
+      ansible.builtin.systemd_service:
+        name: trilium-backup.timer
+        daemon_reload: true
+        enabled: true
+        state: started
+
+    - name: Start or update the explicitly enabled public tunnel
+      become: true
+      ansible.builtin.command:
+        argv: "{{ ['docker', 'compose', '--profile', 'public', 'up', '-d'] + (['--force-recreate'] if trilium_token_install.changed else []) + ['cloudflared'] }}"
+        chdir: "{{ trilium_compose_dir }}"
+      when: (trilium_public_enabled | bool) or (trilium_public_running.stdout | length > 0)

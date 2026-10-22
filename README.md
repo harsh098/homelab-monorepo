@@ -550,11 +550,32 @@ release URLs are pinned; v0.64.0 supports the v1.6.x Pipelines LTS series.
 The Dashboard uses its own cluster-wide **view** service account, so it can
 display pipelines, runs, and logs but cannot create or edit them.
 
-The Dashboard has **no login of its own**. It deliberately has only a
-ClusterIP service—no Ingress, LAN DNS record, Cloudflare Tunnel, or public
-URL. Do not expose the service until an authenticated proxy and suitable
-Kubernetes authorization are in place. To use the UI from this host, run
-the port-forward with a kubeconfig authorized to access the service:
+The Dashboard has **no login of its own**. The LAN-only
+`https://tekton.platform.home.arpa/` route terminates TLS with the homelab
+private CA and requires Traefik BasicAuth before any request reaches the
+ClusterIP service. AdGuard rewrites that name to the private Traefik ingress
+address; there is no public DNS record or Cloudflare Tunnel. Trust the homelab
+CA on your browser and use an authorized GCP account to retrieve the
+`username` and `password` fields from the `tekton-dashboard-basic-auth`
+Secret Manager secret. Only the bcrypt `users` record is synced into the
+cluster; the password does not enter Git, Terraform state, or Kubernetes.
+
+After provisioning `terraform/layers/05-gcp`, initialize the credentials:
+
+```bash
+python3 tools/bootstrap-tekton-dashboard-auth.py --project learninggcp-470023
+```
+
+The script requires `gcloud` access and `htpasswd`, prints no credentials,
+and refuses to replace an existing enabled version. Pass `--rotate` to
+generate a replacement. External Secrets refreshes the
+Kubernetes htpasswd secret hourly, so allow for that delay after rotation.
+Apply `terraform/layers/02-dns` to publish the LAN rewrite. The HTTPS
+Ingress references the BasicAuth middleware: if that dependency is missing,
+Traefik does not route requests to the unauthenticated Dashboard.
+
+For break-glass access from this host, an authorized kubeconfig can bypass
+Traefik by forwarding the ClusterIP service:
 
 ```bash
 KUBECONFIG=terraform/layers/03-compute/kubeconfig \
@@ -562,11 +583,10 @@ KUBECONFIG=terraform/layers/03-compute/kubeconfig \
   service/tekton-dashboard 9097:9097
 ```
 
-Open `http://127.0.0.1:9097/` while the command runs. The live Dashboard's
-About page reports `ReadOnly: True`, Dashboard v0.64.0, and Pipelines
-v1.6.0; its Pipelines page currently has no pipelines. The bootc VM
-build and GHCR publishing pipeline is a **separate future change**: no
-build jobs, image publication credentials, or external registry triggers
+The forwarded UI is at `http://127.0.0.1:9097/`. The Dashboard's About page
+reports `ReadOnly: True`, Dashboard v0.64.0, and Pipelines v1.6.0.
+The bootc VM build and GHCR publishing pipeline is a **separate future change**:
+no build jobs, image publication credentials, or external registry triggers
 are installed by this Dashboard deployment.
 
 ### Keycloak database credentials

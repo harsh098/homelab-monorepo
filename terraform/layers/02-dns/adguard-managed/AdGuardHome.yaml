@@ -29,6 +29,9 @@
     "domain": "openbao.platform.home.arpa"
     "enabled": true
   - "answer": "192.168.10.220"
+    "domain": "tekton.platform.home.arpa"
+    "enabled": true
+  - "answer": "192.168.10.220"
     "domain": "traefik.platform.home.arpa"
     "enabled": true
   "rewrites_enabled": true

@@ -72,9 +72,9 @@
     "semantic_hash": "e6b02ca53f9ae81c708b33cef0ba723d"
   },
   "terraform/layers/02-dns/main.tf": {
-    "mtime": 1791738423.3160856,
-    "seen": 1791740047.1171892,
-    "ast_hash": "994c156acc23143929b4a1969393f24d",
+    "mtime": 1792689470.3956287,
+    "seen": 1792689670.857188,
+    "ast_hash": "c979ada487f270d052801d1039eb25e6",
     "semantic_hash": ""
   },
   "terraform/layers/02-dns/providers.tf": {
@@ -282,9 +282,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1792689005.840233,
-    "seen": 1792689014.2735198,
-    "ast_hash": "72ed2a4b9310a411ac9bf9d235188501",
+    "mtime": 1792689654.711557,
+    "seen": 1792689670.8572671,
+    "ast_hash": "cc9bfb54bdc04f3c7a120eb5144f37d1",
     "semantic_hash": ""
   },
   "ansible/infra.yml": {
@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "terraform/layers/02-dns/adguard-managed/AdGuardHome.yaml": {
-    "mtime": 1791738487.703201,
-    "seen": 1791740047.1172564,
-    "ast_hash": "ee055662cca1f7e2a8e17de76a2595ff",
+    "mtime": 1792689663.6376987,
+    "seen": 1792689670.8573196,
+    "ast_hash": "e4c4c8913b9c52d813601470a7c8664a",
     "semantic_hash": ""
   },
   "tools/kubectl-keycloak-login.py": {
@@ -780,9 +780,33 @@
     "semantic_hash": ""
   },
   "clusters/platform/apps/tekton-dashboard/kustomization.yaml": {
-    "mtime": 1792688787.4457564,
-    "seen": 1792688842.9311745,
-    "ast_hash": "e9b16d0341c29d047d4cbbec8ffb8275",
+    "mtime": 1792689465.7345545,
+    "seen": 1792689670.8572798,
+    "ast_hash": "953e7a4da7d6470d1c4b5b5103ebed7f",
+    "semantic_hash": ""
+  },
+  "terraform/layers/05-gcp/tekton-dashboard.tf": {
+    "mtime": 1792689473.9706857,
+    "seen": 1792689670.857222,
+    "ast_hash": "f393f1fd340632db7c2238102fe4c7e3",
+    "semantic_hash": ""
+  },
+  "tools/bootstrap-tekton-dashboard-auth.py": {
+    "mtime": 1792689500.6306076,
+    "seen": 1792689670.8572483,
+    "ast_hash": "859a32d4c16b0bdd6446e2014cf46b20",
+    "semantic_hash": ""
+  },
+  "clusters/platform/apps/tekton-dashboard/auth.yaml": {
+    "mtime": 1792689477.1117356,
+    "seen": 1792689670.8572772,
+    "ast_hash": "aef8037a09c34183018bd2debd5f62e5",
+    "semantic_hash": ""
+  },
+  "clusters/platform/apps/tekton-dashboard/ingress.yaml": {
+    "mtime": 1792689474.9247007,
+    "seen": 1792689670.8572783,
+    "ast_hash": "dc684dd029690308ee3259cdaa75355e",
     "semantic_hash": ""
   }
 }

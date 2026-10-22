@@ -1,17 +1,17 @@
 # Graph Report - llm-studio  (2026-10-22)
 
 ## Corpus Check
-- 84 files · ~159,120 words
+- 86 files · ~159,837 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 11 file(s) not represented in the graph (top: (none) 3, .tftpl 2, .cfg 1)
 
 ## Summary
-- 410 nodes · 605 edges · 57 communities (25 shown, 17 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 11 edges (avg confidence: 0.85)
+- 419 nodes · 624 edges · 58 communities (26 shown, 17 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 15 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6f4155df`
+- Built from commit: `11ebcdcd`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -50,6 +50,7 @@
 - build-headlamp-oidc-image.sh
 - module.trilium_ingress
 - vault_generic_endpoint.cloudflare_metadata
+- google_secret_manager_secret.keycloak_db_credentials
 - 07-apps/.terraform.lock.hcl
 - provider.registry.opentofu.org/hashicorp/vault
 - provider.vault
@@ -60,7 +61,7 @@
 - provider.registry.opentofu.org/hashicorp/google
 
 ## God Nodes (most connected - your core abstractions)
-1. `var.project_id` - 18 edges
+1. `var.project_id` - 19 edges
 2. `What You Must Do When Invoked` - 12 edges
 3. `main()` - 11 edges
 4. `Terraform layers` - 11 edges
@@ -86,7 +87,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (57 total, 17 thin omitted)
+## Communities (58 total, 17 thin omitted)
 
 ### Community 0 - "pki.tf"
 Cohesion: 0.19
@@ -118,7 +119,7 @@ Nodes (4): provider.registry.opentofu.org/hashicorp/google, provider.registry.op
 
 ### Community 9 - "var.project_id"
 Cohesion: 0.11
-Nodes (37): data.google_project.current, google_artifact_registry_repository.headlamp, google_artifact_registry_repository_iam_member.headlamp_public_pull, google_kms_crypto_key_iam_member.mail_backup_gcs_service_agent, google_kms_crypto_key_iam_member.openbao_unseal, google_kms_crypto_key_iam_member.platform_backup_gcs_agent, google_kms_crypto_key.mail_backups, google_kms_crypto_key.openbao_unseal (+29 more)
+Nodes (35): data.google_project.current, google_artifact_registry_repository.headlamp, google_artifact_registry_repository_iam_member.headlamp_public_pull, google_kms_crypto_key_iam_member.mail_backup_gcs_service_agent, google_kms_crypto_key_iam_member.openbao_unseal, google_kms_crypto_key_iam_member.platform_backup_gcs_agent, google_kms_crypto_key.mail_backups, google_kms_crypto_key.openbao_unseal (+27 more)
 
 ### Community 27 - "What You Must Do When Invoked"
 Cohesion: 0.08
@@ -161,8 +162,8 @@ Cohesion: 0.28
 Nodes (14): _atomic_dump(), _config(), _is_owned(), main(), _marker(), merge_kubeconfig(), _next_name(), _parser() (+6 more)
 
 ### Community 41 - "RuntimeError"
-Cohesion: 0.14
-Nodes (23): RuntimeError, _json_object(), main(), _parser(), Any, ArgumentParser, SSLContext, Create or update the Platform realm Google identity provider. Credentials are… (+15 more)
+Cohesion: 0.12
+Nodes (28): RuntimeError, _enabled_version_exists(), main(), _project(), Initialize or rotate Tekton Dashboard BasicAuth credentials in Secret Manager.…, _run(), _json_object(), main() (+20 more)
 
 ### Community 42 - "cloudflare_zero_trust_tunnel_cloudflared_config.this"
 Cohesion: 0.33
@@ -171,6 +172,10 @@ Nodes (9): cloudflare_zero_trust_tunnel_cloudflared_config.this, cloudflare_zero
 ### Community 44 - "module.trilium_ingress"
 Cohesion: 0.20
 Nodes (8): module.trilium_ingress, output.trilium_tunnel_token, provider.cloudflare, provider.vault, var.cloudflare_account_id, var.cloudflare_zone_id, var.trilium_hostname, var.vault_token_file
+
+### Community 46 - "google_secret_manager_secret.keycloak_db_credentials"
+Cohesion: 0.70
+Nodes (4): google_secret_manager_secret_iam_member.keycloak_db_credentials_reader, google_secret_manager_secret.keycloak_db_credentials, google_secret_manager_secret_version.keycloak_db_credentials, random_password.keycloak_db_password
 
 ### Community 52 - "cloudflare_dns_record.this"
 Cohesion: 0.27
@@ -190,23 +195,23 @@ Nodes (9): TarInfo, archive_members(), check_database(), empty_destination(), ma
 
 ## Knowledge Gaps
 - **87 isolated node(s):** `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local`, `provider.registry.opentofu.org/kreuzwerker/docker`, `provider.docker` (+82 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 149 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 150 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **17 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
+- **Why does `var.project_id` connect `var.project_id` to `google_secret_manager_secret.keycloak_db_credentials`?**
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **Why does `OIDCError` connect `kubectl-keycloak-login.py` to `RuntimeError`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **Why does `kubernetes_manifest.keycloak_certificate` connect `pki.tf` to `keycloak.tf`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **Are the 10 inferred relationships involving `RuntimeError` (e.g. with `_json_object()` and `main()`) actually correct?**
-  _`RuntimeError` has 10 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 14 inferred relationships involving `RuntimeError` (e.g. with `_enabled_version_exists()` and `main()`) actually correct?**
+  _`RuntimeError` has 14 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `build-image.sh script`, `provider.registry.opentofu.org/dmacvicar/libvirt`, `provider.registry.opentofu.org/hashicorp/local` to the rest of the system?**
   _87 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `03-compute/variables.tf` be split into smaller, more focused modules?**
   _Cohesion score 0.12666666666666668 - nodes in this community are weakly interconnected._
 - **Should `var.project_id` be split into smaller, more focused modules?**
-  _Cohesion score 0.10631229235880399 - nodes in this community are weakly interconnected._
-- **Should `What You Must Do When Invoked` be split into smaller, more focused modules?**
-  _Cohesion score 0.08 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11219512195121951 - nodes in this community are weakly interconnected._

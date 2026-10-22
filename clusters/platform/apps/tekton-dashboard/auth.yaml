@@ -1,0 +1,31 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: tekton-dashboard-basic-auth
+  namespace: tekton-pipelines
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: gcp-secret-manager
+    kind: ClusterSecretStore
+  target:
+    name: tekton-dashboard-basic-auth
+    creationPolicy: Owner
+    deletionPolicy: Retain
+    template:
+      type: Opaque
+  data:
+    - secretKey: users
+      remoteRef:
+        key: tekton-dashboard-basic-auth
+        property: users
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: tekton-dashboard-basic-auth
+  namespace: tekton-pipelines
+spec:
+  basicAuth:
+    secret: tekton-dashboard-basic-auth
+    removeHeader: true

@@ -354,6 +354,54 @@
       "source_location": "L78"
     },
     {
+      "id": "tools_bootstrap_tekton_dashboard_auth_enabled_version_exists",
+      "label": "_enabled_version_exists()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "RuntimeError",
+      "file_type": "code",
+      "norm_label": "_enabled_version_exists()",
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L46"
+    },
+    {
+      "id": "tools_bootstrap_tekton_dashboard_auth_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "RuntimeError",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L59"
+    },
+    {
+      "id": "tools_bootstrap_tekton_dashboard_auth_project",
+      "label": "_project()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "RuntimeError",
+      "file_type": "code",
+      "norm_label": "_project()",
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L37"
+    },
+    {
+      "id": "tools_bootstrap_tekton_dashboard_auth_run",
+      "label": "_run()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "RuntimeError",
+      "file_type": "code",
+      "norm_label": "_run()",
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L19"
+    },
+    {
       "id": "tools_configure_keycloak_google_idp_json_object",
       "label": "_json_object()",
       "_callable": true,
@@ -1999,7 +2047,7 @@
       "node_kind": "heading",
       "norm_label": "deploy host applications: trilium",
       "source_file": "README.md",
-      "source_location": "L815"
+      "source_location": "L835"
     },
     {
       "id": "readme_gitops_role_and_user_workflow",
@@ -2047,7 +2095,7 @@
       "node_kind": "heading",
       "norm_label": "keycloak database credentials",
       "source_file": "README.md",
-      "source_location": "L572"
+      "source_location": "L592"
     },
     {
       "id": "readme_manual_google_sign_in_runbook",
@@ -2071,7 +2119,7 @@
       "node_kind": "heading",
       "norm_label": "openbao",
       "source_file": "README.md",
-      "source_location": "L583"
+      "source_location": "L603"
     },
     {
       "id": "readme_power_outage_recovery",
@@ -2143,7 +2191,7 @@
       "node_kind": "heading",
       "norm_label": "stateful database safety",
       "source_file": "README.md",
-      "source_location": "L791"
+      "source_location": "L811"
     },
     {
       "id": "readme_tekton_dashboard",
@@ -2179,7 +2227,7 @@
       "node_kind": "heading",
       "norm_label": "trilium off-node backups",
       "source_file": "README.md",
-      "source_location": "L909"
+      "source_location": "L929"
     },
     {
       "id": "02_dns_docker_container_adguardhome",
@@ -2190,7 +2238,7 @@
       "file_type": "code",
       "norm_label": "docker_container.adguardhome",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L69"
+      "source_location": "L70"
     },
     {
       "id": "02_dns_docker_image_adguard",
@@ -2201,7 +2249,7 @@
       "file_type": "code",
       "norm_label": "docker_image.adguard",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L64"
+      "source_location": "L65"
     },
     {
       "id": "02_dns_local_config_dir",
@@ -2245,7 +2293,7 @@
       "file_type": "code",
       "norm_label": "local.dns_records",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L15"
+      "source_location": "L16"
     },
     {
       "id": "02_dns_local_file_adguard_config",
@@ -2256,7 +2304,7 @@
       "file_type": "code",
       "norm_label": "local_file.adguard_config",
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L18"
+      "source_location": "L19"
     },
     {
       "id": "02_dns_local_managed_data_dir",
@@ -3030,6 +3078,17 @@
       "source_location": ""
     },
     {
+      "id": "tools_bootstrap_tekton_dashboard_auth",
+      "label": "bootstrap-tekton-dashboard-auth.py",
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "RuntimeError",
+      "file_type": "code",
+      "norm_label": "bootstrap-tekton-dashboard-auth.py",
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L1"
+    },
+    {
       "id": "tools_configure_keycloak_google_idp",
       "label": "configure-keycloak-google-idp.py",
       "_origin": "ast",
@@ -3127,6 +3186,17 @@
       "norm_label": "sslcontext",
       "source_file": "",
       "source_location": ""
+    },
+    {
+      "id": "tools_bootstrap_tekton_dashboard_auth_rationale_2",
+      "label": "Initialize or rotate Tekton Dashboard BasicAuth credentials in Secret Manager.\u2026",
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "RuntimeError",
+      "file_type": "rationale",
+      "norm_label": "initialize or rotate tekton dashboard basicauth credentials in secret manager....",
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L2"
     },
     {
       "id": "tools_configure_keycloak_google_idp_rationale_2",
@@ -3475,6 +3545,61 @@
       "file_type": "code",
       "norm_label": "06-app-secrets/main.tf",
       "source_file": "terraform/layers/06-app-secrets/main.tf",
+      "source_location": null
+    },
+    {
+      "id": "05_gcp_google_secret_manager_secret_iam_member_keycloak_db_credentials_reader",
+      "label": "google_secret_manager_secret_iam_member.keycloak_db_credentials_reader",
+      "_origin": "ast",
+      "community": 46,
+      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret_iam_member.keycloak_db_credentials_reader",
+      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "source_location": "L15"
+    },
+    {
+      "id": "05_gcp_google_secret_manager_secret_keycloak_db_credentials",
+      "label": "google_secret_manager_secret.keycloak_db_credentials",
+      "_origin": "ast",
+      "community": 46,
+      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret.keycloak_db_credentials",
+      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "source_location": "L6"
+    },
+    {
+      "id": "05_gcp_google_secret_manager_secret_version_keycloak_db_credentials",
+      "label": "google_secret_manager_secret_version.keycloak_db_credentials",
+      "_origin": "ast",
+      "community": 46,
+      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
+      "file_type": "code",
+      "norm_label": "google_secret_manager_secret_version.keycloak_db_credentials",
+      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "source_location": "L22"
+    },
+    {
+      "id": "05_gcp_random_password_keycloak_db_password",
+      "label": "random_password.keycloak_db_password",
+      "_origin": "ast",
+      "community": 46,
+      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
+      "file_type": "code",
+      "norm_label": "random_password.keycloak_db_password",
+      "source_file": "terraform/layers/05-gcp/keycloak.tf",
+      "source_location": "L1"
+    },
+    {
+      "id": "terraform_layers_05_gcp_keycloak",
+      "label": "05-gcp/keycloak.tf",
+      "_origin": "ast",
+      "community": 46,
+      "community_name": "google_secret_manager_secret.keycloak_db_credentials",
+      "file_type": "code",
+      "norm_label": "05-gcp/keycloak.tf",
+      "source_file": "terraform/layers/05-gcp/keycloak.tf",
       "source_location": null
     },
     {
@@ -4369,17 +4494,6 @@
       "source_location": "L100"
     },
     {
-      "id": "05_gcp_google_secret_manager_secret_iam_member_keycloak_db_credentials_reader",
-      "label": "google_secret_manager_secret_iam_member.keycloak_db_credentials_reader",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "var.project_id",
-      "file_type": "code",
-      "norm_label": "google_secret_manager_secret_iam_member.keycloak_db_credentials_reader",
-      "source_file": "terraform/layers/05-gcp/keycloak.tf",
-      "source_location": "L15"
-    },
-    {
       "id": "05_gcp_google_secret_manager_secret_iam_member_openbao_kms_credentials_reader",
       "label": "google_secret_manager_secret_iam_member.openbao_kms_credentials_reader",
       "_origin": "ast",
@@ -4402,15 +4516,15 @@
       "source_location": "L159"
     },
     {
-      "id": "05_gcp_google_secret_manager_secret_keycloak_db_credentials",
-      "label": "google_secret_manager_secret.keycloak_db_credentials",
+      "id": "05_gcp_google_secret_manager_secret_iam_member_tekton_dashboard_basic_auth_reader",
+      "label": "google_secret_manager_secret_iam_member.tekton_dashboard_basic_auth_reader",
       "_origin": "ast",
       "community": 9,
       "community_name": "var.project_id",
       "file_type": "code",
-      "norm_label": "google_secret_manager_secret.keycloak_db_credentials",
-      "source_file": "terraform/layers/05-gcp/keycloak.tf",
-      "source_location": "L6"
+      "norm_label": "google_secret_manager_secret_iam_member.tekton_dashboard_basic_auth_reader",
+      "source_file": "terraform/layers/05-gcp/tekton-dashboard.tf",
+      "source_location": "L12"
     },
     {
       "id": "05_gcp_google_secret_manager_secret_openbao_kms_credentials",
@@ -4446,15 +4560,15 @@
       "source_location": "L142"
     },
     {
-      "id": "05_gcp_google_secret_manager_secret_version_keycloak_db_credentials",
-      "label": "google_secret_manager_secret_version.keycloak_db_credentials",
+      "id": "05_gcp_google_secret_manager_secret_tekton_dashboard_basic_auth",
+      "label": "google_secret_manager_secret.tekton_dashboard_basic_auth",
       "_origin": "ast",
       "community": 9,
       "community_name": "var.project_id",
       "file_type": "code",
-      "norm_label": "google_secret_manager_secret_version.keycloak_db_credentials",
-      "source_file": "terraform/layers/05-gcp/keycloak.tf",
-      "source_location": "L22"
+      "norm_label": "google_secret_manager_secret.tekton_dashboard_basic_auth",
+      "source_file": "terraform/layers/05-gcp/tekton-dashboard.tf",
+      "source_location": "L3"
     },
     {
       "id": "05_gcp_google_secret_manager_secret_version_openbao_kms_credentials",
@@ -4567,17 +4681,6 @@
       "source_location": "L2"
     },
     {
-      "id": "05_gcp_random_password_keycloak_db_password",
-      "label": "random_password.keycloak_db_password",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "var.project_id",
-      "file_type": "code",
-      "norm_label": "random_password.keycloak_db_password",
-      "source_file": "terraform/layers/05-gcp/keycloak.tf",
-      "source_location": "L1"
-    },
-    {
       "id": "05_gcp_var_project_id",
       "label": "var.project_id",
       "_origin": "ast",
@@ -4622,17 +4725,6 @@
       "source_location": null
     },
     {
-      "id": "terraform_layers_05_gcp_keycloak",
-      "label": "05-gcp/keycloak.tf",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "var.project_id",
-      "file_type": "code",
-      "norm_label": "05-gcp/keycloak.tf",
-      "source_file": "terraform/layers/05-gcp/keycloak.tf",
-      "source_location": null
-    },
-    {
       "id": "terraform_layers_05_gcp_mail",
       "label": "mail.tf",
       "_origin": "ast",
@@ -4663,6 +4755,17 @@
       "file_type": "code",
       "norm_label": "platform-backups.tf",
       "source_file": "terraform/layers/05-gcp/platform-backups.tf",
+      "source_location": null
+    },
+    {
+      "id": "terraform_layers_05_gcp_tekton_dashboard",
+      "label": "tekton-dashboard.tf",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "var.project_id",
+      "file_type": "code",
+      "norm_label": "tekton-dashboard.tf",
+      "source_file": "terraform/layers/05-gcp/tekton-dashboard.tf",
       "source_location": null
     },
     {
@@ -4760,6 +4863,66 @@
       "context": "call",
       "source_file": "tools/backup-trilium.py",
       "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_bootstrap_tekton_dashboard_auth_enabled_version_exists",
+      "target": "tools_bootstrap_tekton_dashboard_auth_run",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_bootstrap_tekton_dashboard_auth_main",
+      "target": "tools_bootstrap_tekton_dashboard_auth_project",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L70",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_bootstrap_tekton_dashboard_auth_main",
+      "target": "tools_bootstrap_tekton_dashboard_auth_run",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_bootstrap_tekton_dashboard_auth_main",
+      "target": "tools_bootstrap_tekton_dashboard_auth_enabled_version_exists",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_bootstrap_tekton_dashboard_auth_project",
+      "target": "tools_bootstrap_tekton_dashboard_auth_run",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L40",
       "weight": 1.0
     },
     {
@@ -6655,7 +6818,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L909",
+      "source_location": "L929",
       "weight": 1.0
     },
     {
@@ -6699,7 +6862,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L815",
+      "source_location": "L835",
       "weight": 1.0
     },
     {
@@ -6798,7 +6961,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L572",
+      "source_location": "L592",
       "weight": 1.0
     },
     {
@@ -6809,7 +6972,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L583",
+      "source_location": "L603",
       "weight": 1.0
     },
     {
@@ -6820,7 +6983,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L791",
+      "source_location": "L811",
       "weight": 1.0
     },
     {
@@ -6853,7 +7016,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0
     },
     {
@@ -6864,7 +7027,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -6930,7 +7093,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L64",
+      "source_location": "L65",
       "weight": 1.0
     },
     {
@@ -6941,7 +7104,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L69",
+      "source_location": "L70",
       "weight": 1.0
     },
     {
@@ -8133,6 +8296,28 @@
       "weight": 1.0
     },
     {
+      "source": "terraform_layers_05_gcp_tekton_dashboard",
+      "target": "05_gcp_google_secret_manager_secret_iam_member_tekton_dashboard_basic_auth_reader",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/tekton-dashboard.tf",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "terraform_layers_05_gcp_tekton_dashboard",
+      "target": "05_gcp_google_secret_manager_secret_tekton_dashboard_basic_auth",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/tekton-dashboard.tf",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
       "source": "terraform_layers_05_gcp_terraform_lock",
       "target": "05_gcp_provider_registry_opentofu_org_hashicorp_random",
       "relation": "contains",
@@ -8749,6 +8934,50 @@
       "weight": 1.0
     },
     {
+      "source": "tools_bootstrap_tekton_dashboard_auth",
+      "target": "tools_bootstrap_tekton_dashboard_auth_run",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_bootstrap_tekton_dashboard_auth",
+      "target": "tools_bootstrap_tekton_dashboard_auth_project",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_bootstrap_tekton_dashboard_auth",
+      "target": "tools_bootstrap_tekton_dashboard_auth_enabled_version_exists",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_bootstrap_tekton_dashboard_auth",
+      "target": "tools_bootstrap_tekton_dashboard_auth_main",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
       "source": "tools_build_headlamp_oidc_image",
       "target": "tools_build_headlamp_oidc_image_sh__entry",
       "relation": "contains",
@@ -9262,7 +9491,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L127",
+      "source_location": "L128",
       "weight": 1.0
     },
     {
@@ -9431,6 +9660,17 @@
       "weight": 1.0
     },
     {
+      "source": "tools_bootstrap_tekton_dashboard_auth_rationale_2",
+      "target": "tools_bootstrap_tekton_dashboard_auth",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
       "source": "tools_configure_keycloak_google_idp_rationale_2",
       "target": "tools_configure_keycloak_google_idp",
       "relation": "rationale_for",
@@ -9526,7 +9766,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L105",
+      "source_location": "L106",
       "weight": 1.0
     },
     {
@@ -9537,7 +9777,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L111",
+      "source_location": "L112",
       "weight": 1.0
     },
     {
@@ -9548,7 +9788,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L117",
+      "source_location": "L118",
       "weight": 1.0
     },
     {
@@ -9559,7 +9799,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L71",
+      "source_location": "L72",
       "weight": 1.0
     },
     {
@@ -9570,7 +9810,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L81",
+      "source_location": "L82",
       "weight": 1.0
     },
     {
@@ -9581,7 +9821,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L65",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
@@ -9592,7 +9832,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L65",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
@@ -9647,7 +9887,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0
     },
     {
@@ -9658,7 +9898,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0
     },
     {
@@ -9669,7 +9909,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L42",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -9680,7 +9920,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "terraform/layers/02-dns/main.tf",
-      "source_location": "L61",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -10542,6 +10782,28 @@
       "weight": 1.0
     },
     {
+      "source": "05_gcp_google_secret_manager_secret_iam_member_tekton_dashboard_basic_auth_reader",
+      "target": "05_gcp_google_secret_manager_secret_tekton_dashboard_basic_auth",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/tekton-dashboard.tf",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_secret_manager_secret_iam_member_tekton_dashboard_basic_auth_reader",
+      "target": "05_gcp_var_secret_reader_service_account_email",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/tekton-dashboard.tf",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
       "source": "05_gcp_google_secret_manager_secret_keycloak_db_credentials",
       "target": "05_gcp_var_project_id",
       "relation": "references",
@@ -10594,6 +10856,17 @@
       "confidence_score": 1.0,
       "source_file": "terraform/layers/05-gcp/platform-backups.tf",
       "source_location": "L145",
+      "weight": 1.0
+    },
+    {
+      "source": "05_gcp_google_secret_manager_secret_tekton_dashboard_basic_auth",
+      "target": "05_gcp_var_project_id",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "terraform/layers/05-gcp/tekton-dashboard.tf",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -11335,6 +11608,54 @@
       "weight": 1.0
     },
     {
+      "source": "tools_bootstrap_tekton_dashboard_auth_enabled_version_exists",
+      "target": "runtimeerror",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "call",
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_bootstrap_tekton_dashboard_auth_main",
+      "target": "runtimeerror",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "call",
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_bootstrap_tekton_dashboard_auth_project",
+      "target": "runtimeerror",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "call",
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_bootstrap_tekton_dashboard_auth_run",
+      "target": "runtimeerror",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "call",
+      "source_file": "tools/bootstrap-tekton-dashboard-auth.py",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
       "source": "tools_configure_keycloak_google_idp_json_object",
       "target": "runtimeerror",
       "relation": "calls",
@@ -11456,5 +11777,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "6f4155dfb2a0a99ccecc55b337bf36ca709f68aa"
+  "built_at_commit": "11ebcdcdb4a9f690d37067ec39226ab7863976fa"
 }
